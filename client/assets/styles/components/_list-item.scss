@@ -1,0 +1,43 @@
+.lof-list-item {
+  @extend .row;
+  width: 100%;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $space-8;
+
+  &__button-group {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__button {
+    width: 1.8rem;
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &--times {
+      border: 1px solid $secondary;
+      border-radius: 100%;
+    }
+
+    &-icon {
+      &--loading {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+
+      &--times {
+        @extend .lof-icon;
+      }
+
+      &--download {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+}

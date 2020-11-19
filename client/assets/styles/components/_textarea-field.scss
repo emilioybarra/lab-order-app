@@ -1,0 +1,13 @@
+.lof-textarea-field {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    margin-bottom: 0;
+  }
+
+  &__input {
+    border: 1px solid $secondary;
+    border-radius: none;
+  }
+}

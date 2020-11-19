@@ -1,0 +1,88 @@
+.lof-input-field {
+  display: flex;
+  padding-top: $space-2;
+  padding-bottom: $space-2;
+  position: relative;
+  height: 75px;
+  width: 100%;
+
+  &--floating-label {
+    flex-flow: column-reverse;
+
+    &::-webkit-input-placeholder {
+      opacity: 0;
+      transition: inherit;
+    }
+  }
+
+  &__input, &__label {
+    transition: all 0.2s;
+    touch-action: manipulation;
+  }
+
+  &__input {
+    font-size: 14px;
+    border: 0;
+    border-bottom: 1px solid $secondary;
+    -webkit-appearance: none;
+    border-radius: 0;
+    padding-top: 5px;
+    cursor: text;
+    background-color: transparent;
+    color: $font-color;
+    width: 100%;
+
+    &:focus {
+      outline: 0;
+      border-bottom: 1px solid $secondary;
+    }
+
+    &--side-label {
+      line-height: 0;
+      color: $font-color;
+      margin-left: 5px;
+    }
+
+    &--floating-label {
+      padding-bottom: 5px;
+
+      &:placeholder-shown + .lof-input-field__label--floating-label {
+        cursor: text;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transform-origin: left bottom;
+        transform: translate(0, 2rem) scale(1.5);
+      }
+
+      &:not(:placeholder-shown) + .lof-input-field__label--floating-label,
+      &:focus + .lof-input-field__label--floating-label {
+        transform: translate(0, 0) scale(1);
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__label {
+    margin-bottom: 0;
+    width: fit-content;
+    width: -moz-fit-content;
+
+    &--side-label {
+      font-size: 14px;
+      align-self: flex-end;
+      margin-bottom: -2px;
+
+      &-right {
+        position: absolute;
+        right: 0;
+      }
+    }
+
+    &--floating-label {
+      text-transform: capitalize;
+      color: $grey;
+      font-size: 10px;
+    }
+  }
+}

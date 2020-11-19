@@ -1,0 +1,20 @@
+.lof-tooth-divider {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  &__line {
+    width: 100%;
+    border-top: 1px dashed $secondary;
+  }
+
+  &__icon-container {
+    position: absolute;
+    top: -12px;
+  }
+
+  &__icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}

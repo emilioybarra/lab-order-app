@@ -1,0 +1,21 @@
+.lof-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  margin-top: auto;
+  margin-bottom: auto;
+
+  &__headline {
+    flex: 0 0 auto;
+    text-align: center;
+  }
+
+  &__body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1 1 auto;
+    //position: relative;
+    margin-bottom: 3rem;
+  }
+}

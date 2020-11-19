@@ -1,0 +1,64 @@
+.lof-pagination-bar {
+  @extend .row;
+  width: 100%;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__pages {
+    display: flex;
+  }
+
+  &__page, &__ends, &__arrows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: $space-05;
+    margin-right: $space-05;
+    line-height: 0;
+  }
+
+  &__arrows {
+    width: 1.4rem;
+    height: 1.8rem;
+    cursor: pointer;
+
+    &--left-arrow {
+      transform: rotate(180deg);
+    }
+
+    &-icon {
+      width: inherit;
+    }
+  }
+
+  &__page, &__ends {
+    font-size: 20px;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+
+  &__page {
+    cursor: pointer;
+
+    &--current-page {
+      border: 1px solid $secondary;
+      border-radius: 100%;
+
+      &:hover {
+        cursor: default;
+        text-decoration: none !important;
+      }
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

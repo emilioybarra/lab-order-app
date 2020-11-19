@@ -1,0 +1,197 @@
+$upper-canvas-width-phone-sm: 286px;
+$upper-canvas-height-phone-sm: 220px;
+$upper-canvas-width-phone-lg: 456px;
+$upper-canvas-height-phone-lg: 350px;
+$upper-canvas-width-tablet: 652px;
+$upper-canvas-height-tablet: 500px;
+$upper-canvas-width-desktop: 716px;
+$upper-canvas-height-desktop: 550px;
+
+
+$lower-canvas-width-phone-sm: 286px;
+$lower-canvas-height-phone-sm: 206px;
+$lower-canvas-width-phone-lg: 456px;
+$lower-canvas-height-phone-lg: 328px;
+$lower-canvas-width-tablet: 652px;
+$lower-canvas-height-tablet: 470px;
+$lower-canvas-width-desktop: 716px;
+$lower-canvas-height-desktop: 516px;
+
+$upper-canvas-width: $upper-canvas-width-tablet;
+$upper-canvas-height: $upper-canvas-height-tablet;
+$lower-canvas-width: $lower-canvas-width-tablet;
+$lower-canvas-height: $lower-canvas-height-tablet;
+
+
+.lof-teeth-canvas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__border {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $space-4;
+    position: relative;
+    background-color: $white;
+    border-radius: 1.2rem;
+    box-shadow: 0 0 17px -8px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0 0 17px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 0 17px -8px rgba(0, 0, 0, 0.75);
+  }
+
+  &__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__container {
+    position: relative;
+
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+
+    &--upper,
+    &-image--upper,
+    &-canvas--upper {
+      width: $upper-canvas-width;
+      height: $upper-canvas-height;
+    }
+
+    &--lower,
+    &-image--lower,
+    &-canvas--lower {
+      width: $lower-canvas-width;
+      height: $lower-canvas-height;
+    }
+
+    &-canvas {
+      position: absolute;
+    }
+  }
+
+  &__tooth {
+    fill: #fff;
+
+    &-outline {
+      stroke: #1d1d1b;
+      stroke-width:0.92px;
+    }
+
+    &-texture {
+      stroke: #b1b1b1;
+      stroke-linecap: round;
+      stroke-width: 0.61px;
+    }
+
+    &-outline, &-texture {
+      fill: none;
+      stroke-miterlimit: 10;
+    }
+
+    &--blue {
+      fill: #00ffff;
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    margin-top: $space-4;
+
+    &-canvas-mode {
+      margin-right: $space-4;
+      margin-bottom: 0;
+    }
+  }
+
+  &__button {
+    &-icon {
+      width: 1.4rem;
+      height: 1.4rem;
+
+      &--active {
+        filter: brightness(100);
+      }
+    }
+
+    &:hover &-icon {
+      filter: brightness(100);
+    }
+  }
+
+  &__container--upper,
+  &__container-image--upper,
+  &__container-canvas--upper {
+    @include phone-sm() {
+      width: $upper-canvas-width-phone-sm;
+      height: $upper-canvas-height-phone-sm;
+    }
+
+    @include phone-lg() {
+      width: $upper-canvas-width-phone-lg;
+      height: $upper-canvas-height-phone-lg;
+    }
+
+    @include tablet() {
+      width: $upper-canvas-width-tablet;
+      height: $upper-canvas-height-tablet;
+    }
+
+    @include desktop() {
+      width: $upper-canvas-width-tablet;
+      height: $upper-canvas-height-tablet;
+    }
+
+    @include desktop-lg() {
+      width: $upper-canvas-width-desktop;
+      height: $upper-canvas-height-desktop;
+    }
+  }
+
+  &__container--lower,
+  &__container-image--lower,
+  &__container-canvas--lower {
+    @include phone-sm() {
+      width: $lower-canvas-width-phone-sm;
+      height: $lower-canvas-height-phone-sm;
+    }
+
+    @include phone-lg() {
+      width: $lower-canvas-width-phone-lg;
+      height: $lower-canvas-height-phone-lg;
+    }
+
+    @include tablet() {
+      width: $lower-canvas-width-tablet;
+      height: $lower-canvas-height-tablet;
+    }
+
+    @include desktop() {
+      width: $lower-canvas-width-tablet;
+      height: $lower-canvas-height-tablet;
+    }
+
+    @include desktop-lg() {
+      width: $lower-canvas-width-desktop;
+      height: $lower-canvas-height-desktop;
+    }
+  }
+}

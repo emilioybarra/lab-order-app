@@ -1,0 +1,54 @@
+.lof {
+  &-title {
+    font-family: 'ProximaNova-Bold', serif;
+
+    &--1 {
+      font-size: 42px;
+    }
+
+    &--2 {
+      font-size: 38px;
+    }
+
+    &--3 {
+      font-size: 34px;
+    }
+  }
+
+  &-headline {
+    font-weight: 600;
+    font-family: 'ProximaNova-Regular', serif;
+
+    &--1 {
+      font-size: 32px;
+    }
+
+    &--2 {
+      font-size: 26px;
+    }
+
+    &--3 {
+      font-size: 20px;
+    }
+  }
+
+  &-subline {
+    font-family: 'ProximaNova-Regular', serif;
+
+    &--1 {
+      font-size: 16px;
+    }
+  }
+
+  &-content {
+    font-family: 'ProximaNova-Regular', serif;
+
+    &--1 {
+      font-size: 14px;
+    }
+
+    &--2 {
+      font-size: 12px;
+    }
+  }
+}

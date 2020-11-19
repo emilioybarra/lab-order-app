@@ -1,0 +1,16 @@
+.lof-button {
+  max-width: 250px;
+  width: 100%;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:disabled {
+    opacity: 1;
+    background-color: $secondary;
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
