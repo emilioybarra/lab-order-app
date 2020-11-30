@@ -49,6 +49,8 @@ module.exports = {
     'vue/attribute-hyphenation': [ 'error', 'always' ],
     'vue/object-curly-spacing': [ 'error', 'always' ],
     'vue/name-property-casing': [ 'error', 'kebab-case' ],
+    'vue/component-definition-name-casing': [ 'error', 'kebab-case' ],
+    'vue/custom-event-name-casing': [ 'off' ],
     'vue/require-default-prop': [ 'off' ],
     'vue/no-use-v-if-with-v-for': [ 'off' ],
     'vue/no-template-shadow': [ 'off' ],

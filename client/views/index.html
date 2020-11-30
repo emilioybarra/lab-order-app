@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab-Order-Form // DW Lingual Systems GmbH</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="frontend/css/screen.css">
+    <script src="frontend/js/jquery.js"></script>
+    <script src="frontend/js/script.js"></script>
+  </head>
+  <body>
+    <header class="pr-siteHead">
+      <div class="pr-siteHead__wrap">
+        <div class="pr-siteHead__flex">
+          <div class="pr-siteHead__flex-item"><img class="pr-siteHead__logo pr-siteHead__logo_dwls" src="/images/logo.png"></div>
+          <div class="pr-siteHead__flex-item"><img class="pr-siteHead__logo pr-siteHead__logo_win" src="/images/win.svg"></div>
+          <div class="pr-siteHead__flex-item"><strong>Terminabsprache: <br/></strong>
+            <p class="pr-paragraph">
+              <span class = "pr-siteHead__flex__space">Mo. - Do.</span> 08:00 - 17:00 Uhr <br/>
+              <span class = "pr-siteHead__flex__space">Fr.</span> 08:00 - 14:00 Uhr <br/>
+              <span class = "pr-siteHead__flex__smallspace">Tel.</span> +49 5472 95444 - 251 <br/>
+              <span class = "pr-siteHead__flex__smallspace">Fax</span> +49 5472 95444 - 294 <br/>win@lingualsystems.de
+            </p>
+          </div>
+          <div class="pr-siteHead__flex-item"><strong>Abdrücke senden Sie bitte an: <br/></strong>
+            <p class="pr-paragraph">
+              DW Lingual Systems GmbH <br/>
+              Lindenstraße 44 <br/>
+              49152 Bad Essen <br/>
+              Deutschland
+            </p>
+          </div>
+          <div class="pr-siteHead__flex__clear"></div>
+        </div>
+      </div>
+    </header>
+    <main class="pr-siteContent">
+      <div class="pr-siteContent__wrap">
+        <form id="form" action="html2pdf.php" method="post" enctype="multipart/form-data">
+
+          <strong>Rechnungsadresse:</strong>
+          <div class="pr-flex">
+            <div class="pr-flex__item">
+              <input class="pr-input" type="text" id="praxis" name="praxis">
+              <label class="pr-input__label" for="praxis">Praxis</label>
+              <input class="pr-input" type="text" id="behandler" name="behandler">
+              <label class="pr-input__label" for="behandler">Behandler</label>
+              <input class="pr-input" type="text" id="strasse" name="strasse">
+              <label class="pr-input__label" for="strasse">Straße / Hausnummer</label>
+              <input class="pr-input" type="text" id="plz" name="plz">
+              <label class="pr-input__label" for="plz">PLZ / Ort</label>
+            </div>
+            <div class="pr-flex__item">
+              <input class="pr-input" type="text" id="telefon" name="telefon">
+              <label class="pr-input__label" for="telefon">Telefon</label>
+              <input class="pr-input" type="text" id="fax" name="fax">
+              <label class="pr-input__label" for="fax">Fax</label>
+              <input class="pr-input" type="email" id="mail" name="mail">
+              <label class="pr-input__label" for="mail">E-Mail</label>
+              <input class="pr-input" type="text" id="ust" name="ust">
+              <label class="pr-input__label" for="ust">UST-ID <span class="pr-input__label_light">(Siehe AGB)</span></label>
+            </div>
+            <div class="pr-flex__item">
+              <input class="pr-input" type="text" id="nachname" name="nachname">
+              <label class="pr-input__label" for="nachname">Nachname des Patienten</label>
+              <input class="pr-input" type="text" id="vorname" name="vorname">
+              <label class="pr-input__label" for="vorname">Vorname des Patienten</label>
+              <input class="pr-input" type="text" id="patientennummer" name="patientennummer">
+              <label class="pr-input__label" for="patientennummer">Patientennummer</label>
+              <input class="pr-input" type="text" id="klebetermin" name="klebetermin">
+              <label class="pr-input__label" for="klebetermin">Voraussichtl. Klebetermin</label>
+            </div>
+          </div>
+          <div class="pr-flex__clear"></div>
+          <div class="pr-flex">
+            <div class="pr-flex__item">
+              <div class="pr-checkbox">
+                <input class="pr-checkbox__input" type="checkbox" name="checkboxRechnungsadresse" id="checkboxRechnungsadresse">
+                <label class="pr-ceckbox__label" for="checkboxRechnungsadresse"><strong>Soll der Name des Behandlers auf der Rechnung erscheinen?</strong> <span class="pr-checkbox__label_small">(Für die Übermittlung von personenbezogenen Gesundheitsdaten benötigen Sie die schriftliche Einwilligung Ihres Patienten)</span></label>
+              </div>
+            </div>
+            <div class="pr-flex__item pr-flex__item_attention pr-flex__item_attention_frontend">
+              <p class="pr-paragraph">Bitte informieren Sie uns, wenn die Lieferadresse <strong><u>nicht</u></strong> mit der Rechnungsadresse übereinstimmt.</p>
+            </div>
+            <div class="pr-flex__item pr-flex__item_border"></div>
+          </div>
+          <div class = "pr-flex__clear"></div>
+          <div class="pr-content">
+            <div class="pr-content__flex">
+              <div class="pr-content__flex-item pr-content__flex-item_upperJaw">
+                <div class="pr-checkbox pr-checkbox__absolutBottom">
+                  <input class="pr-checkbox__input" type="checkbox" value="true" id="setup" name="setup">
+                  <label class="pr-checkbox__label" for="setup">Nur Setup</label>
+                </div>
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u8l-a" style = "top: 268px; left: 20px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u8l-b" style = "top: 268px; left: 60px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u7l-a" style = "top: 235px; left: 25px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u7l-b" style = "top: 235px; left: 65px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u6l-a" style = "top: 198px; left: 38px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u6l-b" style = "top: 198px; left: 78px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u5l" style = "top: 166px; left: 45px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u4l" style = "top: 140px; left: 57px; width: 28px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u3l" style = "top: 115px; left: 70px; width: 28px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u2l" style = "top: 98px; left: 90px; width: 25px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u1l" style = "top: 92px; left: 118px; width: 32px; height: 28px;">
+
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u1r" style = "top: 92px; right: 118px; width: 32px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u2r" style = "top: 98px; right: 90px; width: 25px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u3r" style = "top: 115px; right: 70px; width: 28px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u4r" style = "top: 140px; right: 57px; width: 28px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u5r" style = "top: 166px; right: 45px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u6r-b" style = "top: 198px; right: 78px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u6r-a" style = "top: 198px; right: 38px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u7r-b" style = "top: 235px; right: 65px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u7r-a" style = "top: 235px; right: 25px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u8r-b" style = "top: 268px; right: 60px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="u8r-a" style = "top: 268px; right: 20px;">
+              </div>
+              <div class="pr-content__flex-item pr-content__flex-item_small pr-content__flex-item_second"><strong>Stripping: <br/></strong>
+                <div class="pr-checkbox">
+                  <input class="pr-checkbox__input" type="checkbox" id="boltondiskrepanz" name="boltondiskrepanz">
+                  <label class="pr-checkbox__label" for="boltondiskrepanz">bei Boltondiskrepanz</label>
+                </div>
+                <div class="pr-checkbox">
+                  <input class="pr-checkbox__input" type="checkbox" id="engstandsauflösung" name="engstandsauflösung">
+                  <label class="pr-checkbox__label" for="engstandsauflösung">Engstandsauflösung:</label>
+                </div>
+                <div class="pr-input__wrap">
+                  <input class="pr-input" type="text" name="mm1"><span>mm</span>
+                </div>
+                <div class="pr-input__wrap pr-input__wrap_second"><span>Wo:</span>
+                  <input class="pr-input" type="text" name="wo1">
+                </div>
+                <div class="pr-checkbox">
+                  <input class="pr-checkbox__input" type="checkbox" id="stufenreduktion" name="stufenreduktion">
+                  <label class="pr-checkbox__label" for="stufenreduktion">Stufenreduktion:</label>
+                </div>
+                <div class="pr-input__wrap">
+                  <input class="pr-input" type="text" name="mm2"><span>mm</span>
+                </div>
+                <div class="pr-input__wrap pr-input__wrap_second"><span>Wo:</span>
+                  <input class="pr-input" type="text" name="wo2">
+                </div>
+                <div class="pr-content__flex-legend"><strong>OK-Bögen mit Expansion <br/></strong>1 = 1 cm Expansion <br/>
+                  2 = 2 cm Expansion (empfohlen) <br/>
+                  3 = 3 cm Expansion
+                </div>
+              </div>
+              <div class="pr-content__flex-item pr-content__flex-item_small"><div class="pr-table__title">Bogenauswahl Oberkiefer</div>
+                <table class="pr-table">
+                  <tr class="pr-table__row">
+                    <th class="pr-table__head" colspan="2">Bogen<br>ankreuzen</th>
+                    <th class="pr-table__head">seitl.<br>gerade</th>
+                    <th class="pr-table__head">seitl.<br>indiv</th>
+                    <th class="pr-table__head">&nbsp;&nbsp;&nbsp;Expan&nbsp;&nbsp;&nbsp;<br/>sion</th>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">12 Ø</td>
+                    <td class="pr-table__data pr-table__data_lightfilled" rowspan="5"> <span>SE-NiTi</span></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="12u1">
+                      <input type="checkbox" name="12u2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="12u3">
+                      <input type="checkbox" name="12u4">
+                    </td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">14 Ø</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="14u1">
+                      <input type="checkbox" name="14u2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="14u3">
+                      <input type="checkbox" name="14u4">
+                    </td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">16 Ø</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16u1">
+                      <input type="checkbox" name="16u2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16u3">
+                      <input type="checkbox" name="16u4">
+                    </td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">16 x 22</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x22u1">
+                      <input type="checkbox" name="16x22u2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x22u3">
+                      <input type="checkbox" name="16x22u4">
+                    </td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">18 x 25</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="18x25u1">
+                      <input type="checkbox" name="18x25u2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="18x25u3">
+                      <input type="checkbox" name="18x25u4">
+                    </td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">16 x 24</td>
+                    <td class="pr-table__data pr-table__data_lightfilled" rowspan="3"> <span>Steel</span></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x24u1">
+                      <input type="checkbox" name="16x24u2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x24u3">
+                      <input type="checkbox" name="16x24u4">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="16x24u5">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">16 x 24 ET</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x24ETu1">
+                      <input type="checkbox" name="16x24ETu2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x24ETu3">
+                      <input type="checkbox" name="16x24ETu4">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="16x24ETu5">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">16 x 24 EET</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x24EETu1">
+                      <input type="checkbox" name="16x24EETu2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x24EETu3">
+                      <input type="checkbox" name="16x24EETu4">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="16x24EETu5">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">17,5 x 17,5</td>
+                    <td class="pr-table__data pr-table__data_lightfilled" rowspan="4"> <span>ß-Ti</span></td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="17-5x17-5u1">
+                      <input type="checkbox" name="17-5x17-5u2">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="17-5x17-5u3">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">17 x 25</td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="17x25-u1">
+                      <input type="checkbox" name="17x25-u2">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="17x25-u3">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">18 x 18</td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="18x18-u1">
+                      <input type="checkbox" name="18x18-u2">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="18x18-u3">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">18 x 25</td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="18x25-u1">
+                      <input type="checkbox" name="18x25-u2">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="18x25-u3">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class = "pr-flex__clear"></div>
+            </div>
+            <div class="pr-content__flex pr-content__flex_bordertop">
+              <div class="pr-content__flex-item pr-content__flex-item_extralarge">
+                <div class="pr-content__flex-inner"><strong>Bemerkungen:</strong>
+                  <div class="pr-checkbox">
+                    <input class="pr-checkbox__input" type="checkbox" id="setupfotos" name="setupfotos">
+                    <label class="pr-checkbox__label" for="setupfotos">3D Setup-Fotos</label>
+                  </div>
+                  <div class="pr-checkbox">
+                    <input class="pr-checkbox__input" type="checkbox" id="tpa" name="tpa">
+                    <label class="pr-checkbox__label" for="tpa">TPA</label>
+                  </div>
+                  <div class="pr-checkbox">
+                    <input class="pr-checkbox__input" type="checkbox" id="herbst" name="herbst">
+                    <label class="pr-checkbox__label" for="herbst">Herbst</label>
+                  </div>
+                  <div class="pr-checkbox">
+                    <input class="pr-checkbox__input" type="checkbox" id="hgtube" name="hgtube">
+                    <label class="pr-checkbox__label" for="hgtube">HG-Tube auf Basis</label>
+                  </div>
+                  <div class="pr-checkbox">
+                    <input class="pr-checkbox__input" type="checkbox" id="hgkunststoffschale" name="hgkunststoffschale">
+                    <label class="pr-checkbox__label" for="hgkunststoffschale">HG-Tube auf Basis mit Kunststoffschale</label>
+                  </div>
+                  <div class = "pr-flex__clear"></div>
+                </div>
+                <textarea class="pr-textarea" name="notes1"></textarea>
+              </div>
+              <div class="pr-content__flex-item pr-content__flex-item_small pr-content__flex-item_center">
+                <div class="pr-checkbox">
+                  <input class="pr-checkbox__input" type="checkbox" id="bisslagekorrektur" name="bisslagekorrektur">
+                  <label class="pr-checkbox__label" for="bisslagekorrektur">Keine Bisslagekorrektur</label>
+                  <textarea class="" name="notes2" style = "width: 160px; height: 90px; resize:none;"></textarea>
+                </div>
+              </div>
+              <div class="pr-flex__clear"></div>
+            </div>
+            <div class="pr-siteHead__flex__clear"></div>
+            <div class="pr-content__flex pr-content__flex_bordersmall">
+              <div class="pr-content__flex-item pr-content__flex-item_extralarge pr-content__flex-item_textcentered">
+                <strong>Bitte ausfüllen:</strong> Bei fehlenden Zähnen bitte immer angeben, ob Lückenschluss gewünscht wird.<br/> <br/>
+                <strong>B</strong> = Bracket · <strong>T</strong> = Tube · <strong>TL</strong> = langes Tube · <strong>TLH</strong> = langes Tube mit Hook ·
+                <strong>TR</strong> = Tube rund · <strong>TRH</strong> = Tube rund mit Hook <br/> <strong>Ex</strong> = zu extrahieren · <strong>X</strong> = fehlt ·
+                <strong>BA</strong> = geg. Band · <strong>P</strong> = okklusale Klebebasis
+              </div>
+              <div class="pr-content__flex-item pr-content__flex-item_small pr-content__flex-item_second">
+                <div class="pr-content__flex">
+                  <div class="pr-content__flex-inner"><strong>Tray</strong>
+                    <div class="pr-content__distance">
+                      <div class="pr-checkbox">
+                        <input class="pr-checkbox__input" type="checkbox" id="nontransparent" name="non-transparent">
+                        <label class="pr-checkbox__label" for="nontransparent">Non-Transparent</label>
+                      </div>
+                      <div class="pr-checkbox pr-checkbox_sub">
+                        <input class="pr-checkbox__input" type="checkbox" id="tray" name="tray">
+                        <label class="pr-checkbox__label" for="tray">Tray ausgeschnitten 3-3</label>
+                      </div>
+                      <div class="pr-checkbox">
+                        <input class="pr-checkbox__input" type="checkbox" id="transparent" name="transparent">
+                        <label class="pr-checkbox__label" for="transparent">Transparent</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pr-siteHead__flex__clear"></div>
+            </div>
+            <div class="pr-content__flex pr-content__flex_bordertop">
+              <div class="pr-content__flex-item pr-content__flex-item_mandible">
+                <div class="pr-checkbox pr-checkbox__absolutTop">
+                  <input class="pr-checkbox__input" type="checkbox" id="setup2" name="setup2">
+                  <label class="pr-checkbox__label" for="setup2">Nur Setup</label>
+                </div>
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l8l-a" style = "top: 105px; left: 20px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l8l-b" style = "top: 105px; left: 60px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l7l-a" style = "top: 140px; left: 30px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l7l-b" style = "top: 140px; left: 70px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l6l-a" style = "top: 178px; left: 40px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l6l-b" style = "top: 178px; left: 80px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l5l" style = "top: 210px; left: 50px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l4l" style = "top: 238px; left: 60px; width: 25px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l3l" style = "top: 255px; left: 80px; width: 25px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l2l" style = "top: 265px; left: 100px; width: 25px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l1l" style = "top: 269px; left: 125px; width: 25px; height: 28px;">
+
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l1r" style = "top: 269px; right: 125px; width: 25px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l2r" style = "top: 265px; right: 100px; width: 25px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l3r" style = "top: 255px; right: 80px; width: 25px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l4r" style = "top: 238px; right: 60px; width: 25px; height: 28px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l5r" style = "top: 210px; right: 50px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l6r-b" style = "top: 178px; right: 80px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l6r-a" style = "top: 178px; right: 40px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l7r-b" style = "top: 140px; right: 70px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l7r-a" style = "top: 140px; right: 30px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l8r-b" style = "top: 105px; right: 60px;">
+                <input class="pr-input__teeth pr-input__teeth_abs" type="text" name="l8r-a" style = "top: 105px; right: 20px;">
+              </div>
+              <div class="pr-content__flex-item pr-content__flex-item_small pr-content__flex-item_second"><strong>Stripping: <br/></strong>
+                <div class="pr-checkbox">
+                  <input class="pr-checkbox__input" type="checkbox" id="boltondiskrepanz2" name="boltondiskrepanz2">
+                  <label class="pr-checkbox__label" for="boltondiskrepanz2">bei Boltondiskrepanz</label>
+                </div>
+                <div class="pr-checkbox">
+                  <input class="pr-checkbox__input" type="checkbox" id="engstandsauflösung2" name="engstandsauflösung2">
+                  <label class="pr-checkbox__label" for="engstandsauflösung2">Engstandsauflösung:</label>
+                </div>
+                <div class="pr-input__wrap">
+                  <input class="pr-input" type="text" name="mm3"><span>mm</span>
+                </div>
+                <div class="pr-input__wrap pr-input__wrap_second"><span>Wo:</span>
+                  <input class="pr-input" type="text" name="wo3">
+                </div>
+                <div class="pr-checkbox">
+                  <input class="pr-checkbox__input" type="checkbox" id="stufenreduktion2" name="stufenreduktion2">
+                  <label class="pr-checkbox__label" for="stufenreduktion2">Stufenreduktion:</label>
+                </div>
+                <div class="pr-input__wrap">
+                  <input class="pr-input" type="text" name="mm4"><span>mm</span>
+                </div>
+                <div class="pr-input__wrap pr-input__wrap_second"><span>Wo:</span>
+                  <input class="pr-input" type="text" name="wo4">
+                </div>
+                <div class="pr-content__flex-legend"><strong>UK-Bögen mit Kompression <br/></strong>1 = 1 cm Kompression (empfohlen) <br/>
+                  2 = 2 cm Kompression
+                </div>
+              </div>
+              <div class="pr-content__flex-item pr-content__flex-item_small"><div class="pr-table__title">Bogenauswahl Unterkiefer</div>
+                <table class="pr-table">
+                  <tr class="pr-table__row">
+                    <th class="pr-table__head" colspan="2">Bogen<br>ankreuzen</th>
+                    <th class="pr-table__head">seitl.<br>gerade</th>
+                    <th class="pr-table__head">seitl.<br>indiv</th>
+                    <th class="pr-table__head">&nbsp;Kompres&nbsp;<br/>sion</th>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">12 Ø</td>
+                    <td class="pr-table__data pr-table__data_lightfilled" rowspan="5"> <span>SE-NiTi</span></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="12l1">
+                      <input type="checkbox" name="12l2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="12l3">
+                      <input type="checkbox" name="12l4">
+                    </td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">14 Ø</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="14l1">
+                      <input type="checkbox" name="14l2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="14l3">
+                      <input type="checkbox" name="14l4">
+                    </td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">16 Ø</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16l1">
+                      <input type="checkbox" name="16l2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16l3">
+                      <input type="checkbox" name="16l4">
+                    </td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">16 x 22</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x22l1">
+                      <input type="checkbox" name="16x22l2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x22l3">
+                      <input type="checkbox" name="16x22l4">
+                    </td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">18 x 25</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="18x25l1">
+                      <input type="checkbox" name="18x25l2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="18x25l3">
+                      <input type="checkbox" name="18x25l4">
+                    </td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">18 Ø</td>
+                    <td class="pr-table__data pr-table__data_lightfilled" rowspan="3"> <span>Steel</span></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="18l1">
+                      <input type="checkbox" name="18l2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="18l3">
+                      <input type="checkbox" name="18l4">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="18l5">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">16 x 24</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x24l1">
+                      <input type="checkbox" name="16x24l2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x24l3">
+                      <input type="checkbox" name="16x24l4">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="16x24l5">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">16 x 24 ET</td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x24ETl1">
+                      <input type="checkbox" name="16x24ETl2">
+                    </td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="16x24ETl3">
+                      <input type="checkbox" name="16x24ETl4">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="16x24ETl5">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">17,5 x 17,5</td>
+                    <td class="pr-table__data pr-table__data_lightfilled" rowspan="4"> <span>ß-Ti</span></td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="17-5x17-5l1">
+                      <input type="checkbox" name="17-5x17-5l2">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="17-5x17-5l3">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">17 x 25</td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="17x25-l1">
+                      <input type="checkbox" name="17x25-l2">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="17x25-l3">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">18 x 18</td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="18x18-l1">
+                      <input type="checkbox" name="18x18-l2">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="18x18-l3">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr class="pr-table__row">
+                    <td class="pr-table__data">18 x 25</td>
+                    <td class="pr-table__data pr-table__data_filled"></td>
+                    <td class="pr-table__data pr-table__data_center">
+                      <input type="checkbox" name="18x25-l1">
+                      <input type="checkbox" name="18x25-l2">
+                    </td>
+                    <td class="pr-table__data">
+                      <select class="pr-table__data-select" name="18x25-l3">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                      </select>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="pr-flex__clear"></div>
+            </div>
+          </div>
+          <div class="pr-footer">
+
+            <input type="checkbox" id="toggle" class="visually-hidden" required>
+            <label id="toggle__label" class="pr-button" for="toggle">Bestellformular abschicken</label>
+
+            <div class="pr-footer__submit">
+              <!-- <label class="pr-button" for="toggle">zurück</label><br/><br/> -->
+              <strong>
+                Sind Ihre Angaben vollständig?<br/><br/>
+                Drücken Sie auf „Bestätigen“, um das ausgefüllte Bestellformular an DW Lingual Systems zu versenden.
+              </strong><br/><br/>
+              <input type="checkbox" required>
+              <u>Ich erkläre mich mit den unten stehenden allgemeinen Geschäftsbedingungen einverstanden:</u><br/><br/>
+              <input class="pr-button pr-button_red" type="submit" name="submitFinal" value="Bestätigen">
+              <!-- native html & css load animation -->
+              <!-- <div id="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> -->
+            </div>
+
+        </div>
+      </form>
+        </br></br>
+        <p class="pr-paragraph pr-paragraph_agb">
+
+            <h3 class="pr-heading_tertiary">ALLGEMEINE GESCHÄFTSBEDINGUNGEN DER DW LINGUAL SYSTEMS GMBH („DW Lingual“)</h3>
+
+            <h4 class="pr-heading_quarternary">§ 1 Geltung</h4>
+            Alle Lieferungen, Leistungen und Angebote der DW Lingual erfolgen ausschließlich aufgrund
+            dieser Allgemeinen Geschäftsbedingungen („AGB“). Sie gelten spätestens mit Abnahme der
+            Ware oder sonstigen Leistung als vereinbart, selbst wenn der Vertragspartner („AG“) ihnen
+            zuvor widersprochen haben sollte. AGB des AG oder Dritter finden keine Anwendung, auch
+            wenn DW Lingual ihrer Geltung im Einzelfall nicht gesondert widerspricht. Diese AGB gelten
+            nur gegenüber Unternehmen im Sinne von § 14 BGB.
+
+            <h4 class="pr-heading_quarternary">§ 2 Angebot und Vertragsabschluss</h4>
+            Alle Angebote der DW Lingual sind freibleibend und unverbindlich, sofern sie nicht ausdrücklich als verbindlich gekennzeichnet sind oder eine bestimmte Annahmefrist enthalten. Allein
+            maßgeblich für die Rechtsbeziehungen zwischen DW Lingual und dem AG ist der schriftlich
+            geschlossene Vertrag, einschließlich dieser AGB. Verträge zwischen DW Lingual und dem
+            AG, deren Ergänzungen und Abänderungen sowie Ergänzungen und Abänderungen dieser
+            AGB bedürfen zu ihrer Wirksamkeit der Schriftform, es gilt § 127 Abs. 2 BGB.
+
+            <h4 class="pr-heading_quarternary">§ 3 Preise und Zahlung</h4>
+            Es gelten die am Tag der Lieferung oder Leistung gültigen Preise zuzüglich der Umsatzsteuer
+            in der jeweiligen gesetzlich bestimmten Höhe. Rechnungsbeträge sind sofort ohne jeden
+            Abzug zu bezahlen, maßgebend ist der Eingang bei DW Lingual. Leistet der AG bei Fälligkeit
+            nicht, so sind die ausstehenden Beträge ab dem Tag der Fälligkeit mit 8 Prozentpunkten
+            über dem Basiszinssatz p. a. zu verzinsen; die Geltendmachung höherer Zinsen und weiterer
+            Schäden im Falle des Verzugs bleibt unberührt. Die Aufrechnung mit Gegenansprüchen des
+            AG oder die Zurückbehaltung von Zahlungen wegen solcher Ansprüche ist nur zulässig, soweit die Gegenansprüche unbestritten oder rechtskräftig festgestellt sind.
+            DW Lingual ist berechtigt, noch ausstehende Lieferungen oder Leistungen nur gegen Vorauszahlung oder Sicherheitsleistung auszuführen oder zu erbringen, wenn nach Abschluss des
+            Vertrages Umstände bekannt werden, durch welche die Bezahlung der offenen Forderungen
+            der DW Lingual durch den AG aus dem jeweiligen Vertragsverhältnis gefährdet wird.
+
+            <h4 class="pr-heading_quarternary">§ 4 Lieferung und Lieferzeit</h4>
+            Von DW Lingual in Aussicht gestellte Fristen und Termine für Lieferungen und Leistungen bezeichnen das voraussichtliche Versanddatum. Unbeschadet der Rechte der DW Lingual aus
+            Verzug des AG – verlängern sich Liefer- und Leistungsfristen um den Zeitraum, in dem der AG
+            seinen vertraglichen Verpflichtungen oder Obliegenheiten der DW Lingual gegenüber nicht
+            nachkommt. Zu den vertraglichen Obliegenheiten des Auftraggebers zählt auch die rechtzeitige Klarstellung aller Einzelheiten des Auftrags. Bei schuldhafter Nichteinhaltung eines
+            ausdrücklich schriftlich vereinbarten Liefertermins tritt Verzug der DW Lingual erst nach erfolglosem Ablauf einer vom AG schriftlich gesetzten angemessene Nachfrist ein.
+            DW Lingual haftet nicht für Unmöglichkeit der Lieferung oder für Lieferverzögerungen, soweit diese durch höhere Gewalt oder sonstige, zum Zeitpunkt des Vertragsabschlusses nicht
+            vorhersehbare, von DW Lingual nicht zu vertretende Ereignisse (z.B. Betriebsstörungen aller
+            Art, Schwierigkeiten in der Materialbeschaffung, Transportverzögerungen, oder nicht richtige
+            oder nicht rechtzeitige Belieferung durch Lieferanten) verursacht worden sind. Sofern solche
+            Ereignisse der DW Lingual die Lieferung oder Leistung wesentlich erschweren oder unmöglich machen und die Behinderung nicht nur von vorübergehender Dauer ist, ist DW Lingual
+            zum Rücktritt vom Vertrag berechtigt. Bei Hindernissen vorübergehender Dauer verlängern
+            sich die Liefer- oder Leistungsfristen oder verschieben sich die Liefer- oder Leistungstermine
+            um den Zeitraum der Behinderung zuzüglich einer angemessenen Anlauffrist. Soweit dem
+            AG infolge der Verzögerung die Abnahme der Lieferung oder Leistung nicht zuzumuten ist,
+            kann er durch unverzügliche schriftliche Erklärung vom Vertrag zurücktreten.
+
+            <h4 class="pr-heading_quarternary">§ 5 Gefahrübergang, Versand, Verpackung</h4>
+            Die Gefahr geht spätestens mit der Übergabe des Liefergegenstandes an den Spediteur,
+            Frachtführer oder sonst zur Ausführung der Versendung bestimmten Dritten auf den AG über.
+            Verzögert sich der Versand oder die Übergabe infolge eines Umstandes, dessen Ursache
+            beim AG liegt, geht die Gefahr von dem Tag an auf den AG über, an dem der Liefergegenstand versandbereit ist und DW Lingual dies dem AG angezeigt hat. Die Versandart und die
+            Verpackung unterstehen dem pflichtgemäßen Ermessen der DW Lingual. Die Kosten des
+            Versands trägt der AG. Von DW Lingual gelieferte Ware ist als nicht steril zu behandeln.
+
+            <h4 class="pr-heading_quarternary">§ 6 Gewährleistung, Sachmängel</h4>
+            Die Passgenauigkeit der individuellen Brackets wird nur für die Geometrie des in den jeweiligen Abdrücken dargestellten Gebisses gewährleistet. Für jeden zu beklebenden Kiefer
+            ist ein Silikonabdruck einzureichen, für Gegenbisse genügt ein Gipsmodell. Wenn nur ein
+            Kiefer positioniert werden soll, ist dennoch mitzuteilen, ob im Gegenkiefer eine Behandlung,
+            ggf. auch labial, geplant ist. Bereits vorhandene Setup-Modelle sind zu übersenden. Alle
+            Abdrücke und Modelle sind vor Versand vollständig zu desinfizieren. Der behandelnde Arzt
+            hat die Richtigkeit der Apparatur als Ganzes und aller ihrer Bestandteile, die auf seine Anweisung hin in Sonderanfertigung vom Auftragnehmer hergestellt wurden, zu überprüfen
+            und mit Beginn der Behandlung die volle Verantwortung für die gesamte Behandlungsdauer
+            zu übernehmen.
+            Die gelieferten Gegenstände sind unverzüglich nach Ablieferung an den AG oder an den
+            von ihm bestimmten Dritten sorgfältig zu untersuchen. Sie gelten als genehmigt, wenn DW
+            Lingual nicht eine schriftliche Mängelrüge hinsichtlich offensichtlicher Mängel oder anderer
+            Mängel, die bei einer unverzüglichen, sorgfältigen Untersuchung erkennbar waren, binnen
+            fünf Werktagen nach Ablieferung des Liefergegenstandes oder ansonsten binnen fünf Werktagen nach der Entdeckung des Mangels oder jedem früheren Zeitpunkt, in dem der Mangel
+            für den AG bei normaler Verwendung des Liefergegenstandes ohne nähere Untersuchung
+            erkennbar war, zugegangen ist.
+            Bei Sachmängeln der gelieferten Gegenstände ist DW Lingual nach seiner innerhalb angemessener Frist zu treffenden Wahl zunächst zur Nachbesserung oder Ersatzlieferung
+            verpflichtet und berechtigt. Im Falle des Fehlschlagens, d.h. der Unmöglichkeit, Unzumutbarkeit, Verweigerung oder unangemessenen Verzögerung der Nachbesserung oder Ersatzlieferung, kann der AG vom Vertrag zurücktreten oder den Kaufpreis angemessen mindern.
+            Beruht ein Mangel auf dem Verschulden der DW Lingual, kann der AG unter den in § 7 bestimmten Voraussetzungen Schadensersatz verlangen. Die Gewährleistung entfällt, wenn
+            der AG ohne Zustimmung der DW Lingual den Liefergegenstand ändert oder durch Dritte ändern lässt und die Mängelbeseitigung hierdurch unmöglich oder unzumutbar erschwert wird.
+            Die Gewährleistungsfrist beträgt ein Jahr ab Lieferung oder, soweit eine Abnahme erforderlich ist, ab der Abnahme. Die gesetzlichen Verjährungsfristen für Rückgriffsansprüche nach
+            den §§ 478, 479 BGB bleiben unberührt.
+
+            <h4 class="pr-heading_quarternary">§ 7 Haftung auf Schadensersatz wegen Verschuldens</h4>
+            DW Lingual haftet nicht im Falle einfacher Fahrlässigkeit seiner Organe, gesetzlichen Vertreter, Angestellten oder sonstigen Erfüllungsgehilfen, soweit es sich nicht um eine Verletzung vertragswesentlicher Pflichten handelt. Vertragswesentlich sind die Verpflichtung zur
+            rechtzeitigen Lieferung des von wesentlichen Mängeln freien Liefergegenstands sowie Beratungs-, Schutz- und Obhutspflichten, die dem AG die vertragsgemäße Verwendung des
+            Liefergegenstands ermöglichen sollen oder den Schutz von Leib oder Leben von Personal
+            des AG oder den Schutz von dessen Eigentum vor erheblichen Schäden bezwecken. Soweit
+            DW Lingual dem Grunde nach auf Schadensersatz haftet, ist diese Haftung auf Schäden
+            begrenzt, die DW Lingual bei Vertragsschluss als mögliche Folge einer Vertragsverletzung
+            vorausgesehen hat oder die er bei Anwendung verkehrsüblicher Sorgfalt hätte voraussehen
+            müssen. Mittelbare Schäden und Folgeschäden, die Folge von Mängeln des Liefergegenstands sind, sind außerdem nur ersatzfähig, soweit solche Schäden bei bestimmungsgemäßer Verwendung des Liefergegenstands typischerweise zu erwarten sind. Die vorstehenden
+            Haftungsausschlüsse und -beschränkungen gelten in gleichem Umfang zugunsten der Organe, gesetzlichen Vertreter, Angestellten und sonstigen Erfüllungsgehilfen der DW Lingual. Die
+            Einschränkungen dieses § 7 gelten nicht für die Haftung der DW Lingual wegen vorsätzlichen
+            Verhaltens, für garantierte Beschaffenheitsmerkmale, wegen Verletzung des Lebens, des
+            Körpers oder der Gesundheit oder nach dem Produkthaftungsgesetz.
+            Soweit DW Lingual technische Auskünfte gibt oder beratend tätig wird und diese Auskünfte
+            oder Beratung nicht zu dem von ihm geschuldeten, vertraglich vereinbarten Leistungsumfang gehören, geschieht dies unentgeltlich und unter Ausschluss jeglicher Haftung.
+
+            <h4 class="pr-heading_quarternary">§ 8 Eigentumsvorbehalt</h4>
+            Die von DW Lingual gelieferte Ware bleibt bis zur vollständigen Bezahlung aller bestehenden
+            oder zukünftig entstehenden Forderungen aus der Geschäftsverbindung mit dem AG Eigentum der DW Lingual („Vorbehaltsware“). Der AG ist berechtigt, die Vorbehaltsware bis zum
+            Eintritt des Verwertungsfalls im ordnungsgemäßen Geschäftsverkehr zu verarbeiten und zu
+            veräußern. Verpfändungen und Sicherungsübereignungen sind unzulässig. Der AG tritt DW
+            Lingual bereits jetzt Ansprüche aus einer Veräußerung oder Verarbeitung der Vorbehaltsware sowie sonstige Ansprüche, die an die Stelle der Vorbehaltsware treten, sicherungshalber
+            ab. Erfüllt der AG seine Vertragspflichten nicht, ist DW Lingual berechtigt, die Vorbehaltsware
+            herauszuverlangen. DW Lingual wird die Vorbehaltsware sowie die an ihre Stelle tretenden
+            Sachen oder Forderungen auf Verlangen nach seiner Wahl freigeben, soweit ihr Wert die
+            Höhe der gesicherten Forderungen um mehr als 50% übersteigt.
+
+            <h4 class="pr-heading_quarternary">§ 9 Datenschutz</h4>
+            Der AG ist dafür verantwortlich, dass die Übermittlung aller Auftragsdaten, insbesondere der
+            personenbezogenen Gesundheitsdaten, dem in der EU geltendem Recht sowie den geltenden Gesetzen des Landes, in dem der AG ansässig ist, entspricht. Dies ist durch Einholung
+            des Einverständnisses des Patienten nach entsprechender Aufklärung oder durch Pseudonymisierung sicherzustellen.
+
+            <h4 class="pr-heading_quarternary">§ 10 Schlussbestimmungen</h4>
+            Gerichtsstand für alle etwaigen Streitigkeiten aus der Geschäftsbeziehung zwischen DW Lingual und dem AG ist nach Wahl der DW Lingual Bad Essen oder der Sitz des AG. Für Klagen
+            gegen DW Lingual ist Bad Essen ausschließlicher Gerichtsstand. Zwingende gesetzliche Bestimmungen über ausschließliche Gerichtsstände bleiben von dieser Regelung unberührt.
+            Die Beziehungen zwischen DW Lingual und dem AG unterliegen ausschließlich dem Recht
+            der Bundesrepublik Deutschland. Das Übereinkommen der Vereinten Nationen über Verträge über den internationalen Warenkauf vom 11. April 1980 (CISG) gilt nicht.
+            Soweit der Vertrag oder diese AGB Regelungslücken enthalten, gelten zur Ausfüllung dieser
+            Lücken diejenigen rechtlich wirksamen Regelungen als vereinbart, welche die Vertragspartner nach den wirtschaftlichen Zielsetzungen des Vertrages und dem Zweck dieser AGB vereinbart hätten, wenn sie die Regelungslücke gekannt hätten.
+        </p>
+      </div>
+    </main>
+    <footer class="pr-siteFooter"></footer>
+  </body>
+</html>

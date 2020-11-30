@@ -3,16 +3,21 @@
   padding-top: $space-2;
   padding-bottom: $space-2;
   position: relative;
-  height: 75px;
   width: 100%;
 
   &--floating-label {
+    height: 75px;
     flex-flow: column-reverse;
 
     &::-webkit-input-placeholder {
       opacity: 0;
       transition: inherit;
     }
+  }
+
+  &--side-label {
+    height: 65px;
+    align-items: flex-end;
   }
 
   &__input, &__label {

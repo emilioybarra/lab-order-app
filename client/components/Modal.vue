@@ -10,7 +10,7 @@
       <div v-if="showModal" class="lof-modal__overlay">
         <transition name="fade" mode="out-in" @after-leave="showModal = false">
           <div v-if="showContent" class="lof-modal__container row">
-            <div v-click-outside.stop="hide" class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-6 d-flex align-items-center p-0">
+            <div class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-6 d-flex align-items-center p-0">
               <slot />
             </div>
           </div>
@@ -50,7 +50,6 @@
         this.showModal = true
       },
       hide () {
-        console.log('fired')
         this.showContent = false
       }
     }

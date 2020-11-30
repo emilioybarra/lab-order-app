@@ -113,7 +113,6 @@
     },
 
     data () {
-      console.log(this.page)
       return {
         currentPage: this.page
       }

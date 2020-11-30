@@ -4,7 +4,7 @@
       {{ $t('common.titles.invoiceAddress') }}
     </template>
     <template #body>
-      <link-button to="/templates?template=invoice-address" class="mb-2" @click.native="setTemplate">
+      <link-button to="/templates?template=invoice-address" class="mb-2">
         {{ $t('common.buttons.selectFromTemplate') }}
       </link-button>
       <div class="row">
@@ -153,25 +153,27 @@
         </link-button>
       </div>
       <modal ref="templateTitle" :show-tab="false">
-        <card class="h-auto">
+        <card v-click-outside.stop="closeTemplateTitleModal" class="h-auto">
           <h3 class="lof-headline lof-headline--2 my-4">
             Template Title
           </h3>
-          <input-field
-            id="templateTitle"
-            v-model="templateTitle"
-            label="Template Title"
-            name="templateTitle"
-            required
-          />
-          <b-button-toolbar class="d-flex mb-3 mt-5 justify-content-end">
-            <b-button class="lof-button mr-4 w-25" variant="secondary" @click="closeTemplateTitleModal">
-              {{ $t('common.buttons.cancel') }}
-            </b-button>
-            <b-button class="lof-button w-25" variant="primary" @click="saveAsTemplate">
-              {{ $t('common.buttons.save') }}
-            </b-button>
-          </b-button-toolbar>
+          <form @submit.prevent="saveAsTemplate">
+            <input-field
+              id="templateTitle"
+              v-model="templateTitle"
+              label="Template Title"
+              name="templateTitle"
+              required
+            />
+            <b-button-toolbar class="d-flex mb-3 mt-5 justify-content-end">
+              <b-button class="lof-button mr-4 w-25" variant="secondary" @click="closeTemplateTitleModal">
+                {{ $t('common.buttons.cancel') }}
+              </b-button>
+              <b-button class="lof-button w-25" variant="primary" @click="saveAsTemplate">
+                {{ $t('common.buttons.save') }}
+              </b-button>
+            </b-button-toolbar>
+          </form>
         </card>
       </modal>
     </template>
@@ -249,6 +251,8 @@
       this.isShippingAddress = this.getIsShippingAddress
       this.invoiceAddress = this.getIsShippingAddress
       this.invoiceAddressDropdown = this.getIsShippingAddress
+
+      this.$store.commit('setTemplate', 'invoice-address')
     },
 
     methods: {
@@ -270,9 +274,6 @@
         'setShippingAddress',
         'setShippingPostalcodeTown'
       ]),
-      setTemplate () {
-        this.$store.commit('setTemplate', 'invoice-address')
-      },
       openTemplateTitleModal () {
         this.$refs.templateTitle.show()
       },

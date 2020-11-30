@@ -49,7 +49,7 @@
         <b-button class="lof-button mb-4" variant="primary">
           {{ $t('common.buttons.saveAsTemplate') }}
         </b-button>
-        <link-button to="/steps/step-2" arrow-icon>
+        <link-button to="/steps/step-4" arrow-icon>
           {{ $t('common.buttons.next') }}
         </link-button>
       </div>
@@ -59,10 +59,16 @@
 
 <script>
   export default {
-    name: 'step-3'
+    name: 'step-3',
+
+    data () {
+      return {
+
+      }
+    },
+
+    created () {
+      this.$store.commit('setTemplate', 'lower-teeth')
+    }
   }
 </script>
-
-<style scoped>
-
-</style>

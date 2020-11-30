@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="bothSideLabels || sideLabel" class="lof-input-field">
+    <div v-if="bothSideLabels || sideLabel" class="lof-input-field lof-input-field--side-label">
       <label v-if="bothSideLabels || sideLabel === 'left'" class="lof-input-field__label lof-input-field__label--side-label" :for="id">
         {{ leftLabel }}
       </label>
@@ -10,6 +10,7 @@
         class="lof-input-field__input lof-input-field__input--side-label"
         :type="type"
         :name="name"
+        :required="required"
         :placeholder="placeholder"
         @input="$emit('input', $event.target.value)"
       >
@@ -23,8 +24,8 @@
         :value="value"
         class="lof-input-field__input lof-input-field__input--floating-label"
         :type="type"
-        :required="required"
         :name="name"
+        :required="required"
         :placeholder="placeholder"
         @input="$emit('input', $event.target.value)"
       >

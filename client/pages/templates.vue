@@ -26,7 +26,7 @@
           @onSelect="selectTemplate(template._id)"
           @onDelete="deleteTemplate(template._id)"
         />
-        <pagination-bar :pages="Math.ceil(totalTemplates / 2)" :page="currentPage" @selectPage="selectPage" />
+        <pagination-bar v-if="totalTemplates > 2" :pages="Math.ceil(totalTemplates / 2)" :page="currentPage" @selectPage="selectPage" />
       </b-skeleton-wrapper>
     </template>
   </page>
@@ -54,7 +54,7 @@
     },
 
     mounted () {
-      this.getAllTemplates()
+      this.getAllTemplates(this.currentPage)
     },
 
     methods: {
@@ -66,13 +66,13 @@
           if (response) {
             this.templates = response.templates
             this.totalTemplates = response.totalTemplates
+            this.currentPage = response.currentPage
             this.loading = false
           }
         })
       },
       selectTemplate (templateId) {
         this.$store.dispatch(`${ this.$route.query.template }/fetchTemplateById`, templateId).then((result) => {
-          console.log(result)
           if (result) {
             this.$router.go(-1)
           }
@@ -81,9 +81,8 @@
       deleteTemplate (templateId) {
         this.loading = true
         this.$store.dispatch(`${ this.$route.query.template }/deleteTemplateById`, templateId).then((result) => {
-          console.log(result)
           if (result) {
-            this.getAllTemplates()
+            this.getAllTemplates(this.currentPage)
           }
         })
       }

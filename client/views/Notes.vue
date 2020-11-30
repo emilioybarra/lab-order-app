@@ -1,6 +1,6 @@
 <template>
-  <modal :show-tab="showModalTab">
-    <card>
+  <modal ref="notesModal" :show-tab="showModalTab">
+    <card v-click-outside.stop="hideModal">
       <h4 class="lof-headline lof-headline--3">
         {{ $t('section.m_1.remarksTitle') }}
       </h4>

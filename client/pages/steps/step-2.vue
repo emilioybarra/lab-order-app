@@ -59,6 +59,16 @@
 
 <script>
   export default {
-    name: 'step-2'
+    name: 'step-2',
+
+    data () {
+      return {
+
+      }
+    },
+
+    created () {
+      this.$store.commit('setTemplate', 'upper-teeth')
+    }
   }
 </script>

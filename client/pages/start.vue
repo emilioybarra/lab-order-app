@@ -1,6 +1,6 @@
 <template>
-  <div class="lof-page">
-    <div class="lof-page__body">
+  <page no-headline>
+    <template #body>
       <div class="d-flex flex-column text-center mb-5">
         <h6 class="lof-content lof-content--1 w-75 d-flex justify-content-center align-self-center">
           {{ $t('common.headlines.newForm') }}
@@ -17,12 +17,14 @@
           {{ $t('common.buttons.sentForms') }}
         </link-button>
       </div>
-    </div>
-  </div>
+    </template>
+  </page>
 </template>
 
 <script>
+  import Page from '@/components/Page'
   export default {
-    name: 'start'
+    name: 'start',
+    components: { Page }
   }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="lof-page">
-    <div class="lof-page__headline mt-5">
+    <div v-if="!noHeadline" class="lof-page__headline mt-5">
       <headline>
         <slot name="headline" />
       </headline>
@@ -13,7 +13,14 @@
 
 <script>
   export default {
-    name: 'page'
+    name: 'page',
+
+    props: {
+      noHeadline: {
+        type: Boolean,
+        default: false
+      }
+    }
   }
 </script>
 

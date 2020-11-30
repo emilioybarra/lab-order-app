@@ -123,15 +123,14 @@ export const mutations = {
 
 export const actions = {
   fetchTemplates (context, page) {
-    console.log(page)
-    return axios.get(`http://localhost:5000/api/templates/invoice-address?page=${ page }`)
+    return axios.get(`http://${ window.location.hostname }:5000/api/templates/invoice-address?page=${ page }`)
       .then((result) => {
         console.log(result)
         return result.data
       })
   },
   fetchTemplateById ({ commit }, templateId) {
-    return axios.get(`http://localhost:5000/api/templates/invoice-address/${ templateId }`)
+    return axios.get(`http://${ window.location.hostname }:5000/api/templates/invoice-address/${ templateId }`)
       .then((result) => {
         const {
           invoiceAddressTemplateData: {
@@ -180,8 +179,6 @@ export const actions = {
       getShippingAddress: shippingAddress,
       getShippingPostalcodeTown: shippingPostalcodeTown
     } = getters
-    console.log(practice)
-    console.log(getters)
 
     const templateData = {
       title: templateTitle,
@@ -201,16 +198,16 @@ export const actions = {
       }
     }
 
-    axios.post('http://localhost:5000/api/templates/invoice-address', templateData)
+    axios.post(`http://${ window.location.hostname }:5000/api/templates/invoice-address`, templateData)
       .then((result) => {
         console.log(result)
       })
   },
   deleteTemplateById ({ commit }, templateId) {
-    return axios.delete(`http://localhost:5000/api/templates/invoice-address/${ templateId }`)
+    return axios.delete(`http://${ window.location.hostname }:5000/api/templates/invoice-address/${ templateId }`)
       .then((result) => {
         console.log(result)
-        return result.data
+        return result.status === 204
       })
   }
 }

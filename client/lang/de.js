@@ -9,7 +9,8 @@ export default {
       newForm: 'Neues Formular',
       sentForms: 'Verschickte Formulare',
       save: 'Speichern',
-      cancel: 'Abbrechen'
+      cancel: 'Abbrechen',
+      send: 'Abschicken'
     },
     inputs: {
       agree: 'Ich habe die AGBs gelesen und stimme diesen zu.'
@@ -19,7 +20,8 @@ export default {
       upperTeeth: 'Oberkiefer',
       lowerTeeth: 'Unterkiefer',
       sentForms: 'Verschickte Formulare',
-      templates: 'Vorlagen'
+      templates: 'Vorlagen',
+      sendForm: 'Formular absenden'
     },
     headlines: {
       newForm: 'Erstellen Sie ein Neues Formular',

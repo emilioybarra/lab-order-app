@@ -30,6 +30,13 @@ export default {
     ]
   },
 
+  rules: [
+    {
+      test: /\.s[ac]ss$/i,
+      use: [ 'sass-loader' ]
+    }
+  ],
+
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
     // SCSS file in the project
@@ -38,8 +45,8 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '~/plugins/click-outside.js'
-    // { mode: 'client', src: '~plugins/vue-router-back-button.js' }
+    { mode: 'client', src: '@/plugins/vue-html2pdf' },
+    { mode: 'client', src: '@/plugins/click-outside' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -65,8 +72,19 @@ export default {
     // https://github.com/nuxt-community/svg-module
     '@nuxtjs/svg',
     // https://i18n.nuxtjs.org
-    'nuxt-i18n'
+    'nuxt-i18n',
+    '@nuxtjs/style-resources'
   ],
+
+  styleResources: {
+    scss: './scss/*.scss'
+  },
+
+  bootstrapVue: {
+    bootstrapCSS: false,
+    bootstrapVueCSS: false,
+    icons: true
+  },
 
   i18n: {
     langDir: 'lang/',
@@ -122,14 +140,6 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
-
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
-  },
-
-  bootstrapVue: {
-    bootstrapCSS: false,
-    bootstrapVueCSS: false,
-    icons: true
-  }
+  build: {}
 }

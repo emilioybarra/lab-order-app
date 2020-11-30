@@ -9,7 +9,8 @@ export default {
       newForm: 'New form',
       sentForms: 'Sent forms',
       save: 'Save',
-      cancel: 'Cancel'
+      cancel: 'Cancel',
+      send: 'Send'
     },
     inputs: {
       agree: 'I have read the terms and conditions and agree to them.'
@@ -19,7 +20,8 @@ export default {
       upperTeeth: 'Upper Teeth',
       lowerTeeth: 'Lower Teeth',
       sentForms: 'Sent Forms',
-      templates: 'Templates'
+      templates: 'Templates',
+      sendForm: 'Send Form'
     },
     headlines: {
       newForm: 'Create a new form',

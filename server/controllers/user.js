@@ -44,24 +44,12 @@ exports.getOrderFormById = (req, res, next) => {
 };
 
 exports.getAllInvoiceAddressTemplates = (req, res, next) => {
-  const currentPage = req.query.page || 1;
+  let currentPage = req.query.page || 1;
   const perPage = 2;
   let totalTemplates;
-  let totalItems;
   User.findById('5fabcb28af4d835a8211137f')
-    .populate('invoiceAddressTemplates.invoiceAddressTemplate')
-    /*
-    .countDocuments()
-    .then(count => {
-      // totalItems = count;
-      return Post.find()
-        .skip((currentPage - 1) * perPage)
-        .limit(perPage);
-    })
-     */
-    .then(user => {
-      console.log(user.invoiceAddressTemplates);
-      // totalTemplates = user.invoiceAddressTemplates.length;
+    // .populate('invoiceAddressTemplates.invoiceAddressTemplate')
+    .then(() => {
       let prepareInvoiceAddressTemplates = {
         templates: [],
         totalTemplates: 0
@@ -69,7 +57,6 @@ exports.getAllInvoiceAddressTemplates = (req, res, next) => {
       InvoiceAddressTemplate.find({ userId: '5fabcb28af4d835a8211137f' })
         .countDocuments()
         .then(count => {
-          console.log(count);
           totalTemplates = count;
           return InvoiceAddressTemplate.find({ userId: '5fabcb28af4d835a8211137f' })
             .skip((currentPage - 1) * perPage)
@@ -78,15 +65,26 @@ exports.getAllInvoiceAddressTemplates = (req, res, next) => {
         .then(templates => {
           console.log(templates);
           console.log(totalTemplates);
+          console.log(!templates.length);
+
+          if (!templates.length) {
+            currentPage = 1
+            return InvoiceAddressTemplate.find({ userId: '5fabcb28af4d835a8211137f' })
+              .skip((currentPage - 1) * perPage)
+              .limit(perPage);
+          }
+
+          return templates
+        })
+        .then(templates => {
           prepareInvoiceAddressTemplates = {
             templates,
-            totalTemplates
+            totalTemplates,
+            currentPage: parseInt(currentPage)
           };
-
           res.json(prepareInvoiceAddressTemplates);
         })
         .catch(err => {
-          console.log(err);
           const error = new Error(err);
           error.httpStatusCode = 500;
           return next(error);
@@ -173,7 +171,7 @@ exports.deleteInvoiceAddressTemplateById = (req, res, next) => {
       return user.save();
     })
     .then(result => {
-      res.json({ message: 'Template is deleted.' });
+      res.status(204).json({ message: 'Template is deleted.' });
     })
     .catch(err => {
       const error = new Error(err);

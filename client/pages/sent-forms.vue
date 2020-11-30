@@ -9,13 +9,26 @@
       <list-item name="Form 3" />
       <list-item name="Form 4" />
       <list-item name="Form 5" />
-      <pagination-bar :pages="10" />
+      <pagination-bar v-if="totalTemplates > 5" :pages="Math.ceil(totalTemplates / 5)" :page="currentPage" @selectPage="selectPage" />
     </template>
   </page>
 </template>
 
 <script>
   export default {
-    name: 'sent-forms'
+    name: 'sent-forms',
+
+    data () {
+      return {
+        currentPage: 1,
+        totalTemplates: 10
+      }
+    },
+
+    methods: {
+      selectPage (page) {
+        this.currentPage = page
+      }
+    }
   }
 </script>
