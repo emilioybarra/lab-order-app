@@ -154,7 +154,7 @@
           </b-form-radio-group>
         </b-form-group>
         <b-button-group>
-          <b-button id="save" class="lof-teeth-canvas__button" variant="outline-primary" @click="save">
+          <b-button id="save" class="lof-teeth-canvas__button" variant="outline-primary" @click="exportImage">
             <svg-icon icon="save" class="lof-teeth-canvas__button-icon" />
           </b-button>
           <b-button id="undo" class="lof-teeth-canvas__button" variant="outline-secondary" @click="undo">
@@ -197,24 +197,7 @@
         signaturePad: null,
         canvasWidth: 0,
         canvasHeight: 0,
-        teeth: [
-          { tooth_0: { highlighted: false, type: '' } },
-          { tooth_1: { highlighted: false, type: '' } },
-          { tooth_2: { highlighted: false, type: '' } },
-          { tooth_3: { highlighted: false, type: '' } },
-          { tooth_4: { highlighted: false, type: '' } },
-          { tooth_5: { highlighted: false, type: '' } },
-          { tooth_6: { highlighted: false, type: '' } },
-          { tooth_7: { highlighted: false, type: '' } },
-          { tooth_8: { highlighted: false, type: '' } },
-          { tooth_9: { highlighted: false, type: '' } },
-          { tooth_10: { highlighted: false, type: '' } },
-          { tooth_11: { highlighted: false, type: '' } },
-          { tooth_12: { highlighted: false, type: '' } },
-          { tooth_13: { highlighted: false, type: '' } },
-          { tooth_14: { highlighted: false, type: '' } },
-          { tooth_15: { highlighted: false, type: '' } }
-        ]
+        teeth: []
       }
     },
 
@@ -231,6 +214,10 @@
         this.drawActive = this.canvasMode === 'draw'
         this.highlightActive = this.canvasMode === 'highlight'
       }
+    },
+
+    created () {
+      this.initialTeeth()
     },
 
     mounted () {
@@ -284,6 +271,26 @@
     },
 
     methods: {
+      initialTeeth () {
+        this.teeth = [
+          { tooth_0: { highlighted: false, type: '' } },
+          { tooth_1: { highlighted: false, type: '' } },
+          { tooth_2: { highlighted: false, type: '' } },
+          { tooth_3: { highlighted: false, type: '' } },
+          { tooth_4: { highlighted: false, type: '' } },
+          { tooth_5: { highlighted: false, type: '' } },
+          { tooth_6: { highlighted: false, type: '' } },
+          { tooth_7: { highlighted: false, type: '' } },
+          { tooth_8: { highlighted: false, type: '' } },
+          { tooth_9: { highlighted: false, type: '' } },
+          { tooth_10: { highlighted: false, type: '' } },
+          { tooth_11: { highlighted: false, type: '' } },
+          { tooth_12: { highlighted: false, type: '' } },
+          { tooth_13: { highlighted: false, type: '' } },
+          { tooth_14: { highlighted: false, type: '' } },
+          { tooth_15: { highlighted: false, type: '' } }
+        ]
+      },
       highlightedTeeth (toothIndex) {
         this.teeth[toothIndex][`tooth_${ toothIndex }`].highlighted = !this.teeth[toothIndex][`tooth_${ toothIndex }`].highlighted
       },
@@ -295,6 +302,7 @@
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
         ctx2.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
         this.signaturePad.clear()
+        this.initialTeeth()
       },
       undo () {
         const data = this.signaturePad.toData()
@@ -313,14 +321,17 @@
 
         svgToImage(svg, (error, image) => {
           if (error) { throw error }
-          console.log(image)
           ctx2.drawImage(can1, 0, 0, this.canvasWidth, this.canvasHeight)
           ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
           ctx.drawImage(image, 0, 0, this.canvasWidth, this.canvasHeight)
           ctx.drawImage(can2, 0, 0, this.canvasWidth, this.canvasHeight)
 
-          const dataUrl = can1.toDataURL('image/png')
-          window.open().document.write('<img src="' + dataUrl + '" />')
+          const imageData = can1.toDataURL('image/png')
+
+          console.log(imageData)
+
+          this.$store.commit('upper-teeth/setImageData', imageData)
+          // window.open().document.write('<img src="' + dataUrl + '" />')
         })
       },
       save () {
@@ -332,7 +343,11 @@
 
         ctx.save()
 
+        const dataUrl = this.signaturePad.toDataURL('image/png')
+
         console.log(this.canvasWidth, this.canvasHeight)
+
+        console.log(dataUrl)
 
         /*
         // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
@@ -362,7 +377,8 @@
          */
 
         // window.open(dataUrl, '_blank')
-        // window.open().document.write('<img src="' + dataUrl + '" />')
+
+        window.open().document.write('<img src="' + dataUrl + '" />')
       },
       dataURLToBlob (dataURL) {
         // Code taken from https://github.com/ebidel/filer.js
@@ -381,7 +397,3 @@
     }
   }
 </script>
-
-<style scoped>
-
-</style>

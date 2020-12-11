@@ -1,27 +1,78 @@
-import axios from 'axios'
-
 export const state = () => ({
-  imageData: ''
+  imageData: null,
+  boltonDiscrepancy: false,
+  resolveCrowding: false,
+  rcMm: '',
+  rcWhere: '',
+  reduceOverjet: false,
+  roMm: '',
+  roWhere: ''
 })
 
 export const getters = {
   getImageData (state) {
-    return state.imageData
+    return state.imageData || localStorage.getItem('lof__upper-teeth__imageData')
+  },
+  getBoltonDiscrepancy (state) {
+    return state.boltonDiscrepancy || JSON.parse(localStorage.getItem('lof__upper-teeth__boltonDiscrepancy'))
+  },
+  getResolveCrowding (state) {
+    return state.resolveCrowding || JSON.parse(localStorage.getItem('lof__upper-teeth__resolveCrowding'))
+  },
+  getRcMm (state) {
+    return state.rcMm || localStorage.getItem('lof__upper-teeth__rcMm')
+  },
+  getRcWhere (state) {
+    return state.rcWhere || localStorage.getItem('lof__upper-teeth__rcWhere')
+  },
+  getReduceOverjet (state) {
+    return state.reduceOverjet || JSON.parse(localStorage.getItem('lof__upper-teeth__reduceOverjet'))
+  },
+  getRoMm (state) {
+    return state.roMm || localStorage.getItem('lof__upper-teeth__roMm')
+  },
+  getRoWhere (state) {
+    return state.roWhere || localStorage.getItem('lof__upper-teeth__roWhere')
   }
 }
 
 export const mutations = {
-  setImageData (state, accept) {
-    state.acceptTermsAndConditions = accept
+  setImageData (state, imageData) {
+    state.imageData = imageData
+    localStorage.setItem('lof__upper-teeth__imageData', imageData)
+  },
+  setBoltonDiscrepancy (state, boltonDiscrepancy) {
+    state.boltonDiscrepancy = boltonDiscrepancy
+    localStorage.setItem('lof__upper-teeth__boltonDiscrepancy', boltonDiscrepancy)
+  },
+  setResolveCrowding (state, resolveCrowding) {
+    state.resolveCrowding = resolveCrowding
+    localStorage.setItem('lof__upper-teeth__resolveCrowding', resolveCrowding)
+  },
+  setRcMm (state, rcMm) {
+    state.rcMm = rcMm
+    localStorage.setItem('lof__upper-teeth__rcMm', rcMm)
+  },
+  setRcWhere (state, rcWhere) {
+    state.rcWhere = rcWhere
+    localStorage.setItem('lof__upper-teeth__rcWhere', rcWhere)
+  },
+  setReduceOverjet (state, reduceOverjet) {
+    state.reduceOverjet = reduceOverjet
+    localStorage.setItem('lof__upper-teeth__reduceOverjet', reduceOverjet)
+  },
+  setRoMm (state, roMm) {
+    state.roMm = roMm
+    localStorage.setItem('lof__upper-teeth__roMm', roMm)
+  },
+  setRoWhere (state, roWhere) {
+    state.roWhere = roWhere
+    localStorage.setItem('lof__upper-teeth__roWhere', roWhere)
   }
 }
 
 export const actions = {
-  fetchTemplates () {
-    return axios.get('http://localhost:5000/api/upper-teeth-templates')
-      .then((result) => {
-        console.log(result)
-        return result.data
-      })
+  async fetchTemplates () {
+    return await this.$axios.$get('/api/upper-teeth-templates')
   }
 }

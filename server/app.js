@@ -1,3 +1,4 @@
+require('dotenv').config();
 const csrf = require('csurf');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -8,14 +9,16 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI = 'mongodb+srv://emilio:Maw79708@cluster0.30uow.mongodb.net/lab-order';
+const MONGODB_URI = `mongodb+srv://${ process.env.MONGO_DB_USER }:${ process.env.MONGO_DB_PW }@cluster0.30uow.mongodb.net/lab-order`;
 
 const app = express();
 const csrfProtection = csrf();
+/*
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: 'sessions'
 });
+*/
 
 const userRoutes = require('./routes/user');
 const ordersRoutes = require('./routes/orders');
@@ -72,7 +75,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api', userRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/orders', ordersRoutes);
 app.use('/api/patient', patientRoutes);
 app.use('/api/templates', templatesRoutes);

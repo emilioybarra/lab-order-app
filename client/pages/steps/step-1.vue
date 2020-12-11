@@ -252,7 +252,7 @@
       this.invoiceAddress = this.getIsShippingAddress
       this.invoiceAddressDropdown = this.getIsShippingAddress
 
-      this.$store.commit('setTemplate', 'invoice-address')
+      this.$store.commit('common/setTemplate', 'invoice-address')
     },
 
     methods: {
@@ -282,7 +282,11 @@
         this.templateTitle = ''
       },
       saveAsTemplate () {
-        this.$store.dispatch('invoice-address/saveTemplateData', this.templateTitle).then(() => {
+        const payload = {
+          templateTitle: this.templateTitle,
+          userId: this.$auth.$state.user._id
+        }
+        this.$store.dispatch('invoice-address/saveTemplateData', payload).then(() => {
           this.$refs.templateTitle.hide()
           this.templateTitle = ''
         })

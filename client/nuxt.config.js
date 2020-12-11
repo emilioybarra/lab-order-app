@@ -1,5 +1,7 @@
+console.log(process.env.NUXT_ENV_APP_API_URL_DEV)
+
 export default {
-  modern: 'client',
+  // modern: 'client',
 
   server: {
     // port: 3000, // default: 3000
@@ -8,7 +10,8 @@ export default {
 
   router: {
     mode: 'history',
-    routeNameSplitter: '/'
+    routeNameSplitter: '/',
+    middleware: [ 'auth' ]
   },
 
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -45,6 +48,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    { mode: 'client', src: '@/plugins/vue-cookies' },
     { mode: 'client', src: '@/plugins/vue-html2pdf' },
     { mode: 'client', src: '@/plugins/click-outside' }
   ],
@@ -67,14 +71,58 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // https://auth.nuxtjs.org/
+    '@nuxtjs/auth',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://github.com/nuxt-community/svg-module
     '@nuxtjs/svg',
     // https://i18n.nuxtjs.org
     'nuxt-i18n',
+    '@nuxtjs/proxy',
     '@nuxtjs/style-resources'
   ],
+
+  auth: {
+    strategies: {
+      customStrategy: {
+        _scheme: '~/schemes/customScheme'
+      }
+    },
+    redirect: {
+      login: '/unauthorized',
+      // logout: '/',
+      // callback: '/login',
+      home: '/'
+    }
+  },
+
+  proxy: {
+    // Simple proxy
+    '/api': process.env.NUXT_ENV_APP_API_URL_DEV
+  },
+
+  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
+  axios: {
+    baseURL: 'http://localhost:3000' // Used as fallback if no runtime config is provided
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      // browserBaseURL: process.env
+    }
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      // baseURL: process.env.NUXT_ENV_APP_API_URL_DEV
+    }
+  },
+
+  // Build Configuration (https://go.nuxtjs.dev/config-build)
+  build: {
+    transpile: [ '@nuxtjs/auth' ]
+  },
 
   styleResources: {
     scss: './scss/*.scss'
@@ -136,10 +184,6 @@ export default {
         name: 'Español'
       }
     ]
-  },
+  }
 
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {}
 }

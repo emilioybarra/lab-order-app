@@ -1,4 +1,4 @@
-@import url("https://use.typekit.net/lon3nka.css");
+//@import url("https://use.typekit.net/lon3nka.css");
 
 html {
   font-family: sans-serif;
@@ -216,8 +216,8 @@ Modified icons to fit ionicon’s grid from original.
 */
 @font-face {
   font-family: "Ionicons";
-  src: url("../../assets/fonts/ionicons/ionicons.eot?v=2.0.1");
-  src: url("../../assets/fonts/ionicons/ionicons.eot?v=2.0.1#iefix") format("embedded-opentype"), url("../../assets/fonts/ionicons/ionicons.ttf?v=2.0.1") format("truetype"), url("../../assets/fonts/ionicons/ionicons.woff?v=2.0.1") format("woff"), url("../../assets/fonts/ionicons/ionicons.svg?v=2.0.1#Ionicons") format("svg");
+  src: url("~assets/fonts/ionicons/ionicons.eot?v=2.0.1");
+  src: url("~assets/fonts/ionicons/ionicons.eot?v=2.0.1#iefix") format("embedded-opentype"), url("~assets/fonts/ionicons/ionicons.ttf?v=2.0.1") format("truetype"), url("~assets/fonts/ionicons/ionicons.woff?v=2.0.1") format("woff"), url("~assets/fonts/ionicons/ionicons.svg?v=2.0.1#Ionicons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -3298,7 +3298,7 @@ strong {
 }
 
 .pr-flex__item_attention {
-  background-image: url(../../assets/images/warning.svg);
+  background-image: url(~assets/images/warning.svg);
   background-position: left 15px center;
   background-repeat: no-repeat;
   background-size: auto 70%;
@@ -3321,7 +3321,7 @@ strong {
 
 .pr-flex__item_border {
   border: 2px solid #4a4a4a;
-  background-image: url(../../assets/images/logo_hell.png);
+  background-image: url(~assets/images/logo_hell.png);
   background-position: center;
   background-size: 90% auto;
   background-repeat: no-repeat;
@@ -3437,7 +3437,7 @@ strong {
 .pr-content__flex-item_upperJaw {
   width: 300px;
   height: 390px;
-  background-image: url(../../assets/images/Oberkiefer.png);
+  background-image: url(~assets/images/Oberkiefer.png);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -3448,7 +3448,7 @@ strong {
 .pr-content__flex-item_mandible {
   width: 300px;
   height: 390px;
-  background-image: url(../../assets/images/Unterkiefer.png);
+  background-image: url(~assets/images/Unterkiefer.png);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -3547,7 +3547,7 @@ strong {
 
 .pr-table__data_filled {
   background-color: #858585;
-  background-image: url(../../assets/images/line.svg);
+  background-image: url(~assets/images/line.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

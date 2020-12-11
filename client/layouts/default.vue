@@ -30,12 +30,17 @@
       </transition>
       <div class="lof-footer">
         <div>
-          &copy; DW Lingual System GmbH 2020
+          &copy; DW Lingual System GmbH {{ currentYear }}
         </div>
         <div>
           <a href="#" class="lof-footer__link">Impressum</a>
           <a href="#" class="lof-footer__link">Datenschutz</a>
         </div>
+      </div>
+      <div hidden style="position: sticky; bottom: 0;">
+        <b-alert show variant="success" style="position: absolute; bottom: 0; width: 100%;">
+          Success Alert
+        </b-alert>
       </div>
     </div>
   </div>
@@ -53,13 +58,13 @@
         slide: 'slide-left',
         showLanguageMenu: false,
         innerHeight: window.innerHeight,
-        showModalTab: false
+        showModalTab: false,
+        currentYear: new Date().getFullYear()
       }
     },
 
     computed: {
       language () {
-        console.log(this.$i18n)
         return this.$i18n.locale
       },
       getModalVisibility () {
@@ -69,7 +74,6 @@
 
     watch: {
       getModalVisibility () {
-        console.log(this.getModalVisibility)
         if (this.getModalVisibility) {
           this.navbarZIndex = 0
         } else {
@@ -96,9 +100,6 @@
         if (/(templates)/s.test(from.path) && /(steps)/s.test(to.path)) {
           this.slide = 'slide-right'
         }
-
-        console.log(to)
-        console.log(from)
       }
     },
 
@@ -120,11 +121,9 @@
       },
       detectDevice () {
         this.innerHeight = window.innerHeight
-        console.log('resize', window.innerHeight)
       },
       handleOrientation () {
         this.innerHeight = window.innerHeight
-        console.log('orientationchange', window.innerHeight)
       },
       handleScroll (event) {
         this.scrollY = event.target.scrollTop

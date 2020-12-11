@@ -40,3 +40,14 @@
   font-style: normal;
   src: url('~assets/fonts/ProximaNovaCond-Semibold.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: "Ionicons";
+  src: url("~assets/fonts/ionicons/ionicons.eot?v=2.0.1");
+  src: url("~assets/fonts/ionicons/ionicons.eot?v=2.0.1#iefix") format("embedded-opentype"),
+    url("~assets/fonts/ionicons/ionicons.ttf?v=2.0.1") format("truetype"),
+    url("~assets/fonts/ionicons/ionicons.woff?v=2.0.1") format("woff"),
+    url("~assets/fonts/ionicons/ionicons.svg?v=2.0.1#Ionicons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}

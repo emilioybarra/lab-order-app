@@ -29,13 +29,13 @@
 
     computed: {
       getTermsAndConditionsAcceptance () {
-        return this.$store.getters.getTermsAndConditionsAcceptance
+        return this.$store.getters['common/getTermsAndConditionsAcceptance']
       }
     },
 
     methods: {
       onAcceptTermsAndConditions (checked) {
-        this.$store.commit('setTermsAndConditionsAcceptance', checked)
+        this.$store.commit('common/setTermsAndConditionsAcceptance', checked)
       }
     }
   }

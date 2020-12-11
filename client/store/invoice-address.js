@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const state = () => ({
   practice: '',
   orthodontist: '',
@@ -21,150 +19,170 @@ export const state = () => ({
 
 export const getters = {
   getPractice (state) {
-    return state.practice
+    return state.practice || localStorage.getItem('lof__invoice-address__practice')
   },
   getOrthodontist (state) {
-    return state.orthodontist
+    return state.orthodontist || localStorage.getItem('lof__invoice-address__orthodontist')
   },
   getAddress (state) {
-    return state.address
+    return state.address || localStorage.getItem('lof__invoice-address__address')
   },
   getPostalcodeTown (state) {
-    return state.postalcodeTown
+    return state.postalcodeTown || localStorage.getItem('lof__invoice-address__postalcodeTown')
   },
   getTelephone (state) {
-    return state.telephone
+    return state.telephone || localStorage.getItem('lof__invoice-address__telephone')
   },
   getFax (state) {
-    return state.fax
+    return state.fax || localStorage.getItem('lof__invoice-address__fax')
   },
   getEmail (state) {
-    return state.email
+    return state.email || localStorage.getItem('lof__invoice-address__email')
   },
   getUstId (state) {
-    return state.ustId
+    return state.ustId || localStorage.getItem('lof__invoice-address__ustId')
   },
   getPatientLastName (state) {
-    return state.patientLastName
+    return state.patientLastName || localStorage.getItem('lof__invoice-address__patientLastName')
   },
   getPatientFirstName (state) {
-    return state.patientFirstName
+    return state.patientFirstName || localStorage.getItem('lof__invoice-address__patientFirstName')
   },
   getPatientNumber (state) {
-    return state.patientNumber
+    return state.patientNumber || localStorage.getItem('lof__invoice-address__patientNumber')
   },
   getAppointmentDate (state) {
-    return state.appointmentDate
+    return state.appointmentDate || localStorage.getItem('lof__invoice-address__appointmentDate')
   },
   getOrthodontistInvoice (state) {
-    return state.orthodontistInvoice
+    return state.orthodontistInvoice || JSON.parse(localStorage.getItem('lof__invoice-address__orthodontistInvoice'))
   },
   getIsShippingAddress (state) {
-    return state.isShippingAddress
+    return state.isShippingAddress || JSON.parse(localStorage.getItem('lof__invoice-address__isShippingAddress'))
   },
   getShippingAddress (state) {
-    return state.shippingAddress
+    return state.shippingAddress || localStorage.getItem('lof__invoice-address__shippingAddress')
   },
   getShippingPostalcodeTown (state) {
-    return state.shippingPostalcodeTown
+    return state.shippingPostalcodeTown || localStorage.getItem('lof__invoice-address__shippingPostalcodeTown')
   }
 }
 
 export const mutations = {
   setPractice (state, practice) {
     state.practice = practice
+    localStorage.setItem('lof__invoice-address__practice', practice)
   },
   setOrthodontist (state, orthodontist) {
     state.orthodontist = orthodontist
+    localStorage.setItem('lof__invoice-address__orthodontist', orthodontist)
   },
   setAddress (state, address) {
     state.address = address
+    localStorage.setItem('lof__invoice-address__address', address)
   },
   setPostalcodeTown (state, postalcodeTown) {
     state.postalcodeTown = postalcodeTown
+    localStorage.setItem('lof__invoice-address__postalcodeTown', postalcodeTown)
   },
   setTelephone (state, telephone) {
     state.telephone = telephone
+    localStorage.setItem('lof__invoice-address__telephone', telephone)
   },
   setFax (state, fax) {
     state.fax = fax
+    localStorage.setItem('lof__invoice-address__fax', fax)
   },
   setEmail (state, email) {
     state.email = email
+    localStorage.setItem('lof__invoice-address__email', email)
   },
   setUstId (state, ustId) {
     state.ustId = ustId
+    localStorage.setItem('lof__invoice-address__ustId', ustId)
   },
   setPatientLastName (state, patientLastName) {
     state.patientLastName = patientLastName
+    localStorage.setItem('lof__invoice-address__patientLastName', patientLastName)
   },
   setPatientFirstName (state, patientFirstName) {
     state.patientFirstName = patientFirstName
+    localStorage.setItem('lof__invoice-address__patientFirstName', patientFirstName)
   },
   setPatientNumber (state, patientNumber) {
     state.patientNumber = patientNumber
+    localStorage.setItem('lof__invoice-address__patientNumber', patientNumber)
   },
   setAppointmentDate (state, appointmentDate) {
     state.appointmentDate = appointmentDate
+    localStorage.setItem('lof__invoice-address__appointmentDate', appointmentDate)
   },
   setOrthodontistInvoice (state, orthodontistInvoice) {
     state.orthodontistInvoice = orthodontistInvoice
+    localStorage.setItem('lof__invoice-address__orthodontistInvoice', orthodontistInvoice)
   },
   setIsShippingAddress (state, isShippingAddress) {
     state.isShippingAddress = isShippingAddress
+    localStorage.setItem('lof__invoice-address__isShippingAddress', isShippingAddress)
   },
   setShippingAddress (state, shippingAddress) {
     state.shippingAddress = shippingAddress
+    localStorage.setItem('lof__invoice-address__shippingAddress', shippingAddress)
   },
   setShippingPostalcodeTown (state, shippingPostalcodeTown) {
     state.shippingPostalcodeTown = shippingPostalcodeTown
+    localStorage.setItem('lof__invoice-address__shippingPostalcodeTown', shippingPostalcodeTown)
   }
 }
 
 export const actions = {
-  fetchTemplates (context, page) {
-    return axios.get(`http://${ window.location.hostname }:5000/api/templates/invoice-address?page=${ page }`)
-      .then((result) => {
-        console.log(result)
-        return result.data
-      })
+  async fetchTemplates (context, payload) {
+    const { currentPage, userId } = payload
+    return await this.$axios.$get('/api/templates/invoice-address', {
+      params: {
+        page: currentPage,
+        userId
+      }
+    })
   },
-  fetchTemplateById ({ commit }, templateId) {
-    return axios.get(`http://${ window.location.hostname }:5000/api/templates/invoice-address/${ templateId }`)
-      .then((result) => {
-        const {
-          invoiceAddressTemplateData: {
-            practice,
-            orthodontist,
-            address,
-            postalcodeTown,
-            telephone,
-            fax,
-            email,
-            ustId,
-            orthodontistInvoice,
-            isShippingAddress,
-            shippingAddress,
-            shippingPostalcodeTown
-          }
-        } = result.data.invoiceAddressTemplate
+  async fetchTemplateById ({ commit }, payload) {
+    const { templateId, userId } = payload
+    const { invoiceAddressTemplate } = await this.$axios.$get(`/api/templates/invoice-address/${ templateId }`, {
+      params: { userId }
+    })
+    const {
+      invoiceAddressTemplateData: {
+        practice,
+        orthodontist,
+        address,
+        postalcodeTown,
+        telephone,
+        fax,
+        email,
+        ustId,
+        orthodontistInvoice,
+        isShippingAddress,
+        shippingAddress,
+        shippingPostalcodeTown
+      }
+    } = invoiceAddressTemplate
 
-        commit('setPractice', practice)
-        commit('setOrthodontist', orthodontist)
-        commit('setAddress', address)
-        commit('setPostalcodeTown', postalcodeTown)
-        commit('setTelephone', telephone)
-        commit('setFax', fax)
-        commit('setEmail', email)
-        commit('setUstId', ustId)
-        commit('setOrthodontistInvoice', orthodontistInvoice)
-        commit('setIsShippingAddress', isShippingAddress)
-        commit('setShippingAddress', shippingAddress)
-        commit('setShippingPostalcodeTown', shippingPostalcodeTown)
-        return true
-      })
+    commit('setPractice', practice)
+    commit('setOrthodontist', orthodontist)
+    commit('setAddress', address)
+    commit('setPostalcodeTown', postalcodeTown)
+    commit('setTelephone', telephone)
+    commit('setFax', fax)
+    commit('setEmail', email)
+    commit('setUstId', ustId)
+    commit('setOrthodontistInvoice', orthodontistInvoice)
+    commit('setIsShippingAddress', isShippingAddress)
+    commit('setShippingAddress', shippingAddress)
+    commit('setShippingPostalcodeTown', shippingPostalcodeTown)
+    return true
   },
-  saveTemplateData ({ getters }, templateTitle) {
+  saveTemplateData ({ getters }, payload) {
+    const { templateTitle, userId } = payload
     const {
       getPractice: practice,
       getOrthodontist: orthodontist,
@@ -179,7 +197,6 @@ export const actions = {
       getShippingAddress: shippingAddress,
       getShippingPostalcodeTown: shippingPostalcodeTown
     } = getters
-
     const templateData = {
       title: templateTitle,
       invoiceAddressTemplateData: {
@@ -197,17 +214,26 @@ export const actions = {
         shippingPostalcodeTown
       }
     }
+    const prepareBody = {
+      userId,
+      templateData
+    }
 
-    axios.post(`http://${ window.location.hostname }:5000/api/templates/invoice-address`, templateData)
+    this.$axios.$post('/api/templates/invoice-address', prepareBody)
       .then((result) => {
         console.log(result)
       })
   },
-  deleteTemplateById ({ commit }, templateId) {
-    return axios.delete(`http://${ window.location.hostname }:5000/api/templates/invoice-address/${ templateId }`)
+  async deleteTemplateById ({ commit }, payload) {
+    const { templateId, userId } = payload
+    return await this.$axios.$delete(`/api/templates/invoice-address/${ templateId }`, {
+      params: { userId }
+    })
       .then((result) => {
-        console.log(result)
         return result.status === 204
+      })
+      .catch(() => {
+        return false
       })
   }
 }

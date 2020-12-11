@@ -22,9 +22,7 @@
 </template>
 
 <script>
-  import Page from '@/components/Page'
   export default {
-    name: 'start',
-    components: { Page }
+    name: 'start'
   }
 </script>

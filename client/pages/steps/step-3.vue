@@ -18,24 +18,52 @@
       </div>
       <div class="row">
         <div class="col-12 d-flex flex-column">
-          <checkbox>
+          <checkbox v-model="boltonDiscrepancy" :is-checked="boltonDiscrepancy" @input="setBoltonDiscrepancy">
             {{ $t('section.l_2.boltonDiscrepancy') }}
           </checkbox>
-          <checkbox>
+          <checkbox v-model="resolveCrowding" :is-checked="resolveCrowding" @input="setResolveCrowding">
             {{ $t('section.l_2.resolveCrowding') }}
           </checkbox>
         </div>
-        <input-field id="rc-mm" class="col-12 col-sm-6 mb-4 w-50" :right-label="$t('section.l_2.rcMm')" side-label="right" />
-        <input-field id="rc-where" class="col-12 col-sm-6 mb-4 w-50" :left-label="$t('section.l_2.rcWhere')" side-label="left" />
+        <input-field
+          id="rc-mm"
+          v-model="rcMm"
+          class="col-12 col-sm-6 mb-4 w-50"
+          :right-label="$t('section.l_2.rcMm')"
+          side-label="right"
+          @input="setRcMm"
+        />
+        <input-field
+          id="rc-where"
+          v-model="rcWhere"
+          class="col-12 col-sm-6 mb-4 w-50"
+          :left-label="$t('section.l_2.rcWhere')"
+          side-label="left"
+          @input="setRcWhere"
+        />
       </div>
       <div class="row">
         <div class="col-12">
-          <checkbox>
+          <checkbox v-model="reduceOverjet" :is-checked="reduceOverjet" @input="setReduceOverjet">
             {{ $t('section.l_2.reduceOverjet') }}
           </checkbox>
         </div>
-        <input-field id="ro-mm" class="col-12 col-sm-6 mb-4 w-50" :right-label="$t('section.l_2.roMm')" side-label="right" />
-        <input-field id="ro-where" class="col-12 col-sm-6 mb-4 w-50" :left-label="$t('section.l_2.roWhere')" side-label="left" />
+        <input-field
+          id="ro-mm"
+          v-model="roMm"
+          class="col-12 col-sm-6 mb-4 w-50"
+          :right-label="$t('section.l_2.roMm')"
+          side-label="right"
+          @input="setRoMm"
+        />
+        <input-field
+          id="ro-where"
+          v-model="roWhere"
+          class="col-12 col-sm-6 mb-4 w-50"
+          :left-label="$t('section.l_2.roWhere')"
+          side-label="left"
+          @input="setRoWhere"
+        />
       </div>
       <div class="row">
         <div class="col-12">
@@ -58,17 +86,57 @@
 </template>
 
 <script>
+  import { mapGetters, mapMutations } from 'vuex'
+
   export default {
     name: 'step-3',
 
     data () {
       return {
-
+        boltonDiscrepancy: false,
+        resolveCrowding: false,
+        rcMm: '',
+        rcWhere: '',
+        reduceOverjet: false,
+        roMm: '',
+        roWhere: ''
       }
     },
 
+    computed: {
+      ...mapGetters('lower-teeth', [
+        'getBoltonDiscrepancy',
+        'getResolveCrowding',
+        'getRcMm',
+        'getRcWhere',
+        'getReduceOverjet',
+        'getRoMm',
+        'getRoWhere'
+      ])
+    },
+
     created () {
-      this.$store.commit('setTemplate', 'lower-teeth')
+      this.boltonDiscrepancy = this.getBoltonDiscrepancy
+      this.resolveCrowding = this.getResolveCrowding
+      this.rcMm = this.getRcMm
+      this.rcWhere = this.getRcWhere
+      this.reduceOverjet = this.getReduceOverjet
+      this.roMm = this.getRoMm
+      this.roWhere = this.getRoWhere
+
+      this.$store.commit('common/setTemplate', 'lower-teeth')
+    },
+
+    methods: {
+      ...mapMutations('lower-teeth', [
+        'setBoltonDiscrepancy',
+        'setResolveCrowding',
+        'setRcMm',
+        'setRcWhere',
+        'setReduceOverjet',
+        'setRoMm',
+        'setRoWhere'
+      ])
     }
   }
 </script>

@@ -62,7 +62,11 @@
         this.currentPage = page
       },
       getAllTemplates (currentPage) {
-        this.$store.dispatch(`${ this.$route.query.template }/fetchTemplates`, currentPage).then((response) => {
+        const payload = {
+          currentPage,
+          userId: this.$auth.$state.user._id
+        }
+        this.$store.dispatch(`${ this.$route.query.template }/fetchTemplates`, payload).then((response) => {
           if (response) {
             this.templates = response.templates
             this.totalTemplates = response.totalTemplates
@@ -72,7 +76,11 @@
         })
       },
       selectTemplate (templateId) {
-        this.$store.dispatch(`${ this.$route.query.template }/fetchTemplateById`, templateId).then((result) => {
+        const payload = {
+          templateId,
+          userId: this.$auth.$state.user._id
+        }
+        this.$store.dispatch(`${ this.$route.query.template }/fetchTemplateById`, payload).then((result) => {
           if (result) {
             this.$router.go(-1)
           }
@@ -80,10 +88,12 @@
       },
       deleteTemplate (templateId) {
         this.loading = true
-        this.$store.dispatch(`${ this.$route.query.template }/deleteTemplateById`, templateId).then((result) => {
-          if (result) {
-            this.getAllTemplates(this.currentPage)
-          }
+        const payload = {
+          templateId,
+          userId: this.$auth.$state.user._id
+        }
+        this.$store.dispatch(`${ this.$route.query.template }/deleteTemplateById`, payload).then((result) => {
+          this.getAllTemplates(this.currentPage)
         })
       }
     }
