@@ -104,6 +104,7 @@
     },
 
     mounted () {
+      console.log('fired')
       this.showModalTab = /(step-2|step-3)/s.test(this.$route.path)
       window.addEventListener('resize', this.detectDevice)
       window.addEventListener('orientationchange', this.handleOrientation)

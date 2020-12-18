@@ -52,7 +52,7 @@ export default {
       standardSetup: '',
       standardSetupPlus: '',
       premiumSetupPlus: '',
-      orthodontistInvoice: 'Please tick if the orthodontist‘s name shall be stated on the invoice.',
+      stateOrthodontistNameOnInvoice: 'Please tick if the orthodontist‘s name shall be stated on the invoice.',
       patientConsent: '(The transfer of personal health data requires a written patient consent.)',
       // logoBox: 'position: on the right',
       shippingAddress: 'Please inform us if the shipping address is different from the invoice address.',
@@ -74,9 +74,9 @@ export default {
       roWhere: 'Where:',
       upperInfo: 'Upper archwires with expansion',
       upperInfoLegend: `
-        <p class="mb-1">1 = 1 cm expansion</p>
-        <p class="mb-1">2 = 2 cm expansion (recommended)</p>
-        <p class="mb-1">3 = 3 cm expansion</p>
+        <li>1 = 1 cm expansion</li>
+        <li>2 = 2 cm expansion (recommended)</li>
+        <li>3 = 3 cm expansion</li>
       `,
       notes: {
         title: '',
@@ -99,7 +99,9 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
-      keyInfo: 'Please fill in: For missing teeth please always indicate space closure or not.',
+      keyInfo: `
+        <strong>Please fill in:</strong> For missing teeth please always indicate space closure or not.
+      `,
       keyInfoLegend: `
         <div><strong>B</strong> = bracket</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = tube</div>&nbsp;|&nbsp;
@@ -144,8 +146,8 @@ export default {
       roWhere: 'Where:',
       lowerInfo: 'Lower archwires with compression',
       lowerInfoLegend: `
-        <p class="mb-1">1 = 1 cm compression (recommended)</p>
-        <p class="mb-1">2 = 2 cm compression</p>
+        <li>1 = 1 cm compression (recommended)</li>
+        <li>2 = 2 cm compression</li>
       `
     },
     l_3: {}

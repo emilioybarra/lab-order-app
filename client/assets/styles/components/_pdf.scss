@@ -66,6 +66,7 @@
   &__invoice {
     &-title {
       margin-top: -16px;
+      margin-bottom: 10px;
     }
 
     &-fields {
@@ -75,7 +76,7 @@
 
     &-field {
       width: 32%;
-      margin-top: $space-3;
+      margin-top: $space-1;
 
       &__value {
         font-size: 12px;
@@ -139,12 +140,12 @@
 
   &__teeth {
     margin-top: 10px;
-    border: 2px solid black;
+    border: 3px solid $primary;
 
     &__upper {
       height: 250px;
       display: flex;
-      border-bottom: 2px solid black;
+      border-bottom: 3px solid $primary;
 
       &-image-container {
         width: 50%;
@@ -189,17 +190,42 @@
 
       &-left {
         width: 75%;
-        border-right: 1px solid black;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 1px solid $primary;
       }
 
       &-remarks {
         display: flex;
         align-items: center;
         padding: 2px 10px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $primary;
 
         &-title {
           font-size: 10px;
+        }
+      }
+
+      &-extra {
+        height: 100%;
+      }
+
+      &-info-legend {
+        font-size: 11px;
+        padding: $space-05;
+        border-top: 1px solid $primary;
+
+        &__title {
+          text-align: center;
+          margin-bottom: $space-05;
+        }
+
+        &__legend {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
         }
       }
     }
@@ -207,7 +233,7 @@
     &__lower {
       height: 250px;
       display: flex;
-      border-top: 2px solid black;
+      border-top: 3px solid $primary;
 
       &-image-container {
         width: 50%;
@@ -222,6 +248,22 @@
 
       &-image {
         width: 310px;
+
+        &--edited {
+          width: 270px;
+        }
+      }
+
+      &-info-container {
+        width: 50%;
+        display: flex;
+      }
+
+      &-stripping {
+        padding: $space-1;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
       }
     }
   }
@@ -249,8 +291,7 @@
     }
 
     &--lower {
-      margin-bottom: -30px;
-      margin-top: 11px;
+      margin-bottom: -15px;
     }
 
     &--margin-sides {
@@ -278,9 +319,16 @@
     }
   }
 
-  &__info-legend {
-    font-size: 10px;
-    margin-top: auto;
+  &__info {
+    &-legend {
+      font-size: 10px;
+      margin-top: auto;
+    }
+
+    &-list {
+      list-style: none;
+      margin-bottom: 0;
+    }
   }
 }
 

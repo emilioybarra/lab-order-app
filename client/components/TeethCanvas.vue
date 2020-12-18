@@ -153,23 +153,23 @@
             </b-form-radio>
           </b-form-radio-group>
         </b-form-group>
+
+        <b-button v-if="drawActive" id="undo" class="lof-teeth-canvas__button mr-3" variant="outline-secondary" @click="undo">
+          <svg-icon icon="undo" class="lof-teeth-canvas__button-icon" />
+        </b-button>
+
         <b-button-group>
-          <b-button id="save" class="lof-teeth-canvas__button" variant="outline-primary" @click="exportImage">
+          <b-button id="save" class="lof-teeth-canvas__button" variant="outline-primary" @click="save">
             <svg-icon icon="save" class="lof-teeth-canvas__button-icon" />
-          </b-button>
-          <b-button id="undo" class="lof-teeth-canvas__button" variant="outline-secondary" @click="undo">
-            <svg-icon icon="update" class="lof-teeth-canvas__button-icon" />
           </b-button>
           <b-button id="clear" class="lof-teeth-canvas__button" variant="outline-secondary" @click="clear">
             <svg-icon icon="trash" class="lof-teeth-canvas__button-icon" />
           </b-button>
+          <b-button id="close" class="lof-teeth-canvas__button" variant="outline-secondary" @click="close">
+            <svg-icon icon="times" class="lof-teeth-canvas__button-icon" />
+          </b-button>
         </b-button-group>
       </div>
-    </div>
-    <div class="mt-3">
-      <checkbox>
-        {{ $t('section.u_1.onlySetup') }}
-      </checkbox>
     </div>
   </div>
 </template>
@@ -210,7 +210,6 @@
         }
       },
       canvasMode () {
-        console.log(this.canvasMode)
         this.drawActive = this.canvasMode === 'draw'
         this.highlightActive = this.canvasMode === 'highlight'
       }
@@ -223,51 +222,19 @@
     mounted () {
       const element = document.getElementById('teeth-container')
       const style = window.getComputedStyle(element, null)
+      const canvas = document.getElementById('teeth-canvas')
 
       setTimeout(() => {
         this.canvasWidth = parseFloat(style.getPropertyValue('width'))
         this.canvasHeight = parseFloat(style.getPropertyValue('height'))
-
-        console.log(parseFloat(style.getPropertyValue('width')))
       }, 100)
 
-      this.signaturePad = new SignaturePad(document.getElementById('teeth-canvas'), {
+      this.signaturePad = new SignaturePad(canvas, {
         backgroundColor: 'rgba(255, 255, 255, 0)',
         penColor: 'rgb(0, 0, 0)'
       })
 
       this.signaturePad.off()
-
-      /*
-
-      // Returns signature image as data URL (see https://mdn.io/todataurl for the list of possible parameters)
-      signaturePad.toDataURL() // save image as PNG
-      signaturePad.toDataURL('image/jpeg') // save image as JPEG
-      signaturePad.toDataURL('image/svg+xml') // save image as SVG
-
-      // Draws signature image from data URL.
-      // NOTE: This method does not populate internal data structure that represents drawn signature. Thus, after using #fromDataURL, #toData won't work properly.
-      signaturePad.fromDataURL('data:image/png;base64,iVBORw0K...')
-
-      // Returns signature image as an array of point groups
-      const data = signaturePad.toData()
-
-      // Draws signature image from an array of point groups
-      signaturePad.fromData(data)
-
-      // Clears the canvas
-      signaturePad.clear()
-
-      // Returns true if canvas is empty, otherwise returns false
-      signaturePad.isEmpty()
-
-      // Unbinds all event handlers
-      signaturePad.off()
-
-      // Rebinds all event handlers
-      signaturePad.on()
-
-       */
     },
 
     methods: {
@@ -294,15 +261,8 @@
       highlightedTeeth (toothIndex) {
         this.teeth[toothIndex][`tooth_${ toothIndex }`].highlighted = !this.teeth[toothIndex][`tooth_${ toothIndex }`].highlighted
       },
-      clear () {
-        const can1 = document.getElementById('teeth-canvas')
-        const can2 = document.getElementById('teeth-canvas-2')
-        const ctx = can1.getContext('2d')
-        const ctx2 = can2.getContext('2d')
-        ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-        ctx2.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-        this.signaturePad.clear()
-        this.initialTeeth()
+      close () {
+        this.canvasActive = false
       },
       undo () {
         const data = this.signaturePad.toData()
@@ -312,7 +272,18 @@
           this.signaturePad.fromData(data)
         }
       },
-      exportImage () {
+      clear () {
+        const can1 = document.getElementById('teeth-canvas')
+        const can2 = document.getElementById('teeth-canvas-2')
+        const ctx = can1.getContext('2d')
+        const ctx2 = can2.getContext('2d')
+        ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+        ctx2.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+        this.signaturePad.clear()
+        this.initialTeeth()
+        this.$store.commit(`${ this.teethImage }-teeth/setImageData`, '')
+      },
+      save () {
         const svg = document.getElementById('teeth-image').outerHTML
         const can1 = document.getElementById('teeth-canvas')
         const can2 = document.getElementById('teeth-canvas-2')
@@ -325,74 +296,10 @@
           ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
           ctx.drawImage(image, 0, 0, this.canvasWidth, this.canvasHeight)
           ctx.drawImage(can2, 0, 0, this.canvasWidth, this.canvasHeight)
-
           const imageData = can1.toDataURL('image/png')
-
-          console.log(imageData)
-
-          this.$store.commit('upper-teeth/setImageData', imageData)
-          // window.open().document.write('<img src="' + dataUrl + '" />')
+          this.$store.commit(`${ this.teethImage }-teeth/setImageData`, imageData)
         })
-      },
-      save () {
-        // const img = document.getElementById('teeth-image')
-        const can1 = document.getElementById('teeth-canvas')
-        // const can2 = document.getElementById('teeth-canvas-2')
-        const ctx = can1.getContext('2d')
-        // const ctx2 = can2.getContext('2d')
-
-        ctx.save()
-
-        const dataUrl = this.signaturePad.toDataURL('image/png')
-
-        console.log(this.canvasWidth, this.canvasHeight)
-
-        console.log(dataUrl)
-
-        /*
-        // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-        ctx2.drawImage(can1, 0, 0, this.canvasWidth, this.canvasHeight, 0, 0, this.canvasWidth, this.canvasHeight)
-        ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-        ctx.drawImage(img, 0, 0, this.canvasWidth, this.canvasHeight, 0, 0, this.canvasWidth, this.canvasHeight)
-        ctx.drawImage(can2, 0, 0, this.canvasWidth, this.canvasHeight, 0, 0, this.canvasWidth, this.canvasHeight)
-
-        ctx.save()
-        ctx2.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-        const dataURL = this.signaturePad.toDataURL()
-        const blob = this.dataURLToBlob(dataURL)
-        const url = window.URL.createObjectURL(blob)
-        console.log(url)
-
-        /*
-        if (!this.signaturePad.isEmpty()) {
-          ctx2.drawImage(can1, 0, 0)
-          ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-          ctx.drawImage(img, 0, 0)
-          ctx.drawImage(can2, 0, 0)
-
-          const dataUrl = this.signaturePad.toDataURL('image/png')
-          console.log(dataUrl)
-        }
-
-         */
-
-        // window.open(dataUrl, '_blank')
-
-        window.open().document.write('<img src="' + dataUrl + '" />')
-      },
-      dataURLToBlob (dataURL) {
-        // Code taken from https://github.com/ebidel/filer.js
-        const parts = dataURL.split(';base64,')
-        const contentType = parts[0].split(':')[1]
-        const raw = window.atob(parts[1])
-        const rawLength = raw.length
-        const uInt8Array = new Uint8Array(rawLength)
-
-        for (let i = 0; i < rawLength; ++i) {
-          uInt8Array[i] = raw.charCodeAt(i)
-        }
-
-        return new Blob([ uInt8Array ], { type: contentType })
+        this.canvasActive = false
       }
     }
   }

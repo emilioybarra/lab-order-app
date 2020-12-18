@@ -112,8 +112,8 @@
       </div>
       <div class="row mt-5">
         <div class="col-12 d-flex flex-column">
-          <checkbox v-model="orthodontistInvoice" :is-checked="orthodontistInvoice" @input="setOrthodontistInvoice">
-            {{ $t('section.h_3.orthodontistInvoice') }}
+          <checkbox v-model="stateOrthodontistNameOnInvoice" :is-checked="stateOrthodontistNameOnInvoice" @input="setStateOrthodontistNameOnInvoice">
+            {{ $t('section.h_3.stateOrthodontistNameOnInvoice') }}
           </checkbox>
           <checkbox v-model="isShippingAddress" :is-checked="isShippingAddress" @input="differentInvoiceAddress">
             {{ $t('section.h_3.shippingAddress') }}
@@ -203,7 +203,7 @@
         patientFirstName: '',
         patientNumber: '',
         appointmentDate: '',
-        orthodontistInvoice: false,
+        stateOrthodontistNameOnInvoice: false,
         isShippingAddress: false,
         shippingAddress: '',
         shippingPostalcodeTown: '',
@@ -225,7 +225,7 @@
         'getPatientFirstName',
         'getPatientNumber',
         'getAppointmentDate',
-        'getOrthodontistInvoice',
+        'getStateOrthodontistNameOnInvoice',
         'getIsShippingAddress',
         'getShippingAddress',
         'getShippingPostalcodeTown'
@@ -247,12 +247,23 @@
       this.patientFirstName = this.getPatientFirstName
       this.patientNumber = this.getPatientNumber
       this.appointmentDate = this.getAppointmentDate
-      this.orthodontistInvoice = this.getOrthodontistInvoice
+      this.stateOrthodontistNameOnInvoice = this.getStateOrthodontistNameOnInvoice
       this.isShippingAddress = this.getIsShippingAddress
       this.invoiceAddress = this.getIsShippingAddress
       this.invoiceAddressDropdown = this.getIsShippingAddress
 
       this.$store.commit('common/setTemplate', 'invoice-address')
+    },
+
+    beforeDestroy () {
+      if (!this.shippingAddress && !this.shippingPostalcodeTown) {
+        this.setIsShippingAddress(false)
+      }
+
+      if (!this.isShippingAddress) {
+        this.setShippingAddress('')
+        this.setShippingPostalcodeTown('')
+      }
     },
 
     methods: {
@@ -269,7 +280,7 @@
         'setPatientFirstName',
         'setPatientNumber',
         'setAppointmentDate',
-        'setOrthodontistInvoice',
+        'setStateOrthodontistNameOnInvoice',
         'setIsShippingAddress',
         'setShippingAddress',
         'setShippingPostalcodeTown'

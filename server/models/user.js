@@ -12,7 +12,7 @@ const userSchema = new Schema(
         orderForm: {
           type: Schema.Types.ObjectId,
           ref: 'Order Form',
-          required: true
+          required: false
         }
       }
     ],
@@ -25,21 +25,21 @@ const userSchema = new Schema(
         }
       }
     ],
-    upperTeethFormTemplates: [
+    upperTeethTemplates: [
       {
         upperTeethFormTemplate: {
           type: Schema.Types.ObjectId,
           ref: 'Upper Teeth Form Template',
-          required: true
+          required: false
         }
       }
     ],
-    lowerTeethFormTemplates: [
+    lowerTeethTemplates: [
       {
         lowerTeethFormTemplate: {
           type: Schema.Types.ObjectId,
           ref: 'Lower Teeth Form Template',
-          required: true
+          required: false
         }
       }
     ]
@@ -49,9 +49,9 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.methods.addToOrderFormHistory = function (orderForm) {
+userSchema.methods.addToOrderFormHistory = function (orderFormId) {
   const orderForms = [ ...this.orderForms ];
-  orderForms.push(orderForm);
+  orderForms.push({ orderForm: orderFormId });
   this.orderForms = orderForms;
   return this.save();
 };
@@ -63,17 +63,17 @@ userSchema.methods.addToInvoiceAddressTemplates = function (invoiceAddressTempla
   return this.save();
 };
 
-userSchema.methods.addToUpperTeethFormTemplates = function (upperTeethFormTemplate) {
-  const upperTeethFormTemplates = [ ...this.upperTeethFormTemplates ];
-  upperTeethFormTemplates.push(upperTeethFormTemplate);
-  this.upperTeethFormTemplates = upperTeethFormTemplates;
+userSchema.methods.addToUpperTeethFormTemplates = function (upperTeethTemplateId) {
+  const upperTeethTemplates = [ ...this.upperTeethTemplates ];
+  upperTeethTemplates.push({ upperTeethTemplate: upperTeethTemplateId });
+  this.upperTeethTemplates = upperTeethTemplates;
   return this.save();
 };
 
-userSchema.methods.addToLowerTeethFormTemplates = function (lowerTeethFormTemplate) {
-  const lowerTeethFormTemplates = [ ...this.lowerTeethFormTemplates ];
-  lowerTeethFormTemplates.push(lowerTeethFormTemplate);
-  this.lowerTeethFormTemplates = lowerTeethFormTemplates;
+userSchema.methods.addToLowerTeethFormTemplates = function (lowerTeethTemplateId) {
+  const lowerTeethTemplates = [ ...this.lowerTeethTemplates ];
+  lowerTeethTemplates.push({ lowerTeethTemplate: lowerTeethTemplateId });
+  this.lowerTeethTemplates = lowerTeethTemplates;
   return this.save();
 };
 

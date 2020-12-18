@@ -1,12 +1,12 @@
-import axios from 'axios'
-import CryptoJS from 'crypto-js'
-import cookies from 'vue-cookies'
+// import axios from 'axios'
+// import CryptoJS from 'crypto-js'
+// import cookies from 'vue-cookies'
 import LocalScheme from '@nuxtjs/auth/lib/schemes/local'
 
 export default class CustomScheme extends LocalScheme {
   // Override `fetchUser` method of `local` scheme
+  /*
   async fetchUser () {
-    // const wordpressUser = cookies.keys().find(cookie => /(wordpress_logged_in_)(.*)/.test(cookie))
     const wordpressUser = cookies.get('wordpress_user')
     const hashedWordpressUser = CryptoJS.SHA512(wordpressUser).toString(CryptoJS.enc.Base64)
 
@@ -42,4 +42,5 @@ export default class CustomScheme extends LocalScheme {
       this.$auth.setUser({ name: 'emilio' })
     }
   }
+  */
 }

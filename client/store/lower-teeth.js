@@ -1,5 +1,6 @@
 export const state = () => ({
-  imageData: null,
+  imageData: '',
+  onlySetup: false,
   boltonDiscrepancy: false,
   resolveCrowding: false,
   rcMm: '',
@@ -12,6 +13,9 @@ export const state = () => ({
 export const getters = {
   getImageData (state) {
     return state.imageData || localStorage.getItem('lof__lower-teeth__imageData')
+  },
+  getOnlySetup (state) {
+    return state.onlySetup || JSON.parse(localStorage.getItem('lof__lower-teeth__onlySetup'))
   },
   getBoltonDiscrepancy (state) {
     return state.boltonDiscrepancy || JSON.parse(localStorage.getItem('lof__lower-teeth__boltonDiscrepancy'))
@@ -41,6 +45,10 @@ export const mutations = {
     state.imageData = imageData
     localStorage.setItem('lof__lower-teeth__imageData', imageData)
   },
+  setOnlySetup (state, onlySetup) {
+    state.onlySetup = onlySetup
+    localStorage.setItem('lof__lower-teeth__onlySetup', onlySetup)
+  },
   setBoltonDiscrepancy (state, boltonDiscrepancy) {
     state.boltonDiscrepancy = boltonDiscrepancy
     localStorage.setItem('lof__lower-teeth__boltonDiscrepancy', boltonDiscrepancy)
@@ -68,6 +76,26 @@ export const mutations = {
   setRoWhere (state, roWhere) {
     state.roWhere = roWhere
     localStorage.setItem('lof__lower-teeth__roWhere', roWhere)
+  },
+  resetLowerTeethState (state) {
+    state.imageData = null
+    localStorage.removeItem('lof__lower-teeth__imageData')
+    state.onlySetup = false
+    localStorage.removeItem('lof__lower-teeth__onlySetup')
+    state.boltonDiscrepancy = false
+    localStorage.removeItem('lof__lower-teeth__boltonDiscrepancy')
+    state.resolveCrowding = false
+    localStorage.removeItem('lof__lower-teeth__resolveCrowding')
+    state.rcMm = ''
+    localStorage.removeItem('lof__lower-teeth__rcMm')
+    state.rcWhere = ''
+    localStorage.removeItem('lof__lower-teeth__rcWhere')
+    state.reduceOverjet = false
+    localStorage.removeItem('lof__lower-teeth__reduceOverjet')
+    state.roMm = ''
+    localStorage.removeItem('lof__lower-teeth__roMm')
+    state.roWhere = ''
+    localStorage.removeItem('lof__lower-teeth__roWhere')
   }
 }
 

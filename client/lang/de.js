@@ -52,7 +52,7 @@ export default {
       standardSetup: '',
       standardSetupPlus: '',
       premiumSetupPlus: '',
-      orthodontistInvoice: 'Soll der Name des Behandlers auf der Rechnung erscheinen?',
+      stateOrthodontistNameOnInvoice: 'Soll der Name des Behandlers auf der Rechnung erscheinen?',
       patientConsent: '(Für die Übermittlung von personenbezogenen Gesundheitsdaten benötigen Sie die schriftliche Einwilligung Ihres Patienten)',
       // logoBox: '',
       shippingAddress: 'Bitte informieren Sie uns, wenn die Lieferadresse nicht mit der Rechnungsadresse übereinstimmt.',
@@ -74,9 +74,9 @@ export default {
       roWhere: 'Wo:',
       upperInfo: 'OK-Bögen mit Expansion',
       upperInfoLegend: `
-        <p class="mb-1">1 = 1 cm Expansion</p>
-        <p class="mb-1">2 = 2 cm Expansion (empfohlen)</p>
-        <p class="mb-1">3 = 3 cm Expansion</p>
+        <li>1 = 1 cm Expansion</li>
+        <li>2 = 2 cm Expansion (empfohlen)</li>
+        <li>3 = 3 cm Expansion</li>
       `,
       notes: {
         title: '',
@@ -99,7 +99,9 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
-      keyInfo: 'Bitte ausfüllen: Bei fehlenden Zähnen bitte immer angeben, ob Lückenschluss gewünscht wird.',
+      keyInfo: `
+        <strong>Bitte ausfüllen:</strong> Bei fehlenden Zähnen bitte immer angeben, ob Lückenschluss gewünscht wird.
+      `,
       keyInfoLegend: `
         <div><strong>B</strong> = Bracket</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = Tube</div>&nbsp;|&nbsp;
@@ -144,8 +146,8 @@ export default {
       roWhere: 'Wo:',
       lowerInfo: 'UK-Bögen mit Kompression',
       lowerInfoLegend: `
-        <p class="mb-1">1 = 1 cm Kompression (empfohlen)</p>
-        <p class="mb-1">2 = 2 cm Kompression</p>
+        <li>1 = 1 cm Kompression (empfohlen)</li>
+        <li>2 = 2 cm Kompression</li>
       `,
       notes: {
         title: '',

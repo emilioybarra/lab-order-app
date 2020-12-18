@@ -25,9 +25,7 @@
         <textarea-field id="notes-1" :label="$t('section.m_1.notes')" :rows="12" />
       </div>
       <div class="text-center my-4">
-        <p class="text-primary">
-          {{ $t('section.m_1.keyInfo') }}
-        </p>
+        <p class="text-primary" v-html="$t('section.m_1.keyInfo')" />
         <div class="d-flex flex-wrap justify-content-center" v-html="$t('section.m_1.keyInfoLegend')" />
       </div>
       <div class="my-4">

@@ -18,6 +18,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'import/prefer-default-export': 'off',
+    'array-callback-return': 'off',
     curly: [ 'error', 'all' ],
     semi: [ 'error', 'never' ],
     quotes: [ 'error', 'single' ],

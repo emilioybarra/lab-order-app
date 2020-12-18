@@ -1,30 +1,30 @@
 export const state = () => ({
-  acceptTermsAndConditions: false,
-  template: ''
+  template: '',
+  acceptTermsAndConditions: false
 })
 
 export const getters = {
-  getTermsAndConditionsAcceptance (state) {
-    return state.acceptTermsAndConditions
-  },
   getTemplate (state) {
     return state.template
+  },
+  getTermsAndConditionsAcceptance (state) {
+    return state.acceptTermsAndConditions
   }
 }
 
 export const mutations = {
+  setTemplate (state, template) {
+    state.template = template
+  },
   setTermsAndConditionsAcceptance (state, accept) {
     state.acceptTermsAndConditions = accept
   },
-  setTemplate (state, template) {
-    console.log(template)
-    state.template = template
+  resetState (state) {
+    state.template = ''
+    state.acceptTermsAndConditions = false
   }
 }
 
 export const actions = {
-  fetchTemplateData ({ state }) {
-    console.log(state.template)
-    // const template = state.template
-  }
+
 }

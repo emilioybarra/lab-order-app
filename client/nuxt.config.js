@@ -84,27 +84,22 @@ export default {
   ],
 
   auth: {
-    strategies: {
-      customStrategy: {
-        _scheme: '~/schemes/customScheme'
-      }
-    },
+    plugins: [ '~/plugins/auth.js' ],
     redirect: {
-      login: '/unauthorized',
-      // logout: '/',
-      // callback: '/login',
-      home: '/'
+      home: '/',
+      login: '/unauthorized'
     }
   },
 
   proxy: {
-    // Simple proxy
     '/api': process.env.NUXT_ENV_APP_API_URL_DEV
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: 'http://localhost:3000' // Used as fallback if no runtime config is provided
+    baseURL: 'http://localhost:3000', // Used as fallback if no runtime config is provided
+    proxyHeaders: false,
+    credentials: false
   },
 
   publicRuntimeConfig: {
@@ -122,6 +117,19 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     transpile: [ '@nuxtjs/auth' ]
+    /*
+    filenames: {
+      app: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js',
+      chunk: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js'
+    },
+
+    devMiddleware: {
+      headers: {
+        'Cache-Control': 'no-store',
+        Vary: '*'
+      }
+    }
+     */
   },
 
   styleResources: {

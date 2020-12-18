@@ -11,7 +11,7 @@ export const state = () => ({
   patientFirstName: '',
   patientNumber: '',
   appointmentDate: '',
-  orthodontistInvoice: false,
+  stateOrthodontistNameOnInvoice: false,
   isShippingAddress: false,
   shippingAddress: '',
   shippingPostalcodeTown: ''
@@ -54,8 +54,8 @@ export const getters = {
   getAppointmentDate (state) {
     return state.appointmentDate || localStorage.getItem('lof__invoice-address__appointmentDate')
   },
-  getOrthodontistInvoice (state) {
-    return state.orthodontistInvoice || JSON.parse(localStorage.getItem('lof__invoice-address__orthodontistInvoice'))
+  getStateOrthodontistNameOnInvoice (state) {
+    return state.stateOrthodontistNameOnInvoice || JSON.parse(localStorage.getItem('lof__invoice-address__stateOrthodontistNameOnInvoice'))
   },
   getIsShippingAddress (state) {
     return state.isShippingAddress || JSON.parse(localStorage.getItem('lof__invoice-address__isShippingAddress'))
@@ -117,9 +117,9 @@ export const mutations = {
     state.appointmentDate = appointmentDate
     localStorage.setItem('lof__invoice-address__appointmentDate', appointmentDate)
   },
-  setOrthodontistInvoice (state, orthodontistInvoice) {
-    state.orthodontistInvoice = orthodontistInvoice
-    localStorage.setItem('lof__invoice-address__orthodontistInvoice', orthodontistInvoice)
+  setStateOrthodontistNameOnInvoice (state, stateOrthodontistNameOnInvoice) {
+    state.stateOrthodontistNameOnInvoice = stateOrthodontistNameOnInvoice
+    localStorage.setItem('lof__invoice-address__stateOrthodontistNameOnInvoice', stateOrthodontistNameOnInvoice)
   },
   setIsShippingAddress (state, isShippingAddress) {
     state.isShippingAddress = isShippingAddress
@@ -132,6 +132,40 @@ export const mutations = {
   setShippingPostalcodeTown (state, shippingPostalcodeTown) {
     state.shippingPostalcodeTown = shippingPostalcodeTown
     localStorage.setItem('lof__invoice-address__shippingPostalcodeTown', shippingPostalcodeTown)
+  },
+  resetInvoiceAddressState (state) {
+    state.practice = ''
+    localStorage.removeItem('lof__invoice-address__practice')
+    state.orthodontist = ''
+    localStorage.removeItem('lof__invoice-address__orthodontist')
+    state.address = ''
+    localStorage.removeItem('lof__invoice-address__address')
+    state.postalcodeTown = ''
+    localStorage.removeItem('lof__invoice-address__postalcodeTown')
+    state.telephone = ''
+    localStorage.removeItem('lof__invoice-address__telephone')
+    state.fax = ''
+    localStorage.removeItem('lof__invoice-address__fax')
+    state.email = ''
+    localStorage.removeItem('lof__invoice-address__email')
+    state.ustId = ''
+    localStorage.removeItem('lof__invoice-address__ustId')
+    state.patientLastName = ''
+    localStorage.removeItem('lof__invoice-address__patientLastName')
+    state.patientFirstName = ''
+    localStorage.removeItem('lof__invoice-address__patientFirstName')
+    state.patientNumber = ''
+    localStorage.removeItem('lof__invoice-address__patientNumber')
+    state.appointmentDate = ''
+    localStorage.removeItem('lof__invoice-address__appointmentDate')
+    state.stateOrthodontistNameOnInvoice = false
+    localStorage.removeItem('lof__invoice-address__stateOrthodontistNameOnInvoice')
+    state.isShippingAddress = false
+    localStorage.removeItem('lof__invoice-address__isShippingAddress')
+    state.shippingAddress = ''
+    localStorage.removeItem('lof__invoice-address__shippingAddress')
+    state.shippingPostalcodeTown = ''
+    localStorage.removeItem('lof__invoice-address__shippingPostalcodeTown')
   }
 }
 
@@ -160,7 +194,7 @@ export const actions = {
         fax,
         email,
         ustId,
-        orthodontistInvoice,
+        stateOrthodontistNameOnInvoice,
         isShippingAddress,
         shippingAddress,
         shippingPostalcodeTown
@@ -175,7 +209,7 @@ export const actions = {
     commit('setFax', fax)
     commit('setEmail', email)
     commit('setUstId', ustId)
-    commit('setOrthodontistInvoice', orthodontistInvoice)
+    commit('setStateOrthodontistNameOnInvoice', stateOrthodontistNameOnInvoice)
     commit('setIsShippingAddress', isShippingAddress)
     commit('setShippingAddress', shippingAddress)
     commit('setShippingPostalcodeTown', shippingPostalcodeTown)
@@ -192,7 +226,7 @@ export const actions = {
       getFax: fax,
       getEmail: email,
       getUstId: ustId,
-      getOrthodontistInvoice: orthodontistInvoice,
+      getStateOrthodontistNameOnInvoice: stateOrthodontistNameOnInvoice,
       getIsShippingAddress: isShippingAddress,
       getShippingAddress: shippingAddress,
       getShippingPostalcodeTown: shippingPostalcodeTown
@@ -208,7 +242,7 @@ export const actions = {
         fax,
         email,
         ustId,
-        orthodontistInvoice,
+        stateOrthodontistNameOnInvoice,
         isShippingAddress,
         shippingAddress,
         shippingPostalcodeTown

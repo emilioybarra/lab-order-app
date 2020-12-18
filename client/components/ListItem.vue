@@ -6,7 +6,7 @@
       </b-button>
     </div>
     <div class="lof-list-item__button-group col-4 col-md-3 col-lg-3 col-xl-2">
-      <div class="lof-list-item__button lof-list-item__button--times" @click="onDelete">
+      <div v-if="!noDeleteButton" class="lof-list-item__button lof-list-item__button--times" @click="onDelete">
         <svg-icon class="lof-list-item__button-icon lof-list-item__button-icon--times" icon="times" />
       </div>
       <div v-if="!noDownloadButton" class="lof-list-item__button" @click="onDownload">
@@ -26,6 +26,9 @@
         required: true
       },
       noDownloadButton: {
+        type: Boolean
+      },
+      noDeleteButton: {
         type: Boolean
       }
     },

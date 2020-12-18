@@ -17,7 +17,6 @@
             </div>
           </div>
         </template>
-
         <list-item
           v-for="template in templates"
           :key="template._id"

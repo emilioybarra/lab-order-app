@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const invoiceAddressTemplateSchema = new Schema(
+const lowerTeethTemplateSchema = new Schema(
   {
     userId: {
       type: Schema.Types.ObjectId,
@@ -12,54 +12,46 @@ const invoiceAddressTemplateSchema = new Schema(
       type: String,
       required: true
     },
-    invoiceAddressTemplateData: {
-      practice: {
+    lowerTeethTemplate: {
+      imageData: {
         type: String,
         required: false
       },
-      orthodontist: {
-        type: String,
-        required: false
-      },
-      address: {
-        type: String,
-        required: false
-      },
-      postalcodeTown: {
-        type: String,
-        required: false
-      },
-      telephone: {
-        type: String,
-        required: false
-      },
-      fax: {
-        type: String,
-        required: false
-      },
-      email: {
-        type: String,
-        required: false
-      },
-      ustId: {
-        type: String,
-        required: false
-      },
-      stateOrthodontistNameOnInvoice: {
+      onlySetup: {
         type: Boolean,
         required: false
       },
-      isShippingAddress: {
+      boltonDiscrepancy: {
         type: Boolean,
         required: false
       },
-      shippingAddress: {
+      resolveCrowding: {
+        type: Boolean,
+        required: false
+      },
+      rcMm: {
         type: String,
         required: false
       },
-      shippingPostalcodeTown: {
+      rcWhere: {
         type: String,
         required: false
+      },
+      reduceOverjet: {
+        type: Boolean,
+        required: false
+      },
+      roMm: {
+        type: String,
+        required: false
+      },
+      roWhere: {
+        type: String,
+        required: false
+      },
+      mandibularArchwires: {
+      },
+      remarks: {
       }
     }
   },
@@ -68,4 +60,4 @@ const invoiceAddressTemplateSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model('Invoice Address Template', invoiceAddressTemplateSchema);
+module.exports = mongoose.model('Lower Teeth Template', lowerTeethTemplateSchema);

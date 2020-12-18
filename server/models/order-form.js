@@ -8,50 +8,149 @@ const orderFormSchema = new Schema(
       ref: 'User',
       required: true
     },
-    patientId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Patient',
-      required: true
+    invoiceAddress: {
+      practice: {
+        type: String,
+        required: false
+      },
+      orthodontist: {
+        type: String,
+        required: false
+      },
+      address: {
+        type: String,
+        required: false
+      },
+      postalCodeTown: {
+        type: String,
+        required: false
+      },
+      telephone: {
+        type: String,
+        required: false
+      },
+      fax: {
+        type: String,
+        required: false
+      },
+      email: {
+        type: String,
+        required: false
+      },
+      idVat: {
+        type: String,
+        required: false
+      },
+      statedOrthodontistName: {
+        type: Boolean,
+        required: false
+      },
+      isShippingAddress: {
+        type: Boolean,
+        required: false
+      },
+      shippingAddress: {
+        type: String,
+        required: false
+      },
+      shippingPostalcodeTown: {
+        type: String,
+        required: false
+      }
     },
-    practice: {
-      type: String,
-      required: false
+    patient: {
+      lastName: {
+        type: String,
+        required: false
+      },
+      firstName: {
+        type: String,
+        required: false
+      },
+      number: {
+        type: String,
+        required: false
+      },
+      dateOfBonding: {
+        type: String,
+        required: false
+      }
     },
-    orthodontist: {
-      type: String,
-      required: false
+    upperTeeth: {
+      imageData: {
+        type: String,
+        required: false
+      },
+      onlySetup: {
+        type: Boolean,
+        required: false
+      },
+      boltonDiscrepancy: {
+        type: Boolean,
+        required: false
+      },
+      resolveCrowding: {
+        type: Boolean,
+        required: false
+      },
+      rcMm: {
+        type: String,
+        required: false
+      },
+      rcWhere: {
+        type: String,
+        required: false
+      },
+      reduceOverjet: {
+        type: Boolean,
+        required: false
+      },
+      roMm: {
+        type: String,
+        required: false
+      },
+      roWhere: {
+        type: String,
+        required: false
+      }
     },
-    address: {
-      type: String,
-      required: false
-    },
-    postalCode: {
-      type: String,
-      required: false
-    },
-    city: {
-      type: String,
-      required: false
-    },
-    telephone: {
-      type: String,
-      required: false
-    },
-    telefax: {
-      type: String,
-      required: false
-    },
-    email: {
-      type: String,
-      required: false
-    },
-    idVat: {
-      type: String,
-      required: false
-    },
-    statedOrthodontistName: {
-      type: Boolean,
-      required: false
+    lowerTeeth: {
+      imageData: {
+        type: String,
+        required: false
+      },
+      onlySetup: {
+        type: Boolean,
+        required: false
+      },
+      boltonDiscrepancy: {
+        type: Boolean,
+        required: false
+      },
+      resolveCrowding: {
+        type: Boolean,
+        required: false
+      },
+      rcMm: {
+        type: String,
+        required: false
+      },
+      rcWhere: {
+        type: String,
+        required: false
+      },
+      reduceOverjet: {
+        type: Boolean,
+        required: false
+      },
+      roMm: {
+        type: String,
+        required: false
+      },
+      roWhere: {
+        type: String,
+        required: false
+      }
     }
   },
   {

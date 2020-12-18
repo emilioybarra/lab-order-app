@@ -48,7 +48,7 @@ export default {
       standardSetup: '',
       standardSetupPlus: '',
       premiumSetupPlus: '',
-      orthodontistInvoice: 'Cochez svp si le nom de l’orthodontiste doit figurer sur la facture.',
+      stateOrthodontistNameOnInvoice: 'Cochez svp si le nom de l’orthodontiste doit figurer sur la facture.',
       patientConsent: '(Le transfert des données medicales personnelles exige un accord écrit de la part du patient!)',
       // logoBox: '',
       shippingAddress: 'Nous vous prions de bien vouloir nous informer si l’adresse de livraison est différente de l’adresse de facturation.',
@@ -70,9 +70,9 @@ export default {
       roWhere: 'Où:',
       upperInfo: 'Arcs maxillaires avec expansion',
       upperInfoLegend: `
-        <p class="mb-1">1 = 1 cm expansion</p>
-        <p class="mb-1">2 = 2 cm expansion (recommandé)</p>
-        <p class="mb-1">3 = 3 cm expansion</p>
+        <li>1 = 1 cm expansion</li>
+        <li>2 = 2 cm expansion (recommandé)</li>
+        <li>3 = 3 cm expansion</li>
       `,
       notes: {
         title: '',
@@ -95,7 +95,9 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
-      keyInfo: 'Veuillez indiquer : Pour des cas d’extraction indiquez fermeture d’espace ou non.',
+      keyInfo: `
+        <strong>Veuillez indiquer:</strong> Pour des cas d’extraction indiquez fermeture d’espace ou non.
+      `,
       keyInfoLegend: `
         <div><strong>B</strong> = bracket</div>&nbsp;|&nbsp;
         <div><strong>TL</strong> = Tube allongé</div>&nbsp;|&nbsp;
@@ -139,8 +141,8 @@ export default {
       roWhere: 'Où:',
       lowerInfo: 'Arcs mandibulaires avec compression',
       lowerInfoLegend: `
-        <p class="mb-1">1 = 1 cm compression (recommandé)</p>
-        <p class="mb-1">2 = 2 cm compression</p>
+        <li>1 = 1 cm compression (recommandé)</li>
+        <li>2 = 2 cm compression</li>
       `,
       notes: {
         title: '',

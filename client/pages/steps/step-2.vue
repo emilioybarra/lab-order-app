@@ -5,6 +5,11 @@
     </template>
     <template #body>
       <teeth-canvas teeth-image="upper" />
+      <div class="d-flex align-self-center mt-3">
+        <checkbox v-model="onlySetup" :is-checked="onlySetup" @input="setOnlySetup">
+          {{ $t('section.u_1.onlySetup') }}
+        </checkbox>
+      </div>
       <tooth-divider />
       <link-button to="/templates" class="mb-2">
         {{ $t('common.buttons.selectFromTemplate') }}
@@ -71,7 +76,9 @@
             {{ $t('section.u_2.upperInfo') }}
           </h3>
         </div>
-        <div class="col-12" v-html="$t('section.u_2.upperInfoLegend')" />
+        <div class="col-12">
+          <ul class="list-unstyled" v-html="$t('section.u_2.upperInfoLegend')" />
+        </div>
       </div>
       <div class="d-flex flex-column align-items-center my-5">
         <b-button class="lof-button mb-4" variant="primary">
@@ -93,6 +100,7 @@
 
     data () {
       return {
+        onlySetup: false,
         boltonDiscrepancy: false,
         resolveCrowding: false,
         rcMm: '',
@@ -105,6 +113,7 @@
 
     computed: {
       ...mapGetters('upper-teeth', [
+        'getOnlySetup',
         'getBoltonDiscrepancy',
         'getResolveCrowding',
         'getRcMm',
@@ -116,6 +125,7 @@
     },
 
     created () {
+      this.onlySetup = this.getOnlySetup
       this.boltonDiscrepancy = this.getBoltonDiscrepancy
       this.resolveCrowding = this.getResolveCrowding
       this.rcMm = this.getRcMm
@@ -129,6 +139,7 @@
 
     methods: {
       ...mapMutations('upper-teeth', [
+        'setOnlySetup',
         'setBoltonDiscrepancy',
         'setResolveCrowding',
         'setRcMm',
