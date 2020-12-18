@@ -29,7 +29,7 @@ const userSchema = new Schema(
       {
         upperTeethFormTemplate: {
           type: Schema.Types.ObjectId,
-          ref: 'Upper Teeth Form Template',
+          ref: 'Upper Teeth Template',
           required: false
         }
       }
@@ -38,7 +38,7 @@ const userSchema = new Schema(
       {
         lowerTeethFormTemplate: {
           type: Schema.Types.ObjectId,
-          ref: 'Lower Teeth Form Template',
+          ref: 'Lower Teeth Template',
           required: false
         }
       }
@@ -63,14 +63,14 @@ userSchema.methods.addToInvoiceAddressTemplates = function (invoiceAddressTempla
   return this.save();
 };
 
-userSchema.methods.addToUpperTeethFormTemplates = function (upperTeethTemplateId) {
+userSchema.methods.addToUpperTeethTemplates = function (upperTeethTemplateId) {
   const upperTeethTemplates = [ ...this.upperTeethTemplates ];
   upperTeethTemplates.push({ upperTeethTemplate: upperTeethTemplateId });
   this.upperTeethTemplates = upperTeethTemplates;
   return this.save();
 };
 
-userSchema.methods.addToLowerTeethFormTemplates = function (lowerTeethTemplateId) {
+userSchema.methods.addToLowerTeethTemplates = function (lowerTeethTemplateId) {
   const lowerTeethTemplates = [ ...this.lowerTeethTemplates ];
   lowerTeethTemplates.push({ lowerTeethTemplate: lowerTeethTemplateId });
   this.lowerTeethTemplates = lowerTeethTemplates;

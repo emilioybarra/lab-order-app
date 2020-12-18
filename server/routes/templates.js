@@ -7,14 +7,14 @@ router.get('/invoice-address/:id', templatesController.getInvoiceAddressTemplate
 router.post('/invoice-address', templatesController.postCreateInvoiceAddressTemplate);
 router.delete('/invoice-address/:id', templatesController.deleteInvoiceAddressTemplateById);
 
-router.get('/upper-teeth', templatesController.getAllInvoiceAddressTemplates);
-router.get('/upper-teeth/:id', templatesController.getInvoiceAddressTemplateById);
-router.post('/upper-teeth', templatesController.postCreateInvoiceAddressTemplate);
-router.delete('/upper-teeth/:id', templatesController.deleteInvoiceAddressTemplateById);
+router.get('/upper-teeth', templatesController.getAllUpperTeethTemplates);
+router.get('/upper-teeth/:id', templatesController.getUpperTeethTemplateById);
+router.post('/upper-teeth', templatesController.postCreateUpperTeethTemplate);
+router.delete('/upper-teeth/:id', templatesController.deleteUpperTeethTemplateById);
 
-router.get('/lower-teeth', templatesController.getAllInvoiceAddressTemplates);
-router.get('/lower-teeth/:id', templatesController.getInvoiceAddressTemplateById);
-router.post('/lower-teeth', templatesController.postCreateInvoiceAddressTemplate);
-router.delete('/lower-teeth/:id', templatesController.deleteInvoiceAddressTemplateById);
+router.get('/lower-teeth', templatesController.getAllLowerTeethTemplates);
+router.get('/lower-teeth/:id', templatesController.getLowerTeethTemplateById);
+router.post('/lower-teeth', templatesController.postCreateLowerTeethTemplate);
+router.delete('/lower-teeth/:id', templatesController.deleteLowerTeethTemplateById);
 
 module.exports = router;

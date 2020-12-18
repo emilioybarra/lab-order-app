@@ -22,7 +22,7 @@
         </checkbox>
       </div>
       <div>
-        <textarea-field id="notes-1" :label="$t('section.m_1.notes')" :rows="12" />
+        <textarea-field id="notes-1" :label="$t('section.m_1.notes')" :rows="8" />
       </div>
       <div class="text-center my-4">
         <p class="text-primary" v-html="$t('section.m_1.keyInfo')" />
@@ -34,7 +34,7 @@
         </checkbox>
       </div>
       <div>
-        <textarea-field id="notes-2" :label="$t('section.m_1.notes')" :rows="10" />
+        <textarea-field id="notes-2" :label="$t('section.m_1.notes')" :rows="6" />
       </div>
       <div class="d-flex my-4">
         <div class="d-flex align-items-center ml-3 mr-5">

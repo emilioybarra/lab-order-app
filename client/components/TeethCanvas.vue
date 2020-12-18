@@ -153,11 +153,9 @@
             </b-form-radio>
           </b-form-radio-group>
         </b-form-group>
-
         <b-button v-if="drawActive" id="undo" class="lof-teeth-canvas__button mr-3" variant="outline-secondary" @click="undo">
           <svg-icon icon="undo" class="lof-teeth-canvas__button-icon" />
         </b-button>
-
         <b-button-group>
           <b-button id="save" class="lof-teeth-canvas__button" variant="outline-primary" @click="save">
             <svg-icon icon="save" class="lof-teeth-canvas__button-icon" />

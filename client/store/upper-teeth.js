@@ -100,8 +100,92 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchTemplates () {
-    return await this.$axios.$get('/api/upper-teeth-templates')
-  }
+  async fetchTemplates (context, payload) {
+    const { currentPage, userId } = payload
+    return await this.$axios.$get('/api/templates/upper-teeth', {
+      params: {
+        page: currentPage,
+        userId
+      }
+    })
+  },
+  async fetchTemplateById ({ commit }, payload) {
+    const { templateId, userId } = payload
+    const { upperTeethTemplate } = await this.$axios.$get(`/api/templates/upper-teeth/${ templateId }`, {
+      params: { userId }
+    })
+    const {
+      upperTeethTemplateData: {
+        imageData,
+        onlySetup,
+        boltonDiscrepancy,
+        resolveCrowding,
+        rcMm,
+        rcWhere,
+        reduceOverjet,
+        roMm,
+        roWhere
+      }
+    } = upperTeethTemplate
 
+    commit('setImageData', imageData)
+    commit('setOnlySetup', onlySetup)
+    commit('setBoltonDiscrepancy', boltonDiscrepancy)
+    commit('setResolveCrowding', resolveCrowding)
+    commit('setRcMm', rcMm)
+    commit('setRcWhere', rcWhere)
+    commit('setReduceOverjet', reduceOverjet)
+    commit('setRoMm', roMm)
+    commit('setRoWhere', roWhere)
+    return true
+  },
+  saveTemplateData ({ getters }, payload) {
+    const { templateTitle, userId } = payload
+    const {
+      getImageData: imageData,
+      getOnlySetup: onlySetup,
+      getBoltonDiscrepancy: boltonDiscrepancy,
+      getResolveCrowding: resolveCrowding,
+      getRcMm: rcMm,
+      getRcWhere: rcWhere,
+      getReduceOverjet: reduceOverjet,
+      getRoMm: roMm,
+      getRoWhere: roWhere
+    } = getters
+    const templateData = {
+      title: templateTitle,
+      upperTeethTemplate: {
+        imageData,
+        onlySetup,
+        boltonDiscrepancy,
+        resolveCrowding,
+        rcMm,
+        rcWhere,
+        reduceOverjet,
+        roMm,
+        roWhere
+      }
+    }
+    const prepareBody = {
+      userId,
+      templateData
+    }
+
+    this.$axios.$post('/api/templates/upper-teeth', prepareBody)
+      .then((result) => {
+        console.log(result)
+      })
+  },
+  async deleteTemplateById ({ commit }, payload) {
+    const { templateId, userId } = payload
+    return await this.$axios.$delete(`/api/templates/upper-teeth/${ templateId }`, {
+      params: { userId }
+    })
+      .then((result) => {
+        return result.status === 204
+      })
+      .catch(() => {
+        return false
+      })
+  }
 }
