@@ -47,7 +47,6 @@
       generatePdfPreview () {
         this.pdfSrcPage1 = this.getPdfSrcPage1
         this.pdfSrcPage2 = this.getPdfSrcPage2
-        console.log(this.$refs)
 
         if (this.$refs.pdfPreview) {
           this.$refs.pdfPreview.show()

@@ -133,7 +133,6 @@
       },
       nextPage () {
         this.currentPage++
-        console.log(this.currentPage)
       }
     }
   }

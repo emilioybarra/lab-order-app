@@ -1,14 +1,15 @@
 <template>
   <div class="container py-5">
     <h1>
-      You are not authorized.
+      Error: Invalid order form ID.
     </h1>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'unauthorized',
+    auth: 'guest',
+    name: 'invalid',
     layout: 'plain'
   }
 </script>

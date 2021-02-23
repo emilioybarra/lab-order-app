@@ -55,14 +55,11 @@ exports.getOrderFormById = (req, res, next) => {
   const userId = req.query.userId;
   const orderFormId = req.params.id;
 
-  console.log(userId);
   if (userId) {
     User.findById(userId)
       .then(user => {
-        console.log(user);
         OrderForm.findById(orderFormId)
           .then(orderForm => {
-            console.log(orderForm);
             res.json(orderForm);
           })
           .catch(err => {
@@ -79,7 +76,6 @@ exports.getOrderFormById = (req, res, next) => {
   } else {
     OrderForm.findById(orderFormId)
       .then(orderForm => {
-        console.log(orderForm);
         res.json(orderForm);
       })
       .catch(err => {
@@ -93,8 +89,7 @@ exports.getOrderFormById = (req, res, next) => {
 exports.postCreateOrderForm = (req, res, next) => {
   const files = req.files;
   const orderFormData = { ...JSON.parse(JSON.stringify(req.body)) };
-  const  { userId } = orderFormData;
-  console.log(orderFormData);
+  const { userId } = orderFormData;
   const upperTeethImage = files.find(file => file.fieldname === 'upperTeethImage');
   const lowerTeethImage = files.find(file => file.fieldname === 'lowerTeethImage');
   const prepareOrderFormData = { ...orderFormData };

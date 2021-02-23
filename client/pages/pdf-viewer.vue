@@ -8,6 +8,6 @@
   export default {
     name: 'pdf-viewer',
 
-    layout: 'plain'
+    layout: 'blank'
   }
 </script>

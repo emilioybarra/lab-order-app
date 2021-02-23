@@ -25,8 +25,7 @@ const upperTeethTemplateSchema = new Schema(
       notesStrippingWhere: String,
       notesBoltonDiscrepancy: Boolean,
       notesBox: String,
-      maxillaryArchwires: {
-      }
+      archwireSizes: {}
     }
   },
   {

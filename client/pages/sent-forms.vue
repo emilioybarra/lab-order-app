@@ -84,7 +84,7 @@
         loadingDownload: false,
         pdfOptions: {
           margin: 1,
-          filename: 'foo',
+          filename: '',
           image: { type: 'jpeg', quality: 1 },
           html2canvas: { scale: 3 },
           jsPDF: { format: 'a4', orientation: 'portrait' },
@@ -132,10 +132,12 @@
         const self = this
         this.loadingPreview = true
         this.selectedOrderFormId = orderFormId
+        this.pdfOptions.filename = `order-form_${ this.selectedOrderFormId }`
         const payload = {
           orderFormId,
           userId: this.$auth.$state.user._id
         }
+
         if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
           this.pdfOptions.html2canvas.scale = 3
         } else {
@@ -172,6 +174,7 @@
         const self = this
         this.loadingDownload = true
         this.selectedOrderFormId = orderFormId
+        this.pdfOptions.filename = `order-form_${ this.selectedOrderFormId }`
         const payload = {
           orderFormId,
           userId: this.$auth.$state.user._id

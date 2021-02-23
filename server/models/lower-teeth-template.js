@@ -25,8 +25,7 @@ const lowerTeethTemplateSchema = new Schema(
       notesStrippingWhere: String,
       notesBoltonDiscrepancy: Boolean,
       notesBox: String,
-      mandibularArchwires: {
-      }
+      archwireSizes: {}
     }
   },
   {

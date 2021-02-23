@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const errorController = require('./controllers/error');
 const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/user');
 const orderFormsRoutes = require('./routes/order-forms');
 const templatesRoutes = require('./routes/templates');
 const MONGO_DB_URI = process.env.MONGO_DB;
@@ -21,7 +20,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/auth', authRoutes);
-app.use('/api/user', userRoutes);
 app.use('/api/templates', templatesRoutes);
 app.use('/api/order-forms', orderFormsRoutes);
 

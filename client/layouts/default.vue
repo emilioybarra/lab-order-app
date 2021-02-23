@@ -42,7 +42,7 @@
         </ul>
       </transition>
       <transition :name="slide" mode="out-in" @before-enter="beforeEnter">
-        <Nuxt id="nuxt-container" />
+        <Nuxt />
       </transition>
       <div class="lof-footer">
         <div>
@@ -60,7 +60,6 @@
 <script>
   export default {
     name: 'layout',
-
     scrollToTop: true,
 
     data () {

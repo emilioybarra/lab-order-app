@@ -150,16 +150,12 @@ exports.getAllUpperTeethTemplates = (req, res, next) => {
       UpperTeethTemplate.find({ userId })
         .countDocuments()
         .then(count => {
-          console.log(count);
-          console.log(userId);
-
           totalTemplates = count;
           return UpperTeethTemplate.find({ userId })
             .skip((currentPage - 1) * perPage)
             .limit(perPage);
         })
         .then(templates => {
-          console.log(templates);
           if (!templates.length) {
             currentPage = 1;
             return UpperTeethTemplate.find({ userId })

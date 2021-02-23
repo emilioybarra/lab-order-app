@@ -6,7 +6,7 @@
     <h1 v-else>
       An error occurred.
     </h1>
-    <nuxt-link to="/" class="lof-link-button">
+    <nuxt-link v-if="error.statusCode === 404" to="/" class="lof-link-button">
       <b-button class="lof-link-button__button" variant="primary">
         Home
       </b-button>

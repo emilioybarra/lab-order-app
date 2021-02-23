@@ -25,6 +25,7 @@
 
 <script>
   import html2pdf from 'html2pdf.js'
+  import moment from 'moment'
 
   export default {
     name: 'step-4',
@@ -37,7 +38,7 @@
         loadingDownload: false,
         pdfOptions: {
           margin: 1,
-          filename: 'foo',
+          filename: '',
           image: { type: 'jpeg', quality: 1 },
           html2canvas: { scale: 3 },
           jsPDF: { format: 'a4', orientation: 'portrait' },
@@ -46,17 +47,12 @@
       }
     },
 
-    mounted () {
-      // console.log(document.getElementById('pdf-page-1'))
-      // this.pdfPage1 = document.getElementById('pdf-page-1').innerHTML
-      // this.pdfPage2 = document.getElementById('pdf-page-2').innerHTML
-    },
-
     methods: {
       previewPdf () {
+        const self = this
+        this.pdfOptions.filename = `order-form_${ moment().format('YYYY-MM-DD') }`
         this.pdfPage1 = document.getElementById('pdf-page-1').innerHTML
         this.pdfPage2 = document.getElementById('pdf-page-2').innerHTML
-        const self = this
         this.loadingPreview = true
         if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
           this.pdfOptions.html2canvas.scale = 3
@@ -83,6 +79,7 @@
       },
       downloadPdf () {
         this.loadingDownload = true
+        this.pdfOptions.filename = `order-form_${ moment().format('YYYY-MM-DD') }`
         this.pdfPage1 = document.getElementById('pdf-page-1').innerHTML
         this.pdfPage2 = document.getElementById('pdf-page-2').innerHTML
         html2pdf().set(this.pdfOptions).from(this.pdfPage1).toPdf().from(this.pdfPage2)

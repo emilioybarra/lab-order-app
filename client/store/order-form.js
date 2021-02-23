@@ -27,9 +27,8 @@ export const actions = {
     const { orderFormId, userId } = payload
     const config = userId ? { params: { userId } } : {}
     return await this.$axios.$get(`/api/order-forms/${ orderFormId }`, config).then((response) => {
-      const prepareOrderForm = {
-        ...response
-      }
+      if (!response) { throw new Error('Invalid order form ID') }
+      const prepareOrderForm = { ...response }
 
       if (prepareOrderForm.upperTeeth.imageData.edited) {
         const base64Data = Buffer.from(response.upperTeeth.imageData.data, 'binary').toString('base64')
@@ -45,6 +44,9 @@ export const actions = {
 
       return prepareOrderForm
     })
+      .catch(() => {
+        return null
+      })
   },
   saveOrderForm (ctx, payload) {
     const { rootGetters, commit } = ctx
@@ -228,6 +230,10 @@ export const actions = {
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })
+          commit('invoiceAddress/resetInvoiceAddressState')
+          commit('upper-teeth/resetUpperTeethState')
+          commit('notes/resetNotesState')
+          commit('lower-teeth/resetLowerTeethState')
         }
       })
       .catch(() => {
@@ -236,10 +242,10 @@ export const actions = {
           variant: 'danger'
         }
         commit('common/setNotifications', notification, { root: true })
-        // commit('invoiceAddress/resetInvoiceAddressState')
-        // commit('upper-teeth/resetUpperTeethState')
-        // commit('notes/resetNotesState')
-        // commit('lower-teeth/resetLowerTeethState')
+        commit('invoiceAddress/resetInvoiceAddressState')
+        commit('upper-teeth/resetUpperTeethState')
+        commit('notes/resetNotesState')
+        commit('lower-teeth/resetLowerTeethState')
       })
   }
 }

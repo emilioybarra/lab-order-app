@@ -43,10 +43,8 @@
 
   export default {
     auth: 'guest',
-
     loading: true,
-
-    layout: 'pdf-link',
+    layout: 'plain',
 
     data () {
       return {
@@ -58,7 +56,7 @@
         pdfPage2: undefined,
         pdfOptions: {
           margin: 1,
-          filename: 'foo',
+          filename: '',
           image: { type: 'jpeg', quality: 1 },
           html2canvas: { scale: 3 },
           jsPDF: { format: 'a4', orientation: 'portrait' },
@@ -71,12 +69,19 @@
       this.orderFormId = this.$route.params.id
       const payload = { orderFormId: this.orderFormId }
       this.orderForm = await this.$store.dispatch('order-form/fetchOrderFormById', payload)
-        .then(orderForm => orderForm)
+        .then((orderForm) => {
+          if (!orderForm) { throw new Error('Invalid order form ID') }
+          if (orderForm._id) { return orderForm }
+        })
+        .catch(() => {
+          this.$router.push('/invalid')
+        })
     },
 
     methods: {
       previewPdf () {
         this.loadingPreview = true
+        this.pdfOptions.filename = `order-form_${ this.orderFormId }`
         this.pdfPage1 = document.getElementById('pdf-page-1').innerHTML
         this.pdfPage2 = document.getElementById('pdf-page-2').innerHTML
 
@@ -99,6 +104,7 @@
       },
       downloadPdf () {
         this.loadingDownload = true
+        this.pdfOptions.filename = `order-form_${ this.orderFormId }`
         this.pdfPage1 = document.getElementById('pdf-page-1').innerHTML
         this.pdfPage2 = document.getElementById('pdf-page-2').innerHTML
         html2pdf().set(this.pdfOptions).from(this.pdfPage1).toPdf().from(this.pdfPage2)
