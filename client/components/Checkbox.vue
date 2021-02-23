@@ -6,7 +6,7 @@
         <svg-icon v-if="checked" icon="check" class="checkbox__check" />
       </span>
     </span>
-    <span class="checkbox__label">
+    <span v-if="!noLabel" class="checkbox__label">
       <slot />
     </span>
   </label>
@@ -18,6 +18,10 @@
 
     props: {
       isChecked: {
+        type: Boolean,
+        required: false
+      },
+      noLabel: {
         type: Boolean,
         required: false
       }

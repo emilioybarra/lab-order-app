@@ -3,11 +3,13 @@
     <label class="lof-textarea-field__label" :for="id">{{ label }}</label>
     <textarea
       :id="id"
+      :value="value"
       class="lof-textarea-field__input"
       :name="name"
       :rows="rows"
       :cols="cols"
       :style="`resize: ${ resizeable ? 'vertical' : 'none' }`"
+      @input="$emit('input', $event.target.value)"
     />
   </div>
 </template>
@@ -20,6 +22,10 @@
       id: {
         type: String,
         required: true
+      },
+      value: {
+        type: String,
+        required: false
       },
       label: {
         type: String,

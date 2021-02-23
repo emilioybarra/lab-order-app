@@ -1,4 +1,10 @@
-console.log(process.env.NUXT_ENV_APP_API_URL_DEV)
+import de from './lang/de'
+import en from './lang/en'
+import fr from './lang/fr'
+import it from './lang/it'
+import jp from './lang/jp'
+import ru from './lang/ru'
+import sp from './lang/sp'
 
 export default {
   // modern: 'client',
@@ -49,14 +55,15 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { mode: 'client', src: '@/plugins/vue-cookies' },
-    { mode: 'client', src: '@/plugins/vue-html2pdf' },
-    { mode: 'client', src: '@/plugins/click-outside' }
+    { mode: 'client', src: '@/plugins/vue-swatches' },
+    { mode: 'client', src: '@/plugins/click-outside' },
+    { mode: 'client', src: '@/plugins/language-variant' },
+    { mode: 'client', src: '@/plugins/generate-random-key' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: [
-    '~/components/',
-    '~/views/'
+    '~/components/'
   ],
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
@@ -92,12 +99,12 @@ export default {
   },
 
   proxy: {
-    '/api': process.env.NUXT_ENV_APP_API_URL_DEV
+    '/api': `${ process.env.NUXT_ENV_APP_API_URL_DEV }:5000`
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: 'http://localhost:3000', // Used as fallback if no runtime config is provided
+    baseURL: `${ process.env.NUXT_ENV_APP_API_URL_DEV }:3000`, // Used as fallback if no runtime config is provided
     proxyHeaders: false,
     credentials: false
   },
@@ -144,7 +151,6 @@ export default {
 
   i18n: {
     langDir: 'lang/',
-    lazy: true,
     strategy: 'no_prefix',
     vuex: {
       syncLocale: true
@@ -155,43 +161,59 @@ export default {
       onlyOnRoot: true,
       alwaysRedirect: true
     },
+    vueI18n: {
+      messages: { de, en, fr, it, jp, ru, sp }
+    },
     locales: [
       {
         code: 'de',
         file: 'de.js',
-        name: 'Deutsch'
+        name: 'Deutsch',
+        iso: 'de_DE',
+        localeDateFormat: 'DD.MM.YYYY'
       },
       {
         code: 'en',
         file: 'en.js',
-        name: 'English'
+        name: 'English',
+        iso: 'en_GB',
+        localeDateFormat: 'DD/MM/YYYY'
       },
       {
         code: 'fr',
         file: 'fr.js',
-        name: 'Français'
+        name: 'Français',
+        iso: 'fr_FR',
+        localeDateFormat: 'DD/MM/YYYY'
       },
       {
         code: 'it',
         file: 'it.js',
-        name: 'Italiano'
+        name: 'Italiano',
+        iso: 'it_IT',
+        localeDateFormat: 'DD/MM/YYYY'
       },
       {
         code: 'jp',
         file: 'jp.js',
-        name: 'にほんご'
+        name: 'にほんご',
+        iso: 'ja_JP',
+        localeDateFormat: 'YYYY/MM/DD'
       },
       {
         code: 'ru',
         file: 'ru.js',
-        name: 'Русский'
+        name: 'Русский',
+        iso: 'ru_RU',
+        localeDateFormat: 'DD.MM.YYYY'
       },
       {
         code: 'sp',
         file: 'sp.js',
-        name: 'Español'
+        name: 'Español',
+        iso: 'es_ES',
+        localeDateFormat: 'DD/MM/YYYY'
       }
     ]
   }
-
 }

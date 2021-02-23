@@ -7,36 +7,56 @@ export const state = () => ({
   rcWhere: '',
   reduceOverjet: false,
   roMm: '',
-  roWhere: ''
+  roWhere: '',
+  notesStrippingMm: '',
+  notesStrippingWhere: '',
+  notesBoltonDiscrepancy: false,
+  notesBox: '',
+  archwireSizes: {}
 })
 
 export const getters = {
   getImageData (state) {
-    return state.imageData || localStorage.getItem('lof__lower-teeth__imageData')
+    return state.imageData || localStorage.getItem('lof__lower-teeth__imageData') || ''
   },
   getOnlySetup (state) {
-    return state.onlySetup || JSON.parse(localStorage.getItem('lof__lower-teeth__onlySetup'))
+    return state.onlySetup || JSON.parse(localStorage.getItem('lof__lower-teeth__onlySetup')) || false
   },
   getBoltonDiscrepancy (state) {
-    return state.boltonDiscrepancy || JSON.parse(localStorage.getItem('lof__lower-teeth__boltonDiscrepancy'))
+    return state.boltonDiscrepancy || JSON.parse(localStorage.getItem('lof__lower-teeth__boltonDiscrepancy')) || false
   },
   getResolveCrowding (state) {
-    return state.resolveCrowding || JSON.parse(localStorage.getItem('lof__lower-teeth__resolveCrowding'))
+    return state.resolveCrowding || JSON.parse(localStorage.getItem('lof__lower-teeth__resolveCrowding')) || false
   },
   getRcMm (state) {
-    return state.rcMm || localStorage.getItem('lof__lower-teeth__rcMm')
+    return state.rcMm || localStorage.getItem('lof__lower-teeth__rcMm') || ''
   },
   getRcWhere (state) {
-    return state.rcWhere || localStorage.getItem('lof__lower-teeth__rcWhere')
+    return state.rcWhere || localStorage.getItem('lof__lower-teeth__rcWhere') || ''
   },
   getReduceOverjet (state) {
-    return state.reduceOverjet || JSON.parse(localStorage.getItem('lof__lower-teeth__reduceOverjet'))
+    return state.reduceOverjet || JSON.parse(localStorage.getItem('lof__lower-teeth__reduceOverjet')) || false
   },
   getRoMm (state) {
-    return state.roMm || localStorage.getItem('lof__lower-teeth__roMm')
+    return state.roMm || localStorage.getItem('lof__lower-teeth__roMm') || ''
   },
   getRoWhere (state) {
-    return state.roWhere || localStorage.getItem('lof__lower-teeth__roWhere')
+    return state.roWhere || localStorage.getItem('lof__lower-teeth__roWhere') || ''
+  },
+  getNotesStrippingMm (state) {
+    return state.notesStrippingMm || localStorage.getItem('lof__lower-teeth__notesStrippingMm') || ''
+  },
+  getNotesStrippingWhere (state) {
+    return state.notesStrippingWhere || localStorage.getItem('lof__lower-teeth__notesStrippingWhere') || ''
+  },
+  getNotesBoltonDiscrepancy (state) {
+    return state.notesBoltonDiscrepancy || JSON.parse(localStorage.getItem('lof__lower-teeth__notesBoltonDiscrepancy')) || false
+  },
+  getNotesBox (state) {
+    return state.notesBox || localStorage.getItem('lof__lower-teeth__notesBox') || ''
+  },
+  getArchwireSizes (state) {
+    return JSON.parse(localStorage.getItem('lof__lower-teeth__archwireSizes')) || state.archwireSizes || {}
   }
 }
 
@@ -77,25 +97,47 @@ export const mutations = {
     state.roWhere = roWhere
     localStorage.setItem('lof__lower-teeth__roWhere', roWhere)
   },
+  setNotesStrippingMm (state, notesStrippingMm) {
+    state.notesStrippingMm = notesStrippingMm
+    localStorage.setItem('lof__lower-teeth__notesStrippingMm', notesStrippingMm)
+  },
+  setNotesStrippingWhere (state, notesStrippingWhere) {
+    state.notesStrippingWhere = notesStrippingWhere
+    localStorage.setItem('lof__lower-teeth__notesStrippingWhere', notesStrippingWhere)
+  },
+  setNotesBoltonDiscrepancy (state, notesBoltonDiscrepancy) {
+    state.notesBoltonDiscrepancy = notesBoltonDiscrepancy
+    localStorage.setItem('lof__lower-teeth__notesBoltonDiscrepancy', notesBoltonDiscrepancy)
+  },
+  setNotesBox (state, notesBox) {
+    state.notesBox = notesBox
+    localStorage.setItem('lof__lower-teeth__notesBox', notesBox)
+  },
+  setArchwireSizes (state, archwireSizes) {
+    state.archwireSizes = archwireSizes
+    localStorage.setItem('lof__lower-teeth__archwireSizes', JSON.stringify(archwireSizes))
+  },
   resetLowerTeethState (state) {
     state.imageData = null
-    localStorage.removeItem('lof__lower-teeth__imageData')
     state.onlySetup = false
-    localStorage.removeItem('lof__lower-teeth__onlySetup')
     state.boltonDiscrepancy = false
-    localStorage.removeItem('lof__lower-teeth__boltonDiscrepancy')
     state.resolveCrowding = false
-    localStorage.removeItem('lof__lower-teeth__resolveCrowding')
     state.rcMm = ''
-    localStorage.removeItem('lof__lower-teeth__rcMm')
     state.rcWhere = ''
-    localStorage.removeItem('lof__lower-teeth__rcWhere')
     state.reduceOverjet = false
-    localStorage.removeItem('lof__lower-teeth__reduceOverjet')
     state.roMm = ''
-    localStorage.removeItem('lof__lower-teeth__roMm')
     state.roWhere = ''
-    localStorage.removeItem('lof__lower-teeth__roWhere')
+    state.notesStrippingMm = ''
+    state.notesStrippingWhere = ''
+    state.notesBoltonDiscrepancy = false
+    state.notesBox = ''
+    state.archwireSizes = {}
+
+    Object.keys(localStorage).map((key) => {
+      if (/(lof__lower-teeth__)(.*)/.test(key)) {
+        localStorage.removeItem(key)
+      }
+    })
   }
 }
 
@@ -124,7 +166,11 @@ export const actions = {
         rcWhere,
         reduceOverjet,
         roMm,
-        roWhere
+        roWhere,
+        notesStrippingMm,
+        notesStrippingWhere,
+        notesBoltonDiscrepancy,
+        notesBox
       }
     } = lowerTeethTemplate
 
@@ -137,9 +183,13 @@ export const actions = {
     commit('setReduceOverjet', reduceOverjet)
     commit('setRoMm', roMm)
     commit('setRoWhere', roWhere)
+    commit('setNotesStrippingMm', notesStrippingMm)
+    commit('setNotesStrippingWhere', notesStrippingWhere)
+    commit('setNotesBoltonDiscrepancy', notesBoltonDiscrepancy)
+    commit('setNotesBox', notesBox)
     return true
   },
-  saveTemplateData ({ getters }, payload) {
+  saveTemplateData ({ getters, commit }, payload) {
     const { templateTitle, userId } = payload
     const {
       getImageData: imageData,
@@ -150,7 +200,11 @@ export const actions = {
       getRcWhere: rcWhere,
       getReduceOverjet: reduceOverjet,
       getRoMm: roMm,
-      getRoWhere: roWhere
+      getRoWhere: roWhere,
+      getNotesStrippingMm: notesStrippingMm,
+      getNotesStrippingWhere: notesStrippingWhere,
+      getNotesBoltonDiscrepancy: notesBoltonDiscrepancy,
+      getNotesBox: notesBox
     } = getters
     const templateData = {
       title: templateTitle,
@@ -163,7 +217,11 @@ export const actions = {
         rcWhere,
         reduceOverjet,
         roMm,
-        roWhere
+        roWhere,
+        notesStrippingMm,
+        notesStrippingWhere,
+        notesBoltonDiscrepancy,
+        notesBox
       }
     }
     const prepareBody = {
@@ -172,8 +230,21 @@ export const actions = {
     }
 
     this.$axios.$post('/api/templates/lower-teeth', prepareBody)
-      .then((result) => {
-        console.log(result)
+      .then((response) => {
+        if (response.status === 201) {
+          const notification = {
+            message: 'savedTemplate',
+            variant: 'success'
+          }
+          commit('common/setNotifications', notification, { root: true })
+        }
+      })
+      .catch(() => {
+        const notification = {
+          message: 'error',
+          variant: 'danger'
+        }
+        commit('common/setNotifications', notification, { root: true })
       })
   },
   async deleteTemplateById ({ commit }, payload) {
@@ -181,11 +252,21 @@ export const actions = {
     return await this.$axios.$delete(`/api/templates/lower-teeth/${ templateId }`, {
       params: { userId }
     })
-      .then((result) => {
-        return result.status === 204
+      .then((response) => {
+        if (response.status === 200) {
+          const notification = {
+            message: 'deletedTemplate',
+            variant: 'success'
+          }
+          commit('common/setNotifications', notification, { root: true })
+        }
       })
       .catch(() => {
-        return false
+        const notification = {
+          message: 'error',
+          variant: 'danger'
+        }
+        commit('common/setNotifications', notification, { root: true })
       })
   }
 }

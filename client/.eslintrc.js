@@ -49,8 +49,8 @@ module.exports = {
     'computed-property-spacing': [ 'error', 'never' ],
     'vue/attribute-hyphenation': [ 'error', 'always' ],
     'vue/object-curly-spacing': [ 'error', 'always' ],
-    'vue/name-property-casing': [ 'error', 'kebab-case' ],
-    'vue/component-definition-name-casing': [ 'error', 'kebab-case' ],
+    'vue/name-property-casing': [ 'off' ],
+    'vue/component-definition-name-casing': [ 'off', 'kebab-case' ],
     'vue/custom-event-name-casing': [ 'off' ],
     'vue/require-default-prop': [ 'off' ],
     'vue/no-use-v-if-with-v-for': [ 'off' ],
@@ -109,10 +109,7 @@ module.exports = {
     'vue/component-tags-order': [ 'error', {
       order: [ 'template', 'script', 'style' ]
     } ],
-    'vue/singleline-html-element-content-newline': [ 'error', {
-      ignoreWhenNoAttributes: true,
-      ignoreWhenEmpty: true
-    } ],
+    'vue/singleline-html-element-content-newline': [ 'off' ],
     'vue/order-in-components': [ 'error', {
       order: [
         'el',
@@ -126,9 +123,9 @@ module.exports = {
         'inheritAttrs',
         'model',
         [ 'props', 'propsData' ],
+        'data',
         'fetch',
         'asyncData',
-        'data',
         'validations',
         'computed',
         'watch',

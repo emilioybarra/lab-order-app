@@ -6,13 +6,13 @@
       </label>
       <input
         :id="id"
-        :value="value"
+        :value="value.trim()"
         class="lof-input-field__input lof-input-field__input--side-label"
         :type="type"
         :name="name"
         :required="required"
         :placeholder="placeholder"
-        @input="$emit('input', $event.target.value)"
+        @input="$emit('input', $event.target.value.trim())"
       >
       <label v-if="bothSideLabels || sideLabel === 'right'" class="lof-input-field__label lof-input-field__label--side-label lof-input-field__label--side-label-right" :for="id">
         {{ rightLabel }}
@@ -21,13 +21,13 @@
     <div v-else class="lof-input-field lof-input-field--floating-label">
       <input
         :id="id"
-        :value="value"
+        :value="value.trim()"
         class="lof-input-field__input lof-input-field__input--floating-label"
         :type="type"
         :name="name"
         :required="required"
         :placeholder="placeholder"
-        @input="$emit('input', $event.target.value)"
+        @input="$emit('input', $event.target.value.trim())"
       >
       <label class="lof-input-field__label lof-input-field__label--floating-label" :for="id">{{ label }}</label>
     </div>
@@ -39,6 +39,10 @@
     name: 'input-field',
 
     props: {
+      id: {
+        type: String,
+        required: true
+      },
       value: {
         type: String,
         required: false
@@ -58,10 +62,6 @@
       rightLabel: {
         type: String,
         required: false
-      },
-      id: {
-        type: String,
-        required: true
       },
       type: {
         type: String,

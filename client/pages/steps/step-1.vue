@@ -67,6 +67,7 @@
           @input="setEmail"
         />
         <input-field
+          v-if="$validateSelectedLanguage('en', 'de', 'fr', 'it', 'sp')"
           id="ust-id"
           v-model="ustId"
           class="col-12 col-sm-6"
@@ -74,8 +75,6 @@
           name="ust-id"
           @input="setUstId"
         />
-      </div>
-      <div class="row">
         <input-field
           id="patientLastName"
           v-model="patientLastName"
@@ -101,6 +100,7 @@
           @input="setPatientNumber"
         />
         <input-field
+          v-if="$validateSelectedLanguage('en', 'de', 'fr', 'it', 'sp', 'ru')"
           id="appointmentDate"
           v-model="appointmentDate"
           type="date"
@@ -110,17 +110,64 @@
           @input="setAppointmentDate"
         />
       </div>
-      <div class="row mt-5">
+      <div v-if="$validateSelectedLanguage('jp')" class="row">
+        <div class="col-12 col-sm-6 d-flex flex-column">
+          <checkbox
+            v-model="standardSetup"
+            :is-checked="standardSetup"
+            @input="setStandardSetup"
+          >
+            {{ $t('section.h_3.standardSetup') }}
+          </checkbox>
+          <p class="lof-content lof-content--2 mb-1">{{ $t('section.h_3.standardSetupText1') }}</p>
+          <p class="lof-content lof-content--2 mb-0 text-danger">{{ $t('section.h_3.standardSetupText2') }}</p>
+        </div>
+        <div class="col-12 col-sm-6 d-flex flex-column">
+          <checkbox
+            v-model="standardSetupPlus"
+            :is-checked="standardSetupPlus"
+            @input="setStandardSetupPlus"
+          >
+            {{ $t('section.h_3.standardSetupPlus') }}
+          </checkbox>
+          <p class="lof-content lof-content--2 mb-1">{{ $t('section.h_3.standardSetupPlusText1') }}</p>
+          <p class="lof-content lof-content--2 mb-0">{{ $t('section.h_3.standardSetupPlusText2') }}</p>
+        </div>
+        <div class="col-12 col-sm-6 d-flex flex-column">
+          <checkbox
+            v-model="premiumSetupPlus"
+            :is-checked="premiumSetupPlus"
+            @input="setPremiumSetupPlus"
+          >
+            {{ $t('section.h_3.premiumSetupPlus') }}
+          </checkbox>
+          <p class="lof-content lof-content--2 mb-1">{{ $t('section.h_3.premiumSetupPlusText1') }}</p>
+          <p class="lof-content lof-content--2 mb-1">{{ $t('section.h_3.premiumSetupPlusText2') }}</p>
+          <p class="lof-content lof-content--2 mb-1">{{ $t('section.h_3.premiumSetupPlusText3') }}</p>
+          <p class="lof-content lof-content--2 mb-0 text-danger">{{ $t('section.h_3.premiumSetupPlusText4') }}</p>
+        </div>
+      </div>
+      <div v-if="$validateSelectedLanguage('en', 'de', 'fr', 'it', 'sp', 'jp')" class="row mt-5">
         <div class="col-12 d-flex flex-column">
-          <checkbox v-model="stateOrthodontistNameOnInvoice" :is-checked="stateOrthodontistNameOnInvoice" @input="setStateOrthodontistNameOnInvoice">
+          <checkbox
+            v-model="stateOrthodontistNameOnInvoice"
+            :is-checked="stateOrthodontistNameOnInvoice"
+            @input="setStateOrthodontistNameOnInvoice"
+          >
             {{ $t('section.h_3.stateOrthodontistNameOnInvoice') }}
           </checkbox>
-          <checkbox v-model="isShippingAddress" :is-checked="isShippingAddress" @input="differentInvoiceAddress">
+          <p v-if="$validateSelectedLanguage('jp')" class="lof-content lof-content--2 mb-0">{{ $t('section.h_3.patientConsent') }}</p>
+          <checkbox
+            v-if="$validateSelectedLanguage('en', 'de', 'fr', 'it', 'sp')"
+            v-model="isShippingAddress"
+            :is-checked="isShippingAddress"
+            @input="differentInvoiceAddress"
+          >
             {{ $t('section.h_3.shippingAddress') }}
           </checkbox>
         </div>
       </div>
-      <transition name="expand" @after-enter="invoiceAddress = true">
+      <transition v-if="$validateSelectedLanguage('en', 'de', 'fr', 'it', 'sp')" name="expand" @after-enter="invoiceAddress = true">
         <div v-if="invoiceAddressDropdown" class="invoice-address-expand-box">
           <transition name="fade" @after-leave="invoiceAddressDropdown = false">
             <div v-if="invoiceAddress" class="row my-4">
@@ -152,30 +199,6 @@
           {{ $t('common.buttons.next') }}
         </link-button>
       </div>
-      <modal ref="templateTitle" :show-tab="false">
-        <card v-click-outside.stop="closeTemplateTitleModal" class="h-auto">
-          <h3 class="lof-headline lof-headline--2 my-4">
-            Template Title
-          </h3>
-          <form @submit.prevent="saveAsTemplate">
-            <input-field
-              id="templateTitle"
-              v-model="templateTitle"
-              label="Template Title"
-              name="templateTitle"
-              required
-            />
-            <b-button-toolbar class="d-flex mb-3 mt-5 justify-content-end">
-              <b-button class="lof-button mr-4 w-25" variant="secondary" @click="closeTemplateTitleModal">
-                {{ $t('common.buttons.cancel') }}
-              </b-button>
-              <b-button class="lof-button w-25" variant="primary" @click="saveAsTemplate">
-                {{ $t('common.buttons.save') }}
-              </b-button>
-            </b-button-toolbar>
-          </form>
-        </card>
-      </modal>
     </template>
   </page>
 </template>
@@ -188,7 +211,6 @@
 
     data () {
       return {
-        saveAsTemplateModal: false,
         invoiceAddress: false,
         invoiceAddressDropdown: false,
         practice: '',
@@ -203,11 +225,13 @@
         patientFirstName: '',
         patientNumber: '',
         appointmentDate: '',
+        standardSetup: false,
+        standardSetupPlus: false,
+        premiumSetupPlus: false,
         stateOrthodontistNameOnInvoice: false,
         isShippingAddress: false,
         shippingAddress: '',
-        shippingPostalcodeTown: '',
-        templateTitle: ''
+        shippingPostalcodeTown: ''
       }
     },
 
@@ -225,6 +249,9 @@
         'getPatientFirstName',
         'getPatientNumber',
         'getAppointmentDate',
+        'getStandardSetup',
+        'getStandardSetupPlus',
+        'getPremiumSetupPlus',
         'getStateOrthodontistNameOnInvoice',
         'getIsShippingAddress',
         'getShippingAddress',
@@ -247,6 +274,9 @@
       this.patientFirstName = this.getPatientFirstName
       this.patientNumber = this.getPatientNumber
       this.appointmentDate = this.getAppointmentDate
+      this.standardSetup = this.getStandardSetup
+      this.standardSetupPlus = this.getStandardSetupPlus
+      this.premiumSetupPlus = this.getPremiumSetupPlus
       this.stateOrthodontistNameOnInvoice = this.getStateOrthodontistNameOnInvoice
       this.isShippingAddress = this.getIsShippingAddress
       this.invoiceAddress = this.getIsShippingAddress
@@ -280,27 +310,16 @@
         'setPatientFirstName',
         'setPatientNumber',
         'setAppointmentDate',
+        'setStandardSetup',
+        'setStandardSetupPlus',
+        'setPremiumSetupPlus',
         'setStateOrthodontistNameOnInvoice',
         'setIsShippingAddress',
         'setShippingAddress',
         'setShippingPostalcodeTown'
       ]),
       openTemplateTitleModal () {
-        this.$refs.templateTitle.show()
-      },
-      closeTemplateTitleModal () {
-        this.$refs.templateTitle.hide()
-        this.templateTitle = ''
-      },
-      saveAsTemplate () {
-        const payload = {
-          templateTitle: this.templateTitle,
-          userId: this.$auth.$state.user._id
-        }
-        this.$store.dispatch('invoice-address/saveTemplateData', payload).then(() => {
-          this.$refs.templateTitle.hide()
-          this.templateTitle = ''
-        })
+        this.$root.$emit('showTemplateTitleModal')
       },
       differentInvoiceAddress () {
         this.setIsShippingAddress(this.isShippingAddress)

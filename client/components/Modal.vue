@@ -1,10 +1,10 @@
 <template>
   <div class="lof-modal">
-    <div v-if="!showContent && showTab" class="lof-modal__tab" @click.stop="show">
-      {{ $t('common.buttons.notes') }}
+    <div v-if="!showContent && showTab && !showOnlyCloseTab" class="lof-modal__tab" @click.stop="show">
+      <svg-icon icon="notes" class="lof-modal__tab-icon" />
     </div>
-    <div v-if="showContent && showTab" class="lof-modal__tab" @click="hide">
-      <svg-icon icon="times" class="lof-modal__tab-close" />
+    <div v-if="showContent && showTab || showContent && showOnlyCloseTab" class="lof-modal__tab" @click="hide">
+      <svg-icon icon="times" class="lof-modal__tab-icon" />
     </div>
     <transition name="fade" mode="out-in" @after-enter="showContent = true">
       <div v-if="showModal" class="lof-modal__overlay">
@@ -27,8 +27,12 @@
     props: {
       showTab: {
         type: Boolean,
+        required: false
+      },
+      showOnlyCloseTab: {
+        type: Boolean,
         required: false,
-        default: true
+        default: false
       }
     },
 

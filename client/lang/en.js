@@ -1,8 +1,8 @@
 export default {
   common: {
     buttons: {
+      exit: 'Exit',
       language: 'Language',
-      notes: 'Notes',
       selectFromTemplate: 'Select from template',
       saveAsTemplate: 'Save as template',
       next: 'Next',
@@ -10,10 +10,9 @@ export default {
       sentForms: 'Sent forms',
       save: 'Save',
       cancel: 'Cancel',
-      send: 'Send'
-    },
-    inputs: {
-      agree: 'I have read the terms and conditions and agree to them.'
+      send: 'Send',
+      preview: 'Preview PDF',
+      download: 'Download PDF'
     },
     titles: {
       invoiceAddress: 'Invoice Address',
@@ -25,11 +24,44 @@ export default {
     },
     headlines: {
       newForm: 'Create a new form',
-      sentForms: 'Get an overview of all forms sent so far'
+      sentForms: 'Get an overview of all forms sent so far',
+      emptyOrderForms: 'You have no sent forms.',
+      emptyTemplates: 'You have no saved templates.'
+    },
+    labels: {
+      expansion: 'Expansion',
+      compression: 'Compression',
+      sectionType1: 'SE-NiTi',
+      sectionType2: 'Steel',
+      sectionType3: 'ß-Ti',
+      templateTitle: 'Template Title'
+    },
+    notifications: {
+      savedOrderForm: 'Form was saved.',
+      savedTemplate: 'Template was saved.',
+      deletedTemplate: 'Template was deleted.',
+      error: 'Error, please try again.'
     }
   },
   section: {
-    h_1: {},
+    h_1: {
+      contact: {
+        title: 'Booking:',
+        openingTimes1: '<span>Monday to Thursday</span><span>8 am — 5 pm</span>',
+        openingTimes2: '<span>Friday</span><span>8 am — 2 pm</span>',
+        telephone: '<span>Tel.</span><span>+49 5472 95444 - 251</span>',
+        fax: '<span>Fax</span><span>+49 5472 95444 - 294</span>',
+        email: 'win@lingualsystems.co.uk'
+      },
+      address: {
+        title: 'Please send impressions to:',
+        name: 'DW Lingual Systems GmbH',
+        streetHouse: 'Lindenstraße 44',
+        zipCity: '49152 Bad Essen',
+        country: 'Germany',
+        telephone: ''
+      }
+    },
     h_2: {
       invoiceAddress: 'Invoice address:',
       practice: 'Practice',
@@ -54,10 +86,7 @@ export default {
       premiumSetupPlus: '',
       stateOrthodontistNameOnInvoice: 'Please tick if the orthodontist‘s name shall be stated on the invoice.',
       patientConsent: '(The transfer of personal health data requires a written patient consent.)',
-      // logoBox: 'position: on the right',
-      shippingAddress: 'Please inform us if the shipping address is different from the invoice address.',
-      emptyBox: '',
-      dwlsLogo: ''
+      shippingAddress: 'Please inform us if the shipping address is different from the invoice address.'
     },
     u_1: {
       onlySetup: 'Only Set-up',
@@ -86,11 +115,16 @@ export default {
         boxTitle: ''
       }
     },
-    u_3: {},
+    u_3: {
+      title: 'Maxillary Archwires',
+      pleaseTick: 'Please tick',
+      straight: 'straight lat. sec.',
+      individual: 'indiv. lat. sec.'
+    },
     m_1: {
       notes: 'Notes',
       remarksTitle: 'Remarks:',
-      '3dSetup': '3D Setup-Photos',
+      threeDSetup: '3D Setup-Photos',
       tpa: 'TPA',
       herbst: 'Herbst',
       bondableHGTube: 'Bondable HG Tube',
@@ -150,10 +184,21 @@ export default {
         <li>2 = 2 cm compression</li>
       `
     },
-    l_3: {}
+    l_3: {
+      title: 'Mandibular Archwires',
+      pleaseTick: 'Please tick',
+      straight: 'straight lat. sec.',
+      individual: 'indiv. lat. sec.'
+    },
+    f_1: {
+      generalTerms: 'I accept the General Terms of Sale covered overleaf',
+      signature: 'Signature / Stamp',
+      date: 'Date',
+      version: 'TD-3.2 EN Rev.6.0i02'
+    }
   },
   agbs: {
-    title: 'GENERAL BUSINESS TERMS',
+    title: 'GENERAL BUSINESS TERMS OF DW LINGUAL SYSTEMS GMBH (“DW Lingual”)',
     content: `
       <strong>§ 1 Scope</strong>
       <br>

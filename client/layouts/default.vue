@@ -1,5 +1,16 @@
 <template>
   <div class="lof" :style="`height: ${ innerHeight }px`" @scroll.passive="handleScroll">
+    <transition-group name="slide-down">
+      <notification
+        v-for="(notification, index) in getNotifications"
+        v-if="!!getNotifications.length"
+        :key="index + 1"
+        show-notification
+        :variant="notification.variant"
+        :message="notification.message"
+      />
+    </transition-group>
+
     <b-navbar class="lof-navbar" :class="scrollY > 0 || showLanguageMenu ? 'lof-navbar--shadow' : ''" sticky toggleable="false">
       <b-navbar-nav align="left">
         <b-nav-text v-if="$route.path !== '/'" class="lof-navbar__back-button" @click="goBack">
@@ -10,12 +21,17 @@
         <b-nav-text class="lof-navbar__language" @click="showLanguageMenu = !showLanguageMenu">
           <svg-icon class="lof-navbar__icon" :icon="language" /> {{ $t('common.buttons.language') }}
         </b-nav-text>
-        <b-nav-item class="lof-navbar__exit">
-          <svg-icon class="lof-navbar__icon" icon="logout" /> Exit
+        <b-nav-item class="lof-navbar__exit" @click="showNotification = !showNotification">
+          <svg-icon class="lof-navbar__icon" icon="logout" />
+          {{ $t('common.buttons.exit') }}
         </b-nav-item>
       </b-navbar-nav>
     </b-navbar>
-    <notes v-if="showModalTab" />
+
+    <pdf-preview-modal :key="pdfPreviewKey" />
+    <template-title-modal :key="'template-title-modal-' + language" />
+    <notes-modal v-if="showModalTab" :key="'notes-modal-' + language" />
+
     <div id="lof-body-container" class="lof-body container-fluid" @scroll.passive="handleScroll">
       <transition name="fade">
         <ul v-if="showLanguageMenu" class="lof-language-menu">
@@ -37,11 +53,6 @@
           <a href="#" class="lof-footer__link">Datenschutz</a>
         </div>
       </div>
-      <div hidden style="position: sticky; bottom: 0;">
-        <b-alert show variant="success" style="position: absolute; bottom: 0; width: 100%;">
-          Success Alert
-        </b-alert>
-      </div>
     </div>
   </div>
 </template>
@@ -59,7 +70,9 @@
         showLanguageMenu: false,
         innerHeight: window.innerHeight,
         showModalTab: false,
-        currentYear: new Date().getFullYear()
+        showNotification: false,
+        currentYear: new Date().getFullYear(),
+        pdfPreviewKey: 0
       }
     },
 
@@ -67,8 +80,10 @@
       language () {
         return this.$i18n.locale
       },
-      getModalVisibility () {
-        return this.$store.getters.getModalVisibility
+      getNotifications () {
+        return this.$store.getters['common/getNotifications'].map((notification) => {
+          return { message: this.$t(`common.notifications['${ notification.message }']`) }
+        })
       }
     },
 
@@ -82,8 +97,16 @@
           }, 400)
         }
       },
+      getNotifications () {
+        for (let i = 0; i < this.getNotifications.length; ++i) {
+          setTimeout(() => {
+            this.$store.commit('common/removeNotifications')
+          }, 3000)
+        }
+      },
       $route (to, from) {
         let fromStep, toStep
+        this.pdfPreviewKey = this.$generateRandomKey()
         this.showModalTab = /(step-2|step-3)/s.test(to.path)
         const stepsPathString = '/steps/step-'
         const element = document.getElementById('lof-body-container')
@@ -103,8 +126,11 @@
       }
     },
 
+    created () {
+      this.pdfPreviewKey = this.$generateRandomKey()
+    },
+
     mounted () {
-      console.log('fired')
       this.showModalTab = /(step-2|step-3)/s.test(this.$route.path)
       window.addEventListener('resize', this.detectDevice)
       window.addEventListener('orientationchange', this.handleOrientation)

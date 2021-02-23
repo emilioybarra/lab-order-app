@@ -17,11 +17,12 @@
     height: 100%;
     flex: 1 1 auto;
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
+    -webkit-overflow-scrolling: touch;
     margin: auto;
+    padding-right: 6px;
 
     &-content {
-      width: 95%;
+      width: 98%;
     }
 
     /* width */

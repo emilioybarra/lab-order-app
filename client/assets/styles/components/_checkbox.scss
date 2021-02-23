@@ -9,7 +9,6 @@
     display: flex;
     width: 16px;
     height: 16px;
-    margin-right: $space-1;
     margin-top: auto;
     margin-bottom: auto;
   }
@@ -43,6 +42,7 @@
 
   &__label {
     margin-top: 2px;
+    margin-left: $space-1;
   }
 
   &:hover &__control {

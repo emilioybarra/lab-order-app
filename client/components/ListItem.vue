@@ -2,7 +2,8 @@
   <div class="lof-list-item">
     <div class="col-8 col-md-9 col-lg-7 col-xl-6 offset-lg-1">
       <b-button variant="primary" class="w-100" @click="onSelect">
-        {{ name }}
+        <span v-if="!loading">{{ name }}</span>
+        <b-spinner v-if="loading" small variant="light" />
       </b-button>
     </div>
     <div class="lof-list-item__button-group col-4 col-md-3 col-lg-3 col-xl-2">
@@ -10,7 +11,8 @@
         <svg-icon class="lof-list-item__button-icon lof-list-item__button-icon--times" icon="times" />
       </div>
       <div v-if="!noDownloadButton" class="lof-list-item__button" @click="onDownload">
-        <svg-icon class="lof-list-item__button-icon lof-list-item__button-icon--download" icon="download" />
+        <svg-icon v-if="!downloading" class="lof-list-item__button-icon lof-list-item__button-icon--download" icon="download" />
+        <b-spinner v-if="downloading" variant="secondary" />
       </div>
     </div>
   </div>
@@ -24,6 +26,12 @@
       name: {
         type: String,
         required: true
+      },
+      loading: {
+        type: Boolean
+      },
+      downloading: {
+        type: Boolean
       },
       noDownloadButton: {
         type: Boolean

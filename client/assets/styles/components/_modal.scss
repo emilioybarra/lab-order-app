@@ -1,6 +1,6 @@
 .lof-modal {
   &__tab {
-    position: absolute;
+    position: fixed;
     z-index: 1035;
     top: 253px;
     right: 0;
@@ -17,7 +17,7 @@
     cursor: pointer;
     transition: width 0.1s ease-in-out;
 
-    &-close {
+    &-icon {
       width: 1.2rem;
       height: 1.2rem;
       filter: brightness(100);

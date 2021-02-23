@@ -7,7 +7,7 @@ const LowerTeethTemplate = require('../models/lower-teeth-template');
 // Invoice Address Templates
 
 exports.getAllInvoiceAddressTemplates = (req, res, next) => {
-  const perPage = 2;
+  const perPage = 5;
   const userId = req.query.userId;
   let currentPage = req.query.page || 1;
   let totalTemplates;
@@ -90,6 +90,7 @@ exports.postCreateInvoiceAddressTemplate = (req, res, next) => {
           return next(error);
         });
       res.status(201).json({
+        status: 201,
         message: 'Created template',
         templateId: invoiceAddressTemplate._id
       });
@@ -105,7 +106,7 @@ exports.deleteInvoiceAddressTemplateById = (req, res, next) => {
   const userId = req.query.userId;
   const invoiceAddressTemplateId = req.params.id;
   InvoiceAddressTemplate.deleteOne({ _id: invoiceAddressTemplateId })
-    .then(result => {
+    .then(() => {
       User.findById(userId, (error, user) => {
         const invoiceAddressTemplate = user.invoiceAddressTemplates.find(template => {
           return template.invoiceAddressTemplate._id.toString() === invoiceAddressTemplateId;
@@ -113,12 +114,17 @@ exports.deleteInvoiceAddressTemplateById = (req, res, next) => {
         user.invoiceAddressTemplates.pull({ _id: invoiceAddressTemplate._id });
         user.save();
       })
+        .then(() => {
+          res.status(200).json({
+            status: 200,
+            message: 'Template is deleted.'
+          });
+        })
         .catch(err => {
           const error = new Error(err);
           error.httpStatusCode = 500;
           return next(error);
         });
-      res.status(204).json({ message: 'Template is deleted.' });
     })
     .catch(err => {
       const error = new Error(err);
@@ -131,7 +137,7 @@ exports.deleteInvoiceAddressTemplateById = (req, res, next) => {
 // Upper Teeth Templates
 
 exports.getAllUpperTeethTemplates = (req, res, next) => {
-  const perPage = 2;
+  const perPage = 5;
   const userId = req.query.userId;
   let currentPage = req.query.page || 1;
   let totalTemplates;
@@ -219,6 +225,7 @@ exports.postCreateUpperTeethTemplate = (req, res, next) => {
           return next(error);
         });
       res.status(201).json({
+        status: 201,
         message: 'Created template',
         templateId: upperTeethTemplate._id
       });
@@ -234,7 +241,7 @@ exports.deleteUpperTeethTemplateById = (req, res, next) => {
   const userId = req.query.userId;
   const upperTeethTemplateId = req.params.id;
   UpperTeethTemplate.deleteOne({ _id: upperTeethTemplateId })
-    .then(result => {
+    .then(() => {
       User.findById(userId, (error, user) => {
         const upperTeethTemplate = user.upperTeethTemplates.find(template => {
           return template.upperTeethTemplate._id.toString() === upperTeethTemplateId;
@@ -242,12 +249,17 @@ exports.deleteUpperTeethTemplateById = (req, res, next) => {
         user.upperTeethTemplates.pull({ _id: upperTeethTemplate._id });
         user.save();
       })
+        .then(() => {
+          res.status(200).json({
+            status: 200,
+            message: 'Template is deleted.'
+          });
+        })
         .catch(err => {
           const error = new Error(err);
           error.httpStatusCode = 500;
           return next(error);
         });
-      res.status(204).json({ message: 'Template is deleted.' });
     })
     .catch(err => {
       const error = new Error(err);
@@ -260,7 +272,7 @@ exports.deleteUpperTeethTemplateById = (req, res, next) => {
 // Lower Teeth Templates
 
 exports.getAllLowerTeethTemplates = (req, res, next) => {
-  const perPage = 2;
+  const perPage = 5;
   const userId = req.query.userId;
   let currentPage = req.query.page || 1;
   let totalTemplates;
@@ -343,6 +355,7 @@ exports.postCreateLowerTeethTemplate = (req, res, next) => {
           return next(error);
         });
       res.status(201).json({
+        status: 201,
         message: 'Created template',
         templateId: lowerTeethTemplate._id
       });
@@ -358,7 +371,7 @@ exports.deleteLowerTeethTemplateById = (req, res, next) => {
   const userId = req.query.userId;
   const lowerTeethTemplateId = req.params.id;
   LowerTeethTemplate.deleteOne({ _id: lowerTeethTemplateId })
-    .then(result => {
+    .then(() => {
       User.findById(userId, (error, user) => {
         const lowerTeethTemplate = user.lowerTeethTemplates.find(template => {
           return template.lowerTeethTemplate._id.toString() === lowerTeethTemplateId;
@@ -366,12 +379,17 @@ exports.deleteLowerTeethTemplateById = (req, res, next) => {
         user.lowerTeethTemplates.pull({ _id: lowerTeethTemplate._id });
         user.save();
       })
+        .then(() => {
+          res.status(200).json({
+            status: 200,
+            message: 'Template is deleted.'
+          });
+        })
         .catch(err => {
           const error = new Error(err);
           error.httpStatusCode = 500;
           return next(error);
         });
-      res.status(204).json({ message: 'Template is deleted.' });
     })
     .catch(err => {
       const error = new Error(err);

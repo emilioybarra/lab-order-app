@@ -5,10 +5,11 @@
     </template>
     <template #body>
       <teeth-canvas teeth-image="upper" />
-      <div class="d-flex align-self-center mt-3">
+      <div class="d-flex flex-column justify-content-center align-items-center mt-3">
         <checkbox v-model="onlySetup" :is-checked="onlySetup" @input="setOnlySetup">
           {{ $t('section.u_1.onlySetup') }}
         </checkbox>
+        <p v-if="$validateSelectedLanguage('jp')" class="text-danger">{{ $t('section.u_1.euroTypeInfo') }}</p>
       </div>
       <tooth-divider />
       <link-button to="/templates?template=upper-teeth" class="mb-2">
@@ -16,12 +17,15 @@
       </link-button>
       <div class="row">
         <div class="col-12">
-          <h3 class="lof-headline lof-headline--2 my-4">
+          <h3 v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="lof-headline lof-headline--2 my-4">
             {{ $t('section.u_2.strippingTitle') }}
+          </h3>
+          <h3 v-if="$validateSelectedLanguage('it', 'sp', 'ru')" class="lof-headline lof-headline--2 my-4">
+            {{ $t('section.u_2.notes.title') }}
           </h3>
         </div>
       </div>
-      <div class="row">
+      <div v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="row">
         <div class="col-12 d-flex flex-column">
           <checkbox v-model="boltonDiscrepancy" :is-checked="boltonDiscrepancy" @input="setBoltonDiscrepancy">
             {{ $t('section.u_2.boltonDiscrepancy') }}
@@ -47,7 +51,7 @@
           @input="setRcWhere"
         />
       </div>
-      <div class="row">
+      <div v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="row">
         <div class="col-12">
           <checkbox v-model="reduceOverjet" :is-checked="reduceOverjet" @input="setReduceOverjet">
             {{ $t('section.u_2.reduceOverjet') }}
@@ -70,7 +74,34 @@
           @input="setRoWhere"
         />
       </div>
-      <div class="row">
+      <div v-if="$validateSelectedLanguage('it', 'sp', 'ru', 'jp')" class="row">
+        <input-field
+          id="notes-stripping-mm"
+          v-model="notesStrippingMm"
+          both-side-labels
+          class="col-12 col-sm-6 mb-4 w-50"
+          :left-label="$t('section.u_2.notes.stripping')"
+          :right-label="$t('section.u_2.notes.strippingMm')"
+          @input="setNotesStrippingMm"
+        />
+        <input-field
+          id="notes-where"
+          v-model="notesStrippingWhere"
+          class="col-12 col-sm-6 mb-4 w-50"
+          :left-label="$t('section.u_2.notes.where')"
+          side-label="left"
+          @input="setNotesStrippingWhere"
+        />
+        <div class="col-12 d-flex flex-column">
+          <checkbox v-model="notesBoltonDiscrepancy" :is-checked="notesBoltonDiscrepancy" @input="setNotesBoltonDiscrepancy">
+            {{ $t('section.u_2.notes.boltonDiscrepancy') }}
+          </checkbox>
+        </div>
+        <div v-if="$validateSelectedLanguage('it', 'sp', 'ru')" class="col-12 d-flex flex-column my-4">
+          <textarea-field id="notesBox" v-model="notesBox" :label="$t('section.u_2.notes.boxTitle')" :rows="8" @input="setNotesBox" />
+        </div>
+      </div>
+      <div v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="row">
         <div class="col-12">
           <h3 class="lof-headline lof-headline--2 my-4">
             {{ $t('section.u_2.upperInfo') }}
@@ -78,6 +109,16 @@
         </div>
         <div class="col-12">
           <ul class="list-unstyled" v-html="$t('section.u_2.upperInfoLegend')" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="lof-headline lof-headline--2 my-4">
+            {{ $t('section.u_3.title') }}
+          </h3>
+        </div>
+        <div class="col-12">
+          <archwire-sizes-table :key="$i18n.locale" teeth="upper" />
         </div>
       </div>
       <div class="d-flex flex-column align-items-center my-5">
@@ -88,30 +129,6 @@
           {{ $t('common.buttons.next') }}
         </link-button>
       </div>
-      <modal ref="templateTitle" :show-tab="false">
-        <card v-click-outside.stop="closeTemplateTitleModal" class="h-auto">
-          <h3 class="lof-headline lof-headline--2 my-4">
-            Template Title
-          </h3>
-          <form @submit.prevent="saveAsTemplate">
-            <input-field
-              id="templateTitle"
-              v-model="templateTitle"
-              label="Template Title"
-              name="templateTitle"
-              required
-            />
-            <b-button-toolbar class="d-flex mb-3 mt-5 justify-content-end">
-              <b-button class="lof-button mr-4 w-25" variant="secondary" @click="closeTemplateTitleModal">
-                {{ $t('common.buttons.cancel') }}
-              </b-button>
-              <b-button class="lof-button w-25" variant="primary" @click="saveAsTemplate">
-                {{ $t('common.buttons.save') }}
-              </b-button>
-            </b-button-toolbar>
-          </form>
-        </card>
-      </modal>
     </template>
   </page>
 </template>
@@ -132,7 +149,10 @@
         reduceOverjet: false,
         roMm: '',
         roWhere: '',
-        templateTitle: ''
+        notesStrippingMm: '',
+        notesStrippingWhere: '',
+        notesBoltonDiscrepancy: false,
+        notesBox: ''
       }
     },
 
@@ -145,7 +165,11 @@
         'getRcWhere',
         'getReduceOverjet',
         'getRoMm',
-        'getRoWhere'
+        'getRoWhere',
+        'getNotesStrippingMm',
+        'getNotesStrippingWhere',
+        'getNotesBoltonDiscrepancy',
+        'getNotesBox'
       ])
     },
 
@@ -158,6 +182,10 @@
       this.reduceOverjet = this.getReduceOverjet
       this.roMm = this.getRoMm
       this.roWhere = this.getRoWhere
+      this.notesStrippingMm = this.getNotesStrippingMm
+      this.notesStrippingWhere = this.getNotesStrippingWhere
+      this.notesBoltonDiscrepancy = this.getNotesBoltonDiscrepancy
+      this.notesBox = this.getNotesBox
 
       this.$store.commit('common/setTemplate', 'upper-teeth')
     },
@@ -171,24 +199,14 @@
         'setRcWhere',
         'setReduceOverjet',
         'setRoMm',
-        'setRoWhere'
+        'setRoWhere',
+        'setNotesStrippingMm',
+        'setNotesStrippingWhere',
+        'setNotesBoltonDiscrepancy',
+        'setNotesBox'
       ]),
       openTemplateTitleModal () {
-        this.$refs.templateTitle.show()
-      },
-      closeTemplateTitleModal () {
-        this.$refs.templateTitle.hide()
-        this.templateTitle = ''
-      },
-      saveAsTemplate () {
-        const payload = {
-          templateTitle: this.templateTitle,
-          userId: this.$auth.$state.user._id
-        }
-        this.$store.dispatch('upper-teeth/saveTemplateData', payload).then(() => {
-          this.$refs.templateTitle.hide()
-          this.templateTitle = ''
-        })
+        this.$root.$emit('showTemplateTitleModal')
       }
     }
   }

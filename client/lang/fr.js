@@ -1,16 +1,18 @@
 export default {
   common: {
     buttons: {
+      exit: 'Sortie',
       language: 'Langue',
-      notes: 'Notes',
       selectFromTemplate: 'Choisir un modèle',
       saveAsTemplate: 'Enregistrer comme modèle',
-      next: 'Continuer',
+      next: 'Suivant',
       newForm: 'Nouveau formulaire',
-      sentForms: 'Formulaires envoyés'
-    },
-    inputs: {
-      agree: 'J\'ai lu les conditions générales et je les accepte.'
+      sentForms: 'Formulaires envoyés',
+      save: 'Sauvegarder',
+      cancel: 'Annuler',
+      send: 'Envoyer',
+      preview: 'Prévisualisation PDF',
+      download: 'Télécharger le PDF'
     },
     titles: {
       invoiceAddress: 'Adresse de facturation',
@@ -21,11 +23,44 @@ export default {
     },
     headlines: {
       newForm: 'Créer un nouveau formulaire',
-      sentForms: 'Obtenez un aperçu de tous les formulaires envoyés jusqu\'à présent'
+      sentForms: 'Obtenez un aperçu de tous les formulaires envoyés jusqu\'à présent',
+      emptyOrderForms: 'Vous n\'avez pas envoyé de formulaires.',
+      emptyTemplates: 'Vous n\'avez pas de modèles sauvegardés.'
+    },
+    labels: {
+      expansion: 'Expansion',
+      compression: 'Compression',
+      sectionType1: 'SE-NiTi',
+      sectionType2: 'Acier',
+      sectionType3: 'ß-Ti',
+      templateTitle: 'Titre du modèle'
+    },
+    notifications: {
+      savedOrderForm: 'Le formulaire a été enregistré.',
+      savedTemplate: 'Le modèle a été enregistré.',
+      deletedTemplate: 'Le modèle a été supprimé.',
+      error: 'Erreur, veuillez réessayer.'
     }
   },
   section: {
-    h_1: {},
+    h_1: {
+      contact: {
+        title: 'Réservations:',
+        openingTimes1: '<span>Lundi à Jeudi</span><span>08 h 00 – 17 h 00</span>',
+        openingTimes2: '<span>Vendredi</span><span>08 h 00 – 14 h 00</span>',
+        telephone: '<span>Tél.</span><span>+49 5472 95444 - 251</span>',
+        fax: '<span>Fax</span><span>+49 5472 95444 - 294</span>',
+        email: 'win@lingualsystems.fr'
+      },
+      address: {
+        title: 'Merci d’envoyer vos empreintes à:',
+        name: 'DW Lingual Systems GmbH',
+        streetHouse: 'Lindenstraße 44',
+        zipCity: '49152 Bad Essen',
+        country: 'Germany',
+        telephone: ''
+      }
+    },
     h_2: {
       invoiceAddress: 'Adresse de facturation:',
       practice: 'Cabinet',
@@ -50,10 +85,7 @@ export default {
       premiumSetupPlus: '',
       stateOrthodontistNameOnInvoice: 'Cochez svp si le nom de l’orthodontiste doit figurer sur la facture.',
       patientConsent: '(Le transfert des données medicales personnelles exige un accord écrit de la part du patient!)',
-      // logoBox: '',
-      shippingAddress: 'Nous vous prions de bien vouloir nous informer si l’adresse de livraison est différente de l’adresse de facturation.',
-      emptyBox: '',
-      dwlsLogo: ''
+      shippingAddress: 'Nous vous prions de bien vouloir nous informer si l’adresse de livraison est différente de l’adresse de facturation.'
     },
     u_1: {
       onlySetup: 'Set up seulement',
@@ -82,11 +114,16 @@ export default {
         boxTitle: ''
       }
     },
-    u_3: {},
+    u_3: {
+      title: 'Archs Maxillaire',
+      pleaseTick: 'Cochez svp',
+      straight: 'sect. lat. Droits',
+      individual: 'sect. lat. indiv.'
+    },
     m_1: {
       notes: 'Notes',
       remarksTitle: 'Remarques:',
-      '3dSetup': '3D Setup',
+      threeDSetup: '3D Setup',
       tpa: 'Fourreau pour arc transpalatin',
       herbst: 'Herbst',
       bondableHGTube: 'Tube FEO à coller',
@@ -152,10 +189,21 @@ export default {
         boxTitle: ''
       }
     },
-    l_3: {}
+    l_3: {
+      title: 'Archs Mandibulaire',
+      pleaseTick: 'Cochez svp',
+      straight: 'sect. lat. Droits',
+      individual: 'sect. lat. indiv.'
+    },
+    f_1: {
+      generalTerms: 'J’accepte les conditions générales de vente au verso de cette page',
+      signature: 'Signature / Cachet',
+      date: 'Date',
+      version: 'TD-3.2 LSF Rev.6.0i02'
+    }
   },
   agbs: {
-    title: 'CONDITIONS GÉNÉRALES',
+    title: 'CONDITIONS GÉNÉRALES DE VENTE ET DE LIVRAISON DE LA SOCIÉTÉ DW LINGUAL SYSTEMS GMBH (« DW Lingual »)',
     content: `
       <strong>§ 1 Champ d‘application</strong>
       <br>

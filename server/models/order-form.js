@@ -8,148 +8,133 @@ const orderFormSchema = new Schema(
       ref: 'User',
       required: true
     },
+    orderFormLanguage: String,
     invoiceAddress: {
-      practice: {
-        type: String,
-        required: false
-      },
-      orthodontist: {
-        type: String,
-        required: false
-      },
-      address: {
-        type: String,
-        required: false
-      },
-      postalCodeTown: {
-        type: String,
-        required: false
-      },
-      telephone: {
-        type: String,
-        required: false
-      },
-      fax: {
-        type: String,
-        required: false
-      },
-      email: {
-        type: String,
-        required: false
-      },
-      idVat: {
-        type: String,
-        required: false
-      },
-      statedOrthodontistName: {
-        type: Boolean,
-        required: false
-      },
-      isShippingAddress: {
-        type: Boolean,
-        required: false
-      },
-      shippingAddress: {
-        type: String,
-        required: false
-      },
-      shippingPostalcodeTown: {
-        type: String,
-        required: false
-      }
+      practice: String,
+      orthodontist: String,
+      address: String,
+      postalCodeTown: String,
+      telephone: String,
+      fax: String,
+      email: String,
+      idVat: String,
+      standardSetup: Boolean,
+      standardSetupPlus: Boolean,
+      premiumSetupPlus: Boolean,
+      statedOrthodontistName: Boolean,
+      isShippingAddress: Boolean,
+      shippingAddress: String,
+      shippingPostalcodeTown: String
     },
     patient: {
-      lastName: {
-        type: String,
-        required: false
-      },
-      firstName: {
-        type: String,
-        required: false
-      },
-      number: {
-        type: String,
-        required: false
-      },
-      dateOfBonding: {
-        type: String,
-        required: false
-      }
+      lastName: String,
+      firstName: String,
+      number: String,
+      dateOfBonding: String
     },
     upperTeeth: {
       imageData: {
-        type: String,
-        required: false
+        data: Buffer,
+        contentType: String,
+        edited: Boolean
       },
-      onlySetup: {
-        type: Boolean,
-        required: false
-      },
-      boltonDiscrepancy: {
-        type: Boolean,
-        required: false
-      },
-      resolveCrowding: {
-        type: Boolean,
-        required: false
-      },
-      rcMm: {
-        type: String,
-        required: false
-      },
-      rcWhere: {
-        type: String,
-        required: false
-      },
-      reduceOverjet: {
-        type: Boolean,
-        required: false
-      },
-      roMm: {
-        type: String,
-        required: false
-      },
-      roWhere: {
-        type: String,
-        required: false
+      onlySetup: Boolean,
+      boltonDiscrepancy: Boolean,
+      resolveCrowding: Boolean,
+      rcMm: String,
+      rcWhere: String,
+      reduceOverjet: Boolean,
+      roMm: String,
+      roWhere: String,
+      notesStrippingMm: String,
+      notesStrippingWhere: String,
+      notesBoltonDiscrepancy: Boolean,
+      notesBox: String,
+      archwireSizes: {
+        size12: { straight: String, individual: String, compression: String, expansion: String },
+        size14: { straight: String, individual: String, compression: String, expansion: String },
+        size16: { straight: String, individual: String, compression: String, expansion: String },
+        size16x22: { straight: String, individual: String, compression: String, expansion: String },
+        size16x24: { straight: String, individual: String, compression: String, expansion: String },
+        size16x24EET: { straight: String, individual: String, compression: String, expansion: String },
+        size16x24ET: { straight: String, individual: String, compression: String, expansion: String },
+        size17x25: { straight: String, individual: String, compression: String, expansion: String },
+        size18: { straight: String, individual: String, compression: String, expansion: String },
+        size18x18: { straight: String, individual: String, compression: String, expansion: String },
+        size18x25_1: { straight: String, individual: String, compression: String, expansion: String },
+        size18x25_2: { straight: String, individual: String, compression: String, expansion: String },
+        size18x25_3: { straight: String, individual: String, compression: String, expansion: String },
+        size18x25red: { straight: String, individual: String, compression: String, expansion: String },
+        size175x175: { straight: String, individual: String, compression: String, expansion: String }
       }
     },
     lowerTeeth: {
       imageData: {
-        type: String,
-        required: false
+        data: Buffer,
+        contentType: String,
+        edited: Boolean
       },
-      onlySetup: {
-        type: Boolean,
-        required: false
+      onlySetup: Boolean,
+      boltonDiscrepancy: Boolean,
+      resolveCrowding: Boolean,
+      rcMm: String,
+      rcWhere: String,
+      reduceOverjet: Boolean,
+      roMm: String,
+      roWhere: String,
+      notesStrippingMm: String,
+      notesStrippingWhere: String,
+      notesBoltonDiscrepancy: Boolean,
+      notesBox: String,
+      archwireSizes: {
+        size12: { straight: String, individual: String, compression: String, expansion: String },
+        size14: { straight: String, individual: String, compression: String, expansion: String },
+        size16: { straight: String, individual: String, compression: String, expansion: String },
+        size16x22: { straight: String, individual: String, compression: String, expansion: String },
+        size16x24: { straight: String, individual: String, compression: String, expansion: String },
+        size16x24EET: { straight: String, individual: String, compression: String, expansion: String },
+        size16x24ET: { straight: String, individual: String, compression: String, expansion: String },
+        size17x25: { straight: String, individual: String, compression: String, expansion: String },
+        size18: { straight: String, individual: String, compression: String, expansion: String },
+        size18x18: { straight: String, individual: String, compression: String, expansion: String },
+        size18x25_1: { straight: String, individual: String, compression: String, expansion: String },
+        size18x25_2: { straight: String, individual: String, compression: String, expansion: String },
+        size18x25_3: { straight: String, individual: String, compression: String, expansion: String },
+        size18x25red: { straight: String, individual: String, compression: String, expansion: String },
+        size175x175: { straight: String, individual: String, compression: String, expansion: String }
+      }
+    },
+    notes: {
+      threeDSetup: Boolean,
+      tpa: Boolean,
+      herbst: Boolean,
+      bondableHGTube: Boolean,
+      bondableHGTubeWithShell: Boolean,
+      superpositionPhoto: Boolean,
+      dlcSteelWire: Boolean,
+      upperJaw: Boolean,
+      lowerJaw: Boolean,
+      notes1: String,
+      noCorrectionOfBite: Boolean,
+      notes2: String,
+      nonTransparent: Boolean,
+      trayTrimmed33: Boolean,
+      transparent: Boolean,
+      right2: {
+        canine: Boolean,
+        molar: Boolean
       },
-      boltonDiscrepancy: {
-        type: Boolean,
-        required: false
+      right3: {
+        canine: Boolean,
+        molar: Boolean
       },
-      resolveCrowding: {
-        type: Boolean,
-        required: false
+      left2: {
+        canine: Boolean,
+        molar: Boolean
       },
-      rcMm: {
-        type: String,
-        required: false
-      },
-      rcWhere: {
-        type: String,
-        required: false
-      },
-      reduceOverjet: {
-        type: Boolean,
-        required: false
-      },
-      roMm: {
-        type: String,
-        required: false
-      },
-      roWhere: {
-        type: String,
-        required: false
+      left3: {
+        canine: Boolean,
+        molar: Boolean
       }
     }
   },

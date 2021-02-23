@@ -13,54 +13,21 @@ const invoiceAddressTemplateSchema = new Schema(
       required: true
     },
     invoiceAddressTemplateData: {
-      practice: {
-        type: String,
-        required: false
-      },
-      orthodontist: {
-        type: String,
-        required: false
-      },
-      address: {
-        type: String,
-        required: false
-      },
-      postalcodeTown: {
-        type: String,
-        required: false
-      },
-      telephone: {
-        type: String,
-        required: false
-      },
-      fax: {
-        type: String,
-        required: false
-      },
-      email: {
-        type: String,
-        required: false
-      },
-      ustId: {
-        type: String,
-        required: false
-      },
-      stateOrthodontistNameOnInvoice: {
-        type: Boolean,
-        required: false
-      },
-      isShippingAddress: {
-        type: Boolean,
-        required: false
-      },
-      shippingAddress: {
-        type: String,
-        required: false
-      },
-      shippingPostalcodeTown: {
-        type: String,
-        required: false
-      }
+      practice: String,
+      orthodontist: String,
+      address: String,
+      postalcodeTown: String,
+      telephone: String,
+      fax: String,
+      email: String,
+      ustId: String,
+      standardSetup: Boolean,
+      standardSetupPlus: Boolean,
+      premiumSetupPlus: Boolean,
+      stateOrthodontistNameOnInvoice: Boolean,
+      isShippingAddress: Boolean,
+      shippingAddress: String,
+      shippingPostalcodeTown: String
     }
   },
   {

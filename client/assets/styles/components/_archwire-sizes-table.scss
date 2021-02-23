@@ -1,0 +1,43 @@
+.lof-archwire-sizes-table {
+  font-size: 14px;
+  text-align: center;
+  background-color: $white;
+
+  &__header {
+    &-label {
+      hyphens: auto;
+    }
+  }
+
+  &__body {
+    white-space: nowrap;
+  }
+
+  &__row {
+    height: 100%;
+  }
+
+  &__section-type {
+    transform: rotate(-90deg);
+  }
+
+  &__cell {
+    display: table-cell;
+    padding: 0 !important;
+    height: 100%;
+
+    &__input {
+      height: 100%;
+      width: 100%;
+      border: none;
+      text-align: center;
+      min-height: 50px;
+
+      &--disable {
+        background: url('~assets/images/line.png');
+        background-size: 100% 100%;
+        background-color: $light-grey;
+      }
+    }
+  }
+}

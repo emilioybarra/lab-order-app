@@ -13,45 +13,19 @@ const upperTeethTemplateSchema = new Schema(
       required: true
     },
     upperTeethTemplate: {
-      imageData: {
-        type: String,
-        required: false
-      },
-      onlySetup: {
-        type: Boolean,
-        required: false
-      },
-      boltonDiscrepancy: {
-        type: Boolean,
-        required: false
-      },
-      resolveCrowding: {
-        type: Boolean,
-        required: false
-      },
-      rcMm: {
-        type: String,
-        required: false
-      },
-      rcWhere: {
-        type: String,
-        required: false
-      },
-      reduceOverjet: {
-        type: Boolean,
-        required: false
-      },
-      roMm: {
-        type: String,
-        required: false
-      },
-      roWhere: {
-        type: String,
-        required: false
-      },
+      onlySetup: Boolean,
+      boltonDiscrepancy: Boolean,
+      resolveCrowding: Boolean,
+      rcMm: String,
+      rcWhere: String,
+      reduceOverjet: Boolean,
+      roMm: String,
+      roWhere: String,
+      notesStrippingMm: String,
+      notesStrippingWhere: String,
+      notesBoltonDiscrepancy: Boolean,
+      notesBox: String,
       maxillaryArchwires: {
-      },
-      remarks: {
       }
     }
   },

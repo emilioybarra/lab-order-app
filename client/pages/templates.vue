@@ -4,9 +4,9 @@
       {{ $t('common.titles.templates') }}
     </template>
     <template #body>
-      <b-skeleton-wrapper class="lof-page__body" :loading="loading">
+      <b-skeleton-wrapper class="d-flex flex-column" :loading="loading">
         <template #loading>
-          <div v-for="item in 2" :key="item" class="lof-list-item">
+          <div v-for="item in 5" :key="item" class="lof-list-item">
             <div class="col-8 col-md-9 col-lg-7 col-xl-6 offset-lg-1">
               <b-skeleton class="w-100" type="button" animation="fade" />
             </div>
@@ -17,16 +17,26 @@
             </div>
           </div>
         </template>
+        <div v-if="!templates.length && !loading" class="d-flex justify-content-center lof-headline lof-headline--3">
+          {{ $t('common.headlines.emptyTemplates') }}
+        </div>
         <list-item
           v-for="template in templates"
+          v-if="!!templates.length"
           :key="template._id"
           :name="template.title"
           no-download-button
           @onSelect="selectTemplate(template._id)"
           @onDelete="deleteTemplate(template._id)"
         />
-        <pagination-bar v-if="totalTemplates > 2" :pages="Math.ceil(totalTemplates / 2)" :page="currentPage" @selectPage="selectPage" />
+        <div v-for="item in (5 - templates.length)" v-if="!!templates.length" :key="item" class="lof-list-item">
+          <div class="col-8 col-md-9 col-lg-7 col-xl-6 offset-lg-1" />
+          <div class="lof-list-item__button-group col-4 col-md-3 col-lg-3 col-xl-2">
+            <div class="lof-list-item__button" />
+          </div>
+        </div>
       </b-skeleton-wrapper>
+      <pagination-bar v-if="totalTemplates > 5" :pages="Math.ceil(totalTemplates / 5)" :page="currentPage" @selectPage="selectPage" />
     </template>
   </page>
 </template>
@@ -91,7 +101,7 @@
           templateId,
           userId: this.$auth.$state.user._id
         }
-        this.$store.dispatch(`${ this.$route.query.template }/deleteTemplateById`, payload).then((result) => {
+        this.$store.dispatch(`${ this.$route.query.template }/deleteTemplateById`, payload).then(() => {
           this.getAllTemplates(this.currentPage)
         })
       }

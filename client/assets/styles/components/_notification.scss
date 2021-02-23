@@ -1,0 +1,14 @@
+.lof-notification {
+  position: relative;
+  top: 10px;
+  z-index: 1025;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  &__box {
+    position: absolute;
+    width: 50%;
+    text-align: center;
+  }
+}

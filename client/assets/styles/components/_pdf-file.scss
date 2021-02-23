@@ -1,0 +1,753 @@
+.vue-html2pdf .layout-container {
+  background: white !important;
+}
+
+@page {
+  size: A4 portrait;
+}
+
+.lof-pdf {
+  margin: 3% 5%;
+  font-size: 12px;
+  line-height: 1;
+  color: black;
+  font-family: 'ProximaNovaCond-Regular', sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+
+  strong {
+    font-weight: bolder;
+    font-family: 'ProximaNovaCond-Semibold', sans-serif !important;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    &--variant-2 {
+     margin-bottom: $space-3;
+    }
+
+    &--variant-3 {
+     //margin-bottom: $space-05;
+    }
+
+    &-logos {
+      &--variant-2 {
+        width: 32% !important;
+      }
+    }
+
+    &-info {
+      &--variant-2 {
+        width: 66% !important;
+      }
+    }
+
+    &-logos, &-info {
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-logo {
+      &-image {
+        width: 100%;
+      }
+
+      &--dwls-logo {
+        width: 60%;
+      }
+
+      &--win-logo {
+        width: 30%;
+        display: flex;
+        align-items: baseline;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      &--variant-2 {
+        width: 75%;
+        margin-left: 0;
+      }
+    }
+
+    &-booking-info {
+      width: 40%;
+
+      &-logo {
+        width: 50%;
+        margin-bottom: $space-05;
+      }
+
+      &--variant-2-and-3 {
+        width: 50%;
+      }
+    }
+
+    &-address {
+      width: 48%;
+    }
+
+    &-booking-info, &-address {
+      display: flex;
+      flex-direction: column;
+
+      &__title {
+        font-size: 12px;
+        margin-bottom: $space-05;
+
+        &--variant-2-and-3 {
+          font-size: 10px;
+        }
+      }
+
+      &__item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+      }
+    }
+  }
+
+  &__invoice {
+    &-title {
+      margin-top: -12px;
+      margin-bottom: 10px;
+    }
+
+    &-fields {
+      display: flex;
+      justify-content: space-between;
+
+      &-columns {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &--variant-3 {
+        width: 32%;
+        justify-content: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    &-fields-columns &-field--variant-3 {
+      width: 100%;
+    }
+
+    &-field {
+      width: 32%;
+      margin-top: $space-1;
+
+      &--variant-2 {
+        width: 66%;
+      }
+
+      &--variant-3 {
+        margin-top: 2px;
+        border-bottom: 1px dotted black;
+
+        &-bottom-field {
+          margin-top: 10px;
+          border-bottom: none;
+        }
+      }
+
+      &--border-bottomless {
+        border-bottom: none;
+      }
+
+      &__value {
+        font-size: 12px;
+        display: inline-flex;
+      }
+
+      &__label {
+        border-top: 1px dotted black;
+        font-size: 10px;
+        padding-top: 1px;
+
+        &--variant-3 {
+          font-size: 9px;
+          margin-top: 4px;
+          margin-bottom: 6px;
+          border: none;
+        }
+      }
+
+      &__checkbox {
+        display: flex;
+
+        &-check {
+          font-size: 22px;
+          margin-top: -5px;
+          margin-right: 5px;
+
+          &--variant-3 {
+            font-size: 18px;
+            margin-right: 2px;
+          }
+        }
+
+        &-label {
+          font-size: 12px;
+
+          &--variant-3 {
+            font-size: 10px;
+            margin-bottom: 2px;
+          }
+        }
+
+        &-sublabel {
+          font-size: 8px;
+
+          &--variant-3 {
+            font-size: 7px;
+            margin-top: 2px;
+          }
+
+          &--borderder-top {
+            border-top: 1px dotted black;
+            margin-top: 1px;
+            padding-top: 3px;
+          }
+        }
+
+        &--variant-3 {
+          margin-top: 2px;
+          margin-left: -8px;
+        }
+      }
+
+      &__info {
+        width: 100%;
+        height: 100%;
+        background-color: $light-grey;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+
+        &-icon {
+          height: 40px;
+          margin: 8px 12px;
+        }
+
+        &-text {
+          line-height: 1.2;
+        }
+      }
+
+      &__logo-container {
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--variant-2 {
+          border: none !important;
+        }
+      }
+
+      &__logo {
+        padding: $space-05;
+        width: 100%;
+      }
+
+      &__box {
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+      }
+
+      &__consent-info {
+        color: $grey;
+      }
+    }
+  }
+
+  &__teeth {
+    margin-top: 10px;
+    border: 3px solid $primary;
+
+    &__upper {
+      border-bottom: 3px solid $primary;
+
+      &-image-container {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &__euroTypeInfo {
+        top: 8px;
+      }
+    }
+
+    &__notes {
+      height: 155px;
+      display: flex;
+
+      &-left {
+        width: 75%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 1px solid $primary;
+
+        &--shorter-width {
+          width: 70%;
+        }
+      }
+
+      &-right {
+        width: 25%;
+
+        &--longer-width {
+          width: 30%;
+        }
+      }
+
+      &-remarks {
+        display: flex;
+        align-items: center;
+        padding: 2px;
+        padding-left: 4px;
+        border-bottom: 1px solid $primary;
+
+        &-title {
+          font-size: 10px;
+          white-space: nowrap;
+          margin-right: 2px;
+        }
+      }
+
+      &-extra {
+        height: 100%;
+      }
+
+      &-info-legend {
+        font-size: 11px;
+        padding: $space-05;
+        border-top: 1px solid $primary;
+
+        &__title {
+          text-align: center;
+          margin-bottom: $space-05;
+        }
+
+        &__legend {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+
+      &-right-containers {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        &__top {
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          padding: $space-05;
+          border-bottom: 1px solid $primary;
+        }
+
+        &__bottom {
+          height: 85%;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+
+          &-title {
+            width: min-content;
+            white-space: nowrap;
+          }
+
+          &-title, &-checkboxes {
+            padding-left: $space-05;
+            padding-right: $space-05;
+          }
+        }
+      }
+
+      &-canine-molar-table {
+        width: 100%;
+        line-height: 1;
+        font-size: 11px;
+        color: black;
+
+        &__title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: inherit;
+          min-height: 18px;
+          text-align: center;
+          background-color: $light-grey;
+        }
+
+        &__table {
+          text-align: center;
+
+          th {
+            background-color: #e9ecef;
+          }
+
+          th, td {
+            vertical-align: middle;
+            padding-left: 0.4rem;
+            padding-right: 0.4rem;
+            padding-top: 0.1rem;
+            padding-bottom: 0.1rem;
+            border: 1px solid black;
+
+            &:nth-child(1) {
+              border-left: none !important;
+            }
+
+            &:nth-child(6) {
+              border-right: none !important;
+            }
+          }
+        }
+      }
+    }
+
+    &__lower {
+      border-top: 3px solid $primary;
+
+      &-image-container {
+        width: 50%;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &__euroTypeInfo {
+        bottom: 8px;
+        margin-bottom: 0;
+      }
+    }
+
+    &__upper, &__lower {
+      height: 270px;
+      display: flex;
+
+      &-image {
+        width: 310px;
+        height: auto;
+
+        &--edited {
+          width: 282px;
+        }
+
+        &-container {
+          position: relative;
+
+          &__numbers {
+            position: absolute;
+
+            &-number {
+              position: absolute;
+              font-size: 10px;
+              line-height: 0;
+            }
+          }
+        }
+      }
+
+      &-info-container {
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid $primary;
+      }
+
+      &__euroTypeInfo {
+        color: #dc3545;
+        font-size: 8px;
+        position: absolute;
+      }
+
+      &-stripping {
+        padding-left: $space-1;
+        padding-right: $space-1;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid black;
+        margin-top: 6px;
+        margin-bottom: 6px;
+      }
+
+      &-comments, &-notes {
+        width: 100%;
+        padding-top: $space-05;
+        padding-right: $space-1;
+        display: flex;
+        flex-direction: column;
+
+        &-box {
+          padding: $space-05;
+          border: 1px solid black;
+
+          &--variant-3 {
+            .lof-pdf__input-label,
+            .lof-pdf__checkbox-label {
+              font-size: 9px !important;
+            }
+          }
+
+          &--comments {
+            height: fit-content;
+          }
+
+          &--notes {
+            height: 100%;
+          }
+        }
+      }
+
+      &-notes {
+        height: 100%;
+        padding-bottom: $space-05;
+      }
+
+      &-arcs {
+        width: 25%;
+        height: 100%;
+        font-size: 10px;
+
+        &__table {
+          width: 100%;
+          height: 100%;
+          text-align: center;
+
+          &__title {
+            padding: $space-05 !important;
+            color: $white;
+            font-size: 12px;
+            background-color: $primary;
+            border: none !important;
+          }
+
+          &__size-label {
+            text-align: left;
+            white-space: nowrap;
+          }
+
+          &__section {
+            background-color: $light-grey;
+
+            &-type {
+              transform: rotate(-90deg);
+              white-space: nowrap;
+              margin: -6px;
+            }
+
+            &--no-border-bottom {
+              border-bottom: none !important;
+            }
+          }
+
+          &__cell {
+            &--disable {
+              background: url('~assets/images/line.png');
+              background-size: 100% 100%;
+              background-color: $light-grey;
+            }
+          }
+
+          &__column-label {
+            background-color: $light-grey;
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            word-break: break-word;
+            word-wrap: break-word;
+            font-size: 10px;
+            max-width: 50px;
+            padding-left: 2px !important;
+            padding-right: 2px !important;
+            border-top: none !important;
+
+            &:first-child {
+              border-left: none !important;
+            }
+
+            &:last-child {
+              border-right: none !important;
+            }
+          }
+
+          th, td {
+            vertical-align: middle;
+            padding: 0.1rem 0.2rem;
+            border: 1px solid black;
+          }
+
+          tr {
+            &:last-child > td {
+              border-bottom: none !important;
+            }
+
+            & > td:first-child {
+              border-left: none !important;
+            }
+
+            & > td:last-child {
+              border-right: none !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+
+    &-bottom {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__generalTerms {
+      margin-top: $space-1;
+      margin-bottom: $space-8;
+    }
+
+    &__signature-date-container {
+      width: 75%;
+      display: flex;
+      padding-top: 4px;
+      border-top: 1px solid black;
+    }
+
+    &__signature, &__date {
+      width: 50%;
+    }
+  }
+
+  &__general-terms {
+    height: min-content;
+
+    &__title {
+      font-size: 17px;
+      margin-bottom: $space-4;
+    }
+
+    &__content {
+      text-align: justify;
+      column-count: 2;
+      font-size: 11px;
+    }
+  }
+
+  &__checkbox {
+    height: auto;
+    min-height: 16px;
+    padding-top: 2px;
+    display: flex;
+    align-items: center;
+
+    &-rows-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-row {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &-check {
+      font-size: 22px;
+      line-height: 0.9;
+    }
+
+    &-label {
+      font-size: 10px;
+      margin-left: 4px;
+
+      &--lg {
+        font-size: 12px;
+      }
+    }
+
+    &--upper {
+      margin-top: -15px;
+    }
+
+    &--lower {
+      margin-bottom: -15px;
+    }
+
+    &--margin-sides {
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+
+    &--margin-tb {
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+
+    &--notes-tray {
+      &-middle {
+        margin-left: $space-3;
+      }
+
+      &-bottom {
+        border-top: 1px solid black;
+      }
+    }
+  }
+
+  &__input {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 10px;
+
+    &-label {
+      white-space: nowrap;
+    }
+
+    &-value {
+      width: 100%;
+      border-bottom: 1px solid black;
+      padding-left: $space-1;
+    }
+  }
+
+  &__info {
+    &-legend {
+      font-size: 10px;
+      margin-top: auto;
+    }
+
+    &-list {
+      list-style: none;
+      margin-bottom: 0;
+    }
+  }
+}

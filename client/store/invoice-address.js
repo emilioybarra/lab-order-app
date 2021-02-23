@@ -11,6 +11,9 @@ export const state = () => ({
   patientFirstName: '',
   patientNumber: '',
   appointmentDate: '',
+  standardSetup: false,
+  standardSetupPlus: false,
+  premiumSetupPlus: false,
   stateOrthodontistNameOnInvoice: false,
   isShippingAddress: false,
   shippingAddress: '',
@@ -19,52 +22,61 @@ export const state = () => ({
 
 export const getters = {
   getPractice (state) {
-    return state.practice || localStorage.getItem('lof__invoice-address__practice')
+    return state.practice || localStorage.getItem('lof__invoice-address__practice') || ''
   },
   getOrthodontist (state) {
-    return state.orthodontist || localStorage.getItem('lof__invoice-address__orthodontist')
+    return state.orthodontist || localStorage.getItem('lof__invoice-address__orthodontist') || ''
   },
   getAddress (state) {
-    return state.address || localStorage.getItem('lof__invoice-address__address')
+    return state.address || localStorage.getItem('lof__invoice-address__address') || ''
   },
   getPostalcodeTown (state) {
-    return state.postalcodeTown || localStorage.getItem('lof__invoice-address__postalcodeTown')
+    return state.postalcodeTown || localStorage.getItem('lof__invoice-address__postalcodeTown') || ''
   },
   getTelephone (state) {
-    return state.telephone || localStorage.getItem('lof__invoice-address__telephone')
+    return state.telephone || localStorage.getItem('lof__invoice-address__telephone') || ''
   },
   getFax (state) {
-    return state.fax || localStorage.getItem('lof__invoice-address__fax')
+    return state.fax || localStorage.getItem('lof__invoice-address__fax') || ''
   },
   getEmail (state) {
-    return state.email || localStorage.getItem('lof__invoice-address__email')
+    return state.email || localStorage.getItem('lof__invoice-address__email') || ''
   },
   getUstId (state) {
-    return state.ustId || localStorage.getItem('lof__invoice-address__ustId')
+    return state.ustId || localStorage.getItem('lof__invoice-address__ustId') || ''
   },
   getPatientLastName (state) {
-    return state.patientLastName || localStorage.getItem('lof__invoice-address__patientLastName')
+    return state.patientLastName || localStorage.getItem('lof__invoice-address__patientLastName') || ''
   },
   getPatientFirstName (state) {
-    return state.patientFirstName || localStorage.getItem('lof__invoice-address__patientFirstName')
+    return state.patientFirstName || localStorage.getItem('lof__invoice-address__patientFirstName') || ''
   },
   getPatientNumber (state) {
-    return state.patientNumber || localStorage.getItem('lof__invoice-address__patientNumber')
+    return state.patientNumber || localStorage.getItem('lof__invoice-address__patientNumber') || ''
   },
   getAppointmentDate (state) {
-    return state.appointmentDate || localStorage.getItem('lof__invoice-address__appointmentDate')
+    return state.appointmentDate || localStorage.getItem('lof__invoice-address__appointmentDate') || ''
+  },
+  getStandardSetup (state) {
+    return state.standardSetup || JSON.parse(localStorage.getItem('lof__invoice-address__standardSetup')) || false
+  },
+  getStandardSetupPlus (state) {
+    return state.standardSetupPlus || JSON.parse(localStorage.getItem('lof__invoice-address__standardSetupPlus')) || false
+  },
+  getPremiumSetupPlus (state) {
+    return state.premiumSetupPlus || JSON.parse(localStorage.getItem('lof__invoice-address__premiumSetupPlus')) || false
   },
   getStateOrthodontistNameOnInvoice (state) {
-    return state.stateOrthodontistNameOnInvoice || JSON.parse(localStorage.getItem('lof__invoice-address__stateOrthodontistNameOnInvoice'))
+    return state.stateOrthodontistNameOnInvoice || JSON.parse(localStorage.getItem('lof__invoice-address__stateOrthodontistNameOnInvoice')) || false
   },
   getIsShippingAddress (state) {
-    return state.isShippingAddress || JSON.parse(localStorage.getItem('lof__invoice-address__isShippingAddress'))
+    return state.isShippingAddress || JSON.parse(localStorage.getItem('lof__invoice-address__isShippingAddress')) || false
   },
   getShippingAddress (state) {
-    return state.shippingAddress || localStorage.getItem('lof__invoice-address__shippingAddress')
+    return state.shippingAddress || localStorage.getItem('lof__invoice-address__shippingAddress') || ''
   },
   getShippingPostalcodeTown (state) {
-    return state.shippingPostalcodeTown || localStorage.getItem('lof__invoice-address__shippingPostalcodeTown')
+    return state.shippingPostalcodeTown || localStorage.getItem('lof__invoice-address__shippingPostalcodeTown') || ''
   }
 }
 
@@ -117,6 +129,18 @@ export const mutations = {
     state.appointmentDate = appointmentDate
     localStorage.setItem('lof__invoice-address__appointmentDate', appointmentDate)
   },
+  setStandardSetup (state, standardSetup) {
+    state.standardSetup = standardSetup
+    localStorage.setItem('lof__invoice-address__standardSetup', standardSetup)
+  },
+  setStandardSetupPlus (state, standardSetupPlus) {
+    state.standardSetupPlus = standardSetupPlus
+    localStorage.setItem('lof__invoice-address__standardSetupPlus', standardSetupPlus)
+  },
+  setPremiumSetupPlus (state, premiumSetupPlus) {
+    state.premiumSetupPlus = premiumSetupPlus
+    localStorage.setItem('lof__invoice-address__premiumSetupPlus', premiumSetupPlus)
+  },
   setStateOrthodontistNameOnInvoice (state, stateOrthodontistNameOnInvoice) {
     state.stateOrthodontistNameOnInvoice = stateOrthodontistNameOnInvoice
     localStorage.setItem('lof__invoice-address__stateOrthodontistNameOnInvoice', stateOrthodontistNameOnInvoice)
@@ -135,37 +159,30 @@ export const mutations = {
   },
   resetInvoiceAddressState (state) {
     state.practice = ''
-    localStorage.removeItem('lof__invoice-address__practice')
     state.orthodontist = ''
-    localStorage.removeItem('lof__invoice-address__orthodontist')
     state.address = ''
-    localStorage.removeItem('lof__invoice-address__address')
     state.postalcodeTown = ''
-    localStorage.removeItem('lof__invoice-address__postalcodeTown')
     state.telephone = ''
-    localStorage.removeItem('lof__invoice-address__telephone')
     state.fax = ''
-    localStorage.removeItem('lof__invoice-address__fax')
     state.email = ''
-    localStorage.removeItem('lof__invoice-address__email')
     state.ustId = ''
-    localStorage.removeItem('lof__invoice-address__ustId')
     state.patientLastName = ''
-    localStorage.removeItem('lof__invoice-address__patientLastName')
     state.patientFirstName = ''
-    localStorage.removeItem('lof__invoice-address__patientFirstName')
     state.patientNumber = ''
-    localStorage.removeItem('lof__invoice-address__patientNumber')
     state.appointmentDate = ''
-    localStorage.removeItem('lof__invoice-address__appointmentDate')
+    state.standardSetup = false
+    state.standardSetupPlus = false
+    state.premiumSetupPlus = false
     state.stateOrthodontistNameOnInvoice = false
-    localStorage.removeItem('lof__invoice-address__stateOrthodontistNameOnInvoice')
     state.isShippingAddress = false
-    localStorage.removeItem('lof__invoice-address__isShippingAddress')
     state.shippingAddress = ''
-    localStorage.removeItem('lof__invoice-address__shippingAddress')
     state.shippingPostalcodeTown = ''
-    localStorage.removeItem('lof__invoice-address__shippingPostalcodeTown')
+
+    Object.keys(localStorage).map((key) => {
+      if (/(lof__invoice-address__)(.*)/.test(key)) {
+        localStorage.removeItem(key)
+      }
+    })
   }
 }
 
@@ -194,6 +211,9 @@ export const actions = {
         fax,
         email,
         ustId,
+        standardSetup,
+        standardSetupPlus,
+        premiumSetupPlus,
         stateOrthodontistNameOnInvoice,
         isShippingAddress,
         shippingAddress,
@@ -209,13 +229,16 @@ export const actions = {
     commit('setFax', fax)
     commit('setEmail', email)
     commit('setUstId', ustId)
+    commit('setStandardSetup', standardSetup)
+    commit('setStandardSetupPlus', standardSetupPlus)
+    commit('setPremiumSetupPlus', premiumSetupPlus)
     commit('setStateOrthodontistNameOnInvoice', stateOrthodontistNameOnInvoice)
     commit('setIsShippingAddress', isShippingAddress)
     commit('setShippingAddress', shippingAddress)
     commit('setShippingPostalcodeTown', shippingPostalcodeTown)
     return true
   },
-  saveTemplateData ({ getters }, payload) {
+  saveTemplateData ({ getters, commit }, payload) {
     const { templateTitle, userId } = payload
     const {
       getPractice: practice,
@@ -226,6 +249,9 @@ export const actions = {
       getFax: fax,
       getEmail: email,
       getUstId: ustId,
+      getStandardSetup: standardSetup,
+      getStandardSetupPlus: standardSetupPlus,
+      getPremiumSetupPlus: premiumSetupPlus,
       getStateOrthodontistNameOnInvoice: stateOrthodontistNameOnInvoice,
       getIsShippingAddress: isShippingAddress,
       getShippingAddress: shippingAddress,
@@ -242,6 +268,9 @@ export const actions = {
         fax,
         email,
         ustId,
+        standardSetup,
+        standardSetupPlus,
+        premiumSetupPlus,
         stateOrthodontistNameOnInvoice,
         isShippingAddress,
         shippingAddress,
@@ -254,8 +283,20 @@ export const actions = {
     }
 
     this.$axios.$post('/api/templates/invoice-address', prepareBody)
-      .then((result) => {
-        console.log(result)
+      .then((response) => {
+        if (response.status === 201) {
+          const notification = {
+            message: 'savedTemplate'
+          }
+          commit('common/setNotifications', notification, { root: true })
+        }
+      })
+      .catch(() => {
+        const notification = {
+          message: 'savedTemplate',
+          variant: 'danger'
+        }
+        commit('common/setNotifications', notification, { root: true })
       })
   },
   async deleteTemplateById ({ commit }, payload) {
@@ -263,11 +304,21 @@ export const actions = {
     return await this.$axios.$delete(`/api/templates/invoice-address/${ templateId }`, {
       params: { userId }
     })
-      .then((result) => {
-        return result.status === 204
+      .then((response) => {
+        if (response.status === 200) {
+          const notification = {
+            message: 'deletedTemplate',
+            variant: 'success'
+          }
+          commit('common/setNotifications', notification, { root: true })
+        }
       })
       .catch(() => {
-        return false
+        const notification = {
+          message: 'deletedTemplate',
+          variant: 'danger'
+        }
+        commit('common/setNotifications', notification, { root: true })
       })
   }
 }
