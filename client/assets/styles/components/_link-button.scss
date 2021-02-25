@@ -16,6 +16,7 @@
 
     &:disabled {
       opacity: 1;
+      border-color: $secondary;
       background-color: $secondary;
       cursor: not-allowed;
     }
