@@ -24,7 +24,7 @@ export default {
   ssr: false,
 
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
+  target: 'server',
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -35,7 +35,7 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+      { rel: 'icon', type: 'image/png', href: '/icon.png' }
     ]
   },
 
@@ -98,11 +98,15 @@ export default {
     }
   },
 
+  /*
   proxy: {
     '/api': `${ process.env.NUXT_ENV_APP_API_URL_DEV }:5000`
   },
 
+   */
+
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
+  /*
   axios: {
     baseURL: `${ process.env.NUXT_ENV_APP_API_URL_DEV }:3000`, // Used as fallback if no runtime config is provided
     proxyHeaders: false,
@@ -121,13 +125,25 @@ export default {
     }
   },
 
+   */
+
+  // Server Middleware
+
+  serverMiddleware: [
+    '~/server/app.js'
+  ],
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    transpile: [ '@nuxtjs/auth' ]
-    /*
+    babel: {
+      compact: true
+    },
+
+    transpile: [ '@nuxtjs/auth' ],
+
     filenames: {
-      app: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js',
-      chunk: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js'
+      app: ({ isDev }) => `[name]${ isDev ? '' : '[chunkhash:8]' }.js`,
+      chunk: ({ isDev }) => `[name]${ isDev ? '' : '[chunkhash:8]' }.js`
     },
 
     devMiddleware: {
@@ -136,7 +152,7 @@ export default {
         Vary: '*'
       }
     }
-     */
+
   },
 
   styleResources: {
@@ -146,7 +162,7 @@ export default {
   bootstrapVue: {
     bootstrapCSS: false,
     bootstrapVueCSS: false,
-    icons: true
+    icons: false
   },
 
   i18n: {

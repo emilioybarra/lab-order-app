@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const orderFormSchema = new Schema(
   {
@@ -141,6 +141,6 @@ const orderFormSchema = new Schema(
   {
     timestamps: true
   }
-);
+)
 
-module.exports = mongoose.model('Order Form', orderFormSchema);
+module.exports = mongoose.model('Order Form', orderFormSchema)

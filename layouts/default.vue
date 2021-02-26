@@ -49,8 +49,20 @@
           &copy; DW Lingual System GmbH {{ currentYear }}
         </div>
         <div>
-          <a href="#" class="lof-footer__link">Impressum</a>
-          <a href="#" class="lof-footer__link">Datenschutz</a>
+          <a
+            target="_blank"
+            class="lof-footer__link"
+            :href="`https://www.lingualsystems.${ $i18n.locale === 'de' ? 'de/impressum/' : 'co.uk/legal-disclosure/' }`"
+          >
+            {{ $i18n.locale === 'de' ? 'Impressum' : 'Legal Disclosure' }}
+          </a>
+          <a
+            target="_blank"
+            class="lof-footer__link"
+            :href="`https://www.lingualsystems.${ $i18n.locale === 'de' ? 'de/datenschutz-cookies/' : 'co.uk/data-privacy-policy-cookies/' }`"
+          >
+            {{ $i18n.locale === 'de' ? 'Datenschutz & Cookies' : 'Data Privacy Policy & Cookies' }}
+          </a>
         </div>
       </div>
     </div>

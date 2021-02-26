@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const invoiceAddressTemplateSchema = new Schema(
   {
@@ -33,6 +33,6 @@ const invoiceAddressTemplateSchema = new Schema(
   {
     timestamps: true
   }
-);
+)
 
-module.exports = mongoose.model('Invoice Address Template', invoiceAddressTemplateSchema);
+module.exports = mongoose.model('Invoice Address Template', invoiceAddressTemplateSchema)

@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const lowerTeethTemplateSchema = new Schema(
   {
@@ -31,6 +31,6 @@ const lowerTeethTemplateSchema = new Schema(
   {
     timestamps: true
   }
-);
+)
 
-module.exports = mongoose.model('Lower Teeth Template', lowerTeethTemplateSchema);
+module.exports = mongoose.model('Lower Teeth Template', lowerTeethTemplateSchema)

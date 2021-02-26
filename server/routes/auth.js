@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const authController = require('../controllers/auth');
+const express = require('express')
+const router = express.Router()
+const authController = require('../controllers/auth')
 
-router.get('/user/:hashedWordpressUser', authController.getAuthenticatedUser);
+router.get('/user/:hashedWordpressUser', authController.getAuthenticatedUser)
 
-module.exports = router;
+module.exports = router
