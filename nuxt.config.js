@@ -10,6 +10,7 @@ export default {
   // modern: 'client',
 
   server: {
+    port: 80,
     host: '0.0.0.0' // default: localhost
   },
 
