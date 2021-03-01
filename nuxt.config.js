@@ -10,7 +10,6 @@ export default {
   // modern: 'client',
 
   server: {
-    // port: 3000, // default: 3000
     host: '0.0.0.0' // default: localhost
   },
 
@@ -87,7 +86,8 @@ export default {
     // https://i18n.nuxtjs.org
     'nuxt-i18n',
     '@nuxtjs/proxy',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '~/modules/api'
   ],
 
   auth: {
@@ -98,61 +98,23 @@ export default {
     }
   },
 
-  /*
-  proxy: {
-    '/api': `${ process.env.NUXT_ENV_APP_API_URL_DEV }:5000`
-  },
-
-   */
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  /*
-  axios: {
-    baseURL: `${ process.env.NUXT_ENV_APP_API_URL_DEV }:3000`, // Used as fallback if no runtime config is provided
-    proxyHeaders: false,
-    credentials: false
-  },
-
-  publicRuntimeConfig: {
-    axios: {
-      // browserBaseURL: process.env
-    }
-  },
-
-  privateRuntimeConfig: {
-    axios: {
-      // baseURL: process.env.NUXT_ENV_APP_API_URL_DEV
-    }
-  },
-
-   */
-
   // Server Middleware
-
-  serverMiddleware: [
-    '~/server/app.js'
-  ],
+  // serverMiddleware: [
+  //   '~/server/app.js'
+  // ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    babel: {
-      compact: true
-    },
-
     transpile: [ '@nuxtjs/auth' ],
-
-    filenames: {
-      app: ({ isDev }) => `[name]${ isDev ? '' : '[chunkhash:8]' }.js`,
-      chunk: ({ isDev }) => `[name]${ isDev ? '' : '[chunkhash:8]' }.js`
+    babel: {
+      minified: true
     },
-
     devMiddleware: {
       headers: {
-        'Cache-Control': 'no-store',
-        Vary: '*'
+        Vary: '*',
+        'Cache-Control': 'no-store'
       }
     }
-
   },
 
   styleResources: {
