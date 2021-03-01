@@ -11,8 +11,6 @@ ADD . /usr/src/app/
 RUN npm install
 RUN npm run build
 
-ENV MONGO_DB_URI=mongodb+srv://emilio:Maw79708@cluster0.30uow.mongodb.net/lab-order
-
 EXPOSE 3000
 
 CMD [ "npm", "start" ]
