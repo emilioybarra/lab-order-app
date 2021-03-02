@@ -137,6 +137,17 @@
       }
     },
 
+    beforeCreate () {
+      if (process.browser) {
+        const navigatorLanguage = navigator.language.toLocaleLowerCase().substring(0, 2)
+        if (!this.$cookies.get('i18n_lang_cookie') || navigatorLanguage !== this.$cookies.get('i18n_lang_cookie')) {
+          const lang = this.$i18n.locales.find(locale => locale.navigator === navigatorLanguage).code
+          this.$cookies.set('i18n_lang_cookie', lang)
+          this.$i18n.setLocale(lang)
+        }
+      }
+    },
+
     created () {
       this.pdfPreviewKey = this.$generateRandomKey()
     },

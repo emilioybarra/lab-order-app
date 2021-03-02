@@ -7,7 +7,7 @@ import ru from './lang/ru'
 import sp from './lang/sp'
 
 export default {
-  // modern: 'client',
+  modern: 'server',
 
   server: {
     port: 80,
@@ -91,6 +91,22 @@ export default {
     '~/modules/api'
   ],
 
+  axios: {
+    baseURL: process.env.BROWSER_BASE_URL // Used as fallback if no runtime config is provided
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.BROWSER_BASE_URL
+    }
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.BASE_URL
+    }
+  },
+
   auth: {
     plugins: [ '~/plugins/auth.js' ],
     redirect: {
@@ -131,14 +147,16 @@ export default {
   i18n: {
     langDir: 'lang/',
     strategy: 'no_prefix',
+    defaultLocale: 'en',
     vuex: {
       syncLocale: true
     },
     detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
+      cookieKey: 'i18n_lang_cookie',
+      fallbackLocale: 'en',
       onlyOnRoot: true,
-      alwaysRedirect: true
+      alwaysRedirect: true,
+      cookieSecure: true
     },
     vueI18n: {
       messages: { de, en, fr, it, jp, ru, sp }
@@ -149,6 +167,7 @@ export default {
         file: 'de.js',
         name: 'Deutsch',
         iso: 'de_DE',
+        navigator: 'de',
         localeDateFormat: 'DD.MM.YYYY'
       },
       {
@@ -156,6 +175,7 @@ export default {
         file: 'en.js',
         name: 'English',
         iso: 'en_GB',
+        navigator: 'en',
         localeDateFormat: 'DD/MM/YYYY'
       },
       {
@@ -163,6 +183,7 @@ export default {
         file: 'fr.js',
         name: 'Français',
         iso: 'fr_FR',
+        navigator: 'fr',
         localeDateFormat: 'DD/MM/YYYY'
       },
       {
@@ -170,6 +191,7 @@ export default {
         file: 'it.js',
         name: 'Italiano',
         iso: 'it_IT',
+        navigator: 'it',
         localeDateFormat: 'DD/MM/YYYY'
       },
       {
@@ -177,6 +199,7 @@ export default {
         file: 'jp.js',
         name: 'にほんご',
         iso: 'ja_JP',
+        navigator: 'ja',
         localeDateFormat: 'YYYY/MM/DD'
       },
       {
@@ -184,6 +207,7 @@ export default {
         file: 'ru.js',
         name: 'Русский',
         iso: 'ru_RU',
+        navigator: 'ru',
         localeDateFormat: 'DD.MM.YYYY'
       },
       {
@@ -191,6 +215,7 @@ export default {
         file: 'sp.js',
         name: 'Español',
         iso: 'es_ES',
+        navigator: 'es',
         localeDateFormat: 'DD/MM/YYYY'
       }
     ]

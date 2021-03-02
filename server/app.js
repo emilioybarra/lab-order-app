@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-// const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 const app = express()
 const errorController = require('./controllers/error')
 const authRoutes = require('./routes/auth')
@@ -37,12 +37,10 @@ mongoose
   .connect(MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
     console.log('Database is connected')
-    /*
+
     app.listen(PORT, () => {
       console.log(`App is running on ${ PORT }`)
     })
-
-     */
   })
   .catch((err) => {
     console.log(err)
