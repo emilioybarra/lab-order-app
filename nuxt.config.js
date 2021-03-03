@@ -142,6 +142,10 @@ export default {
   },
 
   pwa: {
+    manifest: {
+      name: 'DWLS Lab Order Form',
+      background_color: '#DFDBEC'
+    },
     meta: {
       name: 'DWLS Lab Order Form',
       author: 'Projekteins GmbH',
