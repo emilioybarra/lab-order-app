@@ -6,11 +6,13 @@ import jp from './lang/jp'
 import ru from './lang/ru'
 import sp from './lang/sp'
 
+const dev = !!process.env.NUXT_ENV_APP_ENVIRONMENT
+
 export default {
-  // modern: 'client',
+  modern: dev ? false : 'server',
 
   server: {
-    // port: 3000, // default: 3000
+    port: dev ? 3000 : 80,
     host: '0.0.0.0' // default: localhost
   },
 
@@ -87,8 +89,25 @@ export default {
     // https://i18n.nuxtjs.org
     'nuxt-i18n',
     '@nuxtjs/proxy',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '~/modules/api'
   ],
+
+  axios: {
+    baseURL: process.env.BROWSER_BASE_URL // Used as fallback if no runtime config is provided
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.BROWSER_BASE_URL
+    }
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.BASE_URL
+    }
+  },
 
   auth: {
     plugins: [ '~/plugins/auth.js' ],
@@ -98,61 +117,23 @@ export default {
     }
   },
 
-  /*
-  proxy: {
-    '/api': `${ process.env.NUXT_ENV_APP_API_URL_DEV }:5000`
-  },
-
-   */
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  /*
-  axios: {
-    baseURL: `${ process.env.NUXT_ENV_APP_API_URL_DEV }:3000`, // Used as fallback if no runtime config is provided
-    proxyHeaders: false,
-    credentials: false
-  },
-
-  publicRuntimeConfig: {
-    axios: {
-      // browserBaseURL: process.env
-    }
-  },
-
-  privateRuntimeConfig: {
-    axios: {
-      // baseURL: process.env.NUXT_ENV_APP_API_URL_DEV
-    }
-  },
-
-   */
-
   // Server Middleware
-
-  serverMiddleware: [
-    '~/server/app.js'
-  ],
+  // serverMiddleware: [
+  //   '~/server/app.js'
+  // ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    babel: {
-      compact: true
-    },
-
     transpile: [ '@nuxtjs/auth' ],
-
-    filenames: {
-      app: ({ isDev }) => `[name]${ isDev ? '' : '[chunkhash:8]' }.js`,
-      chunk: ({ isDev }) => `[name]${ isDev ? '' : '[chunkhash:8]' }.js`
+    babel: {
+      minified: true
     },
-
     devMiddleware: {
       headers: {
-        'Cache-Control': 'no-store',
-        Vary: '*'
+        Vary: '*',
+        'Cache-Control': 'no-store'
       }
     }
-
   },
 
   styleResources: {
@@ -168,14 +149,16 @@ export default {
   i18n: {
     langDir: 'lang/',
     strategy: 'no_prefix',
+    defaultLocale: 'en',
     vuex: {
       syncLocale: true
     },
     detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
+      cookieKey: 'i18n_lang_cookie',
+      fallbackLocale: 'en',
       onlyOnRoot: true,
-      alwaysRedirect: true
+      alwaysRedirect: true,
+      cookieSecure: true
     },
     vueI18n: {
       messages: { de, en, fr, it, jp, ru, sp }
@@ -186,6 +169,7 @@ export default {
         file: 'de.js',
         name: 'Deutsch',
         iso: 'de_DE',
+        navigator: 'de',
         localeDateFormat: 'DD.MM.YYYY'
       },
       {
@@ -193,6 +177,7 @@ export default {
         file: 'en.js',
         name: 'English',
         iso: 'en_GB',
+        navigator: 'en',
         localeDateFormat: 'DD/MM/YYYY'
       },
       {
@@ -200,6 +185,7 @@ export default {
         file: 'fr.js',
         name: 'Français',
         iso: 'fr_FR',
+        navigator: 'fr',
         localeDateFormat: 'DD/MM/YYYY'
       },
       {
@@ -207,6 +193,7 @@ export default {
         file: 'it.js',
         name: 'Italiano',
         iso: 'it_IT',
+        navigator: 'it',
         localeDateFormat: 'DD/MM/YYYY'
       },
       {
@@ -214,6 +201,7 @@ export default {
         file: 'jp.js',
         name: 'にほんご',
         iso: 'ja_JP',
+        navigator: 'ja',
         localeDateFormat: 'YYYY/MM/DD'
       },
       {
@@ -221,6 +209,7 @@ export default {
         file: 'ru.js',
         name: 'Русский',
         iso: 'ru_RU',
+        navigator: 'ru',
         localeDateFormat: 'DD.MM.YYYY'
       },
       {
@@ -228,6 +217,7 @@ export default {
         file: 'sp.js',
         name: 'Español',
         iso: 'es_ES',
+        navigator: 'es',
         localeDateFormat: 'DD/MM/YYYY'
       }
     ]

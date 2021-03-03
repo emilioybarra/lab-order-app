@@ -11,10 +11,10 @@
       >
         <div class="lof-pdf__header-logos" :class="{ 'lof-pdf__header-logos--variant-2': validateLanguagesToSavedLanguage([ 'ru', 'jp' ]) }">
           <div v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr', 'it', 'sp' ])" class="lof-pdf__header-logo lof-pdf__header-logo--dwls-logo">
-            <img :src="require('~/assets/images/logo.png')">
+            <img class="w-100" :src="require('~/assets/images/logo.png')">
           </div>
           <div class="lof-pdf__header-logo lof-pdf__header-logo--win-logo" :class="{ 'lof-pdf__header-logo--variant-2': validateLanguagesToSavedLanguage([ 'ru', 'jp' ]) }">
-            <img :src="require('~/assets/images/win.png')">
+            <img class="w-100" :src="require('~/assets/images/win.png')">
           </div>
         </div>
         <div class="lof-pdf__header-info" :class="{ 'lof-pdf__header-info--variant-2': validateLanguagesToSavedLanguage([ 'ru', 'jp' ]) }">

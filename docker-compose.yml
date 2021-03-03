@@ -5,9 +5,6 @@ services:
     build: .
     container_name: lab-order-form
     ports:
-      - "3000:3000"
-    environment:
-      HOST: 0.0.0.0
+      - "80:80"
     command:
       "npm start"
-

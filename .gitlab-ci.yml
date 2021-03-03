@@ -1,0 +1,19 @@
+variables:
+  REPO_NAME: proeins/dwls/lab-order-form
+
+stages:
+  - Build and push image
+
+docker build & push:
+  image: docker:latest
+  stage: Build and push image
+  services:
+    - docker:dind
+  script:
+  - CURRENT_IMAGE_TAG=${CI_COMMIT_TAG:-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA}
+  - CURRENT_IMAGE_TAG=$(echo $CURRENT_IMAGE_TAG | sed 's/[^a-zA-Z0-9.-]//g')
+  - docker version
+  - docker build -t $CI_REGISTRY/$REPO_NAME:latest -t $CI_REGISTRY/$REPO_NAME:$CURRENT_IMAGE_TAG .
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - docker push $CI_REGISTRY/$REPO_NAME:$CURRENT_IMAGE_TAG
+  - docker push $CI_REGISTRY/$REPO_NAME:latest

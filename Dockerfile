@@ -5,14 +5,13 @@ FROM node:lts
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+# copy both 'package.json' and 'package-lock.json' (if available)
+COPY package*.json ./
+
 # copy the app, note .dockerignore
-ADD . /usr/src/app/
+COPY . /usr/src/app/
 
 RUN npm install
 RUN npm run build
-
-ENV MONGO_DB_URI=mongodb+srv://emilio:Maw79708@cluster0.30uow.mongodb.net/lab-order
-
-EXPOSE 3000
 
 CMD [ "npm", "start" ]
