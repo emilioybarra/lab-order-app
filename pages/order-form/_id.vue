@@ -42,7 +42,7 @@
   import html2pdf from 'html2pdf.js'
 
   export default {
-    auth: 'guest',
+    auth: false,
     loading: true,
     layout: 'plain',
 

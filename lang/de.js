@@ -12,7 +12,8 @@ export default {
       cancel: 'Abbrechen',
       send: 'Abschicken',
       preview: 'Preview PDF',
-      download: 'Download PDF'
+      download: 'Download PDF',
+      generatingPdf: 'PDF generieren...'
     },
     titles: {
       invoiceAddress: 'Rechnungsadresse',
@@ -37,10 +38,10 @@ export default {
       templateTitle: 'Vorlage Titel'
     },
     notifications: {
-      savedOrderForm: 'Form was saved.',
-      savedTemplate: 'Template was saved.',
-      deletedTemplate: 'Template was deleted.',
-      error: 'Error, please try again.'
+      savedOrderForm: 'Das Formular wurde gespeichert.',
+      savedTemplate: 'Die Vorlage wurde gespeichert.',
+      deletedTemplate: 'Vorlage wurde gelöscht.',
+      error: 'Fehler, bitte versuchen Sie es erneut.'
     }
   },
   section: {
@@ -58,8 +59,7 @@ export default {
         name: 'DW Lingual Systems GmbH',
         streetHouse: 'Lindenstraße 44',
         zipCity: '49152 Bad Essen',
-        country: 'Deutschland',
-        telephone: ''
+        country: 'Deutschland'
       }
     },
     h_2: {

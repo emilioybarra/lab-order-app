@@ -42,13 +42,13 @@
             <span class="lof-pdf__header-booking-info__item">{{ $t('section.h_1.contact.email', pdfLanguage) }}</span>
           </div>
           <div v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr', 'it', 'sp', 'ru' ])" class="lof-pdf__header-address">
-            <strong v-if="$t('section.h_1.address.title', pdfLanguage)" class="lof-pdf__header-address__title">{{ $t('section.h_1.address.title', pdfLanguage) }}</strong>
-            <span v-if="$t('section.h_1.address.name', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.name', pdfLanguage) }}</span>
-            <span v-if="$t('section.h_1.address.address', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.address', pdfLanguage) }}</span>
-            <span v-if="$t('section.h_1.address.streetHouse', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.streetHouse', pdfLanguage) }}</span>
+            <strong v-if="$te('section.h_1.address.title', pdfLanguage)" class="lof-pdf__header-address__title">{{ $t('section.h_1.address.title', pdfLanguage) }}</strong>
+            <span v-if="$te('section.h_1.address.name', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.name', pdfLanguage) }}</span>
+            <span v-if="$te('section.h_1.address.address', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.address', pdfLanguage) }}</span>
+            <span v-if="$te('section.h_1.address.streetHouse', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.streetHouse', pdfLanguage) }}</span>
             <span class="lof-pdf__header-address__item">{{ $t('section.h_1.address.zipCity', pdfLanguage) }}</span>
-            <span v-if="$t('section.h_1.address.country', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.country', pdfLanguage) }}</span>
-            <span v-if="$t('section.h_1.address.telephone', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.telephone', pdfLanguage) }}</span>
+            <span v-if="$te('section.h_1.address.country', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.country', pdfLanguage) }}</span>
+            <span v-if="$te('section.h_1.address.telephone', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.telephone', pdfLanguage) }}</span>
           </div>
           <div v-if="validateLanguagesToSavedLanguage([ 'jp' ])" class="lof-pdf__header-address">
             <strong class="lof-pdf__header-address__title">{{ $t('section.h_1.address.title', pdfLanguage) }}</strong>

@@ -12,7 +12,8 @@ export default {
       cancel: 'Annuler',
       send: 'Envoyer',
       preview: 'Prévisualisation PDF',
-      download: 'Télécharger le PDF'
+      download: 'Télécharger le PDF',
+      generatingPdf: 'Générer des PDF...'
     },
     titles: {
       invoiceAddress: 'Adresse de facturation',
@@ -57,8 +58,7 @@ export default {
         name: 'DW Lingual Systems GmbH',
         streetHouse: 'Lindenstraße 44',
         zipCity: '49152 Bad Essen',
-        country: 'Germany',
-        telephone: ''
+        country: 'Germany'
       }
     },
     h_2: {

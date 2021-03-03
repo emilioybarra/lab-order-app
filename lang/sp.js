@@ -12,7 +12,8 @@ export default {
       cancel: 'Cancelar',
       send: 'Envía',
       preview: 'Vista previa del PDF',
-      download: 'Descargue el PDF'
+      download: 'Descargue el PDF',
+      generatingPdf: 'Generación de PDF...'
     },
     titles: {
       invoiceAddress: 'Dirección de facturación',
@@ -54,12 +55,10 @@ export default {
         email: 'win@lingualsystems.es'
       },
       address: {
-        name: '',
         title: 'Por favor envíe las impresiones a:',
         streetHouse: 'Lindenstraße 44',
         zipCity: '49152 Bad Essen',
-        country: 'Germany',
-        telephone: ''
+        country: 'Germany'
       }
     },
     h_2: {

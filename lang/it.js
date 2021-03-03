@@ -12,7 +12,8 @@ export default {
       cancel: 'Annulla',
       send: 'Inviare',
       preview: 'Anteprima PDF',
-      download: 'Scaricare PDF'
+      download: 'Scaricare PDF',
+      generatingPdf: 'Generazione di PDF...'
     },
     titles: {
       invoiceAddress: 'Indirizzo di fatturazione',
@@ -55,11 +56,9 @@ export default {
       },
       address: {
         title: 'Inviare le impronte a:',
-        name: '',
         streetHouse: 'Lindenstraße 44',
         zipCity: '49152 Bad Essen',
-        country: 'Germany',
-        telephone: ''
+        country: 'Germany'
       }
     },
     h_2: {

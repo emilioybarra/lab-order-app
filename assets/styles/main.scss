@@ -24,6 +24,7 @@
   'components/archwire-sizes-table',
   'components/card',
   'components/checkbox',
+  'components/filters',
   'components/headline',
   'components/input-field',
   'components/language-filter',
@@ -178,9 +179,9 @@ body {
     justify-content: space-between;
     margin-bottom: 8px;
     flex: 0 0 auto;
+    flex-wrap: wrap;
 
     &__link {
-      margin-left: $space-1;
       color: $font-color;
     }
   }
