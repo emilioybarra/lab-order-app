@@ -117,11 +117,6 @@ export default {
     }
   },
 
-  // Server Middleware
-  // serverMiddleware: [
-  //   '~/server/app.js'
-  // ],
-
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     transpile: [ '@nuxtjs/auth' ],
@@ -144,6 +139,15 @@ export default {
     bootstrapCSS: false,
     bootstrapVueCSS: false,
     icons: false
+  },
+
+  pwa: {
+    meta: {
+      name: 'DWLS Lab Order Form',
+      author: 'Projekteins GmbH',
+      theme_color: '#DFDBEC',
+      nativeUI: true
+    }
   },
 
   i18n: {

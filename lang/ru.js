@@ -12,7 +12,8 @@ export default {
       cancel: 'Отменить',
       send: 'Отправить',
       preview: 'Просмотр PDF',
-      download: 'Скачать PDF'
+      download: 'Скачать PDF',
+      generatingPdf: 'Генерирование PDF...'
     },
     titles: {
       invoiceAddress: 'Адрес счёта-фактуры',
@@ -53,12 +54,9 @@ export default {
         email: 'info@lingualsystems.ru'
       },
       address: {
-        title: '',
         name: 'Бизнес-Центр „Шухова-Плаза“',
         address: 'ул.Шухова, д.14 (метро „Шаболовская“)',
-        streetHouse: '',
         zipCity: '115162, г.Москва',
-        country: '',
         telephone: 'Тел. / Факс: 8 (495) 64 03 487'
       }
     },

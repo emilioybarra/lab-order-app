@@ -138,19 +138,31 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchTemplates (context, payload) {
+  async fetchTemplates ({ commit }, payload) {
     const { currentPage, userId } = payload
     return await this.$axios.$get('/api/templates/upper-teeth', {
       params: {
         page: currentPage,
         userId
       }
+    }).catch(() => {
+      const notification = {
+        message: 'error',
+        variant: 'danger'
+      }
+      commit('common/setNotifications', notification, { root: true })
     })
   },
   async fetchTemplateById ({ commit }, payload) {
     const { templateId, userId } = payload
     const { upperTeethTemplate } = await this.$axios.$get(`/api/templates/upper-teeth/${ templateId }`, {
       params: { userId }
+    }).catch(() => {
+      const notification = {
+        message: 'error',
+        variant: 'danger'
+      }
+      commit('common/setNotifications', notification, { root: true })
     })
     const {
       upperTeethTemplateData: {

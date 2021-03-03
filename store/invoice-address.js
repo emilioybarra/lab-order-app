@@ -200,6 +200,12 @@ export const actions = {
     const { templateId, userId } = payload
     const { invoiceAddressTemplate } = await this.$axios.$get(`/api/templates/invoice-address/${ templateId }`, {
       params: { userId }
+    }).catch(() => {
+      const notification = {
+        message: 'error',
+        variant: 'danger'
+      }
+      commit('common/setNotifications', notification, { root: true })
     })
     const {
       invoiceAddressTemplateData: {
@@ -286,14 +292,16 @@ export const actions = {
       .then((response) => {
         if (response.status === 201) {
           const notification = {
-            message: 'savedTemplate'
+            message: 'savedTemplate',
+            variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })
         }
       })
       .catch(() => {
+        console.log('error')
         const notification = {
-          message: 'savedTemplate',
+          message: 'error',
           variant: 'danger'
         }
         commit('common/setNotifications', notification, { root: true })
@@ -315,7 +323,7 @@ export const actions = {
       })
       .catch(() => {
         const notification = {
-          message: 'deletedTemplate',
+          message: 'error',
           variant: 'danger'
         }
         commit('common/setNotifications', notification, { root: true })

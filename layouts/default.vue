@@ -1,13 +1,17 @@
 <template>
   <div class="lof" :style="`height: ${ innerHeight }px`" @scroll.passive="handleScroll">
+    <transition name="fade">
+      <div v-if="$nuxt.isOffline" class="bg-danger py-1 text-light w-100 d-flex justify-content-center">
+        Offline
+      </div>
+    </transition>
     <transition-group name="slide-down">
       <notification
         v-for="(notification, index) in getNotifications"
         v-if="!!getNotifications.length"
         :key="index + 1"
         show-notification
-        :variant="notification.variant"
-        :message="notification.message"
+        :notification="notification"
       />
     </transition-group>
 
@@ -51,7 +55,7 @@
         <div>
           <a
             target="_blank"
-            class="lof-footer__link"
+            class="lof-footer__link mr-2"
             :href="`https://www.lingualsystems.${ $i18n.locale === 'de' ? 'de/impressum/' : 'co.uk/legal-disclosure/' }`"
           >
             {{ $i18n.locale === 'de' ? 'Impressum' : 'Legal Disclosure' }}
@@ -93,7 +97,7 @@
       },
       getNotifications () {
         return this.$store.getters['common/getNotifications'].map((notification) => {
-          return { message: this.$t(`common.notifications['${ notification.message }']`) }
+          return { ...notification, message: this.$t(`common.notifications['${ notification.message }']`) }
         })
       }
     },

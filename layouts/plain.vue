@@ -1,5 +1,10 @@
 <template>
   <div class="lof" :style="`height: ${ innerHeight }px`" @scroll.passive="handleScroll">
+    <transition name="fade">
+      <div v-if="$nuxt.isOffline" class="bg-danger py-1 text-light w-100 d-flex justify-content-center">
+        Offline
+      </div>
+    </transition>
     <b-navbar class="lof-navbar" :class="scrollY > 0 || showLanguageMenu ? 'lof-navbar--shadow' : ''" sticky toggleable="false">
       <b-navbar-nav class="flex-row ml-auto">
         <b-nav-text class="lof-navbar__language" @click="showLanguageMenu = !showLanguageMenu">
@@ -25,7 +30,7 @@
         </div>
         <div>
           <a
-            class="lof-footer__link"
+            class="lof-footer__link mr-2"
             :href="`https://www.lingualsystems.${ $i18n.locale === 'de' ? 'de/impressum/' : 'co.uk/legal-disclosure/' }`"
           >
             {{ $i18n.locale === 'de' ? 'Impressum' : 'Legal Disclosure' }}

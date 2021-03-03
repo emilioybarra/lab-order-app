@@ -12,7 +12,8 @@ export default {
       cancel: 'キャンセル',
       send: '送信',
       preview: 'PDFのプレビュー',
-      download: 'PDFダウンロード'
+      download: 'PDFダウンロード',
+      generatingPdf: 'PDFの生成...'
     },
     titles: {
       invoiceAddress: '請求書の住所',

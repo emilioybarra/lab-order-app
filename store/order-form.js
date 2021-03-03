@@ -230,10 +230,10 @@ export const actions = {
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })
-          commit('invoiceAddress/resetInvoiceAddressState')
-          commit('upper-teeth/resetUpperTeethState')
-          commit('notes/resetNotesState')
-          commit('lower-teeth/resetLowerTeethState')
+          commit('invoiceAddress/resetInvoiceAddressState', { root: true })
+          commit('upper-teeth/resetUpperTeethState', { root: true })
+          commit('notes/resetNotesState', { root: true })
+          commit('lower-teeth/resetLowerTeethState', { root: true })
         }
       })
       .catch(() => {
@@ -242,10 +242,10 @@ export const actions = {
           variant: 'danger'
         }
         commit('common/setNotifications', notification, { root: true })
-        commit('invoiceAddress/resetInvoiceAddressState')
-        commit('upper-teeth/resetUpperTeethState')
-        commit('notes/resetNotesState')
-        commit('lower-teeth/resetLowerTeethState')
+        commit('invoiceAddress/resetInvoiceAddressState', { root: true })
+        commit('upper-teeth/resetUpperTeethState', { root: true })
+        commit('notes/resetNotesState', { root: true })
+        commit('lower-teeth/resetLowerTeethState', { root: true })
       })
   }
 }

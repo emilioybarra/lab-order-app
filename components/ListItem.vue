@@ -4,6 +4,7 @@
       <b-button variant="primary" class="w-100" @click="onSelect">
         <span v-if="!loading">{{ name }}</span>
         <b-spinner v-if="loading" small variant="light" />
+        <span v-if="loading">{{ loadingText }}</span>
       </b-button>
     </div>
     <div class="lof-list-item__button-group col-4 col-md-3 col-lg-3 col-xl-2">
@@ -29,6 +30,9 @@
       },
       loading: {
         type: Boolean
+      },
+      loadingText: {
+        type: String
       },
       downloading: {
         type: Boolean
