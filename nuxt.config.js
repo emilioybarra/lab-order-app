@@ -6,11 +6,13 @@ import jp from './lang/jp'
 import ru from './lang/ru'
 import sp from './lang/sp'
 
+const dev = !!process.env.NUXT_ENV_APP_ENVIRONMENT
+
 export default {
-  modern: 'server',
+  modern: dev ? false : 'server',
 
   server: {
-    port: 80,
+    port: dev ? 3000 : 80,
     host: '0.0.0.0' // default: localhost
   },
 
