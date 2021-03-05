@@ -136,6 +136,7 @@ export default {
       keyInfo: `
         <strong>Bitte ausfüllen:</strong> Bei fehlenden Zähnen bitte immer angeben, ob Lückenschluss gewünscht wird.
       `,
+      // Key Info for the PDF
       keyInfoLegend: `
         <div><strong>B</strong> = Bracket</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = Tube</div>&nbsp;|&nbsp;
@@ -147,7 +148,19 @@ export default {
         <div><strong>X</strong> = fehlt</div>&nbsp;|&nbsp;
         <div><strong>BA</strong> = geg. Band</div>&nbsp;|&nbsp;
         <div><strong>P</strong> = okklusale Klebebasis</div>
-      `
+      `,
+      // Key Info for the App
+      keyInfoLegendApp: [
+        '<div><div class="lof-teeth-canvas__info-legend lof-teeth-canvas__info-legend--b"></div>&nbsp;|&nbsp;<strong>B</strong> = Bracket</div>',
+        '<div><div class="lof-teeth-canvas__info-legend lof-teeth-canvas__info-legend--t">&nbsp;|&nbsp;<strong>T</strong> = Tube</div>',
+        '<div><div class="lof-teeth-canvas__info-legend lof-teeth-canvas__info-legend--tl">&nbsp;|&nbsp;<strong>TL</strong> = langes Tube</div>',
+        '<div><div class="lof-teeth-canvas__info-legend lof-teeth-canvas__info-legend--tlh">&nbsp;|&nbsp;<strong>TLH</strong> = langes Tube mit Hook</div>',
+        '<div><div class="lof-teeth-canvas__info-legend lof-teeth-canvas__info-legend--tr">&nbsp;|&nbsp;<strong>TR</strong> = Tube rund</div>',
+        '<div><div class="lof-teeth-canvas__info-legend lof-teeth-canvas__info-legend--ex">&nbsp;|&nbsp;<strong>Ex</strong> = zu extrahieren</div>',
+        '<div><div class="lof-teeth-canvas__info-legend lof-teeth-canvas__info-legend--x">&nbsp;|&nbsp;<strong>X</strong> = fehlt</div>',
+        '<div><div class="lof-teeth-canvas__info-legend lof-teeth-canvas__info-legend--ba">&nbsp;|&nbsp;<strong>BA</strong> = geg. Band</div>',
+        '<div><div class="lof-teeth-canvas__info-legend lof-teeth-canvas__info-legend--p">&nbsp;|&nbsp;<strong>P</strong> = okklusale Klebebasis</div>'
+      ]
     },
     m_2: {
       noCorrectionOfBite: 'Keine Bisslagekorrektur',

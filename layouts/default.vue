@@ -36,7 +36,7 @@
     <template-title-modal :key="'template-title-modal-' + language" />
     <notes-modal v-if="showModalTab" :key="'notes-modal-' + language" />
 
-    <div id="lof-body-container" class="lof-body container-fluid" @scroll.passive="handleScroll">
+    <div id="lof-body-container" class="lof-body" @scroll.passive="handleScroll">
       <transition name="fade">
         <ul v-if="showLanguageMenu" class="lof-language-menu">
           <li v-for="lang in $i18n.locales" :key="lang.code" class="lof-language-menu__item" @click="changeLanguage(lang.code)">

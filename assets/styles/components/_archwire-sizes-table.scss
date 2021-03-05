@@ -4,6 +4,12 @@
   background-color: $white;
 
   &__header {
+    & th {
+      color: $white;
+      background-color: $primary !important;
+      border-color: $primary !important;
+    }
+
     &-label {
       hyphens: auto;
     }
@@ -19,6 +25,10 @@
 
   &__section-type {
     transform: rotate(-90deg);
+
+    &-column {
+      background-color: $tertiary;
+    }
   }
 
   &__cell {
@@ -34,8 +44,8 @@
       min-height: 50px;
 
       &--disable {
-        background: url('~assets/images/line.png');
-        background-size: 100% 100%;
+        // background: url('~assets/images/line.png');
+        // background-size: 100% 100%;
         background-color: $light-grey;
       }
     }
