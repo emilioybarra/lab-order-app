@@ -1,6 +1,7 @@
 export default {
   common: {
     buttons: {
+      close: 'Chiudere',
       exit: 'Uscita',
       language: 'Lingua',
       selectFromTemplate: 'Scegliere dal modello',
@@ -27,7 +28,8 @@ export default {
       newForm: 'Creare un nuovo modulo',
       sentForms: 'Ottenere una panoramica di tutti i moduli inviati finora',
       emptyOrderForms: 'Non ha moduli inviati.',
-      emptyTemplates: 'Non ha modelli salvati.'
+      emptyTemplates: 'Non ha modelli salvati.',
+      orderSent: 'Il modulo è stato salvato e inviato con successo!'
     },
     labels: {
       expansion: '',

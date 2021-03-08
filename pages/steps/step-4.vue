@@ -99,7 +99,11 @@
           orderFormLanguage: this.$i18n.locale,
           userId: this.$auth.$state.user._id
         }
-        this.$store.dispatch('order-form/saveOrderForm', payload)
+        this.$store.dispatch('order-form/saveOrderForm', payload).then((response) => {
+          if (response) {
+            this.$root.$emit('showConfirmationModal')
+          }
+        })
       }
     }
   }

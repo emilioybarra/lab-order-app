@@ -1,6 +1,7 @@
 export default {
   common: {
     buttons: {
+      close: 'Fermer',
       exit: 'Sortie',
       language: 'Langue',
       selectFromTemplate: 'Choisir un modèle',
@@ -26,7 +27,8 @@ export default {
       newForm: 'Créer un nouveau formulaire',
       sentForms: 'Obtenez un aperçu de tous les formulaires envoyés jusqu\'à présent',
       emptyOrderForms: 'Vous n\'avez pas envoyé de formulaires.',
-      emptyTemplates: 'Vous n\'avez pas de modèles sauvegardés.'
+      emptyTemplates: 'Vous n\'avez pas de modèles sauvegardés.',
+      orderSent: 'Le formulaire a été sauvegardé et envoyé avec succès!'
     },
     labels: {
       expansion: 'Expansion',

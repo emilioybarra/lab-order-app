@@ -1,6 +1,7 @@
 export default {
   common: {
     buttons: {
+      close: 'クローズ',
       exit: '出口',
       language: '言語',
       selectFromTemplate: 'テンプレートから選択',
@@ -27,7 +28,8 @@ export default {
       newForm: '新しいフォームを作成する',
       sentForms: 'これまでに送信されたすべてのフォームの概要を確認する',
       emptyOrderForms: '送信されたフォームがありません。',
-      emptyTemplates: '保存されているテンプレートがありません。'
+      emptyTemplates: '保存されているテンプレートがありません。',
+      orderSent: 'フォームが保存され、送信されました'
     },
     labels: {
       expansion: '',

@@ -1,6 +1,7 @@
 export default {
   common: {
     buttons: {
+      close: 'Закрыть',
       exit: 'Выход',
       language: 'Язык',
       selectFromTemplate: 'Выбрать по шаблону',
@@ -27,7 +28,8 @@ export default {
       newForm: 'Создать новую форму',
       sentForms: 'Получите обзор всех отправленных на данный момент форм',
       emptyOrderForms: 'У Вас нет отправленных бланков.',
-      emptyTemplates: 'У Вас нет сохраненных шаблонов.'
+      emptyTemplates: 'У Вас нет сохраненных шаблонов.',
+      orderSent: 'Форма успешно сохранена и отправлена!'
     },
     labels: {
       expansion: '',

@@ -34,6 +34,7 @@
 
     <pdf-preview-modal :key="pdfPreviewKey" />
     <template-title-modal :key="'template-title-modal-' + language" />
+    <confirmation-modal :key="'confirmation-modal-' + language" />
     <notes-modal v-if="showModalTab" :key="'notes-modal-' + language" />
 
     <div id="lof-body-container" class="lof-body" @scroll.passive="handleScroll">

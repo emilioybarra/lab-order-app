@@ -1,6 +1,7 @@
 export default {
   common: {
     buttons: {
+      close: 'Close',
       exit: 'Exit',
       language: 'Language',
       selectFromTemplate: 'Select from template',
@@ -27,7 +28,8 @@ export default {
       newForm: 'Create a new form',
       sentForms: 'Get an overview of all forms sent so far',
       emptyOrderForms: 'You have no sent forms.',
-      emptyTemplates: 'You have no saved templates.'
+      emptyTemplates: 'You have no saved templates.',
+      orderSent: 'Form was successfully saved and sent!'
     },
     labels: {
       expansion: 'Expansion',

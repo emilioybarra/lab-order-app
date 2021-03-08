@@ -40,4 +40,18 @@
       font-size: 12px;
     }
   }
+
+  &-icon {
+    &-xl {
+      font-size: 70px;
+    }
+
+    &-lg {
+      font-size: 50px;
+    }
+
+    &-md {
+      font-size: 30px;
+    }
+  }
 }

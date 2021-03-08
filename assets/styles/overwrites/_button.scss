@@ -5,6 +5,12 @@
   text-transform: uppercase;
   text-decoration: none;
 
+  @include phone-sm {
+    width: 100% !important;
+    margin: 0 !important;
+    margin-bottom: $space-2 !important;
+  }
+
   &:disabled {
     opacity: 1;
     background-color: $secondary;

@@ -1,6 +1,7 @@
 export default {
   common: {
     buttons: {
+      close: 'Cerrar',
       exit: 'Salir',
       language: 'Idioma',
       selectFromTemplate: 'Seleccione de la plantilla',
@@ -27,7 +28,8 @@ export default {
       newForm: 'Crear un nuevo formulario',
       sentForms: 'Obtener una visión general de todos los formularios enviados hasta ahora',
       emptyOrderForms: 'No tiene formularios enviados.',
-      emptyTemplates: 'No tiene plantillas guardadas.'
+      emptyTemplates: 'No tiene plantillas guardadas.',
+      orderSent: '¡El formulario se ha guardado y enviado con éxito!'
     },
     labels: {
       expansion: '',

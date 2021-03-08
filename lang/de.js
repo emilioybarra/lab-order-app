@@ -1,6 +1,7 @@
 export default {
   common: {
     buttons: {
+      close: 'Schließen',
       exit: 'Beenden',
       language: 'Sprache',
       selectFromTemplate: 'Aus Vorlage Wählen',
@@ -27,7 +28,8 @@ export default {
       newForm: 'Erstellen Sie ein Neues Formular',
       sentForms: 'Bekommen Sie einen Überblick von allen bislang verschickten Formularen',
       emptyOrderForms: 'Sie haben keine Formulare gesendet.',
-      emptyTemplates: 'Sie haben keine gespeicherten Vorlagen.'
+      emptyTemplates: 'Sie haben keine gespeicherten Vorlagen.',
+      orderSent: 'Formular wurde erfolgreich gespeichert und gesendet!'
     },
     labels: {
       expansion: 'Expansion',
