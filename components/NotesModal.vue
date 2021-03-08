@@ -223,25 +223,6 @@
       this.right3 = { ...this.getRight3CanineMolar }
       this.left2 = { ...this.getLeft2CanineMolar }
       this.left3 = { ...this.getLeft3CanineMolar }
-
-      console.log('Loaded with the following data:')
-      console.table(
-        [
-          {
-            type: 'canine',
-            'right_||': this.right2.canine,
-            'right_|||': this.right3.canine,
-            'left_||': this.left2.canine,
-            'left_|||': this.left3.canine
-          },
-          {
-            type: 'molar',
-            'right_||': this.right2.molar,
-            'right_|||': this.right3.molar,
-            'left_||': this.left2.molar,
-            'left_|||': this.left3.molar
-          }
-        ], [ 'type', 'right_||', 'right_|||', 'left_||', 'left_|||' ])
     },
 
     methods: {

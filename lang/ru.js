@@ -134,6 +134,7 @@ export default {
       keyInfo: `
         <strong>Пожалуйста укажите:</strong> В случаях с удалением, будет ли закрыто пространство.v
       `,
+      // Key Info for the PDF and Notes component
       keyInfoLegend: `
         <div><strong>B</strong> = брекет</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = замок</div>&nbsp;|&nbsp;
@@ -143,7 +144,18 @@ export default {
         <div><strong>X</strong> = отсутствующий зуб</div>&nbsp;|&nbsp;
         <div><strong>BA</strong> = Кольцо</div>&nbsp;|&nbsp;
         <div><strong>P</strong> = Основание, заходящее на окклюзионную поверхность</div>
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegendApp: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= брекет</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= замок</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= удлиненный замок</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= удлиненный замок с крючком</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= подлежащий удалению</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= отсутствующий зуб</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= Кольцо</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= Основание, заходящее на окклюзионную поверхность</div>'
+      ]
     },
     m_2: {
       noCorrectionOfBite: '',

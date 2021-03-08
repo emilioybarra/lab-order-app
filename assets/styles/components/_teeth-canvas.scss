@@ -23,34 +23,6 @@ $lower-canvas-width: $lower-canvas-width-tablet;
 $lower-canvas-height: $lower-canvas-height-tablet;
 
 // Vue Swatches Overrides
-.vue-swatches, .vue-swatches__fallback__wrapper {
-  display: flex !important;
-}
-
-.vue-swatches__fallback__input {
-  padding-top: 2px !important;
-  padding-bottom: 2px !important;
-}
-
-.vue-swatches__trigger {
- //  width: 20px !important;
-  // height: 20px !important;
-}
-
-.vue-swatches__container {
-  // position: absolute;
-  // z-index: 1;
-}
-
-.vue-swatches__wrapper {
-  // column-count: 4;
-  // column-gap: 0;
-}
-
-.vue-swatches__check__wrapper {
-  // height: 100%;
-}
-
 .vue-swatches__check__circle {
   height: 100%;
   display: flex;
@@ -63,6 +35,73 @@ $lower-canvas-height: $lower-canvas-height-tablet;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &__info-legend {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $space-8;
+
+    &__title {
+      color: $primary;
+      margin-bottom: $space-8;
+      align-self: center;
+    }
+
+    &__items {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 13px;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    &__item {
+      display: flex;
+      align-items: flex-start;
+      width: 22%;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      word-break: break-word;
+      // margin-right: auto;
+
+      @include tablet {
+        width: 30%;
+      }
+
+      @include phone-lg {
+        width: 30%;
+      }
+
+      @include phone-sm {
+        width: 50%;
+      }
+    }
+
+    &__color {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      min-height: 18px;
+      border-radius: 100%;
+
+      &--b { background-color: #72FBFD }
+      &--t { background-color: #909090 }
+      &--tl { background-color: #EB3423 }
+      &--tlh { background-color: #74FBB7 }
+      &--tr { background-color: #FDEB4E }
+      &--trh { background-color: #54C2F8 }
+      &--ex { background-color: #75FA4F }
+      &--x { background-color: #A12CF6 }
+      &--ba { background-color: #000000 }
+      &--p { background-color: #EA37C4 }
+    }
+
+    &__divider {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
 
   &__border {
     display: flex;
