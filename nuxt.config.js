@@ -30,7 +30,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'Lab Order Form',
+    title: 'DWLS | Lab Order Form',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -60,6 +60,7 @@ export default {
     { mode: 'client', src: '@/plugins/vue-swatches' },
     { mode: 'client', src: '@/plugins/click-outside' },
     { mode: 'client', src: '@/plugins/language-variant' },
+    { mode: 'client', src: '@/plugins/prepare-archwires' },
     { mode: 'client', src: '@/plugins/generate-random-key' }
   ],
 
@@ -138,7 +139,7 @@ export default {
   bootstrapVue: {
     bootstrapCSS: false,
     bootstrapVueCSS: false,
-    icons: false
+    icons: true
   },
 
   pwa: {

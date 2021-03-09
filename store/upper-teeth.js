@@ -1,3 +1,5 @@
+import { prepareArchwires } from '@/plugins/prepare-archwires'
+
 export const state = () => ({
   imageData: '',
   onlySetup: false,
@@ -56,7 +58,7 @@ export const getters = {
     return state.notesBox || localStorage.getItem('lof__upper-teeth__notesBox') || ''
   },
   getArchwireSizes (state) {
-    return JSON.parse(localStorage.getItem('lof__upper-teeth__archwireSizes')) || state.archwireSizes || {}
+    return prepareArchwires(JSON.parse(localStorage.getItem('lof__upper-teeth__archwireSizes')) || state.archwireSizes || {})
   }
 }
 
