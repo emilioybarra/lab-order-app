@@ -1,5 +1,12 @@
 <template>
   <div class="lof-teeth-canvas">
+    <div class="lof-teeth-canvas__info-legend">
+      <div class="lof-teeth-canvas__info-legend__title" v-html="$t('section.m_1.keyInfo')" />
+      <div class="lof-teeth-canvas__info-legend__items">
+        <div v-for="(item, index) in $t('section.m_1.keyInfoLegendApp')" :key="index" class="lof-teeth-canvas__info-legend__item" v-html="item" />
+        <div v-for="(item, index) in 4" :key="`placeholder-${ index }`" class="lof-teeth-canvas__info-legend__item" />
+      </div>
+    </div>
     <div class="lof-teeth-canvas__border">
       <transition name="fade">
         <div v-if="!canvasActive" class="lof-teeth-canvas__overlay">
@@ -390,10 +397,8 @@
           :swatches="swatches"
           swatch-size="25"
           shapes="circles"
-          show-fallback
           popover-y="top"
-          fallback-input-type="color"
-          fallback-ok-class="lof-teeth-canvas__button-color-ok"
+          row-length="5"
         >
           <template #trigger>
             <b-button id="color" class="lof-teeth-canvas__button mr-3" variant="outline-secondary">
@@ -436,7 +441,7 @@
         canvasMode: 'highlight',
         drawActive: false,
         highlightActive: true,
-        highlightColor: '#00ffff',
+        highlightColor: '#72FBFD',
         canvasActive: false,
         canvasReady: false,
         signaturePad: null,
@@ -444,14 +449,16 @@
         canvasHeight: 0,
         teeth: [],
         swatches: [
-          '#FF0000',
-          '#00ffff',
-          '#00FF14',
-          '#B100FF',
-          '#FF8900',
-          '#FFEB00',
+          '#72FBFD',
           '#909090',
-          '#000000'
+          '#EB3423',
+          '#74FBB7',
+          '#FDEB4E',
+          '#54C2F8',
+          '#75FA4F',
+          '#A12CF6',
+          '#000000',
+          '#EA37C4'
         ]
       }
     },

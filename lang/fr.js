@@ -1,6 +1,7 @@
 export default {
   common: {
     buttons: {
+      close: 'Fermer',
       exit: 'Sortie',
       language: 'Langue',
       selectFromTemplate: 'Choisir un modèle',
@@ -26,7 +27,8 @@ export default {
       newForm: 'Créer un nouveau formulaire',
       sentForms: 'Obtenez un aperçu de tous les formulaires envoyés jusqu\'à présent',
       emptyOrderForms: 'Vous n\'avez pas envoyé de formulaires.',
-      emptyTemplates: 'Vous n\'avez pas de modèles sauvegardés.'
+      emptyTemplates: 'Vous n\'avez pas de modèles sauvegardés.',
+      orderSent: 'Le formulaire a été sauvegardé et envoyé avec succès!'
     },
     labels: {
       expansion: 'Expansion',
@@ -135,6 +137,7 @@ export default {
       keyInfo: `
         <strong>Veuillez indiquer:</strong> Pour des cas d’extraction indiquez fermeture d’espace ou non.
       `,
+      // Key Info for the PDF and Notes component
       keyInfoLegend: `
         <div><strong>B</strong> = bracket</div>&nbsp;|&nbsp;
         <div><strong>TL</strong> = Tube allongé</div>&nbsp;|&nbsp;
@@ -143,9 +146,21 @@ export default {
         <div><strong>TRH</strong> = tube rond avec crochet</div>&nbsp;|&nbsp;
         <div><strong>Ex</strong> = à extraire</div>&nbsp;|&nbsp;
         <div><strong>X</strong> = absente</div>&nbsp;|&nbsp;
-        <div><strong>bague coulée</strong> = entourez la dent concernée </div>&nbsp;|&nbsp;
+        <div><strong>bague coulée</strong> = entourez la dent concernée</div>&nbsp;|&nbsp;
         <div><strong>occlusale pad</strong> = rayez surface concernée</div>&nbsp;|&nbsp;
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegendApp: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= Tube allongé</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= Tube allongé avec crochet</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= tube rond</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--trh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TRH</strong>&nbsp;= tube rond avec crochet</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= à extraire</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= absente</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>bague coulée</strong>&nbsp;= entourez la dent concernée</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>occlusale pad</strong>&nbsp;= rayez surface concernée</div>'
+      ]
     },
     m_2: {
       noCorrectionOfBite: 'Pas de correction de l´occlusion',

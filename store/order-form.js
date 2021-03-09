@@ -222,7 +222,7 @@ export const actions = {
       header: { 'Content-Type': 'multipart/form-data' }
     }
 
-    this.$axios.$post('/api/order-forms/order-form', prepareOrderFormData, config)
+    return this.$axios.$post('/api/order-forms/order-form', prepareOrderFormData, config)
       .then((response) => {
         if (response.status === 201) {
           const notification = {
@@ -230,10 +230,11 @@ export const actions = {
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })
-          commit('invoiceAddress/resetInvoiceAddressState', { root: true })
-          commit('upper-teeth/resetUpperTeethState', { root: true })
-          commit('notes/resetNotesState', { root: true })
-          commit('lower-teeth/resetLowerTeethState', { root: true })
+          commit('invoice-address/resetInvoiceAddressState', null, { root: true })
+          commit('upper-teeth/resetUpperTeethState', null, { root: true })
+          commit('notes/resetNotesState', null, { root: true })
+          commit('lower-teeth/resetLowerTeethState', null, { root: true })
+          return true
         }
       })
       .catch(() => {
@@ -242,10 +243,11 @@ export const actions = {
           variant: 'danger'
         }
         commit('common/setNotifications', notification, { root: true })
-        commit('invoiceAddress/resetInvoiceAddressState', { root: true })
-        commit('upper-teeth/resetUpperTeethState', { root: true })
-        commit('notes/resetNotesState', { root: true })
-        commit('lower-teeth/resetLowerTeethState', { root: true })
+        commit('invoice-address/resetInvoiceAddressState', null, { root: true })
+        commit('upper-teeth/resetUpperTeethState', null, { root: true })
+        commit('notes/resetNotesState', null, { root: true })
+        commit('lower-teeth/resetLowerTeethState', null, { root: true })
+        return false
       })
   }
 }

@@ -34,9 +34,10 @@
 
     <pdf-preview-modal :key="pdfPreviewKey" />
     <template-title-modal :key="'template-title-modal-' + language" />
+    <confirmation-modal :key="'confirmation-modal-' + language" />
     <notes-modal v-if="showModalTab" :key="'notes-modal-' + language" />
 
-    <div id="lof-body-container" class="lof-body container-fluid" @scroll.passive="handleScroll">
+    <div id="lof-body-container" class="lof-body" @scroll.passive="handleScroll">
       <transition name="fade">
         <ul v-if="showLanguageMenu" class="lof-language-menu">
           <li v-for="lang in $i18n.locales" :key="lang.code" class="lof-language-menu__item" @click="changeLanguage(lang.code)">
@@ -144,7 +145,7 @@
     beforeCreate () {
       if (process.browser) {
         const navigatorLanguage = navigator.language.toLocaleLowerCase().substring(0, 2)
-        if (!this.$cookies.get('i18n_lang_cookie') || navigatorLanguage !== this.$cookies.get('i18n_lang_cookie')) {
+        if (!this.$cookies.get('i18n_lang_cookie')) {
           const lang = this.$i18n.locales.find(locale => locale.navigator === navigatorLanguage).code
           this.$cookies.set('i18n_lang_cookie', lang)
           this.$i18n.setLocale(lang)

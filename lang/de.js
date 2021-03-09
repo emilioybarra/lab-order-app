@@ -1,6 +1,7 @@
 export default {
   common: {
     buttons: {
+      close: 'Schließen',
       exit: 'Beenden',
       language: 'Sprache',
       selectFromTemplate: 'Aus Vorlage Wählen',
@@ -27,7 +28,8 @@ export default {
       newForm: 'Erstellen Sie ein Neues Formular',
       sentForms: 'Bekommen Sie einen Überblick von allen bislang verschickten Formularen',
       emptyOrderForms: 'Sie haben keine Formulare gesendet.',
-      emptyTemplates: 'Sie haben keine gespeicherten Vorlagen.'
+      emptyTemplates: 'Sie haben keine gespeicherten Vorlagen.',
+      orderSent: 'Formular wurde erfolgreich gespeichert und gesendet!'
     },
     labels: {
       expansion: 'Expansion',
@@ -136,6 +138,7 @@ export default {
       keyInfo: `
         <strong>Bitte ausfüllen:</strong> Bei fehlenden Zähnen bitte immer angeben, ob Lückenschluss gewünscht wird.
       `,
+      // Key Info for the PDF and Notes component
       keyInfoLegend: `
         <div><strong>B</strong> = Bracket</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = Tube</div>&nbsp;|&nbsp;
@@ -147,7 +150,19 @@ export default {
         <div><strong>X</strong> = fehlt</div>&nbsp;|&nbsp;
         <div><strong>BA</strong> = geg. Band</div>&nbsp;|&nbsp;
         <div><strong>P</strong> = okklusale Klebebasis</div>
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegendApp: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= Bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= Tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= langes Tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= langes Tube mit Hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= Tube rund</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= zu extrahieren</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= fehlt</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= geg. Band</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= okklusale Klebebasis</div>'
+      ]
     },
     m_2: {
       noCorrectionOfBite: 'Keine Bisslagekorrektur',

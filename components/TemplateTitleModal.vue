@@ -1,7 +1,7 @@
 <template>
   <modal ref="templateTitle" :show-tab="false">
     <card v-click-outside.stop="closeTemplateTitleModal" class="h-auto">
-      <h3 class="lof-headline lof-headline--2 my-4">
+      <h3 class="lof-headline lof-headline--2 my-4 text-center">
         {{ $t('common.labels.templateTitle') }}
       </h3>
       <form @submit.prevent="saveAsTemplate">
@@ -12,7 +12,7 @@
           name="templateTitle"
           required
         />
-        <b-button-toolbar class="d-flex mb-3 mt-5 justify-content-end">
+        <b-button-toolbar class="d-flex mb-3 mt-5 justify-content-center">
           <b-button class="lof-button mr-4 w-25" variant="secondary" @click="closeTemplateTitleModal">
             {{ $t('common.buttons.cancel') }}
           </b-button>

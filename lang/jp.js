@@ -1,6 +1,7 @@
 export default {
   common: {
     buttons: {
+      close: 'クローズ',
       exit: '出口',
       language: '言語',
       selectFromTemplate: 'テンプレートから選択',
@@ -27,7 +28,8 @@ export default {
       newForm: '新しいフォームを作成する',
       sentForms: 'これまでに送信されたすべてのフォームの概要を確認する',
       emptyOrderForms: '送信されたフォームがありません。',
-      emptyTemplates: '保存されているテンプレートがありません。'
+      emptyTemplates: '保存されているテンプレートがありません。',
+      orderSent: 'フォームが保存され、送信されました'
     },
     labels: {
       expansion: '',
@@ -138,6 +140,7 @@ export default {
       upperJaw: '上顎',
       lowerJaw: '下顎',
       keyInfo: '<strong>抜歯症例の場合、空隙閉鎖 の有無をご記入ください。</strong>',
+      // Key Info for the PDF and Notes component
       keyInfoLegend: `
         <div><strong>B</strong> = ブラケット</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = チューブ</div>&nbsp;|&nbsp;
@@ -147,7 +150,18 @@ export default {
         <div><strong>X</strong> = 欠損歯</div>&nbsp;|&nbsp;
         <div><strong>BA</strong> = 鋳造バンド</div>&nbsp;|&nbsp;
         <div><strong>P</strong> = オクルーザルパッド</div>
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegendApp: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= ブラケット</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= チューブ</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= ロングチューブ</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= フック付ロングチューブ</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= 抜歯部位</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= 欠損歯</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= 鋳造バンド</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= オクルーザルパッド</div>'
+      ]
     },
     m_2: {
       noCorrectionOfBite: '',

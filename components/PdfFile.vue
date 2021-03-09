@@ -155,7 +155,7 @@
         </div>
         <div v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr', 'it', 'sp', 'ru' ])" class="lof-pdf__invoice-fields">
           <div class="lof-pdf__invoice-field" :class="{ 'lof-pdf__invoice-field--variant-2': validateLanguagesToSavedLanguage([ 'ru' ]) }">
-            <span class="lof-pdf__invoice-field__value">{{ invoiceAddress.postalcodeTown }}</span>
+            <span class="lof-pdf__invoice-field__value">{{ invoiceAddress.postalCodeTown }}</span>
             <div class="lof-pdf__invoice-field__label">{{ $t('section.h_2.postalcodeTownShort', pdfLanguage) }}</div>
           </div>
           <div v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr', 'it', 'sp' ])" class="lof-pdf__invoice-field">

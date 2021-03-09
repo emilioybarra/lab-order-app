@@ -1,91 +1,93 @@
 <template>
-  <b-table-simple table-class="lof-archwire-sizes-table" bordered fixed>
-    <colgroup><col><col><col><col></colgroup>
-    <b-thead head-variant="dark">
-      <b-tr>
-        <b-th class="lof-archwire-sizes-table__header-label" colspan="3">
-          <span v-if="teeth === 'upper'">{{ $t('section.u_3.pleaseTick') }}</span>
-          <span v-if="teeth === 'lower'">{{ $t('section.l_3.pleaseTick') }}</span>
-        </b-th>
-        <b-th class="lof-archwire-sizes-table__header-label" colspan="2">
-          <span v-if="teeth === 'upper'">{{ $t('section.u_3.straight') }}</span>
-          <span v-if="teeth === 'lower'">{{ $t('section.l_3.straight') }}</span>
-        </b-th>
-        <b-th class="lof-archwire-sizes-table__header-label" colspan="2">
-          <span v-if="teeth === 'upper'">{{ $t('section.u_3.individual') }}</span>
-          <span v-if="teeth === 'lower'">{{ $t('section.l_3.individual') }}</span>
-        </b-th>
-        <b-th v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="lof-archwire-sizes-table__header-label" colspan="2">
-          <span v-if="teeth === 'upper'">{{ $t('common.labels.expansion') }}</span>
-          <span v-if="teeth === 'lower'">{{ $t('common.labels.compression') }}</span>
-        </b-th>
-      </b-tr>
-    </b-thead>
-    <b-tbody class="lof-archwire-sizes-table__body">
-      <b-tr v-for="(archwire, index) in archwireSizes" v-if="archwire.rowVisible" :key="index" class="lof-archwire-sizes-table__row">
-        <b-td class="text-left" colspan="2">
-          {{ archwire.label }}
-        </b-td>
-        <b-td v-if="archwire.typeDivider.visible" :rowspan="archwire.typeDivider.rowspan" variant="secondary" colspan="1">
-          <div class="lof-archwire-sizes-table__section-type">
-            {{ archwire.typeDivider.label }}
-          </div>
-        </b-td>
-        <b-td class="lof-archwire-sizes-table__cell" colspan="2">
-          <input
-            v-if="!archwire.straight.disabled"
-            v-model="archwire.straight.size"
-            class="lof-archwire-sizes-table__cell__input"
-            type="number"
-            min="1"
-            max="9"
-            maxlength="1"
-            @input="setArchwireSizes"
-          >
-          <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
-        </b-td>
-        <b-td class="lof-archwire-sizes-table__cell" colspan="2">
-          <input
-            v-if="!archwire.individual.disabled"
-            v-model="archwire.individual.size"
-            class="lof-archwire-sizes-table__cell__input"
-            type="number"
-            min="1"
-            max="9"
-            maxlength="1"
-            @input="setArchwireSizes"
-          >
-          <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
-        </b-td>
-        <b-td v-if="teeth === 'upper' && $validateSelectedLanguage('en', 'de', 'fr')" class="lof-archwire-sizes-table__cell" colspan="2">
-          <input
-            v-if="!archwire.expansion.disabled"
-            v-model="archwire.expansion.size"
-            class="lof-archwire-sizes-table__cell__input"
-            type="number"
-            min="1"
-            max="9"
-            maxlength="1"
-            @input="setArchwireSizes"
-          >
-          <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
-        </b-td>
-        <b-td v-if="teeth === 'lower' && $validateSelectedLanguage('en', 'de', 'fr')" class="lof-archwire-sizes-table__cell" colspan="2">
-          <input
-            v-if="!archwire.compression.disabled"
-            v-model="archwire.compression.size"
-            class="lof-archwire-sizes-table__cell__input"
-            type="number"
-            min="1"
-            max="9"
-            maxlength="1"
-            @input="setArchwireSizes"
-          >
-          <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
-        </b-td>
-      </b-tr>
-    </b-tbody>
-  </b-table-simple>
+  <card class="h-auto position-relative" full-width>
+    <b-table-simple table-class="lof-archwire-sizes-table" bordered fixed>
+      <colgroup><col><col><col><col></colgroup>
+      <b-thead class="lof-archwire-sizes-table__header">
+        <b-tr>
+          <b-th class="lof-archwire-sizes-table__header-label" colspan="3">
+            <span v-if="teeth === 'upper'">{{ $t('section.u_3.pleaseTick') }}</span>
+            <span v-if="teeth === 'lower'">{{ $t('section.l_3.pleaseTick') }}</span>
+          </b-th>
+          <b-th class="lof-archwire-sizes-table__header-label" colspan="2">
+            <span v-if="teeth === 'upper'">{{ $t('section.u_3.straight') }}</span>
+            <span v-if="teeth === 'lower'">{{ $t('section.l_3.straight') }}</span>
+          </b-th>
+          <b-th class="lof-archwire-sizes-table__header-label" colspan="2">
+            <span v-if="teeth === 'upper'">{{ $t('section.u_3.individual') }}</span>
+            <span v-if="teeth === 'lower'">{{ $t('section.l_3.individual') }}</span>
+          </b-th>
+          <b-th v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="lof-archwire-sizes-table__header-label" colspan="2">
+            <span v-if="teeth === 'upper'">{{ $t('common.labels.expansion') }}</span>
+            <span v-if="teeth === 'lower'">{{ $t('common.labels.compression') }}</span>
+          </b-th>
+        </b-tr>
+      </b-thead>
+      <b-tbody class="lof-archwire-sizes-table__body">
+        <b-tr v-for="(archwire, index) in archwireSizes" v-if="archwire.rowVisible" :key="index" class="lof-archwire-sizes-table__row">
+          <b-td class="text-left" colspan="2">
+            {{ archwire.label }}
+          </b-td>
+          <b-td v-if="archwire.typeDivider.visible" :rowspan="archwire.typeDivider.rowspan" class="lof-archwire-sizes-table__section-type-column" colspan="1">
+            <div class="lof-archwire-sizes-table__section-type">
+              {{ archwire.typeDivider.label }}
+            </div>
+          </b-td>
+          <b-td class="lof-archwire-sizes-table__cell" colspan="2">
+            <input
+              v-if="!archwire.straight.disabled"
+              v-model="archwire.straight.size"
+              class="lof-archwire-sizes-table__cell__input"
+              type="number"
+              min="1"
+              max="9"
+              maxlength="1"
+              @input="setArchwireSizes"
+            >
+            <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
+          </b-td>
+          <b-td class="lof-archwire-sizes-table__cell" colspan="2">
+            <input
+              v-if="!archwire.individual.disabled"
+              v-model="archwire.individual.size"
+              class="lof-archwire-sizes-table__cell__input"
+              type="number"
+              min="1"
+              max="9"
+              maxlength="1"
+              @input="setArchwireSizes"
+            >
+            <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
+          </b-td>
+          <b-td v-if="teeth === 'upper' && $validateSelectedLanguage('en', 'de', 'fr')" class="lof-archwire-sizes-table__cell" colspan="2">
+            <input
+              v-if="!archwire.expansion.disabled"
+              v-model="archwire.expansion.size"
+              class="lof-archwire-sizes-table__cell__input"
+              type="number"
+              min="1"
+              max="9"
+              maxlength="1"
+              @input="setArchwireSizes"
+            >
+            <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
+          </b-td>
+          <b-td v-if="teeth === 'lower' && $validateSelectedLanguage('en', 'de', 'fr')" class="lof-archwire-sizes-table__cell" colspan="2">
+            <input
+              v-if="!archwire.compression.disabled"
+              v-model="archwire.compression.size"
+              class="lof-archwire-sizes-table__cell__input"
+              type="number"
+              min="1"
+              max="9"
+              maxlength="1"
+              @input="setArchwireSizes"
+            >
+            <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
+          </b-td>
+        </b-tr>
+      </b-tbody>
+    </b-table-simple>
+  </card>
 </template>
 
 <script>

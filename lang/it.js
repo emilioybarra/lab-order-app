@@ -1,6 +1,7 @@
 export default {
   common: {
     buttons: {
+      close: 'Chiudere',
       exit: 'Uscita',
       language: 'Lingua',
       selectFromTemplate: 'Scegliere dal modello',
@@ -27,7 +28,8 @@ export default {
       newForm: 'Creare un nuovo modulo',
       sentForms: 'Ottenere una panoramica di tutti i moduli inviati finora',
       emptyOrderForms: 'Non ha moduli inviati.',
-      emptyTemplates: 'Non ha modelli salvati.'
+      emptyTemplates: 'Non ha modelli salvati.',
+      orderSent: 'Il modulo è stato salvato e inviato con successo!'
     },
     labels: {
       expansion: '',
@@ -132,6 +134,7 @@ export default {
       keyInfo: `
         <strong>Da compilare:</strong> mancanti indicare sempre se si desidera chiudere o meno lo spazio.
       `,
+      // Key Info for the PDF and Notes component
       keyInfoLegend: `
         <div><strong>B</strong> = bracket</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = Tube</div>&nbsp;|&nbsp;
@@ -141,7 +144,18 @@ export default {
         <div><strong>X</strong> = dente mancante</div>&nbsp;|&nbsp;
         <div><strong>BA</strong> = banda</div>&nbsp;|&nbsp;
         <div><strong>P</strong> = estensione superficie occlusale</div>
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegendApp: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= Tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= tubo lungo</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= tubo lungo con gancio</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= da estrarre</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= dente mancante</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= banda</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= estensione superficie occlusale</div>'
+      ]
     },
     m_2: {
       noCorrectionOfBite: '',
