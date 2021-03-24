@@ -14,7 +14,17 @@ export default {
       send: 'Inviare',
       preview: 'Anteprima PDF',
       download: 'Scaricare PDF',
-      generatingPdf: 'Generazione di PDF...'
+      generatingPdf: 'Generazione di PDF...',
+      search: 'Ricerca',
+      apply: 'Applica',
+      date: 'Data',
+      dateRange: 'Intervallo di date',
+      fromDate: 'Data da',
+      toDate: 'Data a',
+      select: 'Selezioni',
+      login: 'Accesso',
+      logout: 'Logout',
+      allForms: 'Tutte le forme'
     },
     titles: {
       invoiceAddress: 'Indirizzo di fatturazione',
@@ -22,7 +32,9 @@ export default {
       lowerTeeth: 'Denti inferiori',
       sentForms: 'Moduli inviati',
       templates: 'Modelli',
-      sendForm: 'Invii il modulo'
+      sendForm: 'Invii il modulo',
+      orderForms: 'Moduli d\'ordine',
+      login: 'Accesso'
     },
     headlines: {
       newForm: 'Creare un nuovo modulo',
@@ -37,13 +49,17 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Acciaio',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Titolo del modello'
+      templateTitle: 'Titolo del modello',
+      searchPlaceholder: 'Cerca...',
+      username: 'Nome utente',
+      password: 'Password'
     },
     notifications: {
       savedOrderForm: 'Il modulo è stato salvato.',
       savedTemplate: 'Il modello è stato salvato.',
       deletedTemplate: 'Il modello è stato cancellato.',
-      error: 'Errore, provi di nuovo, per favore.'
+      error: 'Errore, provi di nuovo, per favore.',
+      errorLogin: '<strong>Errore:</strong> Username o password non sono validi.'
     }
   },
   section: {

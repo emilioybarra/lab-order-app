@@ -63,7 +63,6 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       padding-top: 4px;
       padding-bottom: 4px;
       word-break: break-word;
-      // margin-right: auto;
 
       @include tablet {
         width: 30%;
@@ -73,7 +72,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
         width: 30%;
       }
 
-      @include phone-sm {
+      @include phone-sm-xs {
         width: 50%;
       }
     }
@@ -320,9 +319,9 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       width: 1.4rem;
       height: 1.4rem;
 
-      &--play {
-        width: 4rem;
-        height: 4rem;
+      &--pen {
+        width: 5rem;
+        height: 5rem;
         filter: brightness(100);
         margin: $space-1 $space-4;
       }
@@ -332,7 +331,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       }
     }
 
-    &--play {
+    &--pen {
       height: auto;
     }
 

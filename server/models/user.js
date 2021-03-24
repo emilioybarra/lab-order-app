@@ -1,8 +1,18 @@
+require('dotenv').config()
+const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema(
   {
+    token: {
+      type: String,
+      default: ''
+    },
+    role: {
+      type: String,
+      default: 'user'
+    },
     wordpressUser: {
       type: String,
       required: true
@@ -48,6 +58,15 @@ const userSchema = new Schema(
     timestamps: true
   }
 )
+
+userSchema.methods.generateToken = function (cb) {
+  const user = this
+  user.token = jwt.sign({ id: user._id.toHexString(), role: user.role }, process.env.JWT_SECRET, { expiresIn: '12h' })
+  user.save((err, user) => {
+    if (err) { return cb(err) }
+    cb(null, user)
+  })
+}
 
 userSchema.methods.addToOrderFormHistory = function (orderFormId) {
   const orderForms = [ ...this.orderForms ]

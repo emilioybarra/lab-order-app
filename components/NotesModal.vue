@@ -1,128 +1,126 @@
 <template>
-  <modal ref="notesModal" :show-tab="showModalTab">
-    <card v-click-outside.stop="hideModal">
-      <h4 class="lof-headline lof-headline--3">
-        {{ $t('section.m_1.remarksTitle') }}
-      </h4>
-      <div class="d-flex flex-wrap my-4">
-        <checkbox v-model="threeDSetup" class="mr-4" :is-checked="threeDSetup" @input="setThreeDSetup">
-          {{ $t('section.m_1.threeDSetup') }}
+  <modal ref="notesModal" :show-tab="showModalTab" @closeModal="hideModal">
+    <h4 class="lof-headline lof-headline--3">
+      {{ $t('section.m_1.remarksTitle') }}
+    </h4>
+    <div class="d-flex flex-wrap my-4">
+      <checkbox v-model="threeDSetup" class="mr-4" :is-checked="threeDSetup" @input="setThreeDSetup">
+        {{ $t('section.m_1.threeDSetup') }}
+      </checkbox>
+      <checkbox v-model="tpa" class="mr-4" :is-checked="tpa" @input="setTpa">
+        {{ $t('section.m_1.tpa') }}
+      </checkbox>
+      <checkbox v-model="herbst" class="mr-4" :is-checked="herbst" @input="setHerbst">
+        {{ $t('section.m_1.herbst') }}
+      </checkbox>
+      <checkbox v-model="bondableHGTube" class="mr-4" :is-checked="bondableHGTube" @input="setBondableHGTube">
+        {{ $t('section.m_1.bondableHGTube') }}
+      </checkbox>
+      <checkbox v-model="bondableHGTubeWithShell" :is-checked="bondableHGTubeWithShell" @input="setBondableHGTubeWithShell">
+        {{ $t('section.m_1.bondableHGTubeWithShell') }}
+      </checkbox>
+      <checkbox v-if="$validateSelectedLanguage('jp')" v-model="superpositionPhoto" class="mr-4" :is-checked="superpositionPhoto" @input="setSuperpositionPhoto">
+        {{ $t('section.m_1.superpositionPhoto') }}
+      </checkbox>
+      <checkbox v-if="$validateSelectedLanguage('jp')" v-model="dlcSteelWire" class="mr-4" :is-checked="dlcSteelWire" @input="setDlcSteelWire">
+        {{ $t('section.m_1.dlcSteelWire') }}
+      </checkbox>
+      <checkbox v-if="$validateSelectedLanguage('jp')" v-model="upperJaw" class="mr-4" :is-checked="upperJaw" @input="setUpperJaw">
+        {{ $t('section.m_1.upperJaw') }}
+      </checkbox>
+      <checkbox v-if="$validateSelectedLanguage('jp')" v-model="lowerJaw" :is-checked="lowerJaw" @input="setLowerJaw">
+        {{ $t('section.m_1.lowerJaw') }}
+      </checkbox>
+    </div>
+    <div>
+      <textarea-field id="notes-1" v-model="notes1" :label="$t('section.m_1.notes')" :rows="8" @input="setNotes1" />
+    </div>
+    <div class="text-center my-4">
+      <p class="text-primary" v-html="$t('section.m_1.keyInfo')" />
+      <div class="d-flex flex-wrap justify-content-center" v-html="$t('section.m_1.keyInfoLegend')" />
+    </div>
+    <div v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="my-4">
+      <checkbox v-model="noCorrectionOfBite" :is-checked="noCorrectionOfBite" @input="setNoCorrectionOfBite">
+        {{ $t('section.m_2.noCorrectionOfBite') }}
+      </checkbox>
+    </div>
+    <div v-if="$validateSelectedLanguage('en', 'de', 'fr')">
+      <textarea-field id="notes-2" v-model="notes2" :label="$t('section.m_1.notes')" :rows="6" @input="setNotes2" />
+    </div>
+    <div v-if="$validateSelectedLanguage('it', 'sp', 'ru', 'jp')">
+      <b-table
+        small
+        bordered
+        :items="tableItems"
+        :fields="tableFields"
+        head-variant="dark"
+        thead-class="text-center"
+        tbody-class="text-center"
+        details-td-class="text-center"
+      >
+        <template #cell(right_2)="data">
+          <div class="d-flex justify-content-center">
+            <checkbox
+              v-model="right2[data.item.type]"
+              no-label
+              class="m-0"
+              :is-checked="right2[data.item.type]"
+              @input="onSetCanineMolar('right2', data.item.type, right2[data.item.type])"
+            />
+          </div>
+        </template>
+        <template #cell(right_3)="data">
+          <div class="d-flex justify-content-center">
+            <checkbox
+              v-model="right3[data.item.type]"
+              no-label
+              class="m-0"
+              :is-checked="right3[data.item.type]"
+              @input="onSetCanineMolar('right3', data.item.type, right3[data.item.type])"
+            />
+          </div>
+        </template>
+        <template #cell(left_2)="data">
+          <div class="d-flex justify-content-center">
+            <checkbox
+              v-model="left2[data.item.type]"
+              no-label
+              class="m-0"
+              :is-checked="left2[data.item.type]"
+              @input="onSetCanineMolar('left2', data.item.type, left2[data.item.type])"
+            />
+          </div>
+        </template>
+        <template #cell(left_3)="data">
+          <div class="d-flex justify-content-center">
+            <checkbox
+              v-model="left3[data.item.type]"
+              no-label
+              class="m-0"
+              :is-checked="left3[data.item.type]"
+              @input="onSetCanineMolar('left3', data.item.type, left3[data.item.type])"
+            />
+          </div>
+        </template>
+      </b-table>
+    </div>
+    <div class="d-flex my-4">
+      <div class="d-flex align-items-center ml-3 mr-5">
+        <span>{{ $t('section.m_3.tray.title') }}</span>
+      </div>
+      <div class="w-100">
+        <checkbox v-model="nonTransparent" class="p-0" :is-checked="nonTransparent" @input="setNonTransparent">
+          {{ $t('section.m_3.tray.nonTransparent') }}
         </checkbox>
-        <checkbox v-model="tpa" class="mr-4" :is-checked="tpa" @input="setTpa">
-          {{ $t('section.m_1.tpa') }}
+        <checkbox v-model="trayTrimmed33" class="ml-3 p-0" :is-checked="trayTrimmed33" @input="setTrayTrimmed33">
+          {{ $t('section.m_3.tray.trayTrimmed3_3') }}
         </checkbox>
-        <checkbox v-model="herbst" class="mr-4" :is-checked="herbst" @input="setHerbst">
-          {{ $t('section.m_1.herbst') }}
-        </checkbox>
-        <checkbox v-model="bondableHGTube" class="mr-4" :is-checked="bondableHGTube" @input="setBondableHGTube">
-          {{ $t('section.m_1.bondableHGTube') }}
-        </checkbox>
-        <checkbox v-model="bondableHGTubeWithShell" :is-checked="bondableHGTubeWithShell" @input="setBondableHGTubeWithShell">
-          {{ $t('section.m_1.bondableHGTubeWithShell') }}
-        </checkbox>
-        <checkbox v-if="$validateSelectedLanguage('jp')" v-model="superpositionPhoto" class="mr-4" :is-checked="superpositionPhoto" @input="setSuperpositionPhoto">
-          {{ $t('section.m_1.superpositionPhoto') }}
-        </checkbox>
-        <checkbox v-if="$validateSelectedLanguage('jp')" v-model="dlcSteelWire" class="mr-4" :is-checked="dlcSteelWire" @input="setDlcSteelWire">
-          {{ $t('section.m_1.dlcSteelWire') }}
-        </checkbox>
-        <checkbox v-if="$validateSelectedLanguage('jp')" v-model="upperJaw" class="mr-4" :is-checked="upperJaw" @input="setUpperJaw">
-          {{ $t('section.m_1.upperJaw') }}
-        </checkbox>
-        <checkbox v-if="$validateSelectedLanguage('jp')" v-model="lowerJaw" :is-checked="lowerJaw" @input="setLowerJaw">
-          {{ $t('section.m_1.lowerJaw') }}
+        <hr>
+        <checkbox v-model="transparent" class="p-0" :is-checked="transparent" @input="setTransparent">
+          {{ $t('section.m_3.tray.transparent') }}
         </checkbox>
       </div>
-      <div>
-        <textarea-field id="notes-1" v-model="notes1" :label="$t('section.m_1.notes')" :rows="8" @input="setNotes1" />
-      </div>
-      <div class="text-center my-4">
-        <p class="text-primary" v-html="$t('section.m_1.keyInfo')" />
-        <div class="d-flex flex-wrap justify-content-center" v-html="$t('section.m_1.keyInfoLegend')" />
-      </div>
-      <div v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="my-4">
-        <checkbox v-model="noCorrectionOfBite" :is-checked="noCorrectionOfBite" @input="setNoCorrectionOfBite">
-          {{ $t('section.m_2.noCorrectionOfBite') }}
-        </checkbox>
-      </div>
-      <div v-if="$validateSelectedLanguage('en', 'de', 'fr')">
-        <textarea-field id="notes-2" v-model="notes2" :label="$t('section.m_1.notes')" :rows="6" @input="setNotes2" />
-      </div>
-      <div v-if="$validateSelectedLanguage('it', 'sp', 'ru', 'jp')">
-        <b-table
-          small
-          bordered
-          :items="tableItems"
-          :fields="tableFields"
-          head-variant="dark"
-          thead-class="text-center"
-          tbody-class="text-center"
-          details-td-class="text-center"
-        >
-          <template #cell(right_2)="data">
-            <div class="d-flex justify-content-center">
-              <checkbox
-                v-model="right2[data.item.type]"
-                no-label
-                class="m-0"
-                :is-checked="right2[data.item.type]"
-                @input="onSetCanineMolar('right2', data.item.type, right2[data.item.type])"
-              />
-            </div>
-          </template>
-          <template #cell(right_3)="data">
-            <div class="d-flex justify-content-center">
-              <checkbox
-                v-model="right3[data.item.type]"
-                no-label
-                class="m-0"
-                :is-checked="right3[data.item.type]"
-                @input="onSetCanineMolar('right3', data.item.type, right3[data.item.type])"
-              />
-            </div>
-          </template>
-          <template #cell(left_2)="data">
-            <div class="d-flex justify-content-center">
-              <checkbox
-                v-model="left2[data.item.type]"
-                no-label
-                class="m-0"
-                :is-checked="left2[data.item.type]"
-                @input="onSetCanineMolar('left2', data.item.type, left2[data.item.type])"
-              />
-            </div>
-          </template>
-          <template #cell(left_3)="data">
-            <div class="d-flex justify-content-center">
-              <checkbox
-                v-model="left3[data.item.type]"
-                no-label
-                class="m-0"
-                :is-checked="left3[data.item.type]"
-                @input="onSetCanineMolar('left3', data.item.type, left3[data.item.type])"
-              />
-            </div>
-          </template>
-        </b-table>
-      </div>
-      <div class="d-flex my-4">
-        <div class="d-flex align-items-center ml-3 mr-5">
-          <span>{{ $t('section.m_3.tray.title') }}</span>
-        </div>
-        <div class="w-100">
-          <checkbox v-model="nonTransparent" class="p-0" :is-checked="nonTransparent" @input="setNonTransparent">
-            {{ $t('section.m_3.tray.nonTransparent') }}
-          </checkbox>
-          <checkbox v-model="trayTrimmed33" class="ml-3 p-0" :is-checked="trayTrimmed33" @input="setTrayTrimmed33">
-            {{ $t('section.m_3.tray.trayTrimmed3_3') }}
-          </checkbox>
-          <hr>
-          <checkbox v-model="transparent" class="p-0" :is-checked="transparent" @input="setTransparent">
-            {{ $t('section.m_3.tray.transparent') }}
-          </checkbox>
-        </div>
-      </div>
-    </card>
+    </div>
   </modal>
 </template>
 

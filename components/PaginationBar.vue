@@ -1,6 +1,6 @@
 <template>
   <div class="lof-pagination-bar">
-    <div class="lof-pagination-bar__container col-8 col-md-9 col-lg-7 col-xl-6 offset-lg-1">
+    <div class="lof-pagination-bar__container col-8 col-md-9 col-lg-7 col-xl-8 offset-lg-1">
       <div v-if="currentPage !== 1" class="lof-pagination-bar__arrows lof-pagination-bar__arrows--left-arrow" @click="previousPage">
         <svg-icon class="lof-pagination-bar__arrows-icon" icon="right-arrow" />
       </div>

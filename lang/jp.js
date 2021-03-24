@@ -14,7 +14,17 @@ export default {
       send: '送信',
       preview: 'PDFのプレビュー',
       download: 'PDFダウンロード',
-      generatingPdf: 'PDFの生成...'
+      generatingPdf: 'PDFの生成...',
+      search: '検索',
+      apply: '適用する',
+      date: '日付',
+      dateRange: '日付範囲',
+      fromDate: '日付',
+      toDate: '日付',
+      select: '選択',
+      login: 'ログイン',
+      logout: 'ログアウト',
+      allForms: 'すべてのフォーム'
     },
     titles: {
       invoiceAddress: '請求書の住所',
@@ -22,7 +32,9 @@ export default {
       lowerTeeth: '下の歯',
       sentForms: '送信フォーム',
       templates: 'テンプレート',
-      sendForm: 'フォームを送信'
+      sendForm: 'フォームを送信',
+      orderForms: 'オーダーフォーム',
+      login: 'ログイン'
     },
     headlines: {
       newForm: '新しいフォームを作成する',
@@ -37,13 +49,17 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Steel',
       sectionType3: 'ß-Ti',
-      templateTitle: 'テンプレートタイトル'
+      templateTitle: 'テンプレートタイトル',
+      searchPlaceholder: '検索...',
+      username: 'ユーザー名',
+      password: 'パスワード'
     },
     notifications: {
       savedOrderForm: 'フォームが保存されました。',
       savedTemplate: 'テンプレートを保存しました。',
       deletedTemplate: 'テンプレートを削除しました。',
-      error: 'エラーが発生しました。'
+      error: 'エラーが発生しました。',
+      errorLogin: '<strong>エラーです。</strong> ユーザー名またはパスワードが有効ではありません。'
     }
   },
   section: {

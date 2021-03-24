@@ -14,7 +14,17 @@ export default {
       send: 'Envía',
       preview: 'Vista previa del PDF',
       download: 'Descargue el PDF',
-      generatingPdf: 'Generación de PDF...'
+      generatingPdf: 'Generación de PDF...',
+      search: 'Busque en',
+      apply: 'Aplique',
+      date: 'Fecha',
+      dateRange: 'Rango de fechas',
+      fromDate: 'Fecha de',
+      toDate: 'Fecha a',
+      select: 'Seleccione',
+      login: 'Inicie sesión en',
+      logout: 'Cierre de sesión',
+      allForms: 'Todos los formularios'
     },
     titles: {
       invoiceAddress: 'Dirección de facturación',
@@ -22,7 +32,9 @@ export default {
       lowerTeeth: 'Dientes inferiores',
       sentForms: 'Formularios enviados',
       templates: 'Plantillas',
-      sendForm: 'Enviar formulario'
+      sendForm: 'Enviar formulario',
+      orderForms: 'Formularios de pedido',
+      login: 'Inicie sesión en'
     },
     headlines: {
       newForm: 'Crear un nuevo formulario',
@@ -37,13 +49,17 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Acero',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Título de la plantilla'
+      templateTitle: 'Título de la plantilla',
+      searchPlaceholder: 'Buscar...',
+      username: 'Nombre de usuario',
+      password: 'Contraseña'
     },
     notifications: {
       savedOrderForm: 'El formulario se ha guardado.',
       savedTemplate: 'La plantilla se ha guardado.',
       deletedTemplate: 'La plantilla fue eliminada.',
-      error: 'Error, por favor, inténtelo de nuevo.'
+      error: 'Error, por favor, inténtelo de nuevo.',
+      errorLogin: '<strong>Error:</strong> El nombre de usuario o la contraseña no son válidos.'
     }
   },
   section: {

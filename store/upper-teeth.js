@@ -147,7 +147,12 @@ export const actions = {
         page: currentPage,
         userId
       }
-    }).catch(() => {
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
+
       const notification = {
         message: 'error',
         variant: 'danger'
@@ -159,7 +164,12 @@ export const actions = {
     const { templateId, userId } = payload
     const { upperTeethTemplate } = await this.$axios.$get(`/api/templates/upper-teeth/${ templateId }`, {
       params: { userId }
-    }).catch(() => {
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
+
       const notification = {
         message: 'error',
         variant: 'danger'
@@ -247,9 +257,15 @@ export const actions = {
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })
+          return true
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+          return false
+        }
+
         const notification = {
           message: 'error',
           variant: 'danger'
@@ -269,9 +285,15 @@ export const actions = {
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })
+          return true
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+          return false
+        }
+
         const notification = {
           message: 'error',
           variant: 'danger'

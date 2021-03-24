@@ -1,9 +1,7 @@
 <template>
-  <modal ref="pdfPreview" show-only-close-tab>
-    <card v-click-outside.stop="closePdfPreviewModal">
-      <pdf-generator :src="pdfSrcPage1" class="lof-pdf-preview" />
-      <pdf-generator :src="pdfSrcPage2" class="lof-pdf-preview" />
-    </card>
+  <modal ref="pdfPreview" show-only-close-tab @closeModal="closePdfPreviewModal">
+    <pdf-generator :src="pdfSrcPage1" class="lof-pdf-preview" />
+    <pdf-generator :src="pdfSrcPage2" class="lof-pdf-preview" />
   </modal>
 </template>
 

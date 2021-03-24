@@ -187,12 +187,17 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchTemplates (context, payload) {
+  async fetchTemplates ({ commit }, payload) {
     const { currentPage, userId } = payload
     return await this.$axios.$get('/api/templates/invoice-address', {
       params: {
         page: currentPage,
         userId
+      }
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
       }
     })
   },
@@ -200,7 +205,12 @@ export const actions = {
     const { templateId, userId } = payload
     const { invoiceAddressTemplate } = await this.$axios.$get(`/api/templates/invoice-address/${ templateId }`, {
       params: { userId }
-    }).catch(() => {
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
+
       const notification = {
         message: 'error',
         variant: 'danger'
@@ -296,10 +306,15 @@ export const actions = {
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })
+          return true
         }
       })
-      .catch(() => {
-        console.log('error')
+      .catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+          return false
+        }
+
         const notification = {
           message: 'error',
           variant: 'danger'
@@ -319,9 +334,15 @@ export const actions = {
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })
+          return true
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+          return false
+        }
+
         const notification = {
           message: 'error',
           variant: 'danger'

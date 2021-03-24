@@ -9,10 +9,10 @@
     <transition name="fade" mode="out-in" @after-enter="showContent = true">
       <div v-if="showModal" class="lof-modal__overlay">
         <transition name="fade" mode="out-in" @after-leave="showModal = false">
-          <div v-if="showContent" class="lof-modal__container row">
-            <div class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-6 d-flex align-items-center p-0">
+          <div v-if="showContent" class="lof-modal__container">
+            <card v-click-outside.stop="closeModal" class="lof-modal__container__card" :class="heightAuto ? 'h-auto' : ''" :full-width="fullWidth">
               <slot />
-            </div>
+            </card>
           </div>
         </transition>
       </div>
@@ -25,15 +25,13 @@
     name: 'modal',
 
     props: {
-      showTab: {
-        type: Boolean,
-        required: false
-      },
+      showTab: Boolean,
       showOnlyCloseTab: {
         type: Boolean,
-        required: false,
         default: false
-      }
+      },
+      fullWidth: Boolean,
+      heightAuto: Boolean
     },
 
     data () {
@@ -55,6 +53,9 @@
       },
       hide () {
         this.showContent = false
+      },
+      closeModal () {
+        this.$emit('closeModal')
       }
     }
   }

@@ -1,9 +1,6 @@
 .lof-pagination-bar {
   @extend .row;
-  width: 100%;
-  align-self: center;
   align-items: center;
-  justify-content: center;
 
   &__container {
     display: flex;
