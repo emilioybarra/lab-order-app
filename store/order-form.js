@@ -14,16 +14,21 @@ const dataURLToBlob = (dataURL) => {
 }
 
 export const actions = {
-  async fetchOrderForms (context, payload) {
+  async fetchOrderForms ({ commit, redirect }, payload) {
     const { currentPage, userId } = payload
     return await this.$axios.$get('/api/order-forms', {
       params: {
         page: currentPage,
         userId
       }
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
     })
   },
-  async fetchOrderFormById (context, payload) {
+  async fetchOrderFormById ({ commit }, payload) {
     const { orderFormId, userId } = payload
     const config = userId ? { params: { userId } } : {}
     return await this.$axios.$get(`/api/order-forms/${ orderFormId }`, config).then((response) => {
@@ -43,10 +48,12 @@ export const actions = {
       }
 
       return prepareOrderForm
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
     })
-      .catch(() => {
-        return null
-      })
   },
   saveOrderForm (ctx, payload) {
     const { rootGetters, commit } = ctx
@@ -225,11 +232,6 @@ export const actions = {
     return this.$axios.$post('/api/order-forms/order-form', prepareOrderFormData, config)
       .then((response) => {
         if (response.status === 201) {
-          const notification = {
-            message: 'savedOrderForm',
-            variant: 'success'
-          }
-          commit('common/setNotifications', notification, { root: true })
           commit('invoice-address/resetInvoiceAddressState', null, { root: true })
           commit('upper-teeth/resetUpperTeethState', null, { root: true })
           commit('notes/resetNotesState', null, { root: true })
@@ -237,7 +239,12 @@ export const actions = {
           return true
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+          return false
+        }
+
         const notification = {
           message: 'error',
           variant: 'danger'

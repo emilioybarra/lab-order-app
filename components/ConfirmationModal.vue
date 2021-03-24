@@ -1,24 +1,22 @@
 <template>
-  <modal ref="confirmationModal" :show-tab="false">
-    <card v-click-outside.stop="closeConfirmationModal" class="h-auto">
-      <h3 class="lof-headline lof-headline--2 my-4 text-center">
-        {{ $t('common.headlines.orderSent') }}
-      </h3>
-      <div class="text-center">
-        <i class="lof-icon-xl ion-checkmark-circled text-success" />
-      </div>
-      <b-button-toolbar class="d-flex mb-3 mt-5 justify-content-center">
-        <b-button class="lof-button mr-4 w-25" variant="secondary" @click="closeConfirmationModal">
-          {{ $t('common.buttons.close') }}
-        </b-button>
-        <b-button class="lof-button mr-4 w-25" variant="primary" @click="goHome">
-          Home
-        </b-button>
-        <b-button class="lof-button w-25" variant="primary" @click="goToSentForms">
-          {{ $t('common.titles.sentForms') }}
-        </b-button>
-      </b-button-toolbar>
-    </card>
+  <modal ref="confirmationModal" :show-tab="false" full-width height-auto @closeModal="closeConfirmationModal">
+    <h3 class="lof-headline lof-headline--2 my-4 text-center">
+      {{ $t('common.headlines.orderSent') }}
+    </h3>
+    <div class="text-center">
+      <i class="lof-icon-xl ion-checkmark-circled text-success" />
+    </div>
+    <b-button-toolbar class="d-flex mb-3 mt-5 justify-content-center">
+      <b-button class="lof-button mr-4 w-25" variant="primary" @click="goHome">
+        Home
+      </b-button>
+      <b-button class="lof-button mr-4 w-25" variant="primary" @click="goToSentForms">
+        {{ $t('common.titles.sentForms') }}
+      </b-button>
+      <b-button class="lof-button w-25" variant="secondary" @click="closeConfirmationModal">
+        {{ $t('common.buttons.close') }}
+      </b-button>
+    </b-button-toolbar>
   </modal>
 </template>
 

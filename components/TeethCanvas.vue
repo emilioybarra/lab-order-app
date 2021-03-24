@@ -10,8 +10,8 @@
     <div class="lof-teeth-canvas__border">
       <transition name="fade">
         <div v-if="!canvasActive" class="lof-teeth-canvas__overlay">
-          <b-button class="lof-teeth-canvas__button lof-teeth-canvas__button--play" variant="primary" @click="activateCanvas">
-            <svg-icon icon="play-circle" class="lof-teeth-canvas__button-icon lof-teeth-canvas__button-icon--play" />
+          <b-button class="lof-teeth-canvas__button lof-teeth-canvas__button--pen" variant="primary" @click="activateCanvas">
+            <svg-icon icon="pen" class="lof-teeth-canvas__button-icon lof-teeth-canvas__button-icon--pen" />
           </b-button>
         </div>
       </transition>

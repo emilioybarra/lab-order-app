@@ -1,3 +1,4 @@
+require('dotenv').config()
 const User = require('../models/user')
 const OrderForm = require('../models/order-form')
 
@@ -55,35 +56,23 @@ exports.getOrderFormById = (req, res, next) => {
   const userId = req.query.userId
   const orderFormId = req.params.id
 
-  if (userId) {
-    User.findById(userId)
-      .then((user) => {
-        OrderForm.findById(orderFormId)
-          .then((orderForm) => {
-            res.json(orderForm)
-          })
-          .catch((err) => {
-            const error = new Error(err)
-            error.httpStatusCode = 500
-            return next(error)
-          })
-      })
-      .catch((err) => {
-        const error = new Error(err)
-        error.httpStatusCode = 500
-        return next(error)
-      })
-  } else {
-    OrderForm.findById(orderFormId)
-      .then((orderForm) => {
-        res.json(orderForm)
-      })
-      .catch((err) => {
-        const error = new Error(err)
-        error.httpStatusCode = 500
-        return next(error)
-      })
-  }
+  User.findById(userId)
+    .then((user) => {
+      OrderForm.findById(orderFormId)
+        .then((orderForm) => {
+          res.json(orderForm)
+        })
+        .catch((err) => {
+          const error = new Error(err)
+          error.httpStatusCode = 500
+          return next(error)
+        })
+    })
+    .catch((err) => {
+      const error = new Error(err)
+      error.httpStatusCode = 500
+      return next(error)
+    })
 }
 
 exports.postCreateOrderForm = (req, res, next) => {
@@ -120,7 +109,8 @@ exports.postCreateOrderForm = (req, res, next) => {
 
   OrderForm.create(prepareOrderFormData)
     .then((orderForm) => {
-      User.findById(userId, (error, user) => {
+      User.findById(userId, (err, user) => {
+        if (err) { return res.status(400).send(err) }
         user.addToOrderFormHistory(orderForm._id)
       })
         .then(() => {

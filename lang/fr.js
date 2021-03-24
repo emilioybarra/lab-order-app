@@ -14,14 +14,27 @@ export default {
       send: 'Envoyer',
       preview: 'Prévisualisation PDF',
       download: 'Télécharger le PDF',
-      generatingPdf: 'Générer des PDF...'
+      generatingPdf: 'Générer des PDF...',
+      search: 'Recherchez',
+      apply: 'Appliquer',
+      date: 'Date',
+      dateRange: 'Fourchette de dates',
+      fromDate: 'Date du',
+      toDate: 'Date à',
+      select: 'Sélectionnez',
+      login: 'Connexion',
+      logout: 'Déconnexion',
+      allForms: 'Tous les formulaires'
     },
     titles: {
       invoiceAddress: 'Adresse de facturation',
       upperTeeth: 'Mâchoire supérieure',
       lowerTeeth: 'Mâchoire inférieure',
       sentForms: 'Formulaires envoyés',
-      templates: 'Modèles'
+      templates: 'Modèles',
+      sendForm: 'Envoyer le formulaire',
+      orderForms: 'Formulaires de commande',
+      login: 'Connexion'
     },
     headlines: {
       newForm: 'Créer un nouveau formulaire',
@@ -36,13 +49,17 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Acier',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Titre du modèle'
+      templateTitle: 'Titre du modèle',
+      searchPlaceholder: 'Recherche...',
+      username: 'Nom d\'utilisateur',
+      password: 'Mot de passe'
     },
     notifications: {
       savedOrderForm: 'Le formulaire a été enregistré.',
       savedTemplate: 'Le modèle a été enregistré.',
       deletedTemplate: 'Le modèle a été supprimé.',
-      error: 'Erreur, veuillez réessayer.'
+      error: 'Erreur, veuillez réessayer.',
+      errorLogin: '<strong>Erreur:</strong> Le nom d\'utilisateur ou le mot de passe ne sont pas valides.'
     }
   },
   section: {

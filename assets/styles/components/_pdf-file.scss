@@ -29,10 +29,6 @@
      margin-bottom: $space-3;
     }
 
-    &--variant-3 {
-     //margin-bottom: $space-05;
-    }
-
     &-logos {
       &--variant-2 {
         width: 32% !important;
@@ -571,8 +567,8 @@
 
           &__cell {
             &--disable {
-              background: url('~assets/images/line.png');
-              background-size: 100% 100%;
+              // background: url('~assets/images/line.png');
+              // background-size: 100% 100%;
               background-color: $light-grey;
             }
           }

@@ -14,7 +14,17 @@ export default {
       send: 'Abschicken',
       preview: 'Preview PDF',
       download: 'Download PDF',
-      generatingPdf: 'PDF generieren...'
+      generatingPdf: 'PDF generieren...',
+      search: 'Suche',
+      apply: 'Anwenden',
+      date: 'Datum',
+      dateRange: 'Zeitraum',
+      fromDate: 'Datum von',
+      toDate: 'Datum bis',
+      select: 'Auswählen',
+      login: 'Anmelden',
+      logout: 'Abmelden',
+      allForms: 'Alle Formulare'
     },
     titles: {
       invoiceAddress: 'Rechnungsadresse',
@@ -22,7 +32,9 @@ export default {
       lowerTeeth: 'Unterkiefer',
       sentForms: 'Verschickte Formulare',
       templates: 'Vorlagen',
-      sendForm: 'Formular absenden'
+      sendForm: 'Formular absenden',
+      orderForms: 'Auftragsformulare',
+      login: 'Anmelden'
     },
     headlines: {
       newForm: 'Erstellen Sie ein Neues Formular',
@@ -37,13 +49,17 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Stahl',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Vorlage Titel'
+      templateTitle: 'Vorlage Titel',
+      searchPlaceholder: 'Suchen...',
+      username: 'Benutzername',
+      password: 'Passwort'
     },
     notifications: {
       savedOrderForm: 'Das Formular wurde gespeichert.',
       savedTemplate: 'Die Vorlage wurde gespeichert.',
       deletedTemplate: 'Vorlage wurde gelöscht.',
-      error: 'Fehler, bitte versuchen Sie es erneut.'
+      error: 'Fehler, bitte versuchen Sie es erneut.',
+      errorLogin: '<strong>Fehler:</strong> Benutzername oder Passwort sind nicht gültig.'
     }
   },
   section: {

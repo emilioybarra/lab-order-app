@@ -14,7 +14,17 @@ export default {
       send: 'Send',
       preview: 'Preview PDF',
       download: 'Download PDF',
-      generatingPdf: 'Generating PDF...'
+      generatingPdf: 'Generating PDF...',
+      search: 'Search',
+      apply: 'Apply',
+      date: 'Date',
+      dateRange: 'Date Range',
+      fromDate: 'Date from',
+      toDate: 'Date to',
+      select: 'Select',
+      login: 'Login',
+      logout: 'Logout',
+      allForms: 'All Forms'
     },
     titles: {
       invoiceAddress: 'Invoice Address',
@@ -22,7 +32,9 @@ export default {
       lowerTeeth: 'Lower Teeth',
       sentForms: 'Sent Forms',
       templates: 'Templates',
-      sendForm: 'Send Form'
+      sendForm: 'Send Form',
+      orderForms: 'Order Forms',
+      login: 'Login'
     },
     headlines: {
       newForm: 'Create a new form',
@@ -37,13 +49,17 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Steel',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Template Title'
+      templateTitle: 'Template Title',
+      searchPlaceholder: 'Search...',
+      username: 'Username',
+      password: 'Password'
     },
     notifications: {
       savedOrderForm: 'Form was saved.',
       savedTemplate: 'Template was saved.',
       deletedTemplate: 'Template was deleted.',
-      error: 'Error, please try again.'
+      error: 'Error, please try again.',
+      errorLogin: '<strong>Error:</strong> Username or password are not valid.'
     }
   },
   section: {

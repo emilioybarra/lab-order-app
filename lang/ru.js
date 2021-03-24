@@ -14,7 +14,17 @@ export default {
       send: 'Отправить',
       preview: 'Просмотр PDF',
       download: 'Скачать PDF',
-      generatingPdf: 'Генерирование PDF...'
+      generatingPdf: 'Генерирование PDF...',
+      search: 'Поиск',
+      apply: 'Применить',
+      date: 'Дата',
+      dateRange: 'Диапазон дат',
+      fromDate: 'Дата от',
+      toDate: 'Дата до',
+      select: 'Выберите',
+      login: 'Вход',
+      logout: 'Выход',
+      allForms: 'Все формы'
     },
     titles: {
       invoiceAddress: 'Адрес счёта-фактуры',
@@ -22,7 +32,9 @@ export default {
       lowerTeeth: 'Нижние зубы',
       sentForms: 'Отправленные формы',
       templates: 'Шаблоны',
-      sendForm: 'Отправить форму'
+      sendForm: 'Отправить форму',
+      orderForms: 'Формы заказов',
+      login: 'Вход'
     },
     headlines: {
       newForm: 'Создать новую форму',
@@ -37,13 +49,17 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'сталь',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Название шаблона'
+      templateTitle: 'Название шаблона',
+      searchPlaceholder: 'Поиск...',
+      username: 'Имя пользователя',
+      password: 'Пароль'
     },
     notifications: {
       savedOrderForm: 'Форма была сохранена.',
       savedTemplate: 'Шаблон был сохранен.',
       deletedTemplate: 'Шаблон был удален.',
-      error: 'Ошибка, пожалуйста, попробуйте еще раз.'
+      error: 'Ошибка, пожалуйста, попробуйте еще раз.',
+      errorLogin: '<strong>Ошибка:</strong> Имя пользователя или пароль недействительны.'
     }
   },
   section: {

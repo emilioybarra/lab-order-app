@@ -17,7 +17,7 @@
 
     <b-navbar class="lof-navbar" :class="scrollY > 0 || showLanguageMenu ? 'lof-navbar--shadow' : ''" sticky toggleable="false">
       <b-navbar-nav align="left">
-        <b-nav-text v-if="$route.path !== '/'" class="lof-navbar__back-button" @click="goBack">
+        <b-nav-text v-if="$route.path !== '/' && !unauthorizedPage" class="lof-navbar__back-button" @click="goBack">
           <svg-icon class="lof-navbar__icon" icon="back" />
         </b-nav-text>
       </b-navbar-nav>
@@ -25,17 +25,17 @@
         <b-nav-text class="lof-navbar__language" @click="showLanguageMenu = !showLanguageMenu">
           <svg-icon class="lof-navbar__icon" :icon="language" /> {{ $t('common.buttons.language') }}
         </b-nav-text>
-        <b-nav-item class="lof-navbar__exit" @click="showNotification = !showNotification">
+        <b-nav-text v-if="!unauthorizedPage" class="lof-navbar__exit" @click="showNotification = !showNotification">
           <svg-icon class="lof-navbar__icon" icon="logout" />
           {{ $t('common.buttons.exit') }}
-        </b-nav-item>
+        </b-nav-text>
       </b-navbar-nav>
     </b-navbar>
 
-    <pdf-preview-modal :key="pdfPreviewKey" />
-    <template-title-modal :key="'template-title-modal-' + language" />
-    <confirmation-modal :key="'confirmation-modal-' + language" />
-    <notes-modal v-if="showModalTab" :key="'notes-modal-' + language" />
+    <pdf-preview-modal v-if="!unauthorizedPage" :key="pdfPreviewKey" />
+    <template-title-modal v-if="!unauthorizedPage" key="template-title-modal" />
+    <confirmation-modal v-if="!unauthorizedPage" key="confirmation-modal" />
+    <notes-modal v-if="showModalTab && !unauthorizedPage" key="notes-modal" />
 
     <div id="lof-body-container" class="lof-body" @scroll.passive="handleScroll">
       <transition name="fade">
@@ -78,6 +78,7 @@
   export default {
     name: 'layout',
     scrollToTop: true,
+    middleware: 'userAuth',
 
     data () {
       return {
@@ -93,6 +94,9 @@
     },
 
     computed: {
+      unauthorizedPage () {
+        return this.$route.path === '/unauthorized'
+      },
       language () {
         return this.$i18n.locale
       },

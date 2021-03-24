@@ -1,3 +1,4 @@
+import BootstrapVueLoader from 'bootstrap-vue-loader'
 import de from './lang/de'
 import en from './lang/en'
 import fr from './lang/fr'
@@ -6,20 +7,19 @@ import jp from './lang/jp'
 import ru from './lang/ru'
 import sp from './lang/sp'
 
-const dev = !!process.env.NUXT_ENV_APP_ENVIRONMENT
+const isDev = process.env.NODE_ENV === 'development'
 
 export default {
-  modern: dev ? false : 'server',
+  modern: isDev ? false : 'server',
 
   server: {
-    port: dev ? 3000 : 80,
+    port: isDev ? 3000 : 80,
     host: '0.0.0.0' // default: localhost
   },
 
   router: {
     mode: 'history',
-    routeNameSplitter: '/',
-    middleware: [ 'auth' ]
+    routeNameSplitter: '/'
   },
 
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -51,7 +51,8 @@ export default {
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
     // SCSS file in the project
-    '@/assets/styles/main.scss'
+    '@/assets/styles/main.scss',
+    'bootstrap-vue/dist/bootstrap-vue.css'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -78,11 +79,9 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt',
+    // 'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // https://auth.nuxtjs.org/
-    '@nuxtjs/auth',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://github.com/nuxt-community/svg-module
@@ -110,17 +109,9 @@ export default {
     }
   },
 
-  auth: {
-    plugins: [ '~/plugins/auth.js' ],
-    redirect: {
-      home: '/',
-      login: '/unauthorized'
-    }
-  },
-
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    transpile: [ '@nuxtjs/auth' ],
+    plugins: [ new BootstrapVueLoader() ],
     babel: {
       minified: true
     },
@@ -134,12 +125,6 @@ export default {
 
   styleResources: {
     scss: './scss/*.scss'
-  },
-
-  bootstrapVue: {
-    bootstrapCSS: false,
-    bootstrapVueCSS: false,
-    icons: true
   },
 
   pwa: {
@@ -178,7 +163,7 @@ export default {
         code: 'de',
         file: 'de.js',
         name: 'Deutsch',
-        iso: 'de_DE',
+        iso: 'de-DE',
         navigator: 'de',
         localeDateFormat: 'DD.MM.YYYY'
       },
@@ -186,7 +171,7 @@ export default {
         code: 'en',
         file: 'en.js',
         name: 'English',
-        iso: 'en_GB',
+        iso: 'en-GB',
         navigator: 'en',
         localeDateFormat: 'DD/MM/YYYY'
       },
@@ -194,7 +179,7 @@ export default {
         code: 'fr',
         file: 'fr.js',
         name: 'Français',
-        iso: 'fr_FR',
+        iso: 'fr-FR',
         navigator: 'fr',
         localeDateFormat: 'DD/MM/YYYY'
       },
@@ -202,7 +187,7 @@ export default {
         code: 'it',
         file: 'it.js',
         name: 'Italiano',
-        iso: 'it_IT',
+        iso: 'it-IT',
         navigator: 'it',
         localeDateFormat: 'DD/MM/YYYY'
       },
@@ -210,7 +195,7 @@ export default {
         code: 'jp',
         file: 'jp.js',
         name: 'にほんご',
-        iso: 'ja_JP',
+        iso: 'ja-JP',
         navigator: 'ja',
         localeDateFormat: 'YYYY/MM/DD'
       },
@@ -218,7 +203,7 @@ export default {
         code: 'ru',
         file: 'ru.js',
         name: 'Русский',
-        iso: 'ru_RU',
+        iso: 'ru-RU',
         navigator: 'ru',
         localeDateFormat: 'DD.MM.YYYY'
       },
@@ -226,7 +211,7 @@ export default {
         code: 'sp',
         file: 'sp.js',
         name: 'Español',
-        iso: 'es_ES',
+        iso: 'es-ES',
         navigator: 'es',
         localeDateFormat: 'DD/MM/YYYY'
       }

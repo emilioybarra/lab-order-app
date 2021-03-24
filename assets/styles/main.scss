@@ -1,6 +1,9 @@
 @import 'fonts';
 @import 'variables';
 
+// Bootstrap
+@import '~bootstrap/scss/bootstrap.scss';
+
 // Helpers
 @import
   'helpers/ionicons',
@@ -15,11 +18,6 @@
   'transitions/slide',
   'transitions/slide-down';
 
-// Bootstrap
-@import
-  '~bootstrap/scss/bootstrap.scss',
-  '~bootstrap-vue/src/index.scss';
-
 // Components
 @import
   'components/archwire-sizes-table',
@@ -27,7 +25,6 @@
   'components/checkbox',
   'components/headline',
   'components/input-field',
-  'components/language-filter',
   'components/link-button',
   'components/list-item',
   'components/modal',
@@ -38,6 +35,7 @@
   'components/pdf-preview',
   'components/teeth-canvas',
   'components/textarea-field',
+  'components/toolbar',
   'components/tooth-divider';
 
 // Bootstrap overwrites
@@ -97,6 +95,7 @@ body {
     background-color: $white;
     flex: 0 0 auto;
     height: 70px;
+    z-index: 1;
 
     &__icon {
       @extend .lof-icon;
@@ -114,6 +113,10 @@ body {
     }
 
     &__exit {}
+
+    &__logout {
+      cursor: pointer;
+    }
 
     &--shadow {
       box-shadow: 0 0 17px -8px rgba(0, 0, 0, 0.75);

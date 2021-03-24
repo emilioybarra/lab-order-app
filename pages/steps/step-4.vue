@@ -49,6 +49,12 @@
       }
     },
 
+    computed: {
+      getUserId () {
+        return this.$store.getters['auth/getUser']._id
+      }
+    },
+
     methods: {
       previewPdf () {
         const self = this
@@ -97,7 +103,7 @@
       saveOrderForm () {
         const payload = {
           orderFormLanguage: this.$i18n.locale,
-          userId: this.$auth.$state.user._id
+          userId: this.getUserId
         }
         this.$store.dispatch('order-form/saveOrderForm', payload).then((response) => {
           if (response) {

@@ -1,9 +1,19 @@
 <template>
   <page>
     <template #headline>
-      {{ $t('common.titles.sentForms') }}
+      {{ $t('common.titles.orderForms') }}
     </template>
     <template #body>
+      <toolbar
+        :key="'toolbar-' + $i18n.locale"
+        @activeSearchKey="getSearchKey"
+        @activeSearchQuery="getSearchQuery"
+        @activeDateFilters="getActiveDateFilters"
+        @activeLanguageFilters="getActiveLanguageFilters"
+        @onSearch="onSearch"
+        @onShowAllForms="onShowAllForms"
+        @onApplyFilters="onApplyFilters"
+      />
       <b-skeleton-wrapper class="d-flex flex-column" :loading="loading">
         <template #loading>
           <div v-for="item in 5" :key="item" class="lof-list-item">
@@ -17,27 +27,22 @@
             </div>
           </div>
         </template>
-        <div v-if="!orderForms.length && !loading" class="d-flex justify-content-center lof-headline lof-headline--3">
-          {{ $t('common.headlines.emptyOrderForms') }}
-        </div>
         <list-item
           v-for="orderForm in orderForms"
           v-if="!!orderForms.length"
           :key="orderForm._id"
           no-delete-button
           :loading="selectedOrderFormId === orderForm._id && loadingPreview"
-          :loading-text="$t('common.buttons.generatingPdf')"
+          loading-text="Generating PDF..."
           :downloading="selectedOrderFormId === orderForm._id && loadingDownload"
           :name="`${ $d(new Date(orderForm.createdAt)) }${ orderForm.patient.lastName && orderForm.patient.firstName ? ` – ${ orderForm.patient.lastName }, ${ orderForm.patient.firstName }` : '' }`"
           @onSelect="selectOrderForm(orderForm._id)"
           @onDownload="downloadOrderForm(orderForm._id)"
         />
-        <div v-for="item in (5 - orderForms.length)" v-if="!!orderForms.length" :key="item" class="lof-list-item">
-          <div class="col-8 col-md-9 col-lg-7 col-xl-8 offset-lg-1" />
-          <div class="lof-list-item__button-group col-4 col-md-3 col-lg-3 col-xl-2">
-            <div class="lof-list-item__button" />
-          </div>
+        <div v-if="!orderForms.length && !loading" class="lof-list-item d-flex justify-content-center lof-headline lof-headline--3">
+          {{ $t('common.headlines.emptyOrderForms') }}
         </div>
+        <div v-for="item in ((!orderForms.length ? perPage - 1 : perPage) - orderForms.length)" :key="item" class="lof-list-item" />
         <pdf-file
           v-if="selectedOrderForm !== undefined"
           id="pdf-page-1"
@@ -59,7 +64,7 @@
           :order-form="selectedOrderForm"
         />
       </b-skeleton-wrapper>
-      <pagination-bar v-if="totalOrderForms > 5" :pages="Math.ceil(totalOrderForms / 5)" :page="currentPage" @selectPage="selectPage" />
+      <pagination-bar v-if="totalOrderForms > perPage" :pages="Math.ceil(totalOrderForms / perPage)" :page="currentPage" @selectPage="selectPage" />
     </template>
   </page>
 </template>
@@ -68,12 +73,18 @@
   import html2pdf from 'html2pdf.js'
 
   export default {
-    name: 'sent-forms',
+    name: 'order-forms',
+    layout: 'admin',
+    middleware: 'adminAuth',
 
     data () {
       return {
         loading: true,
+        perPage: 10,
         currentPage: 1,
+        search: { searchKey: '', searchQuery: '' },
+        activeDateFilters: {},
+        activeLanguageFilters: [],
         orderForms: [],
         orderFormLanguage: '',
         selectedOrderForm: undefined,
@@ -91,12 +102,6 @@
           jsPDF: { format: 'a4', orientation: 'portrait' },
           pagebreak: { after: '#page-1' }
         }
-      }
-    },
-
-    computed: {
-      getUserId () {
-        return this.$store.getters['auth/getUser']._id
       }
     },
 
@@ -121,19 +126,41 @@
       selectPage (page) {
         this.currentPage = page
       },
+      onSearch () {
+        this.getAllOrderForms(this.currentPage)
+      },
+      onShowAllForms () {
+        this.getAllOrderForms(this.currentPage)
+      },
+      onApplyFilters () {
+        this.getAllOrderForms(this.currentPage)
+      },
+      getSearchKey (searchKey) {
+        this.search.searchKey = searchKey
+      },
+      getSearchQuery (searchQuery) {
+        this.search.searchQuery = searchQuery
+      },
+      getActiveDateFilters (activeDateFilters) {
+        this.activeDateFilters = activeDateFilters
+      },
+      getActiveLanguageFilters (activeLanguageFilters) {
+        this.activeLanguageFilters = activeLanguageFilters
+      },
       getAllOrderForms (currentPage) {
         const payload = {
           currentPage,
-          userId: this.getUserId
+          searchKey: this.search.searchKey,
+          searchQuery: this.search.searchQuery,
+          dateFilters: this.activeDateFilters,
+          languageFilters: this.activeLanguageFilters
         }
-        this.$store.dispatch('order-form/fetchOrderForms', payload).then((response) => {
-          if (!response) { this.$router.push('/unauthorized') }
-          if (response) {
-            this.orderForms = response.orderForms
-            this.totalOrderForms = response.totalOrderForms
-            this.currentPage = response.currentPage
-            this.loading = false
-          }
+
+        this.$store.dispatch('admin/fetchOrderForms', payload).then((response) => {
+          this.orderForms = response.orderForms
+          this.totalOrderForms = response.totalOrderForms
+          this.currentPage = response.currentPage
+          this.loading = false
         })
       },
       selectOrderForm (orderFormId) {
@@ -141,10 +168,7 @@
         this.loadingPreview = true
         this.selectedOrderFormId = orderFormId
         this.pdfOptions.filename = `order-form_${ this.selectedOrderFormId }`
-        const payload = {
-          orderFormId,
-          userId: this.getUserId
-        }
+        const payload = { orderFormId }
 
         if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
           this.pdfOptions.html2canvas.scale = 3
@@ -152,7 +176,7 @@
           this.pdfOptions.html2canvas.scale = 4
         }
 
-        this.$store.dispatch('order-form/fetchOrderFormById', payload)
+        this.$store.dispatch('admin/fetchOrderFormById', payload)
           .then((orderForm) => {
             this.selectedOrderForm = orderForm
           })
@@ -187,10 +211,7 @@
         this.loadingDownload = true
         this.selectedOrderFormId = orderFormId
         this.pdfOptions.filename = `order-form_${ this.selectedOrderFormId }`
-        const payload = {
-          orderFormId,
-          userId: this.getUserId
-        }
+        const payload = { orderFormId }
 
         if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
           this.pdfOptions.html2canvas.scale = 3
@@ -198,7 +219,7 @@
           this.pdfOptions.html2canvas.scale = 4
         }
 
-        this.$store.dispatch('order-form/fetchOrderFormById', payload)
+        this.$store.dispatch('admin/fetchOrderFormById', payload)
           .then((orderForm) => {
             this.selectedOrderForm = orderForm
           })

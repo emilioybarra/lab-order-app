@@ -7,7 +7,7 @@
       <b-skeleton-wrapper class="d-flex flex-column" :loading="loading">
         <template #loading>
           <div v-for="item in 5" :key="item" class="lof-list-item">
-            <div class="col-8 col-md-9 col-lg-7 col-xl-6 offset-lg-1">
+            <div class="col-8 col-md-9 col-lg-7 col-xl-8 offset-lg-1">
               <b-skeleton class="w-100" type="button" animation="fade" />
             </div>
             <div class="lof-list-item__button-group col-4 col-md-3 col-lg-3 col-xl-2">
@@ -30,7 +30,7 @@
           @onDelete="deleteTemplate(template._id)"
         />
         <div v-for="item in (5 - templates.length)" v-if="!!templates.length" :key="item" class="lof-list-item">
-          <div class="col-8 col-md-9 col-lg-7 col-xl-6 offset-lg-1" />
+          <div class="col-8 col-md-9 col-lg-7 col-xl-8 offset-lg-1" />
           <div class="lof-list-item__button-group col-4 col-md-3 col-lg-3 col-xl-2">
             <div class="lof-list-item__button" />
           </div>
@@ -55,6 +55,12 @@
       }
     },
 
+    computed: {
+      getUserId () {
+        return this.$store.getters['auth/getUser']._id
+      }
+    },
+
     watch: {
       currentPage () {
         this.loading = true
@@ -73,9 +79,10 @@
       getAllTemplates (currentPage) {
         const payload = {
           currentPage,
-          userId: this.$auth.$state.user._id
+          userId: this.getUserId
         }
         this.$store.dispatch(`${ this.$route.query.template }/fetchTemplates`, payload).then((response) => {
+          if (!response) { this.$router.push('/unauthorized') }
           if (response) {
             this.templates = response.templates
             this.totalTemplates = response.totalTemplates
@@ -87,10 +94,11 @@
       selectTemplate (templateId) {
         const payload = {
           templateId,
-          userId: this.$auth.$state.user._id
+          userId: this.getUserId
         }
-        this.$store.dispatch(`${ this.$route.query.template }/fetchTemplateById`, payload).then((result) => {
-          if (result) {
+        this.$store.dispatch(`${ this.$route.query.template }/fetchTemplateById`, payload).then((response) => {
+          if (!response) { this.$router.push('/unauthorized') }
+          if (response) {
             this.$router.go(-1)
           }
         })
@@ -99,10 +107,13 @@
         this.loading = true
         const payload = {
           templateId,
-          userId: this.$auth.$state.user._id
+          userId: this.getUserId
         }
-        this.$store.dispatch(`${ this.$route.query.template }/deleteTemplateById`, payload).then(() => {
-          this.getAllTemplates(this.currentPage)
+        this.$store.dispatch(`${ this.$route.query.template }/deleteTemplateById`, payload).then((response) => {
+          if (!response) { this.$router.push('/unauthorized') }
+          if (response) {
+            this.getAllTemplates(this.currentPage)
+          }
         })
       }
     }

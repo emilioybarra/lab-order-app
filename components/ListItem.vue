@@ -1,6 +1,6 @@
 <template>
   <div class="lof-list-item">
-    <div class="col-8 col-md-9 col-lg-7 col-xl-6 offset-lg-1">
+    <div class="col-8 col-md-9 col-lg-7 col-xl-8 offset-lg-1">
       <b-button variant="primary" class="w-100" @click="onSelect">
         <span v-if="!loading">{{ name }}</span>
         <b-spinner v-if="loading" small variant="light" />
