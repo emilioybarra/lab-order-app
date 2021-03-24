@@ -1,9 +1,10 @@
 import axios from 'axios'
-import cookies from 'vue-cookies'
+// import cookies from 'vue-cookies'
 import CryptoJS from 'crypto-js'
 
 export default async function (app) {
-  const wordpressUser = app.isDev ? 'webdev_1' : cookies.get('wordpress_user')
+  // const wordpressUser = app.isDev ? 'webdev_1' : cookies.get('wordpress_user')
+  const wordpressUser = 'webdev_1'
   const hashedWordpressUser = CryptoJS.SHA512(wordpressUser)
 
   if (!wordpressUser) {
