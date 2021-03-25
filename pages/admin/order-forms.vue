@@ -16,7 +16,7 @@
       />
       <b-skeleton-wrapper class="d-flex flex-column" :loading="loading">
         <template #loading>
-          <div v-for="item in 5" :key="item" class="lof-list-item">
+          <div v-for="item in perPage" :key="item" class="lof-list-item">
             <div class="col-8 col-md-9 col-lg-7 col-xl-8 offset-lg-1">
               <b-skeleton class="w-100" type="button" animation="fade" />
             </div>
@@ -108,7 +108,7 @@
     watch: {
       currentPage () {
         this.loading = true
-        this.getAllOrderForms(this.currentPage)
+        this.getOrderForms(this.currentPage)
       }
     },
 
@@ -119,7 +119,7 @@
     },
 
     mounted () {
-      this.getAllOrderForms(this.currentPage)
+      this.getOrderForms(this.currentPage)
     },
 
     methods: {
@@ -127,13 +127,13 @@
         this.currentPage = page
       },
       onSearch () {
-        this.getAllOrderForms(this.currentPage)
+        this.getOrderForms(this.currentPage)
       },
       onShowAllForms () {
-        this.getAllOrderForms(this.currentPage)
+        this.getOrderForms(this.currentPage)
       },
       onApplyFilters () {
-        this.getAllOrderForms(this.currentPage)
+        this.getOrderForms(this.currentPage)
       },
       getSearchKey (searchKey) {
         this.search.searchKey = searchKey
@@ -147,7 +147,8 @@
       getActiveLanguageFilters (activeLanguageFilters) {
         this.activeLanguageFilters = activeLanguageFilters
       },
-      getAllOrderForms (currentPage) {
+      getOrderForms (currentPage) {
+        this.loading = true
         const payload = {
           currentPage,
           searchKey: this.search.searchKey,
