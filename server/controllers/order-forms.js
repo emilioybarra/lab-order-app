@@ -1,11 +1,12 @@
 require('dotenv').config()
+const sanitize = require('mongo-sanitize')
 const User = require('../models/user')
 const OrderForm = require('../models/order-form')
 
 exports.getAllOrderForms = (req, res, next) => {
   const perPage = 5
-  const userId = req.query.userId
-  let currentPage = req.query.page || 1
+  const userId = sanitize(req.query.userId)
+  let currentPage = sanitize(req.query.page) || 1
   let totalOrderForms
   User.findById(userId)
     .then(() => {
@@ -53,8 +54,8 @@ exports.getAllOrderForms = (req, res, next) => {
 }
 
 exports.getOrderFormById = (req, res, next) => {
-  const userId = req.query.userId
-  const orderFormId = req.params.id
+  const userId = sanitize(req.query.userId)
+  const orderFormId = sanitize(req.params.id)
 
   User.findById(userId)
     .then((user) => {
@@ -77,7 +78,7 @@ exports.getOrderFormById = (req, res, next) => {
 
 exports.postCreateOrderForm = (req, res, next) => {
   const files = req.files
-  const orderFormData = { ...JSON.parse(JSON.stringify(req.body)) }
+  const orderFormData = { ...JSON.parse(JSON.stringify(sanitize(req.body))) }
   const { userId } = orderFormData
   const upperTeethImage = files.find(file => file.fieldname === 'upperTeethImage')
   const lowerTeethImage = files.find(file => file.fieldname === 'lowerTeethImage')

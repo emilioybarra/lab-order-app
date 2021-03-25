@@ -40,6 +40,7 @@ export default {
       newForm: 'Erstellen Sie ein Neues Formular',
       sentForms: 'Bekommen Sie einen Überblick von allen bislang verschickten Formularen',
       emptyOrderForms: 'Sie haben keine Formulare gesendet.',
+      emptyOrderFormsSearch: 'Keine passenden Formulare gefunden.',
       emptyTemplates: 'Sie haben keine gespeicherten Vorlagen.',
       orderSent: 'Formular wurde erfolgreich gespeichert und gesendet!'
     },

@@ -40,6 +40,7 @@ export default {
       newForm: 'Create a new form',
       sentForms: 'Get an overview of all forms sent so far',
       emptyOrderForms: 'You have no sent forms.',
+      emptyOrderFormsSearch: 'No matching order forms found.',
       emptyTemplates: 'You have no saved templates.',
       orderSent: 'Form was successfully saved and sent!'
     },

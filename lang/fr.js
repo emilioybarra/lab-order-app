@@ -40,6 +40,7 @@ export default {
       newForm: 'Créer un nouveau formulaire',
       sentForms: 'Obtenez un aperçu de tous les formulaires envoyés jusqu\'à présent',
       emptyOrderForms: 'Vous n\'avez pas envoyé de formulaires.',
+      emptyOrderFormsSearch: 'Aucun formulaire correspondant n\'a été trouvé.',
       emptyTemplates: 'Vous n\'avez pas de modèles sauvegardés.',
       orderSent: 'Le formulaire a été sauvegardé et envoyé avec succès!'
     },

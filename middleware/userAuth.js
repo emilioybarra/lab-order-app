@@ -1,4 +1,3 @@
-import axios from 'axios'
 // import cookies from 'vue-cookies'
 import CryptoJS from 'crypto-js'
 
@@ -10,7 +9,7 @@ export default async function (app) {
   if (!wordpressUser) {
     return app.redirect('/unauthorized')
   } else {
-    const user = await axios.get(`/api/auth/user/${ hashedWordpressUser }`).then(result => result.data)
+    const user = await app.$axios.get(`/api/auth/user/${ hashedWordpressUser }`).then(result => result.data)
 
     const {
       _id,

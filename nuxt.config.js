@@ -100,7 +100,8 @@ export default {
   publicRuntimeConfig: {
     axios: {
       browserBaseURL: process.env.BROWSER_BASE_URL
-    }
+    },
+    hash_secret: process.env.HASH_SECRET
   },
 
   privateRuntimeConfig: {

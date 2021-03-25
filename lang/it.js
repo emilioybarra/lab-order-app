@@ -40,6 +40,7 @@ export default {
       newForm: 'Creare un nuovo modulo',
       sentForms: 'Ottenere una panoramica di tutti i moduli inviati finora',
       emptyOrderForms: 'Non ha moduli inviati.',
+      emptyOrderFormsSearch: 'Non sono stati trovati moduli corrispondenti.',
       emptyTemplates: 'Non ha modelli salvati.',
       orderSent: 'Il modulo è stato salvato e inviato con successo!'
     },

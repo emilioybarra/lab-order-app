@@ -1,7 +1,7 @@
 <template>
   <div class="lof-toolbar">
     <div class="col-12 col-md-12 col-lg-10 col-xl-10 offset-lg-1">
-      <div class="lof-toolbar__top-bar">
+      <form class="lof-toolbar__top-bar" @submit.prevent="onSearch">
         <b-icon-funnel v-if="!filtersDropdown" class="lof-toolbar__filters__icon" @click="showFilters" />
         <b-icon-funnel-fill v-else class="lof-toolbar__filters__icon" @click="showFilters" />
         <div class="lof-toolbar__searchbar">
@@ -21,12 +21,12 @@
           </b-input-group>
         </div>
         <b-button-group>
-          <b-button class="lof-toolbar__search-button" variant="primary" :disabled="!searchKey.searchable" @click="onSearch">
+          <b-button class="lof-toolbar__search-button" variant="primary" :disabled="!searchKey.searchable" type="submit">
             {{ $t('common.buttons.search') }}
           </b-button>
           <b-button class="lof-toolbar__search-button" variant="primary" @click="onShowAllForms">{{ $t('common.buttons.allForms') }}</b-button>
         </b-button-group>
-      </div>
+      </form>
       <transition name="expand" @after-enter="filters = true">
         <div v-if="filtersDropdown" class="filters-expand-box">
           <transition name="fade" @after-leave="filtersDropdown = false">
@@ -149,7 +149,7 @@
           toDate: ''
         }
 
-        this.$emit('activeSearchQuery', this.searchKey.value)
+        this.$emit('activeSearchKey', this.searchKey.value)
         this.$emit('activeSearchQuery', this.searchQuery)
         this.$emit('activeDateFilters', this.activeDateFilters)
         this.$emit('activeLanguageFilters', this.activeLanguageFilters)
@@ -163,7 +163,7 @@
       },
       setSearchKey (searchKey) {
         this.searchKey = searchKey
-        this.$emit('activeSearchQuery', this.searchKey.value)
+        this.$emit('activeSearchKey', this.searchKey.value)
       },
       setSearchQuery () {
         this.$emit('activeSearchQuery', this.searchQuery)

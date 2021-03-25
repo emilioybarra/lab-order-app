@@ -1,3 +1,4 @@
+const sanitize = require('mongo-sanitize')
 const User = require('../models/user')
 const InvoiceAddressTemplate = require('../models/invoice-address-template')
 const UpperTeethTemplate = require('../models/upper-teeth-template')
@@ -7,8 +8,8 @@ const LowerTeethTemplate = require('../models/lower-teeth-template')
 
 exports.getAllInvoiceAddressTemplates = (req, res, next) => {
   const perPage = 5
-  const userId = req.query.userId
-  let currentPage = req.query.page || 1
+  const userId = sanitize(req.query.userId)
+  let currentPage = sanitize(req.query.page) || 1
   let totalTemplates
   User.findById(userId)
     .then(() => {
@@ -55,8 +56,8 @@ exports.getAllInvoiceAddressTemplates = (req, res, next) => {
 }
 
 exports.getInvoiceAddressTemplateById = (req, res, next) => {
-  const userId = req.query.userId
-  const invoiceAddressTemplateId = req.params.id
+  const userId = sanitize(req.query.userId)
+  const invoiceAddressTemplateId = sanitize(req.params.id)
   User.findById(userId)
     .populate('invoiceAddressTemplates.invoiceAddressTemplate')
     .then((user) => {
@@ -77,10 +78,12 @@ exports.getInvoiceAddressTemplateById = (req, res, next) => {
 }
 
 exports.postCreateInvoiceAddressTemplate = (req, res, next) => {
-  const { userId, templateData } = req.body
+  const { userId, templateData } = sanitize(req.body)
   InvoiceAddressTemplate.create({ userId, ...templateData })
     .then((invoiceAddressTemplate) => {
       User.findById(userId, (error, user) => {
+        if (error) { return res.status(400).send(error) }
+        if (!user) { return res.status(401).json({ status: 401, message: 'Unauthorized' }) }
         user.addToInvoiceAddressTemplates(invoiceAddressTemplate._id)
       })
         .catch((err) => {
@@ -102,11 +105,13 @@ exports.postCreateInvoiceAddressTemplate = (req, res, next) => {
 }
 
 exports.deleteInvoiceAddressTemplateById = (req, res, next) => {
-  const userId = req.query.userId
-  const invoiceAddressTemplateId = req.params.id
+  const userId = sanitize(req.query.userId)
+  const invoiceAddressTemplateId = sanitize(req.params.id)
   InvoiceAddressTemplate.deleteOne({ _id: invoiceAddressTemplateId })
     .then(() => {
       User.findById(userId, (error, user) => {
+        if (error) { return res.status(400).send(error) }
+        if (!user) { return res.status(401).json({ status: 401, message: 'Unauthorized' }) }
         const invoiceAddressTemplate = user.invoiceAddressTemplates.find((template) => {
           return template.invoiceAddressTemplate._id.toString() === invoiceAddressTemplateId
         })
@@ -114,10 +119,7 @@ exports.deleteInvoiceAddressTemplateById = (req, res, next) => {
         user.save()
       })
         .then(() => {
-          res.status(200).json({
-            status: 200,
-            message: 'Template is deleted.'
-          })
+          res.status(200).json({ status: 200, message: 'Template is deleted.' })
         })
         .catch((err) => {
           const error = new Error(err)
@@ -136,8 +138,8 @@ exports.deleteInvoiceAddressTemplateById = (req, res, next) => {
 
 exports.getAllUpperTeethTemplates = (req, res, next) => {
   const perPage = 5
-  const userId = req.query.userId
-  let currentPage = req.query.page || 1
+  const userId = sanitize(req.query.userId)
+  let currentPage = sanitize(req.query.page) || 1
   let totalTemplates
   User.findById(userId)
     .then(() => {
@@ -185,8 +187,8 @@ exports.getAllUpperTeethTemplates = (req, res, next) => {
 }
 
 exports.getUpperTeethTemplateById = (req, res, next) => {
-  const userId = req.query.userId
-  const upperTeethTemplateId = req.params.id
+  const userId = sanitize(req.query.userId)
+  const upperTeethTemplateId = sanitize(req.params.id)
   User.findById(userId)
     .populate('upperTeethTemplates.upperTeethTemplate')
     .then((user) => {
@@ -207,10 +209,12 @@ exports.getUpperTeethTemplateById = (req, res, next) => {
 }
 
 exports.postCreateUpperTeethTemplate = (req, res, next) => {
-  const { userId, templateData } = req.body
+  const { userId, templateData } = sanitize(req.body)
   UpperTeethTemplate.create({ userId, ...templateData })
     .then((upperTeethTemplate) => {
       User.findById(userId, (error, user) => {
+        if (error) { return res.status(400).send(error) }
+        if (!user) { return res.status(401).json({ status: 401, message: 'Unauthorized' }) }
         user.addToUpperTeethTemplates(upperTeethTemplate._id)
       })
         .catch((err) => {
@@ -232,11 +236,13 @@ exports.postCreateUpperTeethTemplate = (req, res, next) => {
 }
 
 exports.deleteUpperTeethTemplateById = (req, res, next) => {
-  const userId = req.query.userId
-  const upperTeethTemplateId = req.params.id
+  const userId = sanitize(req.query.userId)
+  const upperTeethTemplateId = sanitize(req.params.id)
   UpperTeethTemplate.deleteOne({ _id: upperTeethTemplateId })
     .then(() => {
       User.findById(userId, (error, user) => {
+        if (error) { return res.status(400).send(error) }
+        if (!user) { return res.status(401).json({ status: 401, message: 'Unauthorized' }) }
         const upperTeethTemplate = user.upperTeethTemplates.find((template) => {
           return template.upperTeethTemplate._id.toString() === upperTeethTemplateId
         })
@@ -244,10 +250,7 @@ exports.deleteUpperTeethTemplateById = (req, res, next) => {
         user.save()
       })
         .then(() => {
-          res.status(200).json({
-            status: 200,
-            message: 'Template is deleted.'
-          })
+          res.status(200).json({ status: 200, message: 'Template is deleted.' })
         })
         .catch((err) => {
           const error = new Error(err)
@@ -266,8 +269,8 @@ exports.deleteUpperTeethTemplateById = (req, res, next) => {
 
 exports.getAllLowerTeethTemplates = (req, res, next) => {
   const perPage = 5
-  const userId = req.query.userId
-  let currentPage = req.query.page || 1
+  const userId = sanitize(req.query.userId)
+  let currentPage = sanitize(req.query.page) || 1
   let totalTemplates
   User.findById(userId)
     .then(() => {
@@ -314,8 +317,8 @@ exports.getAllLowerTeethTemplates = (req, res, next) => {
 }
 
 exports.getLowerTeethTemplateById = (req, res, next) => {
-  const userId = req.query.userId
-  const lowerTeethTemplateId = req.params.id
+  const userId = sanitize(req.query.userId)
+  const lowerTeethTemplateId = sanitize(req.params.id)
   User.findById(userId)
     .populate('lowerTeethTemplates.lowerTeethTemplate')
     .then((user) => {
@@ -336,10 +339,12 @@ exports.getLowerTeethTemplateById = (req, res, next) => {
 }
 
 exports.postCreateLowerTeethTemplate = (req, res, next) => {
-  const { userId, templateData } = req.body
+  const { userId, templateData } = sanitize(req.body)
   LowerTeethTemplate.create({ userId, ...templateData })
     .then((lowerTeethTemplate) => {
       User.findById(userId, (error, user) => {
+        if (error) { return res.status(400).send(error) }
+        if (!user) { return res.status(401).json({ status: 401, message: 'Unauthorized' }) }
         user.addToLowerTeethTemplates(lowerTeethTemplate._id)
       })
         .catch((err) => {
@@ -361,11 +366,13 @@ exports.postCreateLowerTeethTemplate = (req, res, next) => {
 }
 
 exports.deleteLowerTeethTemplateById = (req, res, next) => {
-  const userId = req.query.userId
-  const lowerTeethTemplateId = req.params.id
+  const userId = sanitize(req.query.userId)
+  const lowerTeethTemplateId = sanitize(req.params.id)
   LowerTeethTemplate.deleteOne({ _id: lowerTeethTemplateId })
     .then(() => {
       User.findById(userId, (error, user) => {
+        if (error) { return res.status(400).send(error) }
+        if (!user) { return res.status(401).json({ status: 401, message: 'Unauthorized' }) }
         const lowerTeethTemplate = user.lowerTeethTemplates.find((template) => {
           return template.lowerTeethTemplate._id.toString() === lowerTeethTemplateId
         })
@@ -373,10 +380,7 @@ exports.deleteLowerTeethTemplateById = (req, res, next) => {
         user.save()
       })
         .then(() => {
-          res.status(200).json({
-            status: 200,
-            message: 'Template is deleted.'
-          })
+          res.status(200).json({ status: 200, message: 'Template is deleted.' })
         })
         .catch((err) => {
           const error = new Error(err)

@@ -40,6 +40,7 @@ export default {
       newForm: '新しいフォームを作成する',
       sentForms: 'これまでに送信されたすべてのフォームの概要を確認する',
       emptyOrderForms: '送信されたフォームがありません。',
+      emptyOrderFormsSearch: '一致するフォームは見つかりませんでした。',
       emptyTemplates: '保存されているテンプレートがありません。',
       orderSent: 'フォームが保存され、送信されました'
     },

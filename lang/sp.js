@@ -40,6 +40,7 @@ export default {
       newForm: 'Crear un nuevo formulario',
       sentForms: 'Obtener una visión general de todos los formularios enviados hasta ahora',
       emptyOrderForms: 'No tiene formularios enviados.',
+      emptyOrderFormsSearch: 'No se han encontrado formularios coincidentes.',
       emptyTemplates: 'No tiene plantillas guardadas.',
       orderSent: '¡El formulario se ha guardado y enviado con éxito!'
     },

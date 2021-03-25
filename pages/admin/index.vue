@@ -36,6 +36,8 @@
 </template>
 
 <script>
+  import CryptoJS from 'crypto-js'
+
   export default {
     name: 'login',
     layout: 'admin',
@@ -50,11 +52,31 @@
     },
 
     methods: {
+      stringify (cipherParams) {
+        const jsonObj = { ct: cipherParams.ciphertext.toString(CryptoJS.enc.Base64) }
+        if (cipherParams.iv) { jsonObj.iv = cipherParams.iv.toString() }
+        if (cipherParams.salt) { jsonObj.s = cipherParams.salt.toString() }
+        return JSON.stringify(jsonObj)
+      },
+      parse (jsonStr) {
+        const jsonObj = JSON.parse(jsonStr)
+        const cipherParams = CryptoJS.lib.CipherParams.create({
+          ciphertext: CryptoJS.enc.Base64.parse(jsonObj.ct)
+        })
+        if (jsonObj.iv) { cipherParams.iv = CryptoJS.enc.Hex.parse(jsonObj.iv) }
+        if (jsonObj.s) { cipherParams.salt = CryptoJS.enc.Hex.parse(jsonObj.s) }
+        return cipherParams
+      },
+
       async login () {
         this.errorMessage = false
+        const encrypted = CryptoJS.AES.encrypt(this.password, this.$config.hash_secret, {
+          format: { stringify: this.stringify, parse: this.parse }
+        })
+
         const loginData = {
           username: this.username,
-          password: this.password
+          password: JSON.stringify(encrypted.toString())
         }
 
         await this.$store.dispatch('auth/login', { loginData }).then((response) => {

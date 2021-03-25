@@ -1,4 +1,5 @@
 require('dotenv').config()
+const helmet = require('helmet')
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
@@ -12,6 +13,7 @@ const orderFormsRoutes = require('./routes/order-forms')
 const templatesRoutes = require('./routes/templates')
 const MONGO_DB_URI = process.env.MONGO_DB_URI
 
+app.use(helmet())
 app.use(bodyParser.json())
 app.use(cookieParser())
 

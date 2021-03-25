@@ -1,16 +1,17 @@
+const sanitize = require('mongo-sanitize')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const Admin = require('../models/admin')
 
 exports.getAuthenticatedUser = (req, res, next) => {
-  const hashedWordpressUser = req.params.hashedWordpressUser
+  const hashedWordpressUser = sanitize(req.params.hashedWordpressUser)
 
   User.exists({ wordpressUser: hashedWordpressUser })
     .then((userExists) => {
       if (userExists) {
         User.findOne({ wordpressUser: hashedWordpressUser }, (err, user) => {
           if (err) { return res.status(400).send(err) }
-          if (!user) { return res.status(401).json({ Status: 'Username Not Valid' }) }
+          if (!user) { return res.status(401).json({ status: 401, message: 'Unauthorized' }) }
 
           user.generateToken((err, user) => {
             if (err) { return res.status(400).send(err) }
@@ -49,7 +50,7 @@ exports.getAuthenticatedUser = (req, res, next) => {
 }
 
 exports.getAuthenticatedAdmin = (req, res, next) => {
-  const decodedAdminToken = jwt.decode(req.cookies.auth_token)
+  const decodedAdminToken = jwt.decode(sanitize(req.cookies.auth_token))
 
   if (decodedAdminToken && decodedAdminToken.id) {
     Admin.findOne({ _id: decodedAdminToken.id }, (err, admin) => {
@@ -82,7 +83,7 @@ exports.getAuthenticatedAdmin = (req, res, next) => {
 }
 
 exports.postLoginAdmin = (req, res, next) => {
-  const { username, password } = req.body.loginData
+  const { username, password } = sanitize(req.body.loginData)
 
   Admin.findOne({ username }, (err, admin) => {
     if (err) { return res.status(400).send(err) }
@@ -105,11 +106,11 @@ exports.postLoginAdmin = (req, res, next) => {
 }
 
 exports.postLogoutAdmin = (req, res, next) => {
-  const { username } = req.body.admin
+  const { username } = sanitize(req.body.admin)
 
   Admin.findOne({ username }, (err, admin) => {
     if (err) { return res.status(400).send(err) }
-    if (!admin) { return res.status(401).json({ status: 401, message: 'Username Not Valid' }) }
+    if (!admin) { return res.status(401).json({ status: 401, message: 'Username or password are not valid.' }) }
     admin.token = ''
     admin.save()
     res.clearCookie('auth_role')

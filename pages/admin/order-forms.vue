@@ -40,7 +40,7 @@
           @onDownload="downloadOrderForm(orderForm._id)"
         />
         <div v-if="!orderForms.length && !loading" class="lof-list-item d-flex justify-content-center lof-headline lof-headline--3">
-          {{ $t('common.headlines.emptyOrderForms') }}
+          {{ $t('common.headlines.emptyOrderFormsSearch') }}
         </div>
         <div v-for="item in ((!orderForms.length ? perPage - 1 : perPage) - orderForms.length)" :key="item" class="lof-list-item" />
         <pdf-file
