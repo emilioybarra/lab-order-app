@@ -14,6 +14,9 @@
               <div class="lof-list-item__button">
                 <b-skeleton class="lof-list-item__button-icon--loading" type="avatar" animation="fade" />
               </div>
+              <div class="lof-list-item__button">
+                <b-skeleton class="lof-list-item__button-icon--loading" type="avatar" animation="fade" />
+              </div>
             </div>
           </div>
         </template>
