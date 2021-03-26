@@ -168,7 +168,7 @@
         </div>
       </div>
       <transition v-if="$validateSelectedLanguage('en', 'de', 'fr', 'it', 'sp')" name="expand" @after-enter="invoiceAddress = true">
-        <div v-if="invoiceAddressDropdown" class="invoice-address-expand-box">
+        <div v-if="invoiceAddressDropdown" class="input-field-expand-box">
           <transition name="fade" @after-leave="invoiceAddressDropdown = false">
             <div v-if="invoiceAddress" class="row my-4">
               <input-field
@@ -279,6 +279,7 @@
       this.premiumSetupPlus = this.getPremiumSetupPlus
       this.stateOrthodontistNameOnInvoice = this.getStateOrthodontistNameOnInvoice
       this.isShippingAddress = this.getIsShippingAddress
+
       this.invoiceAddress = this.getIsShippingAddress
       this.invoiceAddressDropdown = this.getIsShippingAddress
 

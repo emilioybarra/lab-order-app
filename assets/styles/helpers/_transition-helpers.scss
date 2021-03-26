@@ -1,8 +1,12 @@
-.invoice-address-expand-box {
-  height: 125px;
+.input-field-expand-box {
+  height: 140px;
 
   @include phone-sm {
-    height: 200px;
+    height: 230px;
+  }
+
+  @include phone-xs {
+    height: 230px;
   }
 }
 

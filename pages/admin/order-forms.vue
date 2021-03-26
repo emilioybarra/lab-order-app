@@ -32,12 +32,14 @@
           v-if="!!orderForms.length"
           :key="orderForm._id"
           no-delete-button
-          :loading="selectedOrderFormId === orderForm._id && loadingPreview"
-          loading-text="Generating PDF..."
-          :downloading="selectedOrderFormId === orderForm._id && loadingDownload"
+          :loading-text="$t('common.buttons.generatingPdf')"
+          :loading-preview="selectedOrderFormId === orderForm._id && loadingPreview"
+          :loading-download="selectedOrderFormId === orderForm._id && loadingDownload"
+          :loading-external="selectedOrderFormId === orderForm._id && loadingExternal"
           :name="`${ $d(new Date(orderForm.createdAt)) }${ orderForm.patient.lastName && orderForm.patient.firstName ? ` – ${ orderForm.patient.lastName }, ${ orderForm.patient.firstName }` : '' }`"
           @onSelect="selectOrderForm(orderForm._id)"
           @onDownload="downloadOrderForm(orderForm._id)"
+          @onExternal="externalOrderForm(orderForm._id)"
         />
         <div v-if="!orderForms.length && !loading" class="lof-list-item d-flex justify-content-center lof-headline lof-headline--3">
           {{ $t('common.headlines.emptyOrderFormsSearch') }}
@@ -94,6 +96,7 @@
         pdfPage2: undefined,
         loadingPreview: false,
         loadingDownload: false,
+        loadingExternal: false,
         pdfOptions: {
           margin: 1,
           filename: '',
@@ -119,6 +122,10 @@
     },
 
     mounted () {
+      if (!/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+        this.pdfOptions.html2canvas.scale = 4
+      }
+
       this.getOrderForms(this.currentPage)
     },
 
@@ -169,15 +176,8 @@
         this.loadingPreview = true
         this.selectedOrderFormId = orderFormId
         this.pdfOptions.filename = `order-form_${ this.selectedOrderFormId }`
-        const payload = { orderFormId }
 
-        if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
-          this.pdfOptions.html2canvas.scale = 3
-        } else {
-          this.pdfOptions.html2canvas.scale = 4
-        }
-
-        this.$store.dispatch('admin/fetchOrderFormById', payload)
+        this.$store.dispatch('admin/fetchOrderFormById', orderFormId)
           .then((orderForm) => {
             this.selectedOrderForm = orderForm
           })
@@ -212,15 +212,8 @@
         this.loadingDownload = true
         this.selectedOrderFormId = orderFormId
         this.pdfOptions.filename = `order-form_${ this.selectedOrderFormId }`
-        const payload = { orderFormId }
 
-        if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
-          this.pdfOptions.html2canvas.scale = 3
-        } else {
-          this.pdfOptions.html2canvas.scale = 4
-        }
-
-        this.$store.dispatch('admin/fetchOrderFormById', payload)
+        this.$store.dispatch('admin/fetchOrderFormById', orderFormId)
           .then((orderForm) => {
             this.selectedOrderForm = orderForm
           })
@@ -233,6 +226,33 @@
                 .then(() => {
                   self.loadingDownload = false
                   self.selectedOrderFormId = ''
+                })
+            }, 400)
+          })
+      },
+      externalOrderForm (orderFormId) {
+        this.loadingExternal = true
+        this.selectedOrderFormId = orderFormId
+        this.pdfOptions.filename = `order-form_${ this.selectedOrderFormId }`
+
+        this.$store.dispatch('admin/fetchOrderFormById', orderFormId)
+          .then((orderForm) => {
+            this.selectedOrderForm = orderForm
+          })
+          .then(() => {
+            setTimeout(() => {
+              this.pdfPage1 = document.getElementById('pdf-page-1').innerHTML
+              this.pdfPage2 = document.getElementById('pdf-page-2').innerHTML
+              html2pdf().set(this.pdfOptions).from(this.pdfPage1).toPdf().from(this.pdfPage2)
+                .toContainer().toCanvas().toPdf().get('pdf')
+                .then((pdf2) => {
+                  const pdfBlobURL = pdf2.output('bloburl')
+                  this.loadingExternal = false
+                  if (/iPhone|iPad/i.test(navigator.userAgent)) {
+                    window.open(pdfBlobURL, '_system', 'location=yes')
+                  } else {
+                    window.open(pdfBlobURL, '_blank')
+                  }
                 })
             }, 400)
           })

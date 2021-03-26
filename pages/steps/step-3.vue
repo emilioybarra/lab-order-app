@@ -30,50 +30,66 @@
           <checkbox v-model="boltonDiscrepancy" :is-checked="boltonDiscrepancy" @input="setBoltonDiscrepancy">
             {{ $t('section.l_2.boltonDiscrepancy') }}
           </checkbox>
-          <checkbox v-model="resolveCrowding" :is-checked="resolveCrowding" @input="setResolveCrowding">
+          <checkbox v-model="resolveCrowding" :is-checked="resolveCrowding" @input="showResolveCrowdingFields">
             {{ $t('section.l_2.resolveCrowding') }}
           </checkbox>
         </div>
-        <input-field
-          id="rc-mm"
-          v-model="rcMm"
-          class="col-12 col-sm-6 mb-4 w-50"
-          :right-label="$t('section.l_2.rcMm')"
-          side-label="right"
-          @input="setRcMm"
-        />
-        <input-field
-          id="rc-where"
-          v-model="rcWhere"
-          class="col-12 col-sm-6 mb-4 w-50"
-          :left-label="$t('section.l_2.rcWhere')"
-          side-label="left"
-          @input="setRcWhere"
-        />
       </div>
+      <transition v-if="$validateSelectedLanguage('en', 'de', 'fr')" name="expand" @after-enter="resolveCrowdingFields = true">
+        <div v-if="resolveCrowdingFieldsDropdown" class="input-field-expand-box">
+          <transition name="fade" @after-leave="resolveCrowdingFieldsDropdown = false">
+            <div v-if="resolveCrowdingFields" class="row my-4">
+              <input-field
+                id="rc-mm"
+                v-model="rcMm"
+                class="col-12 col-sm-6 mb-4 w-50"
+                :right-label="$t('section.l_2.rcMm')"
+                side-label="right"
+                @input="setRcMm"
+              />
+              <input-field
+                id="rc-where"
+                v-model="rcWhere"
+                class="col-12 col-sm-6 mb-4 w-50"
+                :left-label="$t('section.l_2.rcWhere')"
+                side-label="left"
+                @input="setRcWhere"
+              />
+            </div>
+          </transition>
+        </div>
+      </transition>
       <div v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="row">
         <div class="col-12">
-          <checkbox v-model="reduceOverjet" :is-checked="reduceOverjet" @input="setReduceOverjet">
+          <checkbox v-model="reduceOverjet" :is-checked="reduceOverjet" @input="showReduceOverjetFields">
             {{ $t('section.l_2.reduceOverjet') }}
           </checkbox>
         </div>
-        <input-field
-          id="ro-mm"
-          v-model="roMm"
-          class="col-12 col-sm-6 mb-4 w-50"
-          :right-label="$t('section.l_2.roMm')"
-          side-label="right"
-          @input="setRoMm"
-        />
-        <input-field
-          id="ro-where"
-          v-model="roWhere"
-          class="col-12 col-sm-6 mb-4 w-50"
-          :left-label="$t('section.l_2.roWhere')"
-          side-label="left"
-          @input="setRoWhere"
-        />
       </div>
+      <transition v-if="$validateSelectedLanguage('en', 'de', 'fr')" name="expand" @after-enter="reduceOverjetFields = true">
+        <div v-if="reduceOverjetFieldsDropdown" class="input-field-expand-box">
+          <transition name="fade" @after-leave="reduceOverjetFieldsDropdown = false">
+            <div v-if="reduceOverjetFields" class="row my-4">
+              <input-field
+                id="ro-mm"
+                v-model="roMm"
+                class="col-12 col-sm-6 mb-4 w-50"
+                :right-label="$t('section.l_2.roMm')"
+                side-label="right"
+                @input="setRoMm"
+              />
+              <input-field
+                id="ro-where"
+                v-model="roWhere"
+                class="col-12 col-sm-6 mb-4 w-50"
+                :left-label="$t('section.l_2.roWhere')"
+                side-label="left"
+                @input="setRoWhere"
+              />
+            </div>
+          </transition>
+        </div>
+      </transition>
       <div v-if="$validateSelectedLanguage('it', 'sp', 'ru', 'jp')" class="row">
         <input-field
           id="notes-stripping-mm"
@@ -152,7 +168,11 @@
         notesStrippingMm: '',
         notesStrippingWhere: '',
         notesBoltonDiscrepancy: false,
-        notesBox: ''
+        notesBox: '',
+        resolveCrowdingFields: false,
+        resolveCrowdingFieldsDropdown: false,
+        reduceOverjetFields: false,
+        reduceOverjetFieldsDropdown: false
       }
     },
 
@@ -187,6 +207,11 @@
       this.notesBoltonDiscrepancy = this.getNotesBoltonDiscrepancy
       this.notesBox = this.getNotesBox
 
+      this.resolveCrowdingFields = this.getResolveCrowding
+      this.resolveCrowdingFieldsDropdown = this.getResolveCrowding
+      this.reduceOverjetFields = this.getReduceOverjet
+      this.reduceOverjetFieldsDropdown = this.getReduceOverjet
+
       this.$store.commit('common/setTemplate', 'lower-teeth')
     },
 
@@ -207,6 +232,14 @@
       ]),
       openTemplateTitleModal () {
         this.$root.$emit('showTemplateTitleModal')
+      },
+      showResolveCrowdingFields () {
+        this.setResolveCrowding(this.resolveCrowding)
+        this.resolveCrowdingFieldsDropdown ? this.resolveCrowdingFields = false : this.resolveCrowdingFieldsDropdown = true
+      },
+      showReduceOverjetFields () {
+        this.setReduceOverjet(this.reduceOverjet)
+        this.reduceOverjetFieldsDropdown ? this.reduceOverjetFields = false : this.reduceOverjetFieldsDropdown = true
       }
     }
   }

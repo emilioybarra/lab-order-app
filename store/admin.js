@@ -29,8 +29,7 @@ export const actions = {
 
     return await this.$axios.$get('/api/admin/order-forms', { params })
   },
-  async fetchOrderFormById (context, payload) {
-    const { orderFormId, userId } = payload
+  async fetchOrderFormById (context, orderFormId) {
     return await this.$axios.$get(`/api/order-forms/${ orderFormId }`).then((response) => {
       if (!response) { throw new Error('Invalid order form ID') }
       const prepareOrderForm = { ...response }
@@ -48,9 +47,8 @@ export const actions = {
       }
 
       return prepareOrderForm
+    }).catch(() => {
+      return null
     })
-      .catch(() => {
-        return null
-      })
   }
 }

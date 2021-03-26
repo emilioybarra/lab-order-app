@@ -61,6 +61,7 @@
     data () {
       return {
         scrollY: 0,
+        pdfPreviewKey: 0,
         showLanguageMenu: false,
         innerHeight: window.innerHeight,
         currentYear: new Date().getFullYear()

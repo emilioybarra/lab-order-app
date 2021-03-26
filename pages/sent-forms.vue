@@ -25,12 +25,14 @@
           v-if="!!orderForms.length"
           :key="orderForm._id"
           no-delete-button
-          :loading="selectedOrderFormId === orderForm._id && loadingPreview"
           :loading-text="$t('common.buttons.generatingPdf')"
-          :downloading="selectedOrderFormId === orderForm._id && loadingDownload"
+          :loading-preview="selectedOrderFormId === orderForm._id && loadingPreview"
+          :loading-download="selectedOrderFormId === orderForm._id && loadingDownload"
+          :loading-external="selectedOrderFormId === orderForm._id && loadingExternal"
           :name="`${ $d(new Date(orderForm.createdAt)) }${ orderForm.patient.lastName && orderForm.patient.firstName ? ` – ${ orderForm.patient.lastName }, ${ orderForm.patient.firstName }` : '' }`"
           @onSelect="selectOrderForm(orderForm._id)"
           @onDownload="downloadOrderForm(orderForm._id)"
+          @onExternal="externalOrderForm(orderForm._id)"
         />
         <div v-for="item in (5 - orderForms.length)" v-if="!!orderForms.length" :key="item" class="lof-list-item">
           <div class="col-8 col-md-9 col-lg-7 col-xl-8 offset-lg-1" />
@@ -83,6 +85,7 @@
         pdfPage2: undefined,
         loadingPreview: false,
         loadingDownload: false,
+        loadingExternal: false,
         pdfOptions: {
           margin: 1,
           filename: '',
@@ -211,6 +214,43 @@
                 .then(() => {
                   self.loadingDownload = false
                   self.selectedOrderFormId = ''
+                })
+            }, 400)
+          })
+      },
+      externalOrderForm (orderFormId) {
+        this.loadingExternal = true
+        this.selectedOrderFormId = orderFormId
+        this.pdfOptions.filename = `order-form_${ this.selectedOrderFormId }`
+        const payload = {
+          orderFormId,
+          userId: this.getUserId
+        }
+
+        if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+          this.pdfOptions.html2canvas.scale = 3
+        } else {
+          this.pdfOptions.html2canvas.scale = 4
+        }
+
+        this.$store.dispatch('order-form/fetchOrderFormById', payload)
+          .then((orderForm) => {
+            this.selectedOrderForm = orderForm
+          })
+          .then(() => {
+            setTimeout(() => {
+              this.pdfPage1 = document.getElementById('pdf-page-1').innerHTML
+              this.pdfPage2 = document.getElementById('pdf-page-2').innerHTML
+              html2pdf().set(this.pdfOptions).from(this.pdfPage1).toPdf().from(this.pdfPage2)
+                .toContainer().toCanvas().toPdf().get('pdf')
+                .then((pdf2) => {
+                  const pdfBlobURL = pdf2.output('bloburl')
+                  this.loadingExternal = false
+                  if (/iPhone|iPad/i.test(navigator.userAgent)) {
+                    window.open(pdfBlobURL, '_system', 'location=yes')
+                  } else {
+                    window.open(pdfBlobURL, '_blank')
+                  }
                 })
             }, 400)
           })

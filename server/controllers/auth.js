@@ -62,7 +62,6 @@ exports.getAuthenticatedAdmin = (req, res, next) => {
         res.cookie('auth_role', admin.role)
         res.cookie('auth_token', admin.token)
         const prepareAdmin = {
-          id: admin._id,
           role: admin.role,
           username: admin.username,
           token: admin.token

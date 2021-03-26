@@ -2,9 +2,9 @@
   <div class="lof-list-item">
     <div class="col-8 col-md-9 col-lg-7 col-xl-8 offset-lg-1">
       <b-button variant="primary" class="w-100" @click="onSelect">
-        <span v-if="!loading">{{ name }}</span>
-        <b-spinner v-if="loading" small variant="light" />
-        <span v-if="loading">{{ loadingText }}</span>
+        <span v-if="!loadingPreview">{{ name }}</span>
+        <b-spinner v-if="loadingPreview" small variant="light" />
+        <span v-if="loadingPreview">{{ loadingText }}</span>
       </b-button>
     </div>
     <div class="lof-list-item__button-group col-4 col-md-3 col-lg-3 col-xl-2">
@@ -12,8 +12,17 @@
         <svg-icon class="lof-list-item__button-icon lof-list-item__button-icon--times" icon="times" />
       </div>
       <div v-if="!noDownloadButton" class="lof-list-item__button" @click="onDownload">
-        <svg-icon v-if="!downloading" class="lof-list-item__button-icon lof-list-item__button-icon--download" icon="download" />
-        <b-spinner v-if="downloading" variant="secondary" />
+        <svg-icon v-if="!loadingDownload" class="lof-list-item__button-icon lof-list-item__button-icon--download" icon="download" />
+        <b-spinner v-if="loadingDownload" variant="secondary" />
+      </div>
+      <div v-if="!noExternalButton" class="lof-list-item__button">
+        <b-icon-box-arrow-up-right
+          v-if="!loadingExternal"
+          variant="secondary"
+          class="lof-list-item__button-icon lof-list-item__button-icon--external"
+          @click="onExternal"
+        />
+        <b-spinner v-if="loadingExternal" variant="secondary" />
       </div>
     </div>
   </div>
@@ -28,19 +37,25 @@
         type: String,
         required: true
       },
-      loading: {
-        type: Boolean
-      },
       loadingText: {
         type: String
       },
-      downloading: {
+      loadingPreview: {
+        type: Boolean
+      },
+      loadingDownload: {
+        type: Boolean
+      },
+      loadingExternal: {
         type: Boolean
       },
       noDownloadButton: {
         type: Boolean
       },
       noDeleteButton: {
+        type: Boolean
+      },
+      noExternalButton: {
         type: Boolean
       }
     },
@@ -54,6 +69,9 @@
       },
       onDownload () {
         this.$emit('onDownload')
+      },
+      onExternal () {
+        this.$emit('onExternal')
       }
     }
   }
