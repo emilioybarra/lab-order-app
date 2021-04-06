@@ -1,22 +1,3 @@
-import CryptoJS from 'crypto-js'
-
-const stringify = (cipherParams) => {
-  const jsonObj = { ct: cipherParams.ciphertext.toString(CryptoJS.enc.Base64) }
-  if (cipherParams.iv) { jsonObj.iv = cipherParams.iv.toString() }
-  if (cipherParams.salt) { jsonObj.s = cipherParams.salt.toString() }
-  return JSON.stringify(jsonObj)
-}
-
-const parse = (jsonStr) => {
-  const jsonObj = JSON.parse(jsonStr)
-  const cipherParams = CryptoJS.lib.CipherParams.create({
-    ciphertext: CryptoJS.enc.Base64.parse(jsonObj.ct)
-  })
-  if (jsonObj.iv) { cipherParams.iv = CryptoJS.enc.Hex.parse(jsonObj.iv) }
-  if (jsonObj.s) { cipherParams.salt = CryptoJS.enc.Hex.parse(jsonObj.s) }
-  return cipherParams
-}
-
 export const state = () => ({
   user: {},
   loggedIn: false,
@@ -41,16 +22,7 @@ export const mutations = {
 
 export const actions = {
   async login (context, loginData) {
-    const encrypted = CryptoJS.AES.encrypt(loginData.password, this.$config.hash_secret, {
-      format: { stringify, parse }
-    })
-
-    const preparedLoginData = {
-      username: loginData.username,
-      password: JSON.stringify(encrypted.toString())
-    }
-
-    return await this.$axios.post('/api/auth/admin/login', { loginData: preparedLoginData }).then((response) => {
+    return await this.$axios.post('/api/auth/admin/login', { loginData }).then((response) => {
       const admin = response.data
       this.$axios.setHeader('Authorization', `Bearer ${ admin.token }`)
       return { success: true }
