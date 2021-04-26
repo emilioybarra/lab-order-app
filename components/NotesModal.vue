@@ -35,10 +35,6 @@
     <div>
       <textarea-field id="notes-1" v-model="notes1" :label="$t('section.m_1.notes')" :rows="8" @input="setNotes1" />
     </div>
-    <div class="text-center my-4">
-      <p class="text-primary" v-html="$t('section.m_1.keyInfo')" />
-      <div class="d-flex flex-wrap justify-content-center" v-html="$t('section.m_1.keyInfoLegend')" />
-    </div>
     <div v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="my-4">
       <checkbox v-model="noCorrectionOfBite" :is-checked="noCorrectionOfBite" @input="setNoCorrectionOfBite">
         {{ $t('section.m_2.noCorrectionOfBite') }}

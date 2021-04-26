@@ -31,7 +31,11 @@
         default: false
       },
       fullWidth: Boolean,
-      heightAuto: Boolean
+      heightAuto: Boolean,
+      clickOutside: {
+        type: Boolean,
+        default: true
+      }
     },
 
     data () {
@@ -55,7 +59,9 @@
         this.showContent = false
       },
       closeModal () {
-        this.$emit('closeModal')
+        if (this.clickOutside) {
+          this.$emit('closeModal')
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <modal ref="confirmationModal" :show-tab="false" full-width height-auto @closeModal="closeConfirmationModal">
+  <modal ref="confirmationModal" :show-tab="false" full-width height-auto>
     <h3 class="lof-headline lof-headline--2 my-4 text-center">
       {{ $t('common.headlines.orderSent') }}
     </h3>
@@ -12,9 +12,6 @@
       </b-button>
       <b-button class="lof-button mr-4 w-25" variant="primary" @click="goToSentForms">
         {{ $t('common.titles.sentForms') }}
-      </b-button>
-      <b-button class="lof-button w-25" variant="secondary" @click="closeConfirmationModal">
-        {{ $t('common.buttons.close') }}
       </b-button>
     </b-button-toolbar>
   </modal>
@@ -31,14 +28,11 @@
     methods: {
       goHome () {
         this.$refs.confirmationModal.hide()
-        this.$router.push('/')
+        this.$router.push('/start')
       },
       goToSentForms () {
         this.$refs.confirmationModal.hide()
         this.$router.push('/sent-forms')
-      },
-      closeConfirmationModal () {
-        this.$refs.confirmationModal.hide()
       }
     }
   }

@@ -46,10 +46,12 @@ exports.getAllOrderForms = (req, res, next) => {
   }
 
   OrderForm.find(filters)
+    .sort({ createdAt: 'desc' })
     .countDocuments()
     .then((count) => {
       totalOrderForms = count
       return OrderForm.find(filters)
+        .sort({ createdAt: 'desc' })
         .skip((currentPage - 1) * perPage)
         .limit(perPage)
     })
@@ -57,6 +59,7 @@ exports.getAllOrderForms = (req, res, next) => {
       if (!orderForms.length) {
         currentPage = 1
         return OrderForm.find(filters)
+          .sort({ createdAt: 'desc' })
           .skip((currentPage - 1) * perPage)
           .limit(perPage)
       }

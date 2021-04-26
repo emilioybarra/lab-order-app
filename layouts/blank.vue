@@ -6,6 +6,6 @@
 
 <script>
   export default {
-    name: 'plain'
+    name: 'blank'
   }
 </script>

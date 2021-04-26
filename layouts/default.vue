@@ -34,7 +34,7 @@
 
     <pdf-preview-modal v-if="!unauthorizedPage" :key="pdfPreviewKey" />
     <template-title-modal v-if="!unauthorizedPage" key="template-title-modal" />
-    <confirmation-modal v-if="!unauthorizedPage" key="confirmation-modal" />
+    <confirmation-modal v-if="!unauthorizedPage" key="confirmation-modal" :click-outside="false" />
     <notes-modal v-if="showModalTab && !unauthorizedPage" key="notes-modal" />
 
     <div id="lof-body-container" class="lof-body" @scroll.passive="handleScroll">
@@ -75,6 +75,8 @@
 </template>
 
 <script>
+  import navigationBackController from '~/utils/navigationBackController'
+
   export default {
     name: 'layout',
     scrollToTop: true,
@@ -125,24 +127,10 @@
         }
       },
       $route (to, from) {
-        let fromStep, toStep
+        history.pushState(null, null, document.URL)
         this.pdfPreviewKey = this.$generateRandomKey()
         this.showModalTab = /(step-2|step-3)/s.test(to.path)
-        const stepsPathString = '/steps/step-'
-        const element = document.getElementById('lof-body-container')
-        element.scrollTo(0, 0)
-
-        if (/(steps)/s.test(from.path) && /(steps)/s.test(to.path)) {
-          fromStep = parseInt(from.path.replace(stepsPathString, ''))
-          toStep = parseInt(to.path.replace(stepsPathString, ''))
-          if (fromStep > toStep) {
-            this.slide = 'slide-right'
-          }
-        }
-
-        if (/(templates)/s.test(from.path) && /(steps)/s.test(to.path)) {
-          this.slide = 'slide-right'
-        }
+        document.getElementById('lof-body-container').scrollTo(0, 0)
       }
     },
 
@@ -162,7 +150,11 @@
     },
 
     mounted () {
-      this.showModalTab = /(step-2|step-3)/s.test(this.$route.path)
+      history.pushState(null, null, document.URL)
+      window.addEventListener('popstate', function () {
+        history.pushState(null, null, document.URL)
+      })
+      this.showModalTab = /(step-2|step-3)/s.test(this.$route)
       window.addEventListener('resize', this.detectDevice)
       window.addEventListener('orientationchange', this.handleOrientation)
     },
@@ -188,7 +180,7 @@
       },
       goBack () {
         this.slide = 'slide-right'
-        this.$router.go(-1)
+        this.$router.push(navigationBackController(this.$route))
       },
       beforeEnter () {
         this.slide = 'slide-left'
