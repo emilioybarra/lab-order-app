@@ -38,9 +38,6 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/png', href: '/icon.png' }
-    ],
-    script: [
-      { type: 'text/javascript', src: '/prevent-back.js' }
     ]
   },
 
