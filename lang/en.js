@@ -152,11 +152,12 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
+      keyInfoColors: [ '#72FBFD', '#909090', '#EB3423', '#74FBB7', '#FDEB4E', '#54C2F8', '#75FA4F', '#A12CF6', '#000000', '#EA37C4' ],
       keyInfo: `
         <strong>Please fill in:</strong> For missing teeth please always indicate space closure or not.
       `,
-      // Key Info for the PDF and Notes component
-      keyInfoLegend: `
+      // Key Info for the PDF
+      keyInfoLegendPDF: `
         <div><strong>B</strong> = bracket</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = tube</div>&nbsp;|&nbsp;
         <div><strong>TL</strong> = tube long</div>&nbsp;|&nbsp;
@@ -169,12 +170,27 @@ export default {
         <div><strong>P</strong> = occlusal pad surface</div>
       `,
       // Key Info for the TeethCanvas Component
-      keyInfoLegendApp: [
+      keyInfoLegend: [
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= tube</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= tube long</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= tube long with hook</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= round tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--trh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TRH</strong>&nbsp;= round tube with hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= to be extracted</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= missing</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= cast band</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= occlusal pad surface</div>'
+      ],
+      keyInfoLegendLeft: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= tube long</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= tube long with hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= round tube</div>'
+
+      ],
+      keyInfoLegendRight: [
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--trh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TRH</strong>&nbsp;= round tube with hook</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= to be extracted</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= missing</div>',

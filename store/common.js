@@ -11,7 +11,7 @@ export const getters = {
     return state.template
   },
   getTermsAndConditionsAcceptance (state) {
-    return state.acceptTermsAndConditions
+    return state.acceptTermsAndConditions || JSON.parse(localStorage.getItem('lof__acceptTermsAndConditions')) || false
   },
   getPdfSrcPage1 (state) {
     return state.pdfSrcPage1
@@ -30,6 +30,7 @@ export const mutations = {
   },
   setTermsAndConditionsAcceptance (state, accept) {
     state.acceptTermsAndConditions = accept
+    localStorage.setItem('lof__acceptTermsAndConditions', accept)
   },
   setPdfSrcPage1 (state, src) {
     state.pdfSrcPage1 = src
@@ -49,5 +50,6 @@ export const mutations = {
     state.pdfSrcPage1 = ''
     state.pdfSrcPage2 = ''
     state.notifications = []
+    localStorage.removeItem('lof__acceptTermsAndConditions')
   }
 }

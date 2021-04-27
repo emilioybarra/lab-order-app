@@ -2,8 +2,8 @@ $upper-canvas-width-phone-sm: 286px;
 $upper-canvas-height-phone-sm: 220px;
 $upper-canvas-width-phone-lg: 456px;
 $upper-canvas-height-phone-lg: 350px;
-$upper-canvas-width-tablet: 652px;
-$upper-canvas-height-tablet: 500px;
+$upper-canvas-width-tablet: 520px;
+$upper-canvas-height-tablet: 400px;
 $upper-canvas-width-desktop: 716px;
 $upper-canvas-height-desktop: 550px;
 
@@ -12,8 +12,8 @@ $lower-canvas-width-phone-sm: 286px;
 $lower-canvas-height-phone-sm: 206px;
 $lower-canvas-width-phone-lg: 456px;
 $lower-canvas-height-phone-lg: 328px;
-$lower-canvas-width-tablet: 652px;
-$lower-canvas-height-tablet: 470px;
+$lower-canvas-width-tablet: 520px;
+$lower-canvas-height-tablet: 375px;
 $lower-canvas-width-desktop: 716px;
 $lower-canvas-height-desktop: 516px;
 
@@ -54,6 +54,23 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       font-size: 13px;
       width: 100%;
       justify-content: space-between;
+    }
+
+    &__landscape {
+      &-items {
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+      }
+
+      &__item {
+        display: flex;
+        align-items: flex-start;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        word-break: break-word;
+        margin-bottom: $space-8;
+      }
     }
 
     &__item {
@@ -168,41 +185,45 @@ $lower-canvas-height: $lower-canvas-height-tablet;
           font-size: 16px;
           line-height: 0;
 
-          &--18 {bottom: 52px; left: 16px;}
-          &--17 {bottom: 136px; left: 34px;}
-          &--16 {bottom: 228px; left: 56px;}
-          &--15 {top: 208px; left: 90px;}
-          &--14 {top: 148px; left: 116px;}
-          &--13 {top: 84px; left: 154px;}
-          &--12 {top: 48px; left: 208px;}
-          &--11 {top: 20px; left: 280px;}
-          &--21 {top: 20px; right: 280px;}
-          &--22 {top: 48px; right: 208px;}
-          &--23 {top: 84px; right: 154px;}
-          &--24 {top: 148px; right: 116px;}
-          &--25 {top: 208px; right: 90px;}
-          &--26 {bottom: 228px; right: 56px;}
-          &--27 {bottom: 136px; right: 34px;}
-          &--28 {bottom: 52px; right: 16px;}
+          @include phone-sm-xs() {
+            font-size: 10px;
 
-          &--48 {top: 38px; left: 16px;}
-          &--47 {top: 130px; left: 34px;}
-          &--46 {top: 226px; left: 56px;}
-          &--45 {bottom: 166px; left: 100px;}
-          &--44 {bottom: 110px; left: 128px;}
-          &--43 {bottom: 54px; left: 184px;}
-          &--42 {bottom: 30px; left: 230px;}
-          &--41 {bottom: 18px; left: 292px;}
-          &--31 {bottom: 18px; right: 292px;}
-          &--32 {bottom: 30px; right: 230px;}
-          &--33 {bottom: 54px; right: 184px;}
-          &--34 {bottom: 110px; right: 128px;}
-          &--35 {bottom: 166px; right: 100px;}
-          &--36 {top: 226px; right: 56px;}
-          &--37 {top: 130px; right: 34px;}
-          &--38 {top: 38px; right: 16px;}
+            &--18 {bottom: 24px; left: 8px;}
+            &--17 {bottom: 62px; left: 16px;}
+            &--16 {bottom: 98px; left: 26px;}
+            &--15 {top: 90px; left: 38px;}
+            &--14 {top: 64px; left: 50px;}
+            &--13 {top: 36px; left: 66px;}
+            &--12 {top: 20px; left: 88px;}
+            &--11 {top: 8px; left: 122px;}
+            &--21 {top: 8px; right: 122px;}
+            &--22 {top: 20px; right: 88px;}
+            &--23 {top: 36px; right: 66px;}
+            &--24 {top: 64px; right: 50px;}
+            &--25 {top: 90px; right: 38px;}
+            &--26 {bottom: 98px; right: 26px;}
+            &--27 {bottom: 62px; right: 16px;}
+            &--28 {bottom: 24px; right: 8px;}
 
-          @media (max-width: 767px) {
+            &--48 {top: 16px; left: 10px;}
+            &--47 {top: 58px; left: 16px;}
+            &--46 {top: 98px; left: 26px;}
+            &--45 {bottom: 74px; left: 40px;}
+            &--44 {bottom: 48px; left: 56px;}
+            &--43 {bottom: 24px; left: 76px;}
+            &--42 {bottom: 12px; left: 102px;}
+            &--41 {bottom: 6px; left: 126px;}
+            &--31 {bottom: 6px; right: 126px;}
+            &--32 {bottom: 12px; right: 102px;}
+            &--33 {bottom: 24px; right: 76px;}
+            &--34 {bottom: 48px; right: 56px;}
+            &--35 {bottom: 74px; right: 40px;}
+            &--36 {top: 98px; right: 26px;}
+            &--37 {top: 58px; right: 16px;}
+            &--38 {top: 16px; right: 6px;}
+          }
+
+          @include phone-lg() {
             font-size: 12px;
 
             &--18 {bottom: 36px; left: 12px;}
@@ -240,42 +261,76 @@ $lower-canvas-height: $lower-canvas-height-tablet;
             &--38 {top: 28px; right: 10px;}
           }
 
-          @media (max-width: 575px) {
-            font-size: 10px;
+          @include tablet-desktop() {
+            &--18 {bottom: 44px; left: 16px;}
+            &--17 {bottom: 112px; left: 30px;}
+            &--16 {bottom: 184px; left: 50px;}
+            &--15 {top: 166px; left: 72px;}
+            &--14 {top: 120px; left: 92px;}
+            &--13 {top: 70px; left: 122px;}
+            &--12 {top: 38px; left: 164px;}
+            &--11 {top: 20px; left: 286px;}
+            &--21 {top: 20px; right: 286px;}
+            &--22 {top: 38px; right: 164px;}
+            &--23 {top: 70px; right: 122px;}
+            &--24 {top: 120px; right: 92px;}
+            &--25 {top: 166px; right: 72px;}
+            &--26 {bottom: 184px; right: 50px;}
+            &--27 {bottom: 112px; right: 30px;}
+            &--28 {bottom: 44px; right: 16px;}
 
-            &--18 {bottom: 24px; left: 8px;}
-            &--17 {bottom: 62px; left: 16px;}
-            &--16 {bottom: 98px; left: 26px;}
-            &--15 {top: 90px; left: 38px;}
-            &--14 {top: 64px; left: 50px;}
-            &--13 {top: 36px; left: 66px;}
-            &--12 {top: 20px; left: 88px;}
-            &--11 {top: 8px; left: 122px;}
-            &--21 {top: 8px; right: 122px;}
-            &--22 {top: 20px; right: 88px;}
-            &--23 {top: 36px; right: 66px;}
-            &--24 {top: 64px; right: 50px;}
-            &--25 {top: 90px; right: 38px;}
-            &--26 {bottom: 98px; right: 26px;}
-            &--27 {bottom: 62px; right: 16px;}
-            &--28 {bottom: 24px; right: 8px;}
+            &--48 {top: 30px; left: 10px;}
+            &--47 {top: 102px; left: 22px;}
+            &--46 {top: 180px; left: 44px;}
+            &--45 {bottom: 136px; left: 66px;}
+            &--44 {bottom: 86px; left: 94px;}
+            &--43 {bottom: 46px; left: 142px;}
+            &--42 {bottom: 24px; left: 184px;}
+            &--41 {bottom: 16px; left: 230px;}
+            &--31 {bottom: 16px; right: 230px;}
+            &--32 {bottom: 24px; right: 184px;}
+            &--33 {bottom: 46px; right: 142px;}
+            &--34 {bottom: 86px; right: 94px;}
+            &--35 {bottom: 136px; right: 66px;}
+            &--36 {top: 180px; right: 44px;}
+            &--37 {top: 102px; right: 22px;}
+            &--38 {top: 30px; right: 10px;}
+          }
 
-            &--48 {top: 16px; left: 10px;}
-            &--47 {top: 58px; left: 16px;}
-            &--46 {top: 98px; left: 26px;}
-            &--45 {bottom: 74px; left: 40px;}
-            &--44 {bottom: 48px; left: 56px;}
-            &--43 {bottom: 24px; left: 76px;}
-            &--42 {bottom: 12px; left: 102px;}
-            &--41 {bottom: 6px; left: 126px;}
-            &--31 {bottom: 6px; right: 126px;}
-            &--32 {bottom: 12px; right: 102px;}
-            &--33 {bottom: 24px; right: 76px;}
-            &--34 {bottom: 48px; right: 56px;}
-            &--35 {bottom: 74px; right: 40px;}
-            &--36 {top: 98px; right: 26px;}
-            &--37 {top: 58px; right: 16px;}
-            &--38 {top: 16px; right: 6px;}
+          @include desktop-lg() {
+            &--18 {bottom: 56px; left: 20px;}
+            &--17 {bottom: 148px; left: 40px;}
+            &--16 {bottom: 248px; left: 66px;}
+            &--15 {top: 226px; left: 98px;}
+            &--14 {top: 164px; left: 124px;}
+            &--13 {top: 92px; left: 166px;}
+            &--12 {top: 48px; left: 226px;}
+            &--11 {top: 20px; left: 308px;}
+            &--21 {top: 20px; right: 308px;}
+            &--22 {top: 48px; right: 226px;}
+            &--23 {top: 92px; right: 166px;}
+            &--24 {top: 164px; right: 124px;}
+            &--25 {top: 226px; right: 98px;}
+            &--26 {bottom: 248px; right: 66px;}
+            &--27 {bottom: 148px; right: 40px;}
+            &--28 {bottom: 56px; right: 20px;}
+
+            &--48 {top: 44px; left: 16px;}
+            &--47 {top: 134px; left: 32px;}
+            &--46 {top: 248px; left: 56px;}
+            &--45 {bottom: 184px; left: 92px;}
+            &--44 {bottom: 120px; left: 128px;}
+            &--43 {bottom: 66px; left: 190px;}
+            &--42 {bottom: 30px; left: 254px;}
+            &--41 {bottom: 18px; left: 318px;}
+            &--31 {bottom: 18px; right: 318px;}
+            &--32 {bottom: 30px; right: 254px;}
+            &--33 {bottom: 66px; right: 190px;}
+            &--34 {bottom: 120px; right: 128px;}
+            &--35 {bottom: 184px; right: 92px;}
+            &--36 {top: 248px; right: 56px;}
+            &--37 {top: 134px; right: 32px;}
+            &--38 {top: 44px; right: 16px;}
           }
         }
       }
@@ -358,7 +413,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
   &__container--upper,
   &__container-image--upper,
   &__container-canvas--upper {
-    @include phone-sm() {
+    @include phone-sm-xs() {
       width: $upper-canvas-width-phone-sm;
       height: $upper-canvas-height-phone-sm;
     }
@@ -368,12 +423,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       height: $upper-canvas-height-phone-lg;
     }
 
-    @include tablet() {
-      width: $upper-canvas-width-tablet;
-      height: $upper-canvas-height-tablet;
-    }
-
-    @include desktop() {
+    @include tablet-desktop() {
       width: $upper-canvas-width-tablet;
       height: $upper-canvas-height-tablet;
     }
@@ -387,7 +437,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
   &__container--lower,
   &__container-image--lower,
   &__container-canvas--lower {
-    @include phone-sm() {
+    @include phone-sm-xs() {
       width: $lower-canvas-width-phone-sm;
       height: $lower-canvas-height-phone-sm;
     }
@@ -397,12 +447,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       height: $lower-canvas-height-phone-lg;
     }
 
-    @include tablet() {
-      width: $lower-canvas-width-tablet;
-      height: $lower-canvas-height-tablet;
-    }
-
-    @include desktop() {
+    @include tablet-desktop() {
       width: $lower-canvas-width-tablet;
       height: $lower-canvas-height-tablet;
     }

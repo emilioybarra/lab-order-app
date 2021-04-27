@@ -152,11 +152,12 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
+      keyInfoColors: [ '#72FBFD', '#909090', '#EB3423', '#74FBB7', '#FDEB4E', '#75FA4F', '#A12CF6', '#000000', '#EA37C4' ],
       keyInfo: `
         <strong>Bitte ausfüllen:</strong> Bei fehlenden Zähnen bitte immer angeben, ob Lückenschluss gewünscht wird.
       `,
-      // Key Info for the PDF and Notes component
-      keyInfoLegend: `
+      // Key Info for the PDF
+      keyInfoLegendPDF: `
         <div><strong>B</strong> = Bracket</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = Tube</div>&nbsp;|&nbsp;
         <div><strong>TL</strong> = langes Tube</div>&nbsp;|&nbsp;
@@ -169,12 +170,25 @@ export default {
         <div><strong>P</strong> = okklusale Klebebasis</div>
       `,
       // Key Info for the TeethCanvas Component
-      keyInfoLegendApp: [
+      keyInfoLegend: [
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= Bracket</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= Tube</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= langes Tube</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= langes Tube mit Hook</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= Tube rund</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= zu extrahieren</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= fehlt</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= geg. Band</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= okklusale Klebebasis</div>'
+      ],
+      keyInfoLegendLeft: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= Bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= Tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= langes Tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= langes Tube mit Hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= Tube rund</div>'
+      ],
+      keyInfoLegendRight: [
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= zu extrahieren</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= fehlt</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= geg. Band</div>',

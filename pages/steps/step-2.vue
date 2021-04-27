@@ -4,7 +4,7 @@
       {{ $t('common.titles.upperTeeth') }}
     </template>
     <template #body>
-      <teeth-canvas teeth-image="upper" />
+      <teeth-canvas :key="$i18n.locale" teeth-image="upper" />
       <div class="d-flex flex-column justify-content-center align-items-center mt-3">
         <checkbox v-model="onlySetup" :is-checked="onlySetup" @input="setOnlySetup">
           {{ $t('section.u_1.onlySetup') }}

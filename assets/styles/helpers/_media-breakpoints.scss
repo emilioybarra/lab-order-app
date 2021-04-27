@@ -13,6 +13,12 @@ $lof-grid-breakpoints: (
   }
 }
 
+@mixin phone-sm-xs {
+  @media (max-width: #{map-get($lof-grid-breakpoints, "sm") - 1px}) {
+    @content;
+  }
+}
+
 @mixin phone-sm {
   @media (min-width: #{map-get($lof-grid-breakpoints, "xs")}) and (max-width: #{map-get($lof-grid-breakpoints, "sm") - 1px}) {
     @content;
@@ -25,12 +31,6 @@ $lof-grid-breakpoints: (
   }
 }
 
-@mixin phone-sm-xs {
-  @media (max-width: #{map-get($lof-grid-breakpoints, "sm") - 1px}) {
-    @content;
-  }
-}
-
 @mixin phone-all {
   @media (max-width: #{map-get($lof-grid-breakpoints, "md") - 1px}) {
     @content;
@@ -39,6 +39,12 @@ $lof-grid-breakpoints: (
 
 @mixin tablet {
   @media (min-width: #{map-get($lof-grid-breakpoints, "md")}) and (max-width: #{map-get($lof-grid-breakpoints, "lg") - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-desktop {
+  @media (min-width: #{map-get($lof-grid-breakpoints, "md")}) and (max-width: #{map-get($lof-grid-breakpoints, "xl") - 1px}) {
     @content;
   }
 }

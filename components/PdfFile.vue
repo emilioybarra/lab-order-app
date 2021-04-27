@@ -639,7 +639,7 @@
               <div class="lof-pdf__teeth__notes-extra">{{ notes.notes1 }}</div>
               <div class="lof-pdf__teeth__notes-info-legend">
                 <div class="lof-pdf__teeth__notes-info-legend__title" v-html="$t('section.m_1.keyInfo', pdfLanguage)" />
-                <div class="lof-pdf__teeth__notes-info-legend__legend d-flex flex-wrap justify-content-center" v-html="$t('section.m_1.keyInfoLegend', pdfLanguage)" />
+                <div class="lof-pdf__teeth__notes-info-legend__legend d-flex flex-wrap justify-content-center" v-html="$t('section.m_1.keyInfoLegendPDF', pdfLanguage)" />
               </div>
             </div>
             <!-- End M1 Section -->
