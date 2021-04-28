@@ -26,6 +26,7 @@
           :key="template._id"
           :name="template.title"
           no-download-button
+          no-external-button
           @onSelect="selectTemplate(template._id)"
           @onDelete="deleteTemplate(template._id)"
         />
