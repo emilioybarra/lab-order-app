@@ -457,7 +457,7 @@
         canvasHeight: 0,
         teeth: [],
         swatches: [],
-        orientation: ''
+        orientation: screen.orientation.angle
       }
     },
 
@@ -480,7 +480,6 @@
     },
 
     mounted () {
-      this.orientation = screen.orientation.angle
       window.addEventListener('orientationchange', (event) => {
         this.orientation = event.target.screen.orientation.angle
       })

@@ -60,7 +60,8 @@ export default {
       savedTemplate: 'Template was saved.',
       deletedTemplate: 'Template was deleted.',
       error: 'Error, please try again.',
-      errorLogin: '<strong>Error:</strong> Username or password are not valid.'
+      errorLogin: '<strong>Error:</strong> Username or password are not valid.',
+      invalidLines: 'You have entered too many rows for the PDF.'
     }
   },
   section: {

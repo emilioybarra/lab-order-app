@@ -60,7 +60,8 @@ export default {
       savedTemplate: 'テンプレートを保存しました。',
       deletedTemplate: 'テンプレートを削除しました。',
       error: 'エラーが発生しました。',
-      errorLogin: '<strong>エラーです。</strong> ユーザー名またはパスワードが有効ではありません。'
+      errorLogin: '<strong>エラーです。</strong> ユーザー名またはパスワードが有効ではありません。',
+      invalidLines: 'PDFに入力した行数が多すぎます。'
     }
   },
   section: {

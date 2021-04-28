@@ -5,6 +5,7 @@
       :id="id"
       :value="value"
       class="lof-textarea-field__input"
+      :class="{ 'lof-textarea-field__input--invalid': invalid }"
       :name="name"
       :rows="rows"
       :cols="cols"
@@ -47,6 +48,9 @@
       cols: {
         type: Number,
         required: false
+      },
+      invalid: {
+        type: Boolean
       }
     }
   }

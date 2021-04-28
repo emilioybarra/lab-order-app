@@ -60,7 +60,8 @@ export default {
       savedTemplate: 'Le modèle a été enregistré.',
       deletedTemplate: 'Le modèle a été supprimé.',
       error: 'Erreur, veuillez réessayer.',
-      errorLogin: '<strong>Erreur:</strong> Le nom d\'utilisateur ou le mot de passe ne sont pas valides.'
+      errorLogin: '<strong>Erreur:</strong> Le nom d\'utilisateur ou le mot de passe ne sont pas valides.',
+      invalidLines: 'Vous avez saisi trop de lignes pour le PDF.'
     }
   },
   section: {

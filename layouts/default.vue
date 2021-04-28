@@ -35,7 +35,7 @@
     <pdf-preview-modal v-if="!unauthorizedPage" :key="pdfPreviewKey" />
     <template-title-modal v-if="!unauthorizedPage" key="template-title-modal" />
     <confirmation-modal v-if="!unauthorizedPage" key="confirmation-modal" :click-outside="false" />
-    <notes-modal v-if="showModalTab && !unauthorizedPage" key="notes-modal" />
+    <notes-modal v-if="showModalTab && !unauthorizedPage" key="notes-modal" show-tab />
 
     <div id="lof-body-container" class="lof-body" @scroll.passive="handleScroll">
       <transition name="fade">
@@ -154,7 +154,7 @@
       window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL)
       })
-      this.showModalTab = /(step-2|step-3)/s.test(this.$route)
+      this.showModalTab = /(step-2|step-3)/s.test(this.$route.path)
       window.addEventListener('resize', this.detectDevice)
       window.addEventListener('orientationchange', this.handleOrientation)
     },

@@ -1,0 +1,44 @@
+.lof-notes-modal {
+  &__container {
+    width: 100%;
+    height: inherit;
+    max-height: 75%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    &__card {
+      max-width: 800px;
+      max-height: 100%;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      background-color: $white;
+      overflow-y: scroll;
+      border: $space-7 solid $white;
+      border-right: none;
+      border-radius: 1.2rem;
+
+      &-content {
+        margin-right: 8px;
+      }
+
+      /* width */
+      &::-webkit-scrollbar {
+        width: 18px;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: $light-grey;
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: $light-grey;
+      }
+    }
+  }
+}

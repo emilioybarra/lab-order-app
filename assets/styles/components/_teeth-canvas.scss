@@ -61,6 +61,18 @@ $lower-canvas-height: $lower-canvas-height-tablet;
         display: flex;
         flex-direction: column;
         font-size: 12px;
+
+        @include tablet {
+          width: 18%;
+        }
+
+        @include desktop {
+          width: 20%;
+        }
+
+        @include desktop-lg {
+          width: 16%;
+        }
       }
 
       &__item {

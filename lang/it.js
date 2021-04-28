@@ -60,7 +60,8 @@ export default {
       savedTemplate: 'Il modello è stato salvato.',
       deletedTemplate: 'Il modello è stato cancellato.',
       error: 'Errore, provi di nuovo, per favore.',
-      errorLogin: '<strong>Errore:</strong> Username o password non sono validi.'
+      errorLogin: '<strong>Errore:</strong> Username o password non sono validi.',
+      invalidLines: 'Ha inserito troppe righe per il PDF.'
     }
   },
   section: {

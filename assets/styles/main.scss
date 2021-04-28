@@ -28,6 +28,7 @@
   'components/link-button',
   'components/list-item',
   'components/modal',
+  'components/notes-modal',
   'components/notification',
   'components/page',
   'components/pagination-bar',
@@ -186,6 +187,50 @@ body {
 
     &__link {
       color: $font-color;
+    }
+  }
+
+  &-overlay {
+    position: absolute;
+    z-index: 1030;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-tab {
+    position: fixed;
+    z-index: 1035;
+    top: 253px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 0.6rem;
+    border-bottom-left-radius: 0.6rem;
+    background-color: $primary;
+    color: $white;
+    cursor: pointer;
+    transition: width 0.1s ease-in-out;
+
+    &__icon {
+      width: 1.2rem;
+      height: 1.2rem;
+      filter: brightness(100);
+    }
+
+    &:hover {
+      width: 60px;
     }
   }
 }

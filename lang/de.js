@@ -60,7 +60,8 @@ export default {
       savedTemplate: 'Die Vorlage wurde gespeichert.',
       deletedTemplate: 'Vorlage wurde gelöscht.',
       error: 'Fehler, bitte versuchen Sie es erneut.',
-      errorLogin: '<strong>Fehler:</strong> Benutzername oder Passwort sind nicht gültig.'
+      errorLogin: '<strong>Fehler:</strong> Benutzername oder Passwort sind nicht gültig.',
+      invalidLines: 'Sie haben zu viele Zeilen für die PDF eingegeben.'
     }
   },
   section: {

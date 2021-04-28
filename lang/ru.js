@@ -60,7 +60,8 @@ export default {
       savedTemplate: 'Шаблон был сохранен.',
       deletedTemplate: 'Шаблон был удален.',
       error: 'Ошибка, пожалуйста, попробуйте еще раз.',
-      errorLogin: '<strong>Ошибка:</strong> Имя пользователя или пароль недействительны.'
+      errorLogin: '<strong>Ошибка:</strong> Имя пользователя или пароль недействительны.',
+      invalidLines: 'Вы ввели слишком много строк для PDF.'
     }
   },
   section: {

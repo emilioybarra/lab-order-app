@@ -108,6 +108,10 @@
         this.$store.dispatch('order-form/saveOrderForm', payload).then((response) => {
           if (response) {
             this.$root.$emit('showConfirmationModal')
+            this.$store.commit('invoice-address/resetInvoiceAddressState')
+            this.$store.commit('upper-teeth/resetUpperTeethState')
+            this.$store.commit('notes/resetNotesState')
+            this.$store.commit('lower-teeth/resetLowerTeethState')
           }
         })
       }

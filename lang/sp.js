@@ -60,7 +60,8 @@ export default {
       savedTemplate: 'La plantilla se ha guardado.',
       deletedTemplate: 'La plantilla fue eliminada.',
       error: 'Error, por favor, inténtelo de nuevo.',
-      errorLogin: '<strong>Error:</strong> El nombre de usuario o la contraseña no son válidos.'
+      errorLogin: '<strong>Error:</strong> El nombre de usuario o la contraseña no son válidos.',
+      invalidLines: 'Ha introducido demasiadas filas para el PDF.'
     }
   },
   section: {
