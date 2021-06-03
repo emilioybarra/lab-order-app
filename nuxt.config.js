@@ -99,7 +99,7 @@ export default {
 
   publicRuntimeConfig: {
     axios: {
-      browserBaseURL: process.env.BROWSER_BASE_URL
+      browserBaseURL: 'https://dwls.dev.pr1.run/'
     }
   },
 
