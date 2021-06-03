@@ -29,5 +29,11 @@ export default async function (app) {
     app.store.commit('auth/setAuth', prepareUser)
     app.$axios.setHeader('Authorization', `Bearer ${ admin.token }`)
     return admin
+  }).catch((error) => {
+    console.log(error)
+    cookies.remove('auth_role')
+    cookies.remove('auth_token')
+    app.store.commit('auth/setAuth', prepareUser)
+    return app.route.path !== '/admin' ? app.redirect('/admin') : null
   })
 }
