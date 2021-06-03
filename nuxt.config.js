@@ -8,6 +8,7 @@ import ru from './lang/ru'
 import sp from './lang/sp'
 
 const isDev = process.env.NODE_ENV === 'development'
+const devURL = process.env.NODE_ENV === 'development' ? process.env.BASE_URL : 'https://dwls.dev.pr1.run/'
 
 export default {
   modern: isDev ? false : 'server',
@@ -94,12 +95,14 @@ export default {
   ],
 
   axios: {
-    baseURL: process.env.BROWSER_BASE_URL // Used as fallback if no runtime config is provided
+    baseURL: devURL, // Used as fallback if no runtime config is provided
+    retry: { retries: 3 }
   },
 
   publicRuntimeConfig: {
     axios: {
-      browserBaseURL: 'https://dwls.dev.pr1.run/'
+      browserBaseURL: devURL,
+      retry: { retries: 3 }
     }
   },
 
