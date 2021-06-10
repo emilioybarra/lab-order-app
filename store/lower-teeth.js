@@ -146,7 +146,7 @@ export const mutations = {
 export const actions = {
   async fetchTemplates ({ commit }, payload) {
     const { currentPage, userId } = payload
-    return await this.$axios.$get('/api/templates/invoice-address', {
+    return await this.$axios.$get('/api/templates/lower-teeth', {
       params: {
         page: currentPage,
         userId
@@ -180,8 +180,9 @@ export const actions = {
       }
       commit('common/setNotifications', notification, { root: true })
     })
+
     const {
-      lowerTeethTemplateData: {
+      lowerTeethTemplate: {
         imageData,
         onlySetup,
         boltonDiscrepancy,
@@ -253,7 +254,7 @@ export const actions = {
       templateData
     }
 
-    this.$axios.$post('/api/templates/lower-teeth', prepareBody)
+    return this.$axios.$post('/api/templates/lower-teeth', prepareBody)
       .then((response) => {
         if (response.status === 201) {
           const notification = {

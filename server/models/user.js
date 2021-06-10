@@ -37,7 +37,7 @@ const userSchema = new Schema(
     ],
     upperTeethTemplates: [
       {
-        upperTeethFormTemplate: {
+        upperTeethTemplate: {
           type: Schema.Types.ObjectId,
           ref: 'Upper Teeth Template',
           required: false
@@ -46,7 +46,7 @@ const userSchema = new Schema(
     ],
     lowerTeethTemplates: [
       {
-        lowerTeethFormTemplate: {
+        lowerTeethTemplate: {
           type: Schema.Types.ObjectId,
           ref: 'Lower Teeth Template',
           required: false

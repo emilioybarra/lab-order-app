@@ -56,6 +56,7 @@
           templateTitle: this.templateTitle,
           userId: this.getUserId
         }
+
         this.$store.dispatch(`${ this.getTemplate }/saveTemplateData`, payload).then((response) => {
           if (!response) { this.$router.push('/unauthorized') }
           if (response) {

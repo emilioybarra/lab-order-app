@@ -217,8 +217,9 @@ export const actions = {
       }
       commit('common/setNotifications', notification, { root: true })
     })
+
     const {
-      invoiceAddressTemplateData: {
+      invoiceAddressTemplate: {
         practice,
         orthodontist,
         address,
@@ -275,7 +276,7 @@ export const actions = {
     } = getters
     const templateData = {
       title: templateTitle,
-      invoiceAddressTemplateData: {
+      invoiceAddressTemplate: {
         practice,
         orthodontist,
         address,
@@ -298,7 +299,7 @@ export const actions = {
       templateData
     }
 
-    this.$axios.$post('/api/templates/invoice-address', prepareBody)
+    return this.$axios.$post('/api/templates/invoice-address', prepareBody)
       .then((response) => {
         if (response.status === 201) {
           const notification = {

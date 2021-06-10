@@ -43,6 +43,8 @@
 </template>
 
 <script>
+  import navigationBackController from '~/utils/navigationBackController'
+
   export default {
     name: 'templates',
 
@@ -83,7 +85,6 @@
           userId: this.getUserId
         }
 
-        console.log(this.$route.query.template)
         this.$store.dispatch(`${ this.$route.query.template }/fetchTemplates`, payload).then((response) => {
           if (!response) { this.$router.push('/unauthorized') }
           if (response) {
@@ -99,10 +100,11 @@
           templateId,
           userId: this.getUserId
         }
+
         this.$store.dispatch(`${ this.$route.query.template }/fetchTemplateById`, payload).then((response) => {
           if (!response) { this.$router.push('/unauthorized') }
           if (response) {
-            this.$router.go(-1)
+            this.$router.push(navigationBackController(this.$route))
           }
         })
       },
@@ -112,6 +114,7 @@
           templateId,
           userId: this.getUserId
         }
+
         this.$store.dispatch(`${ this.$route.query.template }/deleteTemplateById`, payload).then((response) => {
           if (!response) { this.$router.push('/unauthorized') }
           if (response) {

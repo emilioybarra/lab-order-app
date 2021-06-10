@@ -176,8 +176,9 @@ export const actions = {
       }
       commit('common/setNotifications', notification, { root: true })
     })
+
     const {
-      upperTeethTemplateData: {
+      upperTeethTemplate: {
         imageData,
         onlySetup,
         boltonDiscrepancy,
@@ -249,7 +250,7 @@ export const actions = {
       templateData
     }
 
-    this.$axios.$post('/api/templates/upper-teeth', prepareBody)
+    return this.$axios.$post('/api/templates/upper-teeth', prepareBody)
       .then((response) => {
         if (response.status === 201) {
           const notification = {
