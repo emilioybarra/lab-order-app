@@ -82,6 +82,8 @@
           currentPage,
           userId: this.getUserId
         }
+
+        console.log(this.$route.query.template)
         this.$store.dispatch(`${ this.$route.query.template }/fetchTemplates`, payload).then((response) => {
           if (!response) { this.$router.push('/unauthorized') }
           if (response) {
