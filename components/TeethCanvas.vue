@@ -457,7 +457,7 @@
         canvasHeight: 0,
         teeth: [],
         swatches: [],
-        orientation: screen.orientation.angle
+        orientation: window.innerHeight < window.innerWidth
       }
     },
 
@@ -479,11 +479,12 @@
       this.initialTeeth()
     },
 
-    mounted () {
-      window.addEventListener('orientationchange', (event) => {
-        this.orientation = event.target.screen.orientation.angle
-      })
+    beforeMount () {
+      window.addEventListener('resize', this.getInnerHeight)
+      window.addEventListener('orientationchange', this.getInnerHeight)
+    },
 
+    mounted () {
       setTimeout(() => {
         const element = document.getElementById('teeth-container')
         const style = window.getComputedStyle(element, null)
@@ -493,6 +494,9 @@
     },
 
     methods: {
+      getInnerHeight () {
+        this.orientation = window.innerHeight < window.innerWidth
+      },
       initialTeeth () {
         this.swatches = this.$t('section.m_1.keyInfoColors')
         this.teeth = [
@@ -539,6 +543,7 @@
       },
       closeCanvas () {
         this.canvasActive = false
+        this.clearCanvas()
       },
       undoCanvas () {
         const data = this.signaturePad.toData()
@@ -575,7 +580,7 @@
           const imageData = canvas1.toDataURL('image/png')
           this.$store.commit(`${ this.teethImage }-teeth/setImageData`, imageData)
         })
-        this.closeCanvas()
+        this.canvasActive = false
       },
       createHiDPICanvas (width, height, ratio) {
         if (!ratio) { ratio = 1 }

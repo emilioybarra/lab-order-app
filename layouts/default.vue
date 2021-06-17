@@ -155,13 +155,13 @@
         history.pushState(null, null, document.URL)
       })
       this.showModalTab = /(step-2|step-3)/s.test(this.$route.path)
-      window.addEventListener('resize', this.detectDevice)
-      window.addEventListener('orientationchange', this.handleOrientation)
+      window.addEventListener('resize', this.getInnerHeight)
+      window.addEventListener('orientationchange', this.getInnerHeight)
     },
 
     destroyed () {
-      window.removeEventListener('resize', this.detectDevice)
-      window.removeEventListener('orientationchange', this.handleOrientation)
+      window.removeEventListener('resize', this.getInnerHeight)
+      window.removeEventListener('orientationchange', this.getInnerHeight)
     },
 
     methods: {
@@ -169,10 +169,7 @@
         this.showLanguageMenu = false
         this.$i18n.setLocale(lang)
       },
-      detectDevice () {
-        this.innerHeight = window.innerHeight
-      },
-      handleOrientation () {
+      getInnerHeight () {
         this.innerHeight = window.innerHeight
       },
       handleScroll (event) {
