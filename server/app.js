@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cors = require('cors')
 const helmet = require('helmet')
 const express = require('express')
 const mongoose = require('mongoose')
@@ -16,17 +17,7 @@ const MONGO_DB_URI = process.env.MONGO_DB_URI
 app.use(helmet())
 app.use(bodyParser.json())
 app.use(cookieParser())
-
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-  next()
-})
-
-app.use((req, res, next) => {
-  next()
-})
+app.use(cors())
 
 app.use('/auth', authRoutes)
 app.use('/admin', errorController.verifyJWT, adminRoutes)

@@ -33,7 +33,7 @@
     </b-navbar>
 
     <pdf-preview-modal v-if="!unauthorizedPage" :key="pdfPreviewKey" />
-    <template-title-modal v-if="!unauthorizedPage" key="template-title-modal" />
+    <template-title-modal key="template-title-modal" />
     <confirmation-modal v-if="!unauthorizedPage" key="confirmation-modal" :click-outside="false" />
     <notes-modal v-if="showModalTab && !unauthorizedPage" key="notes-modal" show-tab />
 
