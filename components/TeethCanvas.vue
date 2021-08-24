@@ -398,7 +398,13 @@
             <svg-icon icon="undo" class="lof-teeth-canvas__button-icon" />
           </b-button>
 
-          <b-button id="color" ref="color" class="lof-teeth-canvas__button mr-3" variant="outline-secondary" @click="showSwatches = !showSwatches">
+          <b-button
+            v-if="highlightActive"
+            ref="color"
+            class="lof-teeth-canvas__button mr-3"
+            variant="outline-secondary"
+            @click="showSwatches = !showSwatches"
+          >
             <transition name="fade">
               <swatches
                 v-if="showSwatches"
