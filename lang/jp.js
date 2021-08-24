@@ -1,6 +1,10 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: '戻る',
       close: 'クローズ',
       exit: '出口',
       language: '言語',
@@ -157,7 +161,16 @@ export default {
       dlcSteelWire: 'DLCスチールワイヤー:',
       upperJaw: '上顎',
       lowerJaw: '下顎',
-      keyInfoColors: [ '#72FBFD', '#909090', '#EB3423', '#74FBB7', '#75FA4F', '#A12CF6', '#000000', '#EA37C4' ],
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' },
+        { label: 'P', color: '#EA37C4' }
+      ],
       keyInfo: '<strong>抜歯症例の場合、空隙閉鎖 の有無をご記入ください。</strong>',
       // Key Info for the PDF
       keyInfoLegendPDF: `
@@ -248,6 +261,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'GENERAL BUSINESS TERMS OF DW LINGUAL SYSTEMS GMBH (“DW Lingual”)',
     content: `
       <strong>§ 1 Scope</strong>

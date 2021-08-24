@@ -12,6 +12,7 @@
         <div v-for="(item, index) in $t('section.m_1.keyInfoLegendLeft')" :key="index" class="lof-teeth-canvas__info-legend__landscape__item" v-html="item" />
       </div>
       <div class="lof-teeth-canvas__border">
+        <!--
         <transition name="fade">
           <div v-if="!canvasActive" class="lof-teeth-canvas__overlay">
             <b-button class="lof-teeth-canvas__button lof-teeth-canvas__button--pen" variant="primary" @click="activateCanvas">
@@ -19,6 +20,7 @@
             </b-button>
           </div>
         </transition>
+        -->
         <div
           id="teeth-container"
           class="lof-teeth-canvas__container"
@@ -395,21 +397,19 @@
           <b-button v-if="drawActive" id="undo" class="lof-teeth-canvas__button mr-3" variant="outline-secondary" @click="undoCanvas">
             <svg-icon icon="undo" class="lof-teeth-canvas__button-icon" />
           </b-button>
-          <v-swatches
-            v-if="highlightActive"
-            v-model="highlightColor"
-            :swatches="swatches"
-            swatch-size="25"
-            shapes="circles"
-            popover-y="top"
-            row-length="5"
-          >
-            <template #trigger>
-              <b-button id="color" class="lof-teeth-canvas__button mr-3" variant="outline-secondary">
-                <div class="lof-teeth-canvas__button-color" :style="`background-color: ${ highlightColor };`" />
-              </b-button>
-            </template>
-          </v-swatches>
+
+          <b-button id="color" ref="color" class="lof-teeth-canvas__button mr-3" variant="outline-secondary" @click="showSwatches = !showSwatches">
+            <transition name="fade">
+              <swatches
+                v-if="showSwatches"
+                v-click-outside="{ handler: 'hideSwatches', exclude: [ 'color' ] }"
+                :swatches="swatches"
+                :selected-swatch="highlightColor"
+                @selectedSwatch="selectedSwatch"
+              />
+            </transition>
+            <div class="lof-teeth-canvas__button-color" :style="`background-color: ${ highlightColor };`" />
+          </b-button>
           <b-button-group>
             <b-button id="save" class="lof-teeth-canvas__button" variant="outline-primary" @click="saveCanvas">
               <svg-icon icon="save" class="lof-teeth-canvas__button-icon" />
@@ -450,6 +450,7 @@
         drawActive: false,
         highlightActive: true,
         highlightColor: '#72FBFD',
+        showSwatches: false,
         canvasActive: false,
         canvasReady: false,
         signaturePad: null,
@@ -490,10 +491,17 @@
         const style = window.getComputedStyle(element, null)
         this.canvasWidth = parseFloat(style.getPropertyValue('width'))
         this.canvasHeight = parseFloat(style.getPropertyValue('height'))
+        this.activateCanvas()
       }, 200)
     },
 
     methods: {
+      hideSwatches () {
+        this.showSwatches = false
+      },
+      selectedSwatch (swatchColor) {
+        this.highlightColor = swatchColor
+      },
       getInnerHeight () {
         this.orientation = window.innerHeight < window.innerWidth
       },

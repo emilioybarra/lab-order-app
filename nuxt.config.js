@@ -1,4 +1,5 @@
 import BootstrapVueLoader from 'bootstrap-vue-loader'
+import dotenv from 'dotenv'
 import de from './lang/de'
 import en from './lang/en'
 import fr from './lang/fr'
@@ -6,6 +7,8 @@ import it from './lang/it'
 import jp from './lang/jp'
 import ru from './lang/ru'
 import sp from './lang/sp'
+
+dotenv.config()
 
 const isDev = process.env.NODE_ENV === 'development'
 const devURL = process.env.NODE_ENV === 'development' ? process.env.VUE_APP_LOCALHOST_URL : 'https://dwls.dev.pr1.run/'
@@ -34,6 +37,7 @@ export default {
     title: 'DWLS | Lab Order Form',
     meta: [
       { charset: 'utf-8' },
+      { name: 'google', content: 'notranslate' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
@@ -59,7 +63,6 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { mode: 'client', src: '@/plugins/vue-cookies' },
-    { mode: 'client', src: '@/plugins/vue-swatches' },
     { mode: 'client', src: '@/plugins/click-outside' },
     { mode: 'client', src: '@/plugins/language-variant' },
     { mode: 'client', src: '@/plugins/prepare-archwires' },

@@ -30,7 +30,7 @@
           <checkbox v-model="boltonDiscrepancy" :is-checked="boltonDiscrepancy" @input="setBoltonDiscrepancy">
             {{ $t('section.l_2.boltonDiscrepancy') }}
           </checkbox>
-          <checkbox v-model="resolveCrowding" :is-checked="resolveCrowding" @input="showResolveCrowdingFields">
+          <checkbox v-model="resolveCrowding" :is-checked="resolveCrowding" @input="setResolveCrowding">
             {{ $t('section.l_2.resolveCrowding') }}
           </checkbox>
         </div>
@@ -193,6 +193,15 @@
       ])
     },
 
+    watch: {
+      resolveCrowding () {
+        !this.resolveCrowding && !this.boltonDiscrepancy ? this.resolveCrowdingFields = false : this.resolveCrowdingFieldsDropdown = true
+      },
+      boltonDiscrepancy () {
+        !this.resolveCrowding && !this.boltonDiscrepancy ? this.resolveCrowdingFields = false : this.resolveCrowdingFieldsDropdown = true
+      }
+    },
+
     created () {
       this.onlySetup = this.getOnlySetup
       this.boltonDiscrepancy = this.getBoltonDiscrepancy
@@ -213,6 +222,13 @@
       this.reduceOverjetFieldsDropdown = this.getReduceOverjet
 
       this.$store.commit('common/setTemplate', 'lower-teeth')
+    },
+
+    beforeDestroy () {
+      if (!this.resolveCrowding && !this.boltonDiscrepancy) {
+        this.setRcMm('')
+        this.setRcWhere('')
+      }
     },
 
     methods: {

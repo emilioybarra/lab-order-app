@@ -1,5 +1,10 @@
+import cookies from 'vue-cookies'
+
 const navigationBackController = (route) => {
-  if (route.path === '/start') { return '/' }
+  if (route.path === '/start') {
+    cookies.remove('lof__termsAndConditions')
+    return '/'
+  }
   if (route.path === '/sent-forms') { return '/start' }
   if (route.path === '/steps/step-1') { return '/start' }
   if (route.path === '/steps/step-2') { return '/steps/step-1' }

@@ -1,6 +1,10 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Zurück',
       close: 'Schließen',
       exit: 'Beenden',
       language: 'Sprache',
@@ -153,7 +157,18 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
-      keyInfoColors: [ '#72FBFD', '#909090', '#EB3423', '#74FBB7', '#FDEB4E', '#75FA4F', '#A12CF6', '#000000', '#EA37C4' ],
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'TR', color: '#FDEB4E' },
+        { label: 'TRH', color: '#54C2F8' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' },
+        { label: 'P', color: '#EA37C4' }
+      ],
       keyInfo: `
         <strong>Bitte ausfüllen:</strong> Bei fehlenden Zähnen bitte immer angeben, ob Lückenschluss gewünscht wird.
       `,
@@ -177,6 +192,7 @@ export default {
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= langes Tube</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= langes Tube mit Hook</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= Tube rund</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--trh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TRH</strong>&nbsp;= Tube rund mit Hook</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= zu extrahieren</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= fehlt</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= geg. Band</div>',
@@ -190,6 +206,7 @@ export default {
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= Tube rund</div>'
       ],
       keyInfoLegendRight: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--trh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TRH</strong>&nbsp;= Tube rund mit Hook</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= zu extrahieren</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= fehlt</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= geg. Band</div>',
@@ -252,6 +269,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'ALLGEMEINE GESCHÄFTSBEDINGUNGEN DER DW LINGUAL SYSTEMS GMBH („DW Lingual“)',
     content: `
       <strong>§ 1 Geltung</strong>

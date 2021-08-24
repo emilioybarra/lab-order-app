@@ -1,6 +1,10 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Вернуться назад',
       close: 'Закрыть',
       exit: 'Выход',
       language: 'Язык',
@@ -151,7 +155,16 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
-      keyInfoColors: [ '#72FBFD', '#909090', '#EB3423', '#74FBB7', '#75FA4F', '#A12CF6', '#000000', '#EA37C4' ],
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' },
+        { label: 'P', color: '#EA37C4' }
+      ],
       keyInfo: `
         <strong>Пожалуйста укажите:</strong> В случаях с удалением, будет ли закрыто пространство.v
       `,
@@ -244,6 +257,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'Общие условия приобретения товара',
     content: `
       В случае фактической возможности поставить товар Поставщиком (ООО «ДиВиЛингвал Системс Ру», ОГРН 1137746040123), Покупатель (наименование которого указано в настоящем бланке заказа) подтверждает, что он согласен с настоящими Общими условиями приобретения товара в случае начала фактического исполнения Поставщиком настоящего бланка заказа в течение 14 календарных дней с момента получения им его оригинала, подписанного уполномоченным лицом Покупателя, и оттиска челюстей, на которые будут поставлены брекеты.

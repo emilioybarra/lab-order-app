@@ -24,7 +24,7 @@
       </b-thead>
       <b-tbody class="lof-archwire-sizes-table__body">
         <b-tr v-for="(archwire, index) in archwireSizes" v-if="archwire.rowVisible" :key="index" class="lof-archwire-sizes-table__row">
-          <b-td class="text-left" colspan="2">
+          <b-td class="lof-archwire-sizes-table__row__size" colspan="2">
             {{ archwire.label }}
           </b-td>
           <b-td v-if="archwire.typeDivider.visible" :rowspan="archwire.typeDivider.rowspan" class="lof-archwire-sizes-table__section-type-column" colspan="1">
@@ -36,11 +36,8 @@
             <input
               v-if="!archwire.straight.disabled"
               v-model="archwire.straight.size"
+              maxlength="5"
               class="lof-archwire-sizes-table__cell__input"
-              type="number"
-              min="1"
-              max="9"
-              maxlength="1"
               @input="setArchwireSizes"
             >
             <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
@@ -49,11 +46,8 @@
             <input
               v-if="!archwire.individual.disabled"
               v-model="archwire.individual.size"
+              maxlength="5"
               class="lof-archwire-sizes-table__cell__input"
-              type="number"
-              min="1"
-              max="9"
-              maxlength="1"
               @input="setArchwireSizes"
             >
             <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
@@ -62,11 +56,8 @@
             <input
               v-if="!archwire.expansion.disabled"
               v-model="archwire.expansion.size"
+              maxlength="5"
               class="lof-archwire-sizes-table__cell__input"
-              type="number"
-              min="1"
-              max="9"
-              maxlength="1"
               @input="setArchwireSizes"
             >
             <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
@@ -75,11 +66,8 @@
             <input
               v-if="!archwire.compression.disabled"
               v-model="archwire.compression.size"
+              maxlength="5"
               class="lof-archwire-sizes-table__cell__input"
-              type="number"
-              min="1"
-              max="9"
-              maxlength="1"
               @input="setArchwireSizes"
             >
             <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />

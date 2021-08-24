@@ -1,16 +1,16 @@
 <template>
   <div class="lof-notes-modal">
     <div v-if="!showContent && showTab" class="lof-tab" @click.stop="show">
-      <svg-icon icon="notes" class="lof-tab__icon" />
+      <div class="lof-tab__text">{{ $t('section.m_1.notes') }}</div>
     </div>
     <div v-if="showContent && showTab || showContent" class="lof-tab" @click="hide">
       <svg-icon icon="times" class="lof-tab__icon" />
     </div>
     <transition name="fade" mode="out-in" @after-enter="showContent = true">
       <div v-if="showModal" class="lof-overlay">
-        <transition name="fade" mode="out-in" @after-leave="showModal = false">
+        <transition name="fade" mode="in-out" @after-leave="showModal = false">
           <div v-if="showContent" class="lof-notes-modal__container">
-            <div v-click-outside.stop="hide" class="lof-notes-modal__container__card">
+            <div v-click-outside="{ handler: 'hide' }" class="lof-notes-modal__container__card">
               <div class="lof-notes-modal__container__card-content">
                 <h4 class="lof-headline lof-headline--3">
                   {{ $t('section.m_1.remarksTitle') }}
@@ -44,7 +44,7 @@
                     {{ $t('section.m_1.lowerJaw') }}
                   </checkbox>
                 </div>
-                <div>
+                <div class="my-4">
                   <textarea-field
                     id="notes-1"
                     v-model="notes1"
@@ -61,7 +61,7 @@
                     {{ $t('section.m_2.noCorrectionOfBite') }}
                   </checkbox>
                 </div>
-                <div v-if="$validateSelectedLanguage('en', 'de', 'fr')">
+                <div v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="my-4">
                   <textarea-field
                     id="notes-2"
                     v-model="notes2"
@@ -73,7 +73,7 @@
                   />
                   <small v-if="notes2Lines > 2" class="text-danger">{{ $t('common.notifications.invalidLines') }}</small>
                 </div>
-                <div v-if="$validateSelectedLanguage('it', 'sp', 'ru', 'jp')">
+                <div v-if="$validateSelectedLanguage('it', 'sp', 'ru', 'jp')" class="my-4">
                   <b-table
                     small
                     bordered

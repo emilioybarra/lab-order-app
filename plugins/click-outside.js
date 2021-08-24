@@ -1,18 +1,31 @@
 import Vue from 'vue'
 
+let handleOutsideClick
+
 Vue.directive('click-outside', {
   bind (el, binding, vnode) {
-    const vm = vnode.context
-    const callback = binding.value
-
-    el.clickOutsideEvent = function (event) {
-      if (!(el === event.target || el.contains(event.target))) {
-        return callback.call(vm, event)
+    handleOutsideClick = (e) => {
+      e.stopPropagation()
+      const { handler, exclude } = binding.value
+      let clickedOnExcludedEl = false
+      if (exclude) {
+        exclude.forEach((ref) => {
+          if (!clickedOnExcludedEl) {
+            const excludedEl = vnode.context.$refs[ref]
+            clickedOnExcludedEl = excludedEl.contains(e.target)
+          }
+        })
+      }
+      if (!el.contains(e.target) && !clickedOnExcludedEl) {
+        vnode.context[handler]()
       }
     }
-    document.body.addEventListener('click', el.clickOutsideEvent)
+    document.addEventListener('click', handleOutsideClick)
+    document.addEventListener('touchstart', handleOutsideClick)
   },
-  unbind (el) {
-    document.body.removeEventListener('click', el.clickOutsideEvent)
+
+  unbind () {
+    document.removeEventListener('click', handleOutsideClick)
+    document.removeEventListener('touchstart', handleOutsideClick)
   }
 })

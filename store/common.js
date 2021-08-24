@@ -1,3 +1,5 @@
+import cookies from 'vue-cookies'
+
 export const state = () => ({
   template: '',
   acceptTermsAndConditions: false,
@@ -10,8 +12,8 @@ export const getters = {
   getTemplate (state) {
     return state.template
   },
-  getTermsAndConditionsAcceptance (state) {
-    return state.acceptTermsAndConditions || JSON.parse(localStorage.getItem('lof__acceptTermsAndConditions')) || false
+  getTermsAndConditionsAcceptance: () => () => {
+    return cookies.isKey('lof__termsAndConditions') ? cookies.get('lof__termsAndConditions').acceptTermsAndConditions : false
   },
   getPdfSrcPage1 (state) {
     return state.pdfSrcPage1
@@ -30,7 +32,6 @@ export const mutations = {
   },
   setTermsAndConditionsAcceptance (state, accept) {
     state.acceptTermsAndConditions = accept
-    localStorage.setItem('lof__acceptTermsAndConditions', accept)
   },
   setPdfSrcPage1 (state, src) {
     state.pdfSrcPage1 = src

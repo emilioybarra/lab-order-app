@@ -19,11 +19,13 @@
       <b-navbar-nav align="left">
         <b-nav-text v-if="$route.path !== '/' && !unauthorizedPage" class="lof-navbar__back-button" @click="goBack">
           <svg-icon class="lof-navbar__icon" icon="back" />
+          {{ $t('common.buttons.back') }}
         </b-nav-text>
       </b-navbar-nav>
       <b-navbar-nav class="flex-row" align="right" justified>
-        <b-nav-text class="lof-navbar__language" @click="showLanguageMenu = !showLanguageMenu">
-          <svg-icon class="lof-navbar__icon" :icon="language" /> {{ $t('common.buttons.language') }}
+        <b-nav-text ref="language" class="lof-navbar__language" @click="showLanguageMenu = !showLanguageMenu">
+          <svg-icon class="lof-navbar__icon" :icon="language" />
+          {{ $t('common.buttons.language') }}
         </b-nav-text>
         <b-nav-text v-if="!unauthorizedPage" class="lof-navbar__exit" @click="showNotification = !showNotification">
           <svg-icon class="lof-navbar__icon" icon="logout" />
@@ -40,7 +42,13 @@
     <div id="lof-body-container" class="lof-body" @scroll.passive="handleScroll">
       <transition name="fade">
         <ul v-if="showLanguageMenu" class="lof-language-menu">
-          <li v-for="lang in $i18n.locales" :key="lang.code" class="lof-language-menu__item" @click="changeLanguage(lang.code)">
+          <li
+            v-for="lang in $i18n.locales"
+            :key="lang.code"
+            v-click-outside="{ handler: 'hideLanguageMenu', exclude: [ 'language' ] }"
+            class="lof-language-menu__item"
+            @click="changeLanguage(lang.code)"
+          >
             <svg-icon :icon="lang.code" class="lof-language-menu__icon" />
             {{ lang.name }}
           </li>
@@ -50,9 +58,7 @@
         <Nuxt />
       </transition>
       <div class="lof-footer">
-        <div>
-          &copy; DW Lingual System GmbH {{ currentYear }}
-        </div>
+        <div>&copy; DW Lingual System GmbH {{ currentYear }}</div>
         <div>
           <a
             target="_blank"
@@ -165,8 +171,11 @@
     },
 
     methods: {
-      changeLanguage (lang) {
+      hideLanguageMenu () {
         this.showLanguageMenu = false
+      },
+      changeLanguage (lang) {
+        this.hideLanguageMenu()
         this.$i18n.setLocale(lang)
       },
       getInnerHeight () {
@@ -177,6 +186,7 @@
       },
       goBack () {
         this.slide = 'slide-right'
+        // this.hideLanguageMenu()
         this.$router.push(navigationBackController(this.$route))
       },
       beforeEnter () {

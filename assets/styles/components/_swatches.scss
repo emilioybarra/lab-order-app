@@ -1,0 +1,53 @@
+.lof-swatches {
+  position: absolute;
+  width: 260px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  color: $font-color;
+  background-color: $white;
+  box-shadow: 0 2px 3px rgb(10 10 10 / 20%), 0 0 0 1px rgb(10 10 10 / 20%);
+  z-index: 50;
+  left: -85px;
+  bottom: 50px;
+  padding: 15px 14px;
+  justify-content: space-between;
+
+  &__swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min-content;
+    min-width: 45px;
+    margin: 5px;
+    margin-bottom: 8px;
+
+    &-color {
+      display: flex;
+      width: 26px;
+      height: 26px;
+      border-radius: 100%;
+      box-shadow: inset 0 0 2px rgb(0 0 0 / 75%);
+      justify-content: center;
+    }
+
+    &-selected {
+      background-color: rgba(0, 0, 0, 0.5);
+      height: 22px;
+      width: 22px;
+      border-radius: 100%;
+      align-self: center;
+      justify-items: center;
+      color: $white !important;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-label {
+      line-height: 1;
+      margin-top: 5px;
+    }
+  }
+}

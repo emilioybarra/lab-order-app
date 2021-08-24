@@ -8,7 +8,8 @@
     <b-navbar class="lof-navbar" :class="scrollY > 0 || showLanguageMenu ? 'lof-navbar--shadow' : ''" sticky toggleable="false">
       <b-navbar-nav class="flex-row ml-auto">
         <b-nav-text class="lof-navbar__language" @click="showLanguageMenu = !showLanguageMenu">
-          <svg-icon class="lof-navbar__icon" :icon="language" /> {{ $t('common.buttons.language') }}
+          <svg-icon class="lof-navbar__icon" :icon="language" />
+          {{ $t('common.buttons.language') }}
         </b-nav-text>
         <b-nav-text v-if="$store.state.auth.loggedIn" class="lof-navbar__logout" @click="logout">
           <svg-icon class="lof-navbar__icon" icon="logout" />

@@ -1,6 +1,10 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Indietro',
       close: 'Chiudere',
       exit: 'Uscita',
       language: 'Lingua',
@@ -138,7 +142,7 @@ export default {
       individual: 'lat. indiv.'
     },
     m_1: {
-      notes: 'Note:',
+      notes: 'Note',
       remarksTitle: 'Note:',
       threeDSetup: '3D Foto dello set-up',
       tpa: 'TPA',
@@ -149,7 +153,16 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
-      keyInfoColors: [ '#72FBFD', '#909090', '#EB3423', '#74FBB7', '#75FA4F', '#A12CF6', '#000000', '#EA37C4' ],
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' },
+        { label: 'P', color: '#EA37C4' }
+      ],
       keyInfo: `
         <strong>Da compilare:</strong> mancanti indicare sempre se si desidera chiudere o meno lo spazio.
       `,
@@ -242,6 +255,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'Condizioni generali di vendita di DW LINGUAL SYSTEMS GMBH (“DW Lingual”)',
     content: `
       <strong>§ 1 Scopo</strong>

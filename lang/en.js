@@ -1,6 +1,10 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Back',
       close: 'Close',
       exit: 'Exit',
       language: 'Language',
@@ -153,7 +157,18 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
-      keyInfoColors: [ '#72FBFD', '#909090', '#EB3423', '#74FBB7', '#FDEB4E', '#54C2F8', '#75FA4F', '#A12CF6', '#000000', '#EA37C4' ],
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'TR', color: '#FDEB4E' },
+        { label: 'TRH', color: '#54C2F8' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' },
+        { label: 'P', color: '#EA37C4' }
+      ],
       keyInfo: `
         <strong>Please fill in:</strong> For missing teeth please always indicate space closure or not.
       `,
@@ -248,6 +263,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'GENERAL BUSINESS TERMS OF DW LINGUAL SYSTEMS GMBH (“DW Lingual”)',
     content: `
       <strong>§ 1 Scope</strong>

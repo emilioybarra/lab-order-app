@@ -2,6 +2,16 @@
   vertical-align: middle;
 }
 
+.lof-archwire-sizes-table {
+  &.table-bordered th, &.table-bordered td {
+    border-color: $primary;
+  }
+
+  & > input:focus-visible {
+    outline: none;
+  }
+}
+
 .b-skeleton-avatar {
   height: 100% !important;
 }

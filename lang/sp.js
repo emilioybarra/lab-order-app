@@ -1,6 +1,10 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Volver',
       close: 'Cerrar',
       exit: 'Salir',
       language: 'Idioma',
@@ -138,7 +142,7 @@ export default {
       individual: 'Sectores laterales individualizados'
     },
     m_1: {
-      notes: 'Notas:',
+      notes: 'Notas',
       remarksTitle: 'Comentarios:',
       threeDSetup: 'Fotos Set-up 3D',
       tpa: 'BTP',
@@ -149,7 +153,16 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
-      keyInfoColors: [ '#72FBFD', '#909090', '#EB3423', '#74FBB7', '#75FA4F', '#A12CF6', '#000000', '#EA37C4' ],
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' },
+        { label: 'P', color: '#EA37C4' }
+      ],
       keyInfo: `
         <strong>Por favor rellene:</strong> en caso de ausencia de dientes indique si los espacios deben ser cerrados o no.
       `,
@@ -242,6 +255,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'CONDICIONES COMERCIALES GENERALES DE DW LINGUAL SYSTEMS GMBH („DW Lingual„)',
     content: `
       <strong>§ 1 Ámbito de aplicación</strong>

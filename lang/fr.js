@@ -1,6 +1,10 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Arrière',
       close: 'Fermer',
       exit: 'Sortie',
       language: 'Langue',
@@ -153,7 +157,17 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
-      keyInfoColors: [ '#72FBFD', '#EB3423', '#74FBB7', '#FDEB4E', '#54C2F8', '#75FA4F', '#A12CF6', '#000000', '#EA37C4' ],
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'TR', color: '#FDEB4E' },
+        { label: 'TRH', color: '#54C2F8' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'bague coulée', color: '#000000' },
+        { label: 'occlusale pad', color: '#EA37C4' }
+      ],
       keyInfo: `
         <strong>Veuillez indiquer:</strong> Pour des cas d’extraction indiquez fermeture d’espace ou non.
       `,
@@ -251,6 +265,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'CONDITIONS GÉNÉRALES DE VENTE ET DE LIVRAISON DE LA SOCIÉTÉ DW LINGUAL SYSTEMS GMBH (« DW Lingual »)',
     content: `
       <strong>§ 1 Champ d‘application</strong>

@@ -21,6 +21,11 @@
 
   &__row {
     height: 100%;
+
+    &__size {
+      text-align: left;
+      white-space: normal;
+    }
   }
 
   &__section-type {
@@ -35,13 +40,19 @@
     display: table-cell;
     padding: 0 !important;
     height: 100%;
+    position: relative;
 
     &__input {
       height: 100%;
       width: 100%;
       border: none;
       text-align: center;
-      min-height: 50px;
+      // min-height: 50px;
+      outline: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
 
       &--disable {
         // background: url('~assets/images/line.png');

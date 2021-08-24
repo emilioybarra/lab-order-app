@@ -10,7 +10,7 @@
       <div v-if="showModal" class="lof-overlay">
         <transition name="fade" mode="out-in" @after-leave="showModal = false">
           <div v-if="showContent" class="lof-modal__container">
-            <card v-click-outside.stop="closeModal" class="lof-modal__container__card" :class="heightAuto ? 'h-auto' : ''" :full-width="fullWidth">
+            <card v-click-outside.stop="{ handler: 'closeModal' }" class="lof-modal__container__card" :class="heightAuto ? 'h-auto' : ''" :full-width="fullWidth">
               <slot />
             </card>
           </div>
