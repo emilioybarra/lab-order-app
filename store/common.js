@@ -15,10 +15,10 @@ export const getters = {
   getTermsAndConditionsAcceptance: () => () => {
     return cookies.isKey('lof__termsAndConditions') ? cookies.get('lof__termsAndConditions').acceptTermsAndConditions : false
   },
-  getPdfSrcPage1 (state) {
+  getPdfSrcPage1: state => () => {
     return state.pdfSrcPage1
   },
-  getPdfSrcPage2 (state) {
+  getPdfSrcPage2: state => () => {
     return state.pdfSrcPage2
   },
   getNotifications (state) {
