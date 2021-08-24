@@ -6,6 +6,9 @@
     <h1 v-else>
       An error occurred.
     </h1>
+    <b-button class="lof-button mb-4" variant="primary" to="/">
+      Start Page
+    </b-button>
   </div>
 </template>
 
