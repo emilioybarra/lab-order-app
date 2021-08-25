@@ -56,8 +56,11 @@
             <input
               v-if="!archwire.expansion.disabled"
               v-model="archwire.expansion.size"
-              maxlength="5"
               class="lof-archwire-sizes-table__cell__input"
+              type="number"
+              min="1"
+              max="5"
+              maxlength="1"
               @input="setArchwireSizes"
             >
             <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
@@ -66,8 +69,11 @@
             <input
               v-if="!archwire.compression.disabled"
               v-model="archwire.compression.size"
-              maxlength="5"
               class="lof-archwire-sizes-table__cell__input"
+              type="number"
+              min="1"
+              max="5"
+              maxlength="1"
               @input="setArchwireSizes"
             >
             <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
