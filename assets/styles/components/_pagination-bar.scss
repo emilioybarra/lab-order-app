@@ -44,9 +44,16 @@
   &__page {
     cursor: pointer;
 
+    > span {
+      margin-top: 2px;
+    }
+
     &--current-page {
       border: 1px solid $secondary;
       border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:hover {
         cursor: default;

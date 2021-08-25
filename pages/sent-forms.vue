@@ -14,7 +14,7 @@
               <div class="lof-list-item__button">
                 <b-skeleton class="lof-list-item__button-icon--loading" type="avatar" animation="fade" />
               </div>
-              <div class="lof-list-item__button">
+              <div v-if="!noExternalButton" class="lof-list-item__button">
                 <b-skeleton class="lof-list-item__button-icon--loading" type="avatar" animation="fade" />
               </div>
             </div>
@@ -28,6 +28,7 @@
           v-if="!!orderForms.length"
           :key="orderForm._id"
           no-delete-button
+          :no-external-button="noExternalButton"
           :loading-text="$t('common.buttons.generatingPdf')"
           :loading-preview="selectedOrderFormId === orderForm._id && loadingPreview"
           :loading-download="selectedOrderFormId === orderForm._id && loadingDownload"
@@ -89,6 +90,8 @@
         loadingPreview: false,
         loadingDownload: false,
         loadingExternal: false,
+        noExternalButton: false,
+        pdfBlobURL: '',
         pdfOptions: {
           margin: 1,
           filename: '',
@@ -114,6 +117,7 @@
     },
 
     created () {
+      this.noExternalButton = !/Chrome|Android/i.test(navigator.userAgent)
       this.$root.$on('clearSelectedSentOrderFormData', () => {
         this.selectedOrderForm = undefined
       })
@@ -249,11 +253,7 @@
                 .then((pdf2) => {
                   const pdfBlobURL = pdf2.output('bloburl')
                   this.loadingExternal = false
-                  if (/iPhone|iPad/i.test(navigator.userAgent)) {
-                    window.open(pdfBlobURL, '_system', 'location=yes')
-                  } else {
-                    window.open(pdfBlobURL, '_blank')
-                  }
+                  window.open(pdfBlobURL, '_blank')
                 })
             }, 400)
           })
