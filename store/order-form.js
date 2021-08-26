@@ -96,6 +96,7 @@ export const actions = {
       'upper-teeth/getNotesBoltonDiscrepancy': getUpperNotesBoltonDiscrepancy,
       'upper-teeth/getNotesBox': getUpperNotesBox,
       'upper-teeth/getArchwireSizes': getUpperArchwireSizes,
+      'upper-teeth/getTeethBoxes': getUpperTeethBoxes,
 
       'notes/getThreeDSetup': getThreeDSetup,
       'notes/getTpa': getTpa,
@@ -130,7 +131,8 @@ export const actions = {
       'lower-teeth/getNotesStrippingWhere': getLowerNotesStrippingWhere,
       'lower-teeth/getNotesBoltonDiscrepancy': getLowerNotesBoltonDiscrepancy,
       'lower-teeth/getNotesBox': getLowerNotesBox,
-      'lower-teeth/getArchwireSizes': getLowerArchwireSizes
+      'lower-teeth/getArchwireSizes': getLowerArchwireSizes,
+      'lower-teeth/getTeethBoxes': getLowerTeethBoxes
     } = rootGetters
 
     const prepareOrderFormObject = {
@@ -172,7 +174,8 @@ export const actions = {
         notesStrippingWhere: getUpperNotesStrippingWhere,
         notesBoltonDiscrepancy: getUpperNotesBoltonDiscrepancy,
         notesBox: getUpperNotesBox,
-        archwireSizes: getUpperArchwireSizes
+        archwireSizes: getUpperArchwireSizes,
+        teethBoxes: getUpperTeethBoxes
       },
       notes: {
         threeDSetup: getThreeDSetup,
@@ -208,7 +211,8 @@ export const actions = {
         notesStrippingWhere: getLowerNotesStrippingWhere,
         notesBoltonDiscrepancy: getLowerNotesBoltonDiscrepancy,
         notesBox: getLowerNotesBox,
-        archwireSizes: getLowerArchwireSizes
+        archwireSizes: getLowerArchwireSizes,
+        teethBoxes: getLowerTeethBoxes
       }
     }
 

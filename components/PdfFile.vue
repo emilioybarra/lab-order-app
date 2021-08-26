@@ -336,6 +336,20 @@
           <div class="lof-pdf__teeth__upper">
             <!-- U1 Section -->
             <div class="lof-pdf__teeth__upper-image-container">
+              <div class="lof-pdf__teeth__upper-image-container__boxes">
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 30px;left: 90px;">{{ upperTeeth.teethBoxes.upper_1 }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 62px;left: 98px;">{{ upperTeeth.teethBoxes.upper_2 }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 98px;left: 114px;">{{ upperTeeth.teethBoxes.upper_3 }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 134px;left: 116px;">{{ upperTeeth.teethBoxes.upper_4 }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 160px;left: 125px;">{{ upperTeeth.teethBoxes.upper_5 }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 184px;left: 135px;">{{ upperTeeth.teethBoxes.upper_6 }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 184px;right: 135px;">{{ upperTeeth.teethBoxes.upper_7 }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 160px;right: 125px;">{{ upperTeeth.teethBoxes.upper_8 }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 134px;right: 116px;">{{ upperTeeth.teethBoxes.upper_9 }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 98px;right: 114px;">{{ upperTeeth.teethBoxes.upper_10 }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 62px;right: 98px;">{{ upperTeeth.teethBoxes.upper_11 }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 30px;right: 90px;">{{ upperTeeth.teethBoxes.upper_12 }}</div>
+              </div>
               <div v-if="validateLanguagesToSavedLanguage([ 'jp' ])" class="lof-pdf__teeth__upper-image-container__numbers">
                 <div class="lof-pdf__teeth__upper-image-container__numbers-number" style="bottom: -82px;margin-left: -134px;">18</div>
                 <div class="lof-pdf__teeth__upper-image-container__numbers-number" style="bottom: -46px;margin-left: -126px;">17</div>
@@ -772,6 +786,20 @@
           <div class="lof-pdf__teeth__lower">
             <!-- L1 Section -->
             <div class="lof-pdf__teeth__lower-image-container">
+              <div class="lof-pdf__teeth__lower-image-container__boxes">
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 46px;left: 90px;">{{ lowerTeeth.teethBoxes.lower_1 }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 80px;left: 102px;">{{ lowerTeeth.teethBoxes.lower_2 }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 120px;left: 112px;">{{ lowerTeeth.teethBoxes.lower_3 }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 148px;left: 116px;">{{ lowerTeeth.teethBoxes.lower_4 }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 167px;left: 122px;">{{ lowerTeeth.teethBoxes.lower_5 }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 186px;left: 136px;">{{ lowerTeeth.teethBoxes.lower_6 }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 186px;right: 136px;">{{ lowerTeeth.teethBoxes.lower_7 }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 167px;right: 122px;">{{ lowerTeeth.teethBoxes.lower_8 }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 148px;right: 116px;">{{ lowerTeeth.teethBoxes.lower_9 }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 120px;right: 112px;">{{ lowerTeeth.teethBoxes.lower_10 }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 80px;right: 102px;">{{ lowerTeeth.teethBoxes.lower_11 }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 46px;right: 90px;">{{ lowerTeeth.teethBoxes.lower_12 }}</div>
+              </div>
               <div v-if="validateLanguagesToSavedLanguage([ 'jp' ])" class="lof-pdf__teeth__lower-image-container__numbers">
                 <div class="lof-pdf__teeth__lower-image-container__numbers-number" style="bottom: 82px;margin-left: -132px;">48</div>
                 <div class="lof-pdf__teeth__lower-image-container__numbers-number" style="bottom: 42px;margin-left: -124px;">47</div>
@@ -1032,7 +1060,6 @@
 </template>
 
 <script>
-  import moment from 'moment'
   import { mapGetters } from 'vuex'
 
   export default {
@@ -1120,7 +1147,8 @@
         getUpperNotesStrippingWhere: 'getNotesStrippingWhere',
         getUpperNotesBoltonDiscrepancy: 'getNotesBoltonDiscrepancy',
         getUpperNotesBox: 'getNotesBox',
-        getUpperArchwireSizes: 'getArchwireSizes'
+        getUpperArchwireSizes: 'getArchwireSizes',
+        getUpperTeethBoxes: 'getTeethBoxes'
       }),
       ...mapGetters('notes', [
         'getThreeDSetup',
@@ -1157,7 +1185,8 @@
         getLowerNotesStrippingWhere: 'getNotesStrippingWhere',
         getLowerNotesBoltonDiscrepancy: 'getNotesBoltonDiscrepancy',
         getLowerNotesBox: 'getNotesBox',
-        getLowerArchwireSizes: 'getArchwireSizes'
+        getLowerArchwireSizes: 'getArchwireSizes',
+        getLowerTeethBoxes: 'getTeethBoxes'
       })
     },
 
@@ -1175,7 +1204,7 @@
         this.invoiceAddress = { ...invoiceAddress }
         this.patient = {
           ...patient,
-          dateOfBonding: moment(patient.dateOfBonding, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate)
+          dateOfBonding: this.$moment(patient.dateOfBonding, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate)
         }
         this.upperTeeth = { ...upperTeeth }
         this.notes = { ...notes }
@@ -1211,7 +1240,7 @@
           lastName: this.getPatientLastName,
           firstName: this.getPatientFirstName,
           number: this.getPatientNumber,
-          dateOfBonding: moment(this.getAppointmentDate, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate)
+          dateOfBonding: this.$moment(this.getAppointmentDate, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate)
         }
 
         this.upperTeeth = {
@@ -1231,7 +1260,8 @@
           notesStrippingWhere: this.getUpperNotesStrippingWhere,
           notesBoltonDiscrepancy: this.getUpperNotesBoltonDiscrepancy,
           notesBox: this.getUpperNotesBox,
-          archwireSizes: this.$prepareArchwires(this.getUpperArchwireSizes)
+          archwireSizes: this.$prepareArchwires(this.getUpperArchwireSizes),
+          teethBoxes: this.getUpperTeethBoxes
         }
 
         this.notes = {
@@ -1273,7 +1303,8 @@
           notesStrippingWhere: this.getLowerNotesStrippingWhere,
           notesBoltonDiscrepancy: this.getLowerNotesBoltonDiscrepancy,
           notesBox: this.getLowerNotesBox,
-          archwireSizes: this.$prepareArchwires(this.getLowerArchwireSizes)
+          archwireSizes: this.$prepareArchwires(this.getLowerArchwireSizes),
+          teethBoxes: this.getLowerTeethBoxes
         }
       }
     }

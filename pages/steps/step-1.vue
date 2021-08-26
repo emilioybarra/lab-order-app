@@ -208,6 +208,7 @@
 
   export default {
     name: 'step-1',
+    middleware: 'isTermsAndConditionsAccepted',
 
     data () {
       return {

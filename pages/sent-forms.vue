@@ -33,7 +33,12 @@
           :loading-preview="selectedOrderFormId === orderForm._id && loadingPreview"
           :loading-download="selectedOrderFormId === orderForm._id && loadingDownload"
           :loading-external="selectedOrderFormId === orderForm._id && loadingExternal"
-          :name="`${ $d(new Date(orderForm.createdAt)) }${ orderForm.patient.lastName && orderForm.patient.firstName ? ` – ${ orderForm.patient.lastName }, ${ orderForm.patient.firstName }` : '' }`"
+          :name="
+            `
+              ${ $moment(orderForm.createdAt).format(`${ $i18n.localeProperties.localeDateFormat } HH:mm`) }
+              ${ orderForm.patient.lastName && orderForm.patient.firstName ? ` – ${ orderForm.patient.lastName }, ${ orderForm.patient.firstName }` : '' }
+            `
+          "
           @onSelect="selectOrderForm(orderForm._id)"
           @onDownload="downloadOrderForm(orderForm._id)"
           @onExternal="externalOrderForm(orderForm._id)"
@@ -75,6 +80,7 @@
 
   export default {
     name: 'sent-forms',
+    middleware: 'isTermsAndConditionsAccepted',
 
     data () {
       return {

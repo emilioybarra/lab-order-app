@@ -154,6 +154,7 @@
 
   export default {
     name: 'step-2',
+    middleware: 'isTermsAndConditionsAccepted',
 
     data () {
       return {

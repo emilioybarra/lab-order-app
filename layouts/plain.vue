@@ -1,5 +1,5 @@
 <template>
-  <div class="lof" :style="`height: ${ innerHeight }px`" @scroll.passive="handleScroll">
+  <div id="lof" class="lof" :style="`height: ${ innerHeight }px`" @scroll.passive="handleScroll">
     <transition name="fade">
       <div v-if="$nuxt.isOffline" class="bg-danger py-1 text-light w-100 d-flex justify-content-center">
         Offline

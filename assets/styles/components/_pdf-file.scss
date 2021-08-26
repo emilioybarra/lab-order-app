@@ -467,6 +467,16 @@
               line-height: 0;
             }
           }
+
+          &__box {
+            width: 39px;
+            height: 20px;
+            position: absolute;
+            border: 1px solid $grey;
+            text-align: center;
+            line-height: 1.5;
+            font-size: 13px;
+          }
         }
       }
 

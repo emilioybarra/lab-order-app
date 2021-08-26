@@ -66,7 +66,8 @@ export default {
     { mode: 'client', src: '@/plugins/click-outside' },
     { mode: 'client', src: '@/plugins/language-variant' },
     { mode: 'client', src: '@/plugins/prepare-archwires' },
-    { mode: 'client', src: '@/plugins/generate-random-key' }
+    { mode: 'client', src: '@/plugins/generate-random-key' },
+    { mode: 'client', src: '@/plugins/block-back-native-navigation' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -77,7 +78,9 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    // https://github.com/nuxt-community/moment-module
+    '@nuxtjs/moment'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)

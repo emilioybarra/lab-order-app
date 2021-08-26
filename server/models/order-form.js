@@ -66,6 +66,65 @@ const orderFormSchema = new Schema(
         size18x25_3: { straight: String, individual: String, compression: String, expansion: String },
         size18x25red: { straight: String, individual: String, compression: String, expansion: String },
         size175x175: { straight: String, individual: String, compression: String, expansion: String }
+      },
+      teethBoxes: {
+        upper_1: String,
+        upper_2: String,
+        upper_3: String,
+        upper_4: String,
+        upper_5: String,
+        upper_6: String,
+        upper_7: String,
+        upper_8: String,
+        upper_9: String,
+        upper_10: String,
+        upper_11: String,
+        upper_12: String,
+        lower_1: String,
+        lower_2: String,
+        lower_3: String,
+        lower_4: String,
+        lower_5: String,
+        lower_6: String,
+        lower_7: String,
+        lower_8: String,
+        lower_9: String,
+        lower_10: String,
+        lower_11: String,
+        lower_12: String
+      }
+    },
+    notes: {
+      threeDSetup: Boolean,
+      tpa: Boolean,
+      herbst: Boolean,
+      bondableHGTube: Boolean,
+      bondableHGTubeWithShell: Boolean,
+      superpositionPhoto: Boolean,
+      dlcSteelWire: Boolean,
+      upperJaw: Boolean,
+      lowerJaw: Boolean,
+      notes1: String,
+      noCorrectionOfBite: Boolean,
+      notes2: String,
+      nonTransparent: Boolean,
+      trayTrimmed33: Boolean,
+      transparent: Boolean,
+      right2: {
+        canine: Boolean,
+        molar: Boolean
+      },
+      right3: {
+        canine: Boolean,
+        molar: Boolean
+      },
+      left2: {
+        canine: Boolean,
+        molar: Boolean
+      },
+      left3: {
+        canine: Boolean,
+        molar: Boolean
       }
     },
     lowerTeeth: {
@@ -102,39 +161,32 @@ const orderFormSchema = new Schema(
         size18x25_3: { straight: String, individual: String, compression: String, expansion: String },
         size18x25red: { straight: String, individual: String, compression: String, expansion: String },
         size175x175: { straight: String, individual: String, compression: String, expansion: String }
-      }
-    },
-    notes: {
-      threeDSetup: Boolean,
-      tpa: Boolean,
-      herbst: Boolean,
-      bondableHGTube: Boolean,
-      bondableHGTubeWithShell: Boolean,
-      superpositionPhoto: Boolean,
-      dlcSteelWire: Boolean,
-      upperJaw: Boolean,
-      lowerJaw: Boolean,
-      notes1: String,
-      noCorrectionOfBite: Boolean,
-      notes2: String,
-      nonTransparent: Boolean,
-      trayTrimmed33: Boolean,
-      transparent: Boolean,
-      right2: {
-        canine: Boolean,
-        molar: Boolean
       },
-      right3: {
-        canine: Boolean,
-        molar: Boolean
-      },
-      left2: {
-        canine: Boolean,
-        molar: Boolean
-      },
-      left3: {
-        canine: Boolean,
-        molar: Boolean
+      teethBoxes: {
+        upper_1: String,
+        upper_2: String,
+        upper_3: String,
+        upper_4: String,
+        upper_5: String,
+        upper_6: String,
+        upper_7: String,
+        upper_8: String,
+        upper_9: String,
+        upper_10: String,
+        upper_11: String,
+        upper_12: String,
+        lower_1: String,
+        lower_2: String,
+        lower_3: String,
+        lower_4: String,
+        lower_5: String,
+        lower_6: String,
+        lower_7: String,
+        lower_8: String,
+        lower_9: String,
+        lower_10: String,
+        lower_11: String,
+        lower_12: String
       }
     }
   },

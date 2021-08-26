@@ -14,7 +14,33 @@ export const state = () => ({
   notesStrippingWhere: '',
   notesBoltonDiscrepancy: false,
   notesBox: '',
-  archwireSizes: {}
+  archwireSizes: {},
+  teethBoxes: {
+    upper_1: '',
+    upper_2: '',
+    upper_3: '',
+    upper_4: '',
+    upper_5: '',
+    upper_6: '',
+    upper_7: '',
+    upper_8: '',
+    upper_9: '',
+    upper_10: '',
+    upper_11: '',
+    upper_12: '',
+    lower_1: '',
+    lower_2: '',
+    lower_3: '',
+    lower_4: '',
+    lower_5: '',
+    lower_6: '',
+    lower_7: '',
+    lower_8: '',
+    lower_9: '',
+    lower_10: '',
+    lower_11: '',
+    lower_12: ''
+  }
 })
 
 export const getters = {
@@ -59,6 +85,9 @@ export const getters = {
   },
   getArchwireSizes (state) {
     return prepareArchwires(JSON.parse(localStorage.getItem('lof__upper-teeth__archwireSizes')) || state.archwireSizes || {})
+  },
+  getTeethBoxes (state) {
+    return JSON.parse(localStorage.getItem('lof__upper-teeth__teethBoxes')) || state.teethBoxes
   }
 }
 
@@ -119,6 +148,10 @@ export const mutations = {
     state.archwireSizes = archwireSizes
     localStorage.setItem('lof__upper-teeth__archwireSizes', JSON.stringify(archwireSizes))
   },
+  setTeethBoxes (state, teethBoxes) {
+    state.teethBoxes = teethBoxes
+    localStorage.setItem('lof__upper-teeth__teethBoxes', JSON.stringify(teethBoxes))
+  },
   resetUpperTeethState (state) {
     state.imageData = null
     state.onlySetup = false
@@ -130,6 +163,7 @@ export const mutations = {
     state.roMm = ''
     state.roWhere = ''
     state.archwireSizes = {}
+    state.teethBoxes = {}
 
     Object.keys(localStorage).map((key) => {
       if (/(lof__upper-teeth__)(.*)/.test(key)) {

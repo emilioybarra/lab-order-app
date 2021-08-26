@@ -24,7 +24,6 @@
 </template>
 
 <script>
-  import moment from 'moment'
   import cookies from 'vue-cookies'
   import { termsAndConditionsDate } from '@/utils/termsAndConditionsDate'
 
@@ -51,7 +50,7 @@
     methods: {
       setTermsAndConditionsCookie () {
         const termsAndConditions = {
-          date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
+          date: this.$moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
           acceptTermsAndConditions: true
         }
         cookies.set('lof__termsAndConditions', termsAndConditions)
@@ -60,7 +59,7 @@
         if (cookies.isKey('lof__termsAndConditions')) {
           const cookie = cookies.get('lof__termsAndConditions')
           console.log(cookie)
-          if (moment(termsAndConditionsDate, 'YYYY-MM-DD') > moment(cookie.date, 'YYYY-MM-DD')) {
+          if (this.$moment(termsAndConditionsDate, 'YYYY-MM-DD') > this.$moment(cookie.date, 'YYYY-MM-DD')) {
             this.setTermsAndConditionsCookie()
           }
         }

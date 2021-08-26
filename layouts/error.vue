@@ -1,5 +1,5 @@
 <template>
-  <div class="container py-5">
+  <div id="lof" class="container py-5">
     <h1 v-if="error.statusCode === 404">
       This page is not found.
     </h1>

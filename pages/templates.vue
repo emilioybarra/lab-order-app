@@ -47,6 +47,7 @@
 
   export default {
     name: 'templates',
+    middleware: 'isTermsAndConditionsAccepted',
 
     data () {
       return {

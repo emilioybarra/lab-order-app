@@ -27,10 +27,10 @@
 
 <script>
   import html2pdf from 'html2pdf.js'
-  import moment from 'moment'
 
   export default {
     name: 'step-4',
+    middleware: 'isTermsAndConditionsAccepted',
 
     data () {
       return {
@@ -58,7 +58,7 @@
     methods: {
       previewPdf () {
         const self = this
-        this.pdfOptions.filename = `order-form_${ moment().format('YYYY-MM-DD') }`
+        this.pdfOptions.filename = `order-form_${ this.$moment().format('YYYY-MM-DD') }`
         this.loadingPreview = true
         if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
           this.pdfOptions.html2canvas.scale = 3
@@ -89,7 +89,7 @@
       },
       downloadPdf () {
         this.loadingDownload = true
-        this.pdfOptions.filename = `order-form_${ moment().format('YYYY-MM-DD') }`
+        this.pdfOptions.filename = `order-form_${ this.$moment().format('YYYY-MM-DD') }`
         setTimeout(() => {
           this.pdfPage1 = document.getElementById('pdf-page-1').innerHTML
           this.pdfPage2 = document.getElementById('pdf-page-2').innerHTML

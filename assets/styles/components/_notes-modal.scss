@@ -2,13 +2,13 @@
   &__container {
     width: 100%;
     height: inherit;
-    max-height: 75%;
+    max-height: 78%;
     position: relative;
     display: flex;
     justify-content: center;
 
     &__card {
-      max-width: 800px;
+      max-width: 850px;
       max-height: 100%;
       height: fit-content;
       display: flex;
@@ -21,7 +21,7 @@
       border-radius: 1.2rem;
 
       &-content {
-        margin-right: 8px;
+        margin-right: 24px;
       }
 
       /* width */
