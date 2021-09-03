@@ -1261,7 +1261,7 @@
           notesBoltonDiscrepancy: this.getUpperNotesBoltonDiscrepancy,
           notesBox: this.getUpperNotesBox,
           archwireSizes: this.$prepareArchwires(this.getUpperArchwireSizes),
-          teethBoxes: this.getUpperTeethBoxes
+          teethBoxes: this.getUpperTeethBoxes()
         }
 
         this.notes = {
@@ -1304,7 +1304,7 @@
           notesBoltonDiscrepancy: this.getLowerNotesBoltonDiscrepancy,
           notesBox: this.getLowerNotesBox,
           archwireSizes: this.$prepareArchwires(this.getLowerArchwireSizes),
-          teethBoxes: this.getLowerTeethBoxes
+          teethBoxes: this.getLowerTeethBoxes()
         }
       }
     }

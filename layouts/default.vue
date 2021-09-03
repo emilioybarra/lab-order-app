@@ -186,7 +186,6 @@
       },
       goBack () {
         this.slide = 'slide-right'
-        // this.hideLanguageMenu()
         this.$router.push(navigationBackController(this.$route))
       },
       beforeEnter () {

@@ -175,19 +175,19 @@ $lower-canvas-height: $lower-canvas-height-tablet;
     &--upper,
     &-image--upper,
     &-canvas--upper {
-      width: $upper-canvas-width;
-      height: $upper-canvas-height;
+      width: $upper-canvas-width !important;
+      height: $upper-canvas-height !important;
     }
 
     &--lower,
     &-image--lower,
     &-canvas--lower {
-      width: $lower-canvas-width;
-      height: $lower-canvas-height;
+      width: $lower-canvas-width !important;
+      height: $lower-canvas-height !important;
     }
 
     &-canvas {
-      position: absolute;
+      position: absolute !important;
     }
 
     &-image {
@@ -386,6 +386,15 @@ $lower-canvas-height: $lower-canvas-height-tablet;
     &-icon {
       width: 1.4rem;
       height: 1.4rem;
+
+      &--redo {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: 'FlipH';
+      }
 
       &--pen {
         width: 5rem;

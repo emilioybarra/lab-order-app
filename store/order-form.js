@@ -175,7 +175,7 @@ export const actions = {
         notesBoltonDiscrepancy: getUpperNotesBoltonDiscrepancy,
         notesBox: getUpperNotesBox,
         archwireSizes: getUpperArchwireSizes,
-        teethBoxes: getUpperTeethBoxes
+        teethBoxes: getUpperTeethBoxes()
       },
       notes: {
         threeDSetup: getThreeDSetup,
@@ -212,7 +212,7 @@ export const actions = {
         notesBoltonDiscrepancy: getLowerNotesBoltonDiscrepancy,
         notesBox: getLowerNotesBox,
         archwireSizes: getLowerArchwireSizes,
-        teethBoxes: getLowerTeethBoxes
+        teethBoxes: getLowerTeethBoxes()
       }
     }
 

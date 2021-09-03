@@ -2,6 +2,26 @@ import { prepareArchwires } from '@/plugins/prepare-archwires'
 
 export const state = () => ({
   imageData: '',
+  canvasMode: 'highlight',
+  teethCanvasUndoList: [],
+  highlightedTeeth: [
+    { tooth_0: { highlighted: false, color: '' } },
+    { tooth_1: { highlighted: false, color: '' } },
+    { tooth_2: { highlighted: false, color: '' } },
+    { tooth_3: { highlighted: false, color: '' } },
+    { tooth_4: { highlighted: false, color: '' } },
+    { tooth_5: { highlighted: false, color: '' } },
+    { tooth_6: { highlighted: false, color: '' } },
+    { tooth_7: { highlighted: false, color: '' } },
+    { tooth_8: { highlighted: false, color: '' } },
+    { tooth_9: { highlighted: false, color: '' } },
+    { tooth_10: { highlighted: false, color: '' } },
+    { tooth_11: { highlighted: false, color: '' } },
+    { tooth_12: { highlighted: false, color: '' } },
+    { tooth_13: { highlighted: false, color: '' } },
+    { tooth_14: { highlighted: false, color: '' } },
+    { tooth_15: { highlighted: false, color: '' } }
+  ],
   onlySetup: false,
   boltonDiscrepancy: false,
   resolveCrowding: false,
@@ -47,6 +67,15 @@ export const getters = {
   getImageData (state) {
     return state.imageData || localStorage.getItem('lof__lower-teeth__imageData') || ''
   },
+  getCanvasMode: state => () => {
+    return state.canvasMode
+  },
+  getTeethCanvasUndoList: state => () => {
+    return JSON.parse(localStorage.getItem('lof__lower-teeth__teethCanvasUndoList')) || state.teethCanvasUndoList || []
+  },
+  getHighlightedTeeth: state => () => {
+    return JSON.parse(localStorage.getItem('lof__lower-teeth__highlightedTeeth')) || state.highlightedTeeth || []
+  },
   getOnlySetup (state) {
     return state.onlySetup || JSON.parse(localStorage.getItem('lof__lower-teeth__onlySetup')) || false
   },
@@ -86,7 +115,7 @@ export const getters = {
   getArchwireSizes (state) {
     return prepareArchwires(JSON.parse(localStorage.getItem('lof__lower-teeth__archwireSizes')) || state.archwireSizes || {})
   },
-  getTeethBoxes (state) {
+  getTeethBoxes: state => () => {
     return JSON.parse(localStorage.getItem('lof__lower-teeth__teethBoxes')) || state.teethBoxes
   }
 }
@@ -95,6 +124,17 @@ export const mutations = {
   setImageData (state, imageData) {
     state.imageData = imageData
     localStorage.setItem('lof__lower-teeth__imageData', imageData)
+  },
+  setCanvasMode (state, canvasMode) {
+    state.canvasMode = canvasMode
+  },
+  setTeethCanvasUndoList (state, teethCanvasUndoList) {
+    state.teethCanvasUndoList = teethCanvasUndoList
+    localStorage.setItem('lof__lower-teeth__teethCanvasUndoList', JSON.stringify(teethCanvasUndoList))
+  },
+  setHighlightedTeeth (state, highlightedTeeth) {
+    state.highlightedTeeth = highlightedTeeth
+    localStorage.setItem('lof__lower-teeth__highlightedTeeth', JSON.stringify(highlightedTeeth))
   },
   setOnlySetup (state, onlySetup) {
     state.onlySetup = onlySetup

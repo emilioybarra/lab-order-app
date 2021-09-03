@@ -141,7 +141,7 @@
         <b-button class="lof-button mb-4" variant="primary" @click="openTemplateTitleModal">
           {{ $t('common.buttons.saveAsTemplate') }}
         </b-button>
-        <link-button to="/steps/step-4" arrow-icon>
+        <link-button to="/steps/step-4" arrow-icon @click="$root.$emit('saveCanvas')">
           {{ $t('common.buttons.next') }}
         </link-button>
       </div>
