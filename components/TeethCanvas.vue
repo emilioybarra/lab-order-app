@@ -27,7 +27,6 @@
             id="paintable"
             ref="paintable"
             :key="canvasKey"
-            always-on-top
             :name="`lof__${ teethImage }-teeth__canvas`"
             :active="drawActive"
             :width="canvasWidth"
@@ -409,6 +408,7 @@
               <path class="lof-teeth-canvas__tooth-texture" d="M220.51,19.05a5.78,5.78,0,0,1,1.46,2M222,35.35a2.79,2.79,0,0,1-2.14,3.14m-20.38-2c.08,1.14.12,2.6,1.69,2.84m-2.3-17.78c.88-.62,1.08-1.55,2-2.17m.59,9.4c2.92.1,7-2.21,9.34-.55,1.26.87,1.52,2,3.31,2.23,2.09.26,4.26-.6,6.28-.15s3.31,1.18,5.64.59M212.18,17.06a9.45,9.45,0,0,0,.91,3.25c.48,1.17.18,2.11-.11,3.37-1,4.43-2.64,8.72-3.56,13.19m-6,2.2c1.06.14,1.82-.77,2.74-1.09a5.56,5.56,0,0,1,2.86-.26c1.72.32,3.61,1.11,5.29,1.57M206.49,17c3-.55,5.28-1.43,8.16-.05a33.13,33.13,0,0,1,3.17,1.8c1.17.75,1.23,1.88,2,2.8M123.7,158.74c-.29.56-.8,1-1,1.62a5.9,5.9,0,0,0-.39,2.12c-.08,1.33-.06,2.85-.88,4m19.74-11.95c-.37.59-.85.9-1.07,1.56a15.55,15.55,0,0,0-.57,2.13,26.54,26.54,0,0,0-.12,4.47m24.75-15.06c-.41,0-.93-.57-1.31-.74a8.8,8.8,0,0,0-1.57-.61,17.05,17.05,0,0,0-3.95-.26m-22,25.6c0,.55-1.28,1.24-1.8,1.47a11,11,0,0,1-2.84.67c-1,.12-2.18.07-3.19.24s-2,.38-2.95.53c-1.85.28-4.84.43-6.08-1m53.33-23.26c0,1.75-.1,2.92-1.68,4.06s-1.86,2.5-2.4,4c-.42,1.18-.87,2.68-2.45,3.16-.78.24-1.61.2-2.42.39s-1.49.71-2.33.82m-5.14,3.84c-.21,1.56-2.53,2.15-4.07,2.44a16.4,16.4,0,0,0-5.56,1.68,7.35,7.35,0,0,1-3.28,1.23c-1,.05-2.63.37-3.26-.26m28.26-33a3,3,0,0,0-.37,1.67m5.51-11.12a5.05,5.05,0,0,0-2.82,2m11.53,10.33a5.5,5.5,0,0,0,2.87-2.76,9.58,9.58,0,0,0,.89-4.09m-14.41,3.16a7.52,7.52,0,0,1,3.26,1.15m2.94-8.68c1.24.24,2.49.71,2.7,1.82m4.57-1.4a6.09,6.09,0,0,1-2.5,1.26,5.28,5.28,0,0,1-1.38.19c-.83,0-.78.07-1.11.68a16.65,16.65,0,0,1-3,3.84c-.88.86-2,1.78-1.93,3a5.22,5.22,0,0,0,.56,1.77c.22.52.25,1.28.63,1.71M185,108.27a5,5,0,0,0-3.76,1.56m-3.07,8.72c0,.47-.52.86-.8,1.26a2.35,2.35,0,0,0-.45,1.49m17-1.5c0-.94.92-1.6,1.32-2.45a4.74,4.74,0,0,0,.18-3.11m-6.58,9a3.47,3.47,0,0,0-1.92-.89,6.3,6.3,0,0,0-1.21-.3c-.48,0-.51.18-.94.37a16.72,16.72,0,0,1-2.69.62,14.14,14.14,0,0,1-2.7.1m2.13-9.55c.59,0,1.13.22,1.76.25a7.41,7.41,0,0,0,1.69-.31m7.21,1.51a3.05,3.05,0,0,1-2.51.16c-.82-.35-1.54-.8-2.31-1.21-.56-.3-1.57-1-2.26-.56s-.55,1.62-.65,2.22a14.38,14.38,0,0,0-.23,2.19,7.29,7.29,0,0,0,1.06,3.9m6.29-46.64c-2.09,0-3.49.51-3.51,2.38m-5.85,24.16a2.86,2.86,0,0,1-2-.56,5.77,5.77,0,0,1-1.42-1.41m25.44-.88c.12,2.49-.92,4.92-3.95,5.71M210.11,84c.45.29.47.9.7,1.29a3.28,3.28,0,0,1,.67,1.56,5.27,5.27,0,0,1-.25,3m-4,5.92c-2-.92-4.62,0-6.51-1.09-.89-.48-1.72-1-2.62-1.46s-1.66-1.33-2.57-1.5-1.44.24-2.2.16a18.16,18.16,0,0,1-2.26-.78,18.06,18.06,0,0,0-2.76-.1c-1.05-.08-2.14-.43-3.13-.58M195.44,104a3.35,3.35,0,0,0-1.14-2,11.22,11.22,0,0,0-1.53-1.62c-1.52-1.15-3.54.08-4.78,1-.56.41-1.34,1-1.26,1.66m10.91-23.93c.16.59.55,1,.44,1.71s-.45,1.09-.56,1.66A2.18,2.18,0,0,0,198.89,85M204,83.5a6,6,0,0,0-3,1.1c-.46.24-1,.29-1.47.51a9,9,0,0,0-1.49,1,31.38,31.38,0,0,1-3.25,2.27c-.76.42-1.78.83-1.26,1.63a3.21,3.21,0,0,1,.76,2.33,27.4,27.4,0,0,1-.68,4.1,5.7,5.7,0,0,1-.93,1.56,2.79,2.79,0,0,0-.33,1.66m-4.24-32c-.74-.13-.9-1-1-1.49-.09-.31-.28-1.58.13-1.73M199.93,46a4.79,4.79,0,0,0-2.5-.17c-.65.14-2.42.57-2.42,1.31m17.21,21a11.17,11.17,0,0,1-1.55,1.77c-.34.26-2.14.75-2.26.07m4.72-20.12c.5.72.29,1.54.46,2.36a4.52,4.52,0,0,1,0,2.28m-1.34,8.1a4.74,4.74,0,0,1-3.38-1.89,10.68,10.68,0,0,0-3-2.25,16.71,16.71,0,0,0-4.58-1.36,18.14,18.14,0,0,0-2.22-.11,17.31,17.31,0,0,1-2.34-.38,15.45,15.45,0,0,1-3.34-.76M204.7,71c-.78-.46-1.69-1.77-2.83-1.43a13.67,13.67,0,0,1-4.27.84" transform="translate(-2.58 -12.84)" />
             </svg>
             <canvas id="teeth-canvas" hidden :width="canvasWidth" :height="canvasHeight" />
+            <canvas id="paintable-canvas" hidden :width="canvasWidth" :height="canvasHeight" />
           </paintable>
           <!--
           <canvas
@@ -505,7 +505,7 @@
         swatches: [],
         boxes: {},
         orientation: window.innerHeight < window.innerWidth,
-        canvasKey: this.$generateRandomKey()
+        canvasKey: '3'
       }
     },
 
@@ -538,9 +538,10 @@
         deep: true
       },
       canvasWidth () {
-        this.canvasKey = this.$generateRandomKey()
+        // this.canvasKey = this.$generateRandomKey()
       },
       drawActive () {
+        // this.canvasKey = this.$generateRandomKey()
         if (this.drawActive) {
           this.$refs.paintable.loadImageFromStorage()
         } else {
@@ -563,6 +564,8 @@
     },
 
     beforeMount () {
+      console.log(window.innerWidth)
+      this.setCanvasSize()
       window.addEventListener('unload', this.saveCanvasData)
       window.addEventListener('resize', this.getInnerHeight)
       window.addEventListener('orientationchange', this.getInnerHeight)
@@ -601,7 +604,21 @@
         this.highlightColor = swatchColor
       },
       getInnerHeight () {
+        this.setCanvasSize()
         this.orientation = window.innerHeight < window.innerWidth
+      },
+      setCanvasSize () {
+        /*
+        const element = document.getElementById('teeth-container')
+        const style = window.getComputedStyle(element, null)
+        this.canvasWidth = parseFloat(style.getPropertyValue('width'))
+        this.canvasHeight = parseFloat(style.getPropertyValue('height'))
+        */
+
+        const { width, height } = this.$setCanvasSize(this.teethImage)
+
+        this.canvasWidth = width
+        this.canvasHeight = height
       },
       initialBoxes () {
         this.boxes = clone(this.getTeethBoxes())
@@ -611,14 +628,20 @@
         this.teeth = clone(this.getHighlightedTeeth())
       },
       initiateCanvas () {
-        this.$refs.paintable.clearCanvas()
-        const element = document.getElementById('teeth-container')
-        const style = window.getComputedStyle(element, null)
-        const canvas2 = document.getElementById('teeth-canvas')
-        const ctx2 = canvas2.getContext('2d')
-        this.canvasWidth = parseFloat(style.getPropertyValue('width'))
-        this.canvasHeight = parseFloat(style.getPropertyValue('height'))
-        ctx2.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+        this.setCanvasSize()
+
+        // const canvas = this.$refs.paintable.canvas
+        // const canvas2 = document.getElementById('teeth-canvas')
+        // const ctx = canvas.getContext('2d')
+        // const ctx2 = canvas2.getContext('2d')
+        // ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+        // ctx2.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+        // this.$refs.paintable.clearCanvas()
+        // const imageDrawing = this.$refs.paintable.getItem(`lof__${ this.teethImage }-teeth__canvasDrawing`)
+        // const newTab = window.open()
+        // newTab.document.body.innerHTML = `<img src="${ imageDrawing }">`
+        // ctx.drawImage(imageDrawing, 0, 0, this.canvasWidth, this.canvasHeight)
+        this.$refs.paintable.loadImageFromStorage()
       },
       highlightedTeeth (toothIndex, color) {
         this.teeth[toothIndex][`tooth_${ toothIndex }`].highlighted = !this.teeth[toothIndex][`tooth_${ toothIndex }`].highlighted
@@ -648,35 +671,45 @@
         this.setTeethBoxes(clone(this.boxes))
         this.setHighlightedTeeth(clone(this.teeth))
         this.$refs.paintable.removeItem(`lof__${ this.teethImage }-teeth__canvas`)
+        this.$refs.paintable.removeItem(`lof__${ this.teethImage }-teeth__canvasDrawing`)
         this.$refs.paintable.removeItem(`lof__${ this.teethImage }-teeth__teethCanvasUndoList`)
       },
       saveCanvas () {
         console.log(this.$refs.paintable)
-        if (this.$refs.paintable) {
-          this.saveCanvasData()
-          const svg = document.getElementById('teeth-image').outerHTML
-          const canvas1 = this.$refs.paintable.canvas
-          const canvas2 = document.getElementById('teeth-canvas')
-          const ctx = canvas1.getContext('2d')
-          const ctx2 = canvas2.getContext('2d')
+        // if (this.$refs.paintable) {
+        this.saveCanvasData()
+        const svg = document.getElementById('teeth-image').outerHTML
+        const canvas1 = this.$refs.paintable.canvas
+        // const newTab = window.open()
+        // newTab.document.body.innerHTML = `<img src="${ canvas1.toDataURL('image/png') }">`
+        const canvas2 = document.getElementById('teeth-canvas')
+        const canvas3 = document.getElementById('paintable-canvas')
+        // const ctx = canvas1.getContext('2d')
+        const ctx2 = canvas2.getContext('2d')
+        const ctx3 = canvas3.getContext('2d')
 
-          svgToImage(svg, (error, image) => {
-            if (error) { throw error }
-            ctx2.drawImage(canvas1, 0, 0, this.canvasWidth, this.canvasHeight)
-            ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-            ctx.drawImage(image, 0, 0, this.canvasWidth, this.canvasHeight)
-            ctx.drawImage(canvas2, 0, 0, this.canvasWidth, this.canvasHeight)
-            const imageData = canvas1.toDataURL('image/png')
-            // console.log(imageData)
-            // const newTab = window.open()
-            // newTab.document.body.innerHTML = `<img src="${ imageData }">`
-            this.setImageData(imageData)
-            ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-          })
-        }
+        svgToImage(svg, (error, image) => {
+          if (error) { throw error }
+          ctx2.drawImage(canvas1, 0, 0, this.canvasWidth, this.canvasHeight)
+          // ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+          ctx3.drawImage(image, 0, 0, this.canvasWidth, this.canvasHeight)
+          ctx3.drawImage(canvas2, 0, 0, this.canvasWidth, this.canvasHeight)
+          const imageData = canvas3.toDataURL('image/png')
+          // console.log(imageData)
+          // const newTab = window.open()
+          // newTab.document.body.innerHTML = `<img src="${ imageData }">`
+          this.setImageData(imageData)
+          // ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+        })
+        // }
       },
       saveCanvasData () {
+        // const canvas = this.$refs.paintable.canvas
+        // this.$refs.paintable.setItem(`lof__${ this.teethImage }-teeth__canvasDrawing`, canvas.toDataURL('image/png'))
         this.$refs.paintable.saveCurrentCanvasToStorage()
+        // const image = this.$refs.paintable.getItem('lof__upper-teeth__canvas')
+        // const newTab = window.open()
+        // newTab.document.body.innerHTML = `<img src="${ image }">`
       },
       createHiDPICanvas (width, height, ratio) {
         if (!ratio) { ratio = 1 }

@@ -65,6 +65,7 @@ export default {
     { mode: 'client', src: '@/plugins/vue-cookies' },
     { mode: 'client', src: '@/plugins/vue-paintable' },
     { mode: 'client', src: '@/plugins/click-outside' },
+    { mode: 'client', src: '@/plugins/set-canvas-size' },
     { mode: 'client', src: '@/plugins/language-variant' },
     { mode: 'client', src: '@/plugins/prepare-archwires' },
     { mode: 'client', src: '@/plugins/generate-random-key' },

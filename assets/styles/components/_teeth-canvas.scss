@@ -7,7 +7,6 @@ $upper-canvas-height-tablet: 400px;
 $upper-canvas-width-desktop: 716px;
 $upper-canvas-height-desktop: 550px;
 
-
 $lower-canvas-width-phone-sm: 286px;
 $lower-canvas-height-phone-sm: 206px;
 $lower-canvas-width-phone-lg: 456px;
@@ -21,14 +20,6 @@ $upper-canvas-width: $upper-canvas-width-tablet;
 $upper-canvas-height: $upper-canvas-height-tablet;
 $lower-canvas-width: $lower-canvas-width-tablet;
 $lower-canvas-height: $lower-canvas-height-tablet;
-
-// Vue Swatches Overrides
-.vue-swatches__check__circle {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 
 .lof-teeth-canvas {
@@ -175,15 +166,55 @@ $lower-canvas-height: $lower-canvas-height-tablet;
     &--upper,
     &-image--upper,
     &-canvas--upper {
-      width: $upper-canvas-width !important;
-      height: $upper-canvas-height !important;
+      // width: $upper-canvas-width !important;
+      // height: $upper-canvas-height !important;
+
+      @include phone-sm-xs() {
+        width: $upper-canvas-width-phone-sm;
+        height: $upper-canvas-height-phone-sm;
+      }
+
+      @include phone-lg() {
+        width: $upper-canvas-width-phone-lg;
+        height: $upper-canvas-height-phone-lg;
+      }
+
+      @include tablet-desktop() {
+        width: $upper-canvas-width-tablet;
+        height: $upper-canvas-height-tablet;
+      }
+
+      @include desktop-lg() {
+        width: $upper-canvas-width-desktop;
+        height: $upper-canvas-height-desktop;
+      }
     }
 
     &--lower,
     &-image--lower,
     &-canvas--lower {
-      width: $lower-canvas-width !important;
-      height: $lower-canvas-height !important;
+      // width: $lower-canvas-width !important;
+      // height: $lower-canvas-height !important;
+
+      @include phone-sm-xs() {
+        width: $lower-canvas-width-phone-sm;
+        height: $lower-canvas-height-phone-sm;
+      }
+
+      @include phone-lg() {
+        width: $lower-canvas-width-phone-lg;
+        height: $lower-canvas-height-phone-lg;
+      }
+
+      @include tablet-desktop() {
+        width: $lower-canvas-width-tablet;
+        height: $lower-canvas-height-tablet;
+      }
+
+      @include desktop-lg() {
+        width: $lower-canvas-width-desktop;
+        height: $lower-canvas-height-desktop;
+      }
     }
 
     &-canvas {

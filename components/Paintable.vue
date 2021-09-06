@@ -1,7 +1,6 @@
 <template>
   <div class="paintable">
     <canvas
-      id="paintable-canvas"
       :ref="'canvas-' + canvasId"
       :width="width"
       :height="height"
@@ -138,7 +137,7 @@
         this.ctx.strokeStyle = this.currentColor
       },
       undoList () {
-        // console.log(this.undoList)
+        console.log(this.undoList)
         this.setTeethCanvasUndoList([ ...this.undoList ])
       }
     },
@@ -215,7 +214,7 @@
           this.ctx.strokeStyle = this.currentColor
           this.undoList = this.getTeethCanvasUndoList()
           this.setItem(
-            this.name + '-settings',
+            this.name + 'Settings',
             JSON.stringify({
               width: this.canvas.width,
               height: this.canvas.height
@@ -226,7 +225,7 @@
           this.setCanvasSize()
 
           // load image from storage
-          this.loadImageFromStorage()
+          // this.loadImageFromStorage()
           this.$emit('toggle-paintable', this.isActive)
         } catch (err) {
           console.log(err)
@@ -274,8 +273,9 @@
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         // this.tempCtx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         const base64Image = image || (await this.getItem(this.name))
+        console.log(this.name)
+        // console.log(base64Image)
         if (base64Image) {
-          console.log(base64Image)
           // const newTab = window.open()
           // newTab.document.body.innerHTML = `<img src="${ base64Image }">`
           const image = new Image()
@@ -322,11 +322,11 @@
         // reset to pencil
         if (this.isCanvasBlank()) {
           this.removeItem(this.name)
-          this.removeItem(this.name + '-settings')
+          this.removeItem(this.name + 'Settings')
         } else {
           this.setItem(this.name, this.canvas.toDataURL('image/png'))
           this.setItem(
-            this.name + '-settings',
+            this.name + 'Settings',
             JSON.stringify({
               width: this.canvas.width,
               height: this.canvas.height
