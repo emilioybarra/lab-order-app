@@ -2,16 +2,20 @@
   display: flex;
   justify-content: center;
   align-self: center;
+  position: relative;
   max-width: 270px;
   width: 100%;
   text-decoration: none;
+  text-transform: uppercase;
 
   &__button {
     display: flex;
     justify-content: center;
+    align-self: center;
     position: relative;
     max-width: 270px;
     width: 100%;
+    text-decoration: none;
     text-transform: uppercase;
 
     &:disabled {

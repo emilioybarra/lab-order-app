@@ -4,7 +4,7 @@
       {{ $t('common.titles.lowerTeeth') }}
     </template>
     <template #body>
-      <teeth-canvas :key="$i18n.locale" teeth-image="lower" />
+      <teeth-canvas ref="lowerTeethCanvas" teeth-image="lower" />
       <div class="d-flex flex-column justify-content-center align-items-center mt-3">
         <checkbox v-model="onlySetup" :is-checked="onlySetup" @input="setOnlySetup">
           {{ $t('section.l_1.onlySetup') }}
@@ -141,7 +141,7 @@
         <b-button class="lof-button mb-4" variant="primary" @click="openTemplateTitleModal">
           {{ $t('common.buttons.saveAsTemplate') }}
         </b-button>
-        <link-button to="/steps/step-4" arrow-icon @click="$root.$emit('saveCanvas')">
+        <link-button arrow-icon to="step-4">
           {{ $t('common.buttons.next') }}
         </link-button>
       </div>
@@ -225,11 +225,20 @@
       this.$store.commit('common/setTemplate', 'lower-teeth')
     },
 
-    beforeDestroy () {
+    beforeRouteLeave (to, from, next) {
+      this.$store.commit('common/setIsLoading', true)
       if (!this.resolveCrowding && !this.boltonDiscrepancy) {
         this.setRcMm('')
         this.setRcWhere('')
       }
+
+      this.$refs.lowerTeethCanvas.saveCanvas().then(() => {
+        setTimeout(() => {
+          console.log('done')
+          this.$store.commit('common/setIsLoading', false)
+          next()
+        }, 500)
+      })
     },
 
     methods: {

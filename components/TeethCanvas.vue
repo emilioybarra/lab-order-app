@@ -1,5 +1,5 @@
 <template>
-  <div class="lof-teeth-canvas">
+  <div id="teethCanvasComponent" class="lof-teeth-canvas">
     <div class="lof-teeth-canvas__info-legend">
       <div class="lof-teeth-canvas__info-legend__title" v-html="$t('section.m_1.keyInfo')" />
       <div v-if="!orientation" class="lof-teeth-canvas__info-legend__items">
@@ -26,7 +26,7 @@
           <paintable
             id="paintable"
             ref="paintable"
-            :key="canvasKey"
+            :key="teethImage"
             :name="`lof__${ teethImage }-teeth__canvas`"
             :active="drawActive"
             :width="canvasWidth"
@@ -504,8 +504,7 @@
         teeth: [],
         swatches: [],
         boxes: {},
-        orientation: window.innerHeight < window.innerWidth,
-        canvasKey: '3'
+        orientation: window.innerHeight < window.innerWidth
       }
     },
 
@@ -537,11 +536,7 @@
         },
         deep: true
       },
-      canvasWidth () {
-        // this.canvasKey = this.$generateRandomKey()
-      },
       drawActive () {
-        // this.canvasKey = this.$generateRandomKey()
         if (this.drawActive) {
           this.$refs.paintable.loadImageFromStorage()
         } else {
@@ -564,28 +559,20 @@
     },
 
     beforeMount () {
-      console.log(window.innerWidth)
       this.setCanvasSize()
-      window.addEventListener('unload', this.saveCanvasData)
       window.addEventListener('resize', this.getInnerHeight)
       window.addEventListener('orientationchange', this.getInnerHeight)
     },
 
     mounted () {
-      this.$root.$on('saveCanvas', () => this.saveCanvas())
-      setTimeout(() => {
+      this.$nextTick(() => {
+        console.log('nextTick')
         this.initiateCanvas()
-      }, 200)
-    },
-
-    beforeDestroy () {
-      this.saveCanvasData()
-      window.removeEventListener('unload', this.saveCanvasData)
+      })
     },
 
     methods: {
       setImageData (image) {
-        console.log(this.teethImage)
         this.$store.commit(`${ this.teethImage }-teeth/setImageData`, image)
       },
       setCanvasMode (canvasMode) {
@@ -616,7 +603,6 @@
         */
 
         const { width, height } = this.$setCanvasSize(this.teethImage)
-
         this.canvasWidth = width
         this.canvasHeight = height
       },
@@ -674,8 +660,7 @@
         this.$refs.paintable.removeItem(`lof__${ this.teethImage }-teeth__canvasDrawing`)
         this.$refs.paintable.removeItem(`lof__${ this.teethImage }-teeth__teethCanvasUndoList`)
       },
-      saveCanvas () {
-        console.log(this.$refs.paintable)
+      async saveCanvas () {
         // if (this.$refs.paintable) {
         this.saveCanvasData()
         const svg = document.getElementById('teeth-image').outerHTML
@@ -688,7 +673,7 @@
         const ctx2 = canvas2.getContext('2d')
         const ctx3 = canvas3.getContext('2d')
 
-        svgToImage(svg, (error, image) => {
+        return await svgToImage(svg, (error, image) => {
           if (error) { throw error }
           ctx2.drawImage(canvas1, 0, 0, this.canvasWidth, this.canvasHeight)
           // ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)

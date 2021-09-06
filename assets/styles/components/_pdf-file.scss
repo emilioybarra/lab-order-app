@@ -472,7 +472,7 @@
             width: 39px;
             height: 20px;
             position: absolute;
-            border: 1px solid $grey;
+            border: 1px solid $light-grey;
             text-align: center;
             line-height: 1.5;
             font-size: 13px;
@@ -704,11 +704,15 @@
     }
 
     &--upper {
-      margin-top: -15px;
+      // margin-top: -15px;
+      position: absolute;
+      bottom: 8px;
     }
 
     &--lower {
-      margin-bottom: -15px;
+      // margin-bottom: -15px;
+      position: absolute;
+      top: 8px;
     }
 
     &--margin-sides {

@@ -1,10 +1,13 @@
 <template>
   <div id="lof" class="lof" :style="`height: ${ innerHeight }px`" @scroll.passive="handleScroll">
+    <b-overlay :show="getIsLoading()" fixed no-wrap z-index="10000" spinner-variant="primary" />
+
     <transition name="fade">
       <div v-if="$nuxt.isOffline" class="bg-danger py-1 text-light w-100 d-flex justify-content-center">
         Offline
       </div>
     </transition>
+
     <transition-group name="slide-down">
       <notification
         v-for="(notification, index) in getNotifications"
@@ -108,6 +111,9 @@
       language () {
         return this.$i18n.locale
       },
+      getIsLoading () {
+        return this.$store.getters['common/getIsLoading']
+      },
       getNotifications () {
         return this.$store.getters['common/getNotifications'].map((notification) => {
           return { ...notification, message: this.$t(`common.notifications['${ notification.message }']`) }
@@ -145,8 +151,9 @@
         const navigatorLanguage = navigator.language.toLocaleLowerCase().substring(0, 2)
         if (!this.$cookies.get('i18n_lang_cookie')) {
           const lang = this.$i18n.locales.find(locale => locale.navigator === navigatorLanguage).code
-          this.$cookies.set('i18n_lang_cookie', lang)
+          // this.$cookies.set('i18n_lang_cookie', lang)
           this.$i18n.setLocale(lang)
+          this.$i18n.setLocaleCookie(lang)
         }
       }
     },
@@ -177,6 +184,7 @@
       changeLanguage (lang) {
         this.hideLanguageMenu()
         this.$i18n.setLocale(lang)
+        this.$i18n.setLocaleCookie(lang)
       },
       getInnerHeight () {
         this.innerHeight = window.innerHeight
@@ -186,7 +194,30 @@
       },
       goBack () {
         this.slide = 'slide-right'
+
+        console.log(/(step-2|step-3)/s.test(this.$route.path))
+
         this.$router.push(navigationBackController(this.$route))
+
+        /*
+        if (/(step-2)/s.test(this.$route.path)) {
+          this.$store.commit('common/setIsLoading', true)
+          this.$root.$emit('saveUpperCanvas')
+          setTimeout(() => {
+            this.$store.commit('common/setIsLoading', false)
+            this.$router.push(navigationBackController(this.$route))
+          }, 3000)
+        } else if (/(step-3)/s.test(this.$route.path)) {
+          this.$store.commit('common/setIsLoading', true)
+          this.$root.$emit('saveLowerCanvas')
+          this.$nextTick(() => {
+            this.$store.commit('common/setIsLoading', false)
+            this.$router.push(navigationBackController(this.$route))
+          })
+        } else {
+          this.$router.push(navigationBackController(this.$route))
+        }
+         */
       },
       beforeEnter () {
         this.slide = 'slide-left'

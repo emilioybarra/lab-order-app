@@ -4,6 +4,19 @@ export const state = () => ({
   imageData: '',
   canvasMode: 'highlight',
   teethCanvasUndoList: [],
+  onlySetup: false,
+  boltonDiscrepancy: false,
+  resolveCrowding: false,
+  rcMm: '',
+  rcWhere: '',
+  reduceOverjet: false,
+  roMm: '',
+  roWhere: '',
+  notesStrippingMm: '',
+  notesStrippingWhere: '',
+  notesBoltonDiscrepancy: false,
+  notesBox: '',
+  archwireSizes: {},
   highlightedTeeth: [
     { tooth_0: { highlighted: false, color: '' } },
     { tooth_1: { highlighted: false, color: '' } },
@@ -22,19 +35,6 @@ export const state = () => ({
     { tooth_14: { highlighted: false, color: '' } },
     { tooth_15: { highlighted: false, color: '' } }
   ],
-  onlySetup: false,
-  boltonDiscrepancy: false,
-  resolveCrowding: false,
-  rcMm: '',
-  rcWhere: '',
-  reduceOverjet: false,
-  roMm: '',
-  roWhere: '',
-  notesStrippingMm: '',
-  notesStrippingWhere: '',
-  notesBoltonDiscrepancy: false,
-  notesBox: '',
-  archwireSizes: {},
   teethBoxes: {
     upper_1: '',
     upper_2: '',
@@ -74,7 +74,7 @@ export const getters = {
     return JSON.parse(localStorage.getItem('lof__lower-teeth__teethCanvasUndoList')) || state.teethCanvasUndoList || []
   },
   getHighlightedTeeth: state => () => {
-    return JSON.parse(localStorage.getItem('lof__lower-teeth__highlightedTeeth')) || state.highlightedTeeth || []
+    return JSON.parse(localStorage.getItem('lof__lower-teeth__highlightedTeeth')) || state.highlightedTeeth
   },
   getOnlySetup (state) {
     return state.onlySetup || JSON.parse(localStorage.getItem('lof__lower-teeth__onlySetup')) || false
@@ -194,6 +194,7 @@ export const mutations = {
   },
   resetLowerTeethState (state) {
     state.imageData = null
+    state.canvasMode = 'highlight'
     state.onlySetup = false
     state.boltonDiscrepancy = false
     state.resolveCrowding = false
@@ -207,7 +208,50 @@ export const mutations = {
     state.notesBoltonDiscrepancy = false
     state.notesBox = ''
     state.archwireSizes = {}
-    state.teethBoxes = {}
+    state.highlightedTeeth = [
+      { tooth_0: { highlighted: false, color: '' } },
+      { tooth_1: { highlighted: false, color: '' } },
+      { tooth_2: { highlighted: false, color: '' } },
+      { tooth_3: { highlighted: false, color: '' } },
+      { tooth_4: { highlighted: false, color: '' } },
+      { tooth_5: { highlighted: false, color: '' } },
+      { tooth_6: { highlighted: false, color: '' } },
+      { tooth_7: { highlighted: false, color: '' } },
+      { tooth_8: { highlighted: false, color: '' } },
+      { tooth_9: { highlighted: false, color: '' } },
+      { tooth_10: { highlighted: false, color: '' } },
+      { tooth_11: { highlighted: false, color: '' } },
+      { tooth_12: { highlighted: false, color: '' } },
+      { tooth_13: { highlighted: false, color: '' } },
+      { tooth_14: { highlighted: false, color: '' } },
+      { tooth_15: { highlighted: false, color: '' } }
+    ]
+    state.teethBoxes = {
+      upper_1: '',
+      upper_2: '',
+      upper_3: '',
+      upper_4: '',
+      upper_5: '',
+      upper_6: '',
+      upper_7: '',
+      upper_8: '',
+      upper_9: '',
+      upper_10: '',
+      upper_11: '',
+      upper_12: '',
+      lower_1: '',
+      lower_2: '',
+      lower_3: '',
+      lower_4: '',
+      lower_5: '',
+      lower_6: '',
+      lower_7: '',
+      lower_8: '',
+      lower_9: '',
+      lower_10: '',
+      lower_11: '',
+      lower_12: ''
+    }
 
     Object.keys(localStorage).map((key) => {
       if (/(lof__lower-teeth__)(.*)/.test(key)) {

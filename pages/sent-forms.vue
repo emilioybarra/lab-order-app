@@ -173,7 +173,7 @@
             this.selectedOrderForm = orderForm
           })
           .then(() => {
-            setTimeout(() => {
+            this.$nextTick(() => {
               this.pdfPage1 = document.getElementById('pdf-page-1').innerHTML
               this.pdfPage2 = document.getElementById('pdf-page-2').innerHTML
               html2pdf().set(this.pdfOptions).from(this.pdfPage1).toPdf().get('pdf')
@@ -188,14 +188,14 @@
                       self.$store.commit('common/setPdfSrcPage2', pdfBlobURL)
                     })
                     .then(() => {
-                      setTimeout(() => {
+                      this.$nextTick(() => {
                         self.$root.$emit('generatePdfPreview')
                         self.loadingPreview = false
                         self.selectedOrderFormId = ''
-                      }, 200)
+                      })
                     })
                 })
-            }, 400)
+            })
           })
       },
       downloadOrderForm (orderFormId) {

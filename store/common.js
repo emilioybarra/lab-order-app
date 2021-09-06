@@ -1,6 +1,7 @@
 import cookies from 'vue-cookies'
 
 export const state = () => ({
+  isLoading: false,
   template: '',
   acceptTermsAndConditions: false,
   pdfSrcPage1: '',
@@ -9,6 +10,9 @@ export const state = () => ({
 })
 
 export const getters = {
+  getIsLoading: state => () => {
+    return state.isLoading
+  },
   getTemplate (state) {
     return state.template
   },
@@ -27,6 +31,9 @@ export const getters = {
 }
 
 export const mutations = {
+  setIsLoading (state, isLoading) {
+    state.isLoading = isLoading
+  },
   setTemplate (state, template) {
     state.template = template
   },
