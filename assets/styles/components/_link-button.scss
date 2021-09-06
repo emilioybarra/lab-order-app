@@ -20,8 +20,8 @@
 
     &:disabled {
       opacity: 1;
-      border-color: $secondary;
-      background-color: $secondary;
+      border-color: $light-grey;
+      background-color: $light-grey;
       cursor: not-allowed;
     }
 

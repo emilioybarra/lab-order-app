@@ -11,8 +11,11 @@
         name="templateTitle"
         required
       />
+      <b-form-invalid-feedback :force-show="error">
+        You must enter in a title for you template.
+      </b-form-invalid-feedback>
       <b-button-toolbar class="d-flex mb-3 mt-5 justify-content-center">
-        <b-button class="lof-button mr-4 w-25" variant="primary" @click="saveAsTemplate">
+        <b-button class="lof-button mr-4 w-25" variant="primary" :disabled="!templateTitle" @click="saveAsTemplate">
           {{ $t('common.buttons.save') }}
         </b-button>
         <b-button class="lof-button w-25" variant="secondary" @click="closeTemplateTitleModal">
@@ -29,6 +32,7 @@
 
     data () {
       return {
+        error: false,
         templateTitle: ''
       }
     },
@@ -46,19 +50,27 @@
       this.$root.$on('showTemplateTitleModal', () => this.$refs.templateTitle.show())
     },
 
+    mounted () {
+      console.log('mounted')
+    },
+
     methods: {
       closeTemplateTitleModal () {
         this.$refs.templateTitle.hide()
         this.templateTitle = ''
+        this.error = false
       },
       saveAsTemplate () {
+        this.error = false
         const payload = {
           templateTitle: this.templateTitle,
           userId: this.getUserId
         }
 
         this.$store.dispatch(`${ this.getTemplate }/saveTemplateData`, payload).then((response) => {
-          if (!response) { this.$router.push('/unauthorized') }
+          if (!response) {
+            this.error = true
+          }
           if (response) {
             this.$refs.templateTitle.hide()
             this.templateTitle = ''
