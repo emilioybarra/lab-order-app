@@ -21,8 +21,14 @@ export const prepareArchwires = (archwireSizes = {}) => {
   if (!Object.keys(archwireSizes).length) {
     sizesArray.map((size) => {
       sizesObject[size] = {
-        straight: '',
-        individual: '',
+        straight: {
+          size: '',
+          check: 0
+        },
+        individual: {
+          size: '',
+          check: 0
+        },
         compression: '',
         expansion: ''
       }
@@ -32,8 +38,14 @@ export const prepareArchwires = (archwireSizes = {}) => {
 
   Object.entries(archwireSizes).forEach(([ key, value ]) => {
     sizesObject[key] = {
-      straight: value.straight || '',
-      individual: value.individual || '',
+      straight: {
+        size: value.straight.size,
+        check: value.straight.check
+      },
+      individual: {
+        size: value.individual.size,
+        check: value.individual.check
+      },
       compression: value.compression || '',
       expansion: value.expansion || ''
     }

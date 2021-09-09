@@ -45,21 +45,7 @@ export const state = () => ({
     upper_7: '',
     upper_8: '',
     upper_9: '',
-    upper_10: '',
-    upper_11: '',
-    upper_12: '',
-    lower_1: '',
-    lower_2: '',
-    lower_3: '',
-    lower_4: '',
-    lower_5: '',
-    lower_6: '',
-    lower_7: '',
-    lower_8: '',
-    lower_9: '',
-    lower_10: '',
-    lower_11: '',
-    lower_12: ''
+    upper_10: ''
   }
 })
 
@@ -113,7 +99,7 @@ export const getters = {
     return state.notesBox || localStorage.getItem('lof__upper-teeth__notesBox') || ''
   },
   getArchwireSizes (state) {
-    return prepareArchwires(JSON.parse(localStorage.getItem('lof__upper-teeth__archwireSizes')) || state.archwireSizes || {})
+    return prepareArchwires(JSON.parse(localStorage.getItem('lof__upper-teeth__archwireSizes')) || state.archwireSizes)
   },
   getTeethBoxes: state => () => {
     return JSON.parse(localStorage.getItem('lof__upper-teeth__teethBoxes')) || state.teethBoxes
@@ -232,21 +218,7 @@ export const mutations = {
       upper_7: '',
       upper_8: '',
       upper_9: '',
-      upper_10: '',
-      upper_11: '',
-      upper_12: '',
-      lower_1: '',
-      lower_2: '',
-      lower_3: '',
-      lower_4: '',
-      lower_5: '',
-      lower_6: '',
-      lower_7: '',
-      lower_8: '',
-      lower_9: '',
-      lower_10: '',
-      lower_11: '',
-      lower_12: ''
+      upper_10: ''
     }
 
     Object.keys(localStorage).map((key) => {
@@ -345,6 +317,7 @@ export const actions = {
       getNotesBoltonDiscrepancy: notesBoltonDiscrepancy,
       getNotesBox: notesBox
     } = getters
+
     const templateData = {
       title: templateTitle,
       upperTeethTemplate: {
@@ -363,10 +336,8 @@ export const actions = {
         notesBox
       }
     }
-    const prepareBody = {
-      userId,
-      templateData
-    }
+
+    const prepareBody = { userId, templateData }
 
     return this.$axios.$post('/api/templates/upper-teeth', prepareBody)
       .then((response) => {

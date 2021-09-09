@@ -61,18 +61,6 @@
                     {{ $t('section.m_2.noCorrectionOfBite') }}
                   </checkbox>
                 </div>
-                <div v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="my-4">
-                  <textarea-field
-                    id="notes-2"
-                    v-model="notes2"
-                    resizeable
-                    :label="$t('section.m_1.notes')"
-                    :rows="3"
-                    :invalid="notes2Lines > 2"
-                    @input="setNotes2"
-                  />
-                  <small v-if="notes2Lines > 2" class="text-danger">{{ $t('common.notifications.invalidLines') }}</small>
-                </div>
                 <div v-if="$validateSelectedLanguage('it', 'sp', 'ru', 'jp')" class="my-4">
                   <b-table
                     small
@@ -185,8 +173,6 @@
         notes1: '',
         notes1Lines: 0,
         noCorrectionOfBite: false,
-        notes2: '',
-        notes2Lines: 0,
         nonTransparent: false,
         trayTrimmed33: false,
         transparent: false,
@@ -230,7 +216,6 @@
         'getLowerJaw',
         'getNotes1',
         'getNoCorrectionOfBite',
-        'getNotes2',
         'getNonTransparent',
         'getTrayTrimmed33',
         'getTransparent',
@@ -247,9 +232,6 @@
       },
       notes1 () {
         this.notes1Lines = this.lineCounter(this.notes1)
-      },
-      notes2 () {
-        this.notes2Lines = this.lineCounter(this.notes2)
       }
     },
 
@@ -266,8 +248,6 @@
       this.notes1 = this.getNotes1
       this.notes1Lines = this.lineCounter(this.getNotes1)
       this.noCorrectionOfBite = this.getNoCorrectionOfBite
-      this.notes2 = this.getNotes2
-      this.notes2Lines = this.lineCounter(this.getNotes2)
       this.nonTransparent = this.getNonTransparent
       this.trayTrimmed33 = this.getTrayTrimmed33
       this.transparent = this.getTransparent
@@ -290,7 +270,6 @@
         'setLowerJaw',
         'setNotes1',
         'setNoCorrectionOfBite',
-        'setNotes2',
         'setNonTransparent',
         'setTrayTrimmed33',
         'setTransparent',

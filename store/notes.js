@@ -10,7 +10,6 @@ export const state = () => ({
   lowerJaw: false,
   notes1: '',
   noCorrectionOfBite: false,
-  notes2: '',
   nonTransparent: false,
   trayTrimmed33: false,
   transparent: false,
@@ -65,9 +64,6 @@ export const getters = {
   },
   getNoCorrectionOfBite (state) {
     return state.noCorrectionOfBite || JSON.parse(localStorage.getItem('lof__notes__noCorrectionOfBite')) || false
-  },
-  getNotes2 (state) {
-    return state.notes2 || localStorage.getItem('lof__notes__notes2') || ''
   },
   getNonTransparent (state) {
     return state.nonTransparent || JSON.parse(localStorage.getItem('lof__notes__nonTransparent')) || false
@@ -137,10 +133,6 @@ export const mutations = {
     state.noCorrectionOfBite = noCorrectionOfBite
     localStorage.setItem('lof__notes__noCorrectionOfBite', noCorrectionOfBite)
   },
-  setNotes2 (state, notes2) {
-    state.notes2 = notes2
-    localStorage.setItem('lof__notes__notes2', notes2)
-  },
   setNonTransparent (state, nonTransparent) {
     state.nonTransparent = nonTransparent
     localStorage.setItem('lof__notes__nonTransparent', nonTransparent)
@@ -194,7 +186,6 @@ export const mutations = {
     state.lowerJaw = false
     state.notes1 = ''
     state.noCorrectionOfBite = false
-    state.notes2 = ''
     state.nonTransparent = false
     state.trayTrimmed33 = false
     state.transparent = false

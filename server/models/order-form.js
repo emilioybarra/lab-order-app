@@ -51,21 +51,96 @@ const orderFormSchema = new Schema(
       notesBoltonDiscrepancy: Boolean,
       notesBox: String,
       archwireSizes: {
-        size12: { straight: String, individual: String, compression: String, expansion: String },
-        size14: { straight: String, individual: String, compression: String, expansion: String },
-        size16: { straight: String, individual: String, compression: String, expansion: String },
-        size16x22: { straight: String, individual: String, compression: String, expansion: String },
-        size16x24: { straight: String, individual: String, compression: String, expansion: String },
-        size16x24EET: { straight: String, individual: String, compression: String, expansion: String },
-        size16x24ET: { straight: String, individual: String, compression: String, expansion: String },
-        size17x25: { straight: String, individual: String, compression: String, expansion: String },
-        size18: { straight: String, individual: String, compression: String, expansion: String },
-        size18x18: { straight: String, individual: String, compression: String, expansion: String },
-        size18x25_1: { straight: String, individual: String, compression: String, expansion: String },
-        size18x25_2: { straight: String, individual: String, compression: String, expansion: String },
-        size18x25_3: { straight: String, individual: String, compression: String, expansion: String },
-        size18x25red: { straight: String, individual: String, compression: String, expansion: String },
-        size175x175: { straight: String, individual: String, compression: String, expansion: String }
+        size12: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size14: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size16: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size16x22: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size16x24: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size16x24EET: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size16x24ET: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size17x25: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18x18: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18x25_1: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18x25_2: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18x25_3: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18x25red: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size175x175: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        }
       },
       teethBoxes: {
         upper_1: String,
@@ -77,21 +152,7 @@ const orderFormSchema = new Schema(
         upper_7: String,
         upper_8: String,
         upper_9: String,
-        upper_10: String,
-        upper_11: String,
-        upper_12: String,
-        lower_1: String,
-        lower_2: String,
-        lower_3: String,
-        lower_4: String,
-        lower_5: String,
-        lower_6: String,
-        lower_7: String,
-        lower_8: String,
-        lower_9: String,
-        lower_10: String,
-        lower_11: String,
-        lower_12: String
+        upper_10: String
       }
     },
     notes: {
@@ -106,7 +167,6 @@ const orderFormSchema = new Schema(
       lowerJaw: Boolean,
       notes1: String,
       noCorrectionOfBite: Boolean,
-      notes2: String,
       nonTransparent: Boolean,
       trayTrimmed33: Boolean,
       transparent: Boolean,
@@ -146,35 +206,98 @@ const orderFormSchema = new Schema(
       notesBoltonDiscrepancy: Boolean,
       notesBox: String,
       archwireSizes: {
-        size12: { straight: String, individual: String, compression: String, expansion: String },
-        size14: { straight: String, individual: String, compression: String, expansion: String },
-        size16: { straight: String, individual: String, compression: String, expansion: String },
-        size16x22: { straight: String, individual: String, compression: String, expansion: String },
-        size16x24: { straight: String, individual: String, compression: String, expansion: String },
-        size16x24EET: { straight: String, individual: String, compression: String, expansion: String },
-        size16x24ET: { straight: String, individual: String, compression: String, expansion: String },
-        size17x25: { straight: String, individual: String, compression: String, expansion: String },
-        size18: { straight: String, individual: String, compression: String, expansion: String },
-        size18x18: { straight: String, individual: String, compression: String, expansion: String },
-        size18x25_1: { straight: String, individual: String, compression: String, expansion: String },
-        size18x25_2: { straight: String, individual: String, compression: String, expansion: String },
-        size18x25_3: { straight: String, individual: String, compression: String, expansion: String },
-        size18x25red: { straight: String, individual: String, compression: String, expansion: String },
-        size175x175: { straight: String, individual: String, compression: String, expansion: String }
+        size12: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size14: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size16: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size16x22: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size16x24: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size16x24EET: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size16x24ET: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size17x25: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18x18: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18x25_1: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18x25_2: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18x25_3: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size18x25red: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        },
+        size175x175: {
+          straight: { size: String },
+          individual: { size: String },
+          compression: String,
+          expansion: String
+        }
       },
       teethBoxes: {
-        upper_1: String,
-        upper_2: String,
-        upper_3: String,
-        upper_4: String,
-        upper_5: String,
-        upper_6: String,
-        upper_7: String,
-        upper_8: String,
-        upper_9: String,
-        upper_10: String,
-        upper_11: String,
-        upper_12: String,
         lower_1: String,
         lower_2: String,
         lower_3: String,
@@ -184,9 +307,7 @@ const orderFormSchema = new Schema(
         lower_7: String,
         lower_8: String,
         lower_9: String,
-        lower_10: String,
-        lower_11: String,
-        lower_12: String
+        lower_10: String
       }
     }
   },

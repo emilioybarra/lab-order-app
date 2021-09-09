@@ -36,18 +36,6 @@ export const state = () => ({
     { tooth_15: { highlighted: false, color: '' } }
   ],
   teethBoxes: {
-    upper_1: '',
-    upper_2: '',
-    upper_3: '',
-    upper_4: '',
-    upper_5: '',
-    upper_6: '',
-    upper_7: '',
-    upper_8: '',
-    upper_9: '',
-    upper_10: '',
-    upper_11: '',
-    upper_12: '',
     lower_1: '',
     lower_2: '',
     lower_3: '',
@@ -57,9 +45,7 @@ export const state = () => ({
     lower_7: '',
     lower_8: '',
     lower_9: '',
-    lower_10: '',
-    lower_11: '',
-    lower_12: ''
+    lower_10: ''
   }
 })
 
@@ -113,7 +99,7 @@ export const getters = {
     return state.notesBox || localStorage.getItem('lof__lower-teeth__notesBox') || ''
   },
   getArchwireSizes (state) {
-    return prepareArchwires(JSON.parse(localStorage.getItem('lof__lower-teeth__archwireSizes')) || state.archwireSizes || {})
+    return prepareArchwires(JSON.parse(localStorage.getItem('lof__lower-teeth__archwireSizes')) || state.archwireSizes)
   },
   getTeethBoxes: state => () => {
     return JSON.parse(localStorage.getItem('lof__lower-teeth__teethBoxes')) || state.teethBoxes
@@ -227,18 +213,6 @@ export const mutations = {
       { tooth_15: { highlighted: false, color: '' } }
     ]
     state.teethBoxes = {
-      upper_1: '',
-      upper_2: '',
-      upper_3: '',
-      upper_4: '',
-      upper_5: '',
-      upper_6: '',
-      upper_7: '',
-      upper_8: '',
-      upper_9: '',
-      upper_10: '',
-      upper_11: '',
-      upper_12: '',
       lower_1: '',
       lower_2: '',
       lower_3: '',
@@ -248,9 +222,7 @@ export const mutations = {
       lower_7: '',
       lower_8: '',
       lower_9: '',
-      lower_10: '',
-      lower_11: '',
-      lower_12: ''
+      lower_10: ''
     }
 
     Object.keys(localStorage).map((key) => {
@@ -349,6 +321,7 @@ export const actions = {
       getNotesBoltonDiscrepancy: notesBoltonDiscrepancy,
       getNotesBox: notesBox
     } = getters
+
     const templateData = {
       title: templateTitle,
       lowerTeethTemplate: {
@@ -367,10 +340,8 @@ export const actions = {
         notesBox
       }
     }
-    const prepareBody = {
-      userId,
-      templateData
-    }
+
+    const prepareBody = { userId, templateData }
 
     return this.$axios.$post('/api/templates/lower-teeth', prepareBody)
       .then((response) => {

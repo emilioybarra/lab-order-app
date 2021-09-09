@@ -50,6 +50,28 @@ export default {
     {
       test: /\.s[ac]ss$/i,
       use: [ 'sass-loader' ]
+    },
+    {
+      test: /\.(png|jpe?g|gif|svg|webp|avif)$/i,
+      use: [ {
+        loader: 'url-loader',
+        options: {
+          esModule: false,
+          limit: 1000, // 1kB
+          name: 'img/[name].[contenthash:7].[ext]'
+        }
+      } ]
+    },
+    {
+      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+      use: [ {
+        loader: 'url-loader',
+        options: {
+          esModule: false,
+          limit: 1000, // 1kB
+          name: 'fonts/[name].[contenthash:7].[ext]'
+        }
+      } ]
     }
   ],
 

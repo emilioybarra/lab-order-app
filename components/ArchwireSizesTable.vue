@@ -33,23 +33,23 @@
             </div>
           </b-td>
           <b-td class="lof-archwire-sizes-table__cell" colspan="2">
-            <input
+            <button
               v-if="!archwire.straight.disabled"
-              v-model="archwire.straight.size"
-              maxlength="5"
-              class="lof-archwire-sizes-table__cell__input"
-              @input="setArchwireSizes"
+              class="lof-archwire-sizes-table__cell__button"
+              @click="toggleArchwireSize('straight', index)"
             >
+              {{ archwire.straight.size }}
+            </button>
             <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
           </b-td>
           <b-td class="lof-archwire-sizes-table__cell" colspan="2">
-            <input
+            <button
               v-if="!archwire.individual.disabled"
-              v-model="archwire.individual.size"
-              maxlength="5"
-              class="lof-archwire-sizes-table__cell__input"
-              @input="setArchwireSizes"
+              class="lof-archwire-sizes-table__cell__button"
+              @click="toggleArchwireSize('individual', index)"
             >
+              {{ archwire.individual.size }}
+            </button>
             <div v-else class="lof-archwire-sizes-table__cell__input lof-archwire-sizes-table__cell__input--disable" />
           </b-td>
           <b-td v-if="teeth === 'upper' && $validateSelectedLanguage('en', 'de', 'fr')" class="lof-archwire-sizes-table__cell" colspan="2">
@@ -107,8 +107,8 @@
               visible: true,
               rowspan: 5
             },
-            straight: { size: null, disabled: false },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: false, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: true },
             expansion: { size: null, disabled: true }
           },
@@ -120,8 +120,8 @@
               label: '',
               visible: false
             },
-            straight: { size: null, disabled: false },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: false, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: true },
             expansion: { size: null, disabled: true }
           },
@@ -133,8 +133,8 @@
               label: '',
               visible: false
             },
-            straight: { size: null, disabled: false },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: false, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: true },
             expansion: { size: null, disabled: true }
           },
@@ -146,8 +146,8 @@
               label: '',
               visible: false
             },
-            straight: { size: null, disabled: false },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: false, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           },
@@ -159,8 +159,8 @@
               label: '',
               visible: false
             },
-            straight: { size: null, disabled: false },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: false, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           },
@@ -173,8 +173,8 @@
               visible: this.$validateSelectedLanguage('en', 'de', 'fr') && this.teeth === 'lower',
               rowspan: 3
             },
-            straight: { size: null, disabled: false },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: false, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           },
@@ -187,8 +187,8 @@
               visible: this.$validateSelectedLanguage('it', 'sp', 'ru', 'jp') || this.teeth === 'upper',
               rowspan: this.$validateSelectedLanguage('it', 'sp', 'ru', 'jp') && this.teeth === 'upper' ? 4 : 3
             },
-            straight: { size: null, disabled: false },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: false, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           },
@@ -200,8 +200,8 @@
               label: '',
               visible: false
             },
-            straight: { size: null, disabled: false },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: false, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           },
@@ -213,8 +213,8 @@
               label: '',
               visible: false
             },
-            straight: { size: null, disabled: false },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: false, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           },
@@ -226,8 +226,8 @@
               label: '',
               visible: false
             },
-            straight: { size: null, disabled: false },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: false, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           },
@@ -239,8 +239,8 @@
               label: '',
               visible: false
             },
-            straight: { size: null, disabled: false },
-            individual: { size: null, disabled: true },
+            straight: { size: '', disabled: false, check: 0 },
+            individual: { size: '', disabled: true, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           },
@@ -253,8 +253,8 @@
               visible: true,
               rowspan: 4
             },
-            straight: { size: null, disabled: true },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: true, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           },
@@ -266,8 +266,8 @@
               label: '',
               visible: false
             },
-            straight: { size: null, disabled: true },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: true, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           },
@@ -279,8 +279,8 @@
               label: '',
               visible: false
             },
-            straight: { size: null, disabled: true },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: true, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           },
@@ -292,8 +292,8 @@
               label: '',
               visible: false
             },
-            straight: { size: null, disabled: true },
-            individual: { size: null, disabled: false },
+            straight: { size: '', disabled: true, check: 0 },
+            individual: { size: '', disabled: false, check: 0 },
             compression: { size: null, disabled: false },
             expansion: { size: null, disabled: false }
           }
@@ -309,21 +309,49 @@
 
     created () {
       this.archwireSizes.map((size) => {
-        size.straight.size = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].straight : null
-        size.individual.size = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].individual : null
-        size.expansion.size = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].expansion : null
-        size.compression.size = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].compression : null
+        console.log(size)
+        size.straight.size = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].straight.size : ''
+        size.straight.check = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].straight.check : 0
+        size.individual.size = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].individual.size : ''
+        size.individual.check = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].individual.check : 0
+        size.expansion.size = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].expansion : ''
+        size.compression.size = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].compression : ''
+        console.log(this.getArchwireSizes[size.key].straight)
       })
+      console.log(this.archwireSizes)
     },
 
     methods: {
+      toggleArchwireSize (column, index) {
+        const cell = this.archwireSizes[index][column]
+        console.log(cell)
+        if (cell.check < 2) {
+          cell.check++
+          if (cell.check === 1) {
+            cell.size = 'X'
+          } else {
+            cell.size = 'X X'
+          }
+        } else {
+          cell.check = 0
+          cell.size = ''
+        }
+
+        this.setArchwireSizes()
+      },
       setArchwireSizes () {
         const archwireSizes = {}
         this.archwireSizes.map((size) => {
           archwireSizes[size.key] = {
             key: size.key,
-            straight: size.straight.size,
-            individual: size.individual.size,
+            straight: {
+              size: size.straight.size,
+              check: size.straight.check
+            },
+            individual: {
+              size: size.individual.size,
+              check: size.individual.check
+            },
             compression: size.compression.size,
             expansion: size.expansion.size
           }

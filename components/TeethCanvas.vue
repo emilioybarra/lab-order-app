@@ -44,13 +44,11 @@
               <input v-model="boxes.upper_3" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--left-3" maxlength="5">
               <input v-model="boxes.upper_4" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--left-4" maxlength="5">
               <input v-model="boxes.upper_5" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--left-5" maxlength="5">
-              <input v-model="boxes.upper_6" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--left-6" maxlength="5">
-              <input v-model="boxes.upper_7" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--right-1" maxlength="5">
-              <input v-model="boxes.upper_8" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--right-2" maxlength="5">
-              <input v-model="boxes.upper_9" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--right-3" maxlength="5">
-              <input v-model="boxes.upper_10" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--right-4" maxlength="5">
-              <input v-model="boxes.upper_11" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--right-5" maxlength="5">
-              <input v-model="boxes.upper_12" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--right-6" maxlength="5">
+              <input v-model="boxes.upper_6" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--right-1" maxlength="5">
+              <input v-model="boxes.upper_7" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--right-2" maxlength="5">
+              <input v-model="boxes.upper_8" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--right-3" maxlength="5">
+              <input v-model="boxes.upper_9" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--right-4" maxlength="5">
+              <input v-model="boxes.upper_10" class="lof-teeth-canvas__upper-input-boxes__box lof-teeth-canvas__upper-input-boxes__box--right-5" maxlength="5">
             </div>
             <div v-if="teethImage === 'upper' && $validateSelectedLanguage( 'jp' )" class="lof-teeth-canvas__container-image__numbers">
               <div class="lof-teeth-canvas__container-image__numbers-number lof-teeth-canvas__container-image__numbers-number--18">18</div>
@@ -226,13 +224,11 @@
               <input v-model="boxes.lower_3" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--left-3" maxlength="5">
               <input v-model="boxes.lower_4" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--left-4" maxlength="5">
               <input v-model="boxes.lower_5" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--left-5" maxlength="5">
-              <input v-model="boxes.lower_6" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--left-6" maxlength="5">
-              <input v-model="boxes.lower_7" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--right-1" maxlength="5">
-              <input v-model="boxes.lower_8" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--right-2" maxlength="5">
-              <input v-model="boxes.lower_9" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--right-3" maxlength="5">
-              <input v-model="boxes.lower_10" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--right-4" maxlength="5">
-              <input v-model="boxes.lower_11" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--right-5" maxlength="5">
-              <input v-model="boxes.lower_12" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--right-6" maxlength="5">
+              <input v-model="boxes.lower_6" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--right-1" maxlength="5">
+              <input v-model="boxes.lower_7" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--right-2" maxlength="5">
+              <input v-model="boxes.lower_8" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--right-3" maxlength="5">
+              <input v-model="boxes.lower_9" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--right-4" maxlength="5">
+              <input v-model="boxes.lower_10" class="lof-teeth-canvas__lower-input-boxes__box lof-teeth-canvas__lower-input-boxes__box--right-5" maxlength="5">
             </div>
             <div v-if="teethImage === 'lower' && $validateSelectedLanguage( 'jp' )" class="lof-teeth-canvas__container-image__numbers">
               <div class="lof-teeth-canvas__container-image__numbers-number lof-teeth-canvas__container-image__numbers-number--48">48</div>
