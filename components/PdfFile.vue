@@ -496,7 +496,7 @@
                     <td colspan="2">{{ upperTeeth.archwireSizes.size16x22.straight.size }}</td>
                     <td colspan="2">{{ upperTeeth.archwireSizes.size16x22.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size16x22.expansion }}
+                      {{ upperTeeth.archwireSizes.size16x22.expansion.size }}
                     </td>
                   </tr>
                   <tr>
@@ -504,7 +504,7 @@
                     <td colspan="2">{{ upperTeeth.archwireSizes.size18x25_1.straight.size }}</td>
                     <td colspan="2">{{ upperTeeth.archwireSizes.size18x25_1.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size18x25_1.expansion }}
+                      {{ upperTeeth.archwireSizes.size18x25_1.expansion.size }}
                     </td>
                   </tr>
                   <tr>
@@ -515,7 +515,7 @@
                     <td colspan="2">{{ upperTeeth.archwireSizes.size16x24.straight.size }}</td>
                     <td colspan="2">{{ upperTeeth.archwireSizes.size16x24.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size16x24.expansion }}
+                      {{ upperTeeth.archwireSizes.size16x24.expansion.size }}
                     </td>
                   </tr>
                   <tr>
@@ -523,7 +523,7 @@
                     <td colspan="2">{{ upperTeeth.archwireSizes.size16x24ET.straight.size }}</td>
                     <td colspan="2">{{ upperTeeth.archwireSizes.size16x24ET.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size16x24ET.expansion }}
+                      {{ upperTeeth.archwireSizes.size16x24ET.expansion.size }}
                     </td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])">
@@ -531,7 +531,7 @@
                     <td colspan="2">{{ upperTeeth.archwireSizes.size16x24EET.straight.size }}</td>
                     <td colspan="2">{{ upperTeeth.archwireSizes.size16x24EET.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size16x24EET.expansion }}
+                      {{ upperTeeth.archwireSizes.size16x24EET.expansion.size }}
                     </td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])">
@@ -539,7 +539,7 @@
                     <td colspan="2">{{ upperTeeth.archwireSizes.size18x25_2.straight.size }}</td>
                     <td colspan="2">{{ upperTeeth.archwireSizes.size18x25_2.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size18x25_2.expansion }}
+                      {{ upperTeeth.archwireSizes.size18x25_2.expansion.size }}
                     </td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])">
@@ -547,7 +547,7 @@
                     <td colspan="2">{{ upperTeeth.archwireSizes.size18x25red.straight.size }}</td>
                     <td class="lof-pdf__teeth__upper-arcs__table__cell--disable" colspan="2" />
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size18x25red.expansion }}
+                      {{ upperTeeth.archwireSizes.size18x25red.expansion.size }}
                     </td>
                   </tr>
                   <tr>
@@ -558,7 +558,7 @@
                     <td class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
                     <td colspan="2">{{ upperTeeth.archwireSizes.size175x175.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size175x175.expansion }}
+                      {{ upperTeeth.archwireSizes.size175x175.expansion.size }}
                     </td>
                   </tr>
                   <tr>
@@ -566,7 +566,7 @@
                     <td class="lof-pdf__teeth__upper-arcs__table__cell--disable" colspan="2" />
                     <td colspan="2">{{ upperTeeth.archwireSizes.size17x25.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size17x25.expansion }}
+                      {{ upperTeeth.archwireSizes.size17x25.expansion.size }}
                     </td>
                   </tr>
                   <tr>
@@ -574,7 +574,7 @@
                     <td class="lof-pdf__teeth__upper-arcs__table__cell--disable" colspan="2" />
                     <td colspan="2">{{ upperTeeth.archwireSizes.size18x18.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size18x18.expansion }}
+                      {{ upperTeeth.archwireSizes.size18x18.expansion.size }}
                     </td>
                   </tr>
                   <tr>
@@ -582,7 +582,7 @@
                     <td class="lof-pdf__teeth__upper-arcs__table__cell--disable" colspan="2" />
                     <td colspan="2">{{ upperTeeth.archwireSizes.size18x25_3.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size18x25_3.expansion }}
+                      {{ upperTeeth.archwireSizes.size18x25_3.expansion.size }}
                     </td>
                   </tr>
                 </tbody>
@@ -943,7 +943,7 @@
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size16x22.straight.size }}</td>
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size16x22.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size16x22.compression }}
+                      {{ lowerTeeth.archwireSizes.size16x22.compression.size }}
                     </td>
                   </tr>
                   <tr>
@@ -951,7 +951,7 @@
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size18x25_1.straight.size }}</td>
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size18x25_1.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size18x25_1.compression }}
+                      {{ lowerTeeth.archwireSizes.size18x25_1.compression.size }}
                     </td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])">
@@ -962,7 +962,7 @@
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size18.straight.size }}</td>
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size18.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size18.compression }}
+                      {{ lowerTeeth.archwireSizes.size18.compression.size }}
                     </td>
                   </tr>
                   <tr>
@@ -973,14 +973,14 @@
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size16x24.straight.size }}</td>
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size16x24.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size16x24.compression }}
+                      {{ lowerTeeth.archwireSizes.size16x24.compression.size }}
                     </td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])">
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">16 x 24 ET</td>
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size16x24ET.straight.size }}</td>
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size16x24ET.individual.size }}</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size16x24ET.compression }}</td>
+                    <td colspan="2">{{ lowerTeeth.archwireSizes.size16x24ET.compression.size }}</td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])">
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">18 x 25</td>
@@ -1000,7 +1000,7 @@
                     <td class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size175x175.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size175x175.compression }}
+                      {{ lowerTeeth.archwireSizes.size175x175.compression.size }}
                     </td>
                   </tr>
                   <tr>
@@ -1008,7 +1008,7 @@
                     <td class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size17x25.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size17x25.compression }}
+                      {{ lowerTeeth.archwireSizes.size17x25.compression.size }}
                     </td>
                   </tr>
                   <tr>
@@ -1016,7 +1016,7 @@
                     <td class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size18x18.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size18x18.compression }}
+                      {{ lowerTeeth.archwireSizes.size18x18.compression.size }}
                     </td>
                   </tr>
                   <tr>
@@ -1024,7 +1024,7 @@
                     <td class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
                     <td colspan="2">{{ lowerTeeth.archwireSizes.size18x25_3.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size18x25_3.compression }}
+                      {{ lowerTeeth.archwireSizes.size18x25_3.compression.size }}
                     </td>
                   </tr>
                 </tbody>
@@ -1254,7 +1254,7 @@
           notesStrippingWhere: this.getUpperNotesStrippingWhere,
           notesBoltonDiscrepancy: this.getUpperNotesBoltonDiscrepancy,
           notesBox: this.getUpperNotesBox,
-          archwireSizes: this.$prepareArchwires(this.getUpperArchwireSizes),
+          archwireSizes: this.$prepareArchwires(this.getUpperArchwireSizes()),
           teethBoxes: this.getUpperTeethBoxes()
         }
 
@@ -1296,7 +1296,7 @@
           notesStrippingWhere: this.getLowerNotesStrippingWhere,
           notesBoltonDiscrepancy: this.getLowerNotesBoltonDiscrepancy,
           notesBox: this.getLowerNotesBox,
-          archwireSizes: this.$prepareArchwires(this.getLowerArchwireSizes),
+          archwireSizes: this.$prepareArchwires(this.getLowerArchwireSizes()),
           teethBoxes: this.getLowerTeethBoxes()
         }
       }

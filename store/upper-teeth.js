@@ -98,7 +98,7 @@ export const getters = {
   getNotesBox (state) {
     return state.notesBox || localStorage.getItem('lof__upper-teeth__notesBox') || ''
   },
-  getArchwireSizes (state) {
+  getArchwireSizes: state => () => {
     return prepareArchwires(JSON.parse(localStorage.getItem('lof__upper-teeth__archwireSizes')) || state.archwireSizes)
   },
   getTeethBoxes: state => () => {

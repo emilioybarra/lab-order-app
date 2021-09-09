@@ -173,7 +173,7 @@ export const actions = {
         notesStrippingWhere: getUpperNotesStrippingWhere,
         notesBoltonDiscrepancy: getUpperNotesBoltonDiscrepancy,
         notesBox: getUpperNotesBox,
-        archwireSizes: getUpperArchwireSizes,
+        archwireSizes: getUpperArchwireSizes(),
         teethBoxes: getUpperTeethBoxes()
       },
       notes: {
@@ -209,7 +209,7 @@ export const actions = {
         notesStrippingWhere: getLowerNotesStrippingWhere,
         notesBoltonDiscrepancy: getLowerNotesBoltonDiscrepancy,
         notesBox: getLowerNotesBox,
-        archwireSizes: getLowerArchwireSizes,
+        archwireSizes: getLowerArchwireSizes(),
         teethBoxes: getLowerTeethBoxes()
       }
     }

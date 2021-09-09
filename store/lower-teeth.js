@@ -98,7 +98,7 @@ export const getters = {
   getNotesBox (state) {
     return state.notesBox || localStorage.getItem('lof__lower-teeth__notesBox') || ''
   },
-  getArchwireSizes (state) {
+  getArchwireSizes: state => () => {
     return prepareArchwires(JSON.parse(localStorage.getItem('lof__lower-teeth__archwireSizes')) || state.archwireSizes)
   },
   getTeethBoxes: state => () => {
@@ -230,6 +230,8 @@ export const mutations = {
         localStorage.removeItem(key)
       }
     })
+
+    console.log(state)
   }
 }
 
