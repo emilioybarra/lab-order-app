@@ -141,6 +141,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       height: 30px;
       border-radius: 100%;
       font-weight: bold;
+      color: $white;
       background-color: #EA37C4;
       display: flex;
       align-items: center;
@@ -537,12 +538,27 @@ $lower-canvas-height: $lower-canvas-height-tablet;
     }
   }
 
-  &__upper-input-boxes, &__lower-input-boxes {
+  &__upper-buttons, &__lower-buttons {
     &__box {
       position: absolute;
       width: 60px;
       font-size: 16px;
       text-align: center;
+
+      &-button {
+        background-color: $white;
+
+        &--active {
+          border-color: #EA37C4;
+          background-color: #EA37C4;
+        }
+
+        &:hover, &:focus, &:active {
+          border-color: #EA37C4;
+          background-color: #EA37C4;
+          box-shadow: 0 0 0 0.2rem rgb(234 55 196 / 50%);
+        }
+      }
 
       @include phone-sm-xs() {
         width: 44px;
@@ -564,7 +580,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
     }
   }
 
-  &__upper-input-boxes {
+  &__upper-buttons {
     &__box {
       @include phone-sm-xs() {
         &--left-1 {bottom: 0;left: 54px;}
@@ -628,7 +644,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
     }
   }
 
-  &__lower-input-boxes {
+  &__lower-buttons {
     &__box {
       @include phone-sm-xs() {
         &--left-1 {top: 4px;left: 54px;}
@@ -661,7 +677,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       }
 
       @include tablet-desktop() {
-        &--left-1 {top: 4px;left: 100px;}
+        &--left-1 {top: 10px;left: 100px;}
         &--left-2 {top: 70px;left: 114px;}
         &--left-3 {top: 138px;left: 134px;}
         &--left-4 {top: 194px;left: 144px;}
@@ -672,7 +688,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
         &--right-2 {top: 194px;right: 144px;}
         &--right-3 {top: 138px;right: 134px;}
         &--right-4 {top: 70px;right: 114px;}
-        &--right-5 {top: 4px;right: 100px;}
+        &--right-5 {top: 10px;right: 100px;}
       }
 
       @include desktop-lg() {

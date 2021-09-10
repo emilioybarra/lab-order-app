@@ -1,7 +1,5 @@
 <template>
   <div id="lof" class="lof" @scroll.passive="handleScroll">
-    <b-overlay :show="getIsLoading()" fixed no-wrap z-index="10000" spinner-variant="primary" />
-
     <transition name="fade">
       <div v-if="$nuxt.isOffline" class="bg-danger py-1 text-light w-100 d-flex justify-content-center">
         Offline
@@ -151,9 +149,8 @@
         const navigatorLanguage = navigator.language.toLocaleLowerCase().substring(0, 2)
         if (!this.$cookies.get('i18n_lang_cookie')) {
           const lang = this.$i18n.locales.find(locale => locale.navigator === navigatorLanguage).code
-          // this.$cookies.set('i18n_lang_cookie', lang)
           this.$i18n.setLocale(lang)
-          this.$i18n.setLocaleCookie(lang)
+          this.$cookies.set('i18n_lang_cookie', lang)
         }
       }
     },
@@ -178,14 +175,16 @@
       changeLanguage (lang) {
         this.hideLanguageMenu()
         this.$i18n.setLocale(lang)
-        this.$i18n.setLocaleCookie(lang)
+        // setting the cookie for mobile devices
+        this.$cookies.set('i18n_lang_cookie', lang)
       },
       handleScroll (event) {
         this.scrollY = event.target.scrollTop
       },
       goBack () {
         this.slide = 'slide-right'
-        this.$router.push(navigationBackController(this.$route))
+        console.log(this.localeRoute(navigationBackController(this.$route)).path)
+        this.$router.push({ path: this.localeRoute(navigationBackController(this.$route)).path })
       },
       beforeEnter () {
         this.slide = 'slide-left'

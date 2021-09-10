@@ -36,16 +36,16 @@ export const state = () => ({
     { tooth_15: { highlighted: false, color: '' } }
   ],
   teethBoxes: {
-    lower_1: '',
-    lower_2: '',
-    lower_3: '',
-    lower_4: '',
-    lower_5: '',
-    lower_6: '',
-    lower_7: '',
-    lower_8: '',
-    lower_9: '',
-    lower_10: ''
+    lower_1: false,
+    lower_2: false,
+    lower_3: false,
+    lower_4: false,
+    lower_5: false,
+    lower_6: false,
+    lower_7: false,
+    lower_8: false,
+    lower_9: false,
+    lower_10: false
   }
 })
 
@@ -194,35 +194,13 @@ export const mutations = {
     state.notesBoltonDiscrepancy = false
     state.notesBox = ''
     state.archwireSizes = {}
-    state.highlightedTeeth = [
-      { tooth_0: { highlighted: false, color: '' } },
-      { tooth_1: { highlighted: false, color: '' } },
-      { tooth_2: { highlighted: false, color: '' } },
-      { tooth_3: { highlighted: false, color: '' } },
-      { tooth_4: { highlighted: false, color: '' } },
-      { tooth_5: { highlighted: false, color: '' } },
-      { tooth_6: { highlighted: false, color: '' } },
-      { tooth_7: { highlighted: false, color: '' } },
-      { tooth_8: { highlighted: false, color: '' } },
-      { tooth_9: { highlighted: false, color: '' } },
-      { tooth_10: { highlighted: false, color: '' } },
-      { tooth_11: { highlighted: false, color: '' } },
-      { tooth_12: { highlighted: false, color: '' } },
-      { tooth_13: { highlighted: false, color: '' } },
-      { tooth_14: { highlighted: false, color: '' } },
-      { tooth_15: { highlighted: false, color: '' } }
-    ]
-    state.teethBoxes = {
-      lower_1: '',
-      lower_2: '',
-      lower_3: '',
-      lower_4: '',
-      lower_5: '',
-      lower_6: '',
-      lower_7: '',
-      lower_8: '',
-      lower_9: '',
-      lower_10: ''
+
+    state.highlightedTeeth.map((tooth, index) => {
+      return { [`tooth_${ index }`]: { highlighted: false, color: '' } }
+    })
+
+    for (let i = 0; i < 12; ++i) {
+      state.teethBoxes[`lower_${ i }`] = false
     }
 
     Object.keys(localStorage).map((key) => {

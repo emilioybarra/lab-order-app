@@ -143,16 +143,16 @@ const orderFormSchema = new Schema(
         }
       },
       teethBoxes: {
-        upper_1: String,
-        upper_2: String,
-        upper_3: String,
-        upper_4: String,
-        upper_5: String,
-        upper_6: String,
-        upper_7: String,
-        upper_8: String,
-        upper_9: String,
-        upper_10: String
+        upper_1: Boolean,
+        upper_2: Boolean,
+        upper_3: Boolean,
+        upper_4: Boolean,
+        upper_5: Boolean,
+        upper_6: Boolean,
+        upper_7: Boolean,
+        upper_8: Boolean,
+        upper_9: Boolean,
+        upper_10: Boolean
       }
     },
     notes: {
@@ -298,16 +298,16 @@ const orderFormSchema = new Schema(
         }
       },
       teethBoxes: {
-        lower_1: String,
-        lower_2: String,
-        lower_3: String,
-        lower_4: String,
-        lower_5: String,
-        lower_6: String,
-        lower_7: String,
-        lower_8: String,
-        lower_9: String,
-        lower_10: String
+        lower_1: Boolean,
+        lower_2: Boolean,
+        lower_3: Boolean,
+        lower_4: Boolean,
+        lower_5: Boolean,
+        lower_6: Boolean,
+        lower_7: Boolean,
+        lower_8: Boolean,
+        lower_9: Boolean,
+        lower_10: Boolean
       }
     }
   },

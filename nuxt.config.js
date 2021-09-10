@@ -188,7 +188,8 @@ export default {
       fallbackLocale: 'en',
       onlyOnRoot: true,
       alwaysRedirect: true,
-      cookieSecure: true
+      cookieSecure: true,
+      useCookie: true
     },
     vueI18n: {
       messages: { de, en, fr, it, jp, ru, sp }

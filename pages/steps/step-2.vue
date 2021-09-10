@@ -4,6 +4,7 @@
       {{ $t('common.titles.upperTeeth') }}
     </template>
     <template #body>
+      <b-overlay :show="isLoading" fixed no-wrap z-index="10000" spinner-variant="primary" />
       <teeth-canvas ref="upperTeethCanvas" teeth-image="upper" />
       <div class="d-flex flex-column justify-content-center align-items-center mt-3">
         <checkbox v-model="onlySetup" :is-checked="onlySetup" @input="setOnlySetup">
@@ -158,6 +159,7 @@
 
     data () {
       return {
+        isLoading: false,
         onlySetup: false,
         boltonDiscrepancy: false,
         resolveCrowding: false,
@@ -217,7 +219,7 @@
     },
 
     beforeRouteLeave (to, from, next) {
-      this.$store.commit('common/setIsLoading', true)
+      this.isLoading = true
       if (!this.resolveCrowding && !this.boltonDiscrepancy) {
         this.setRcMm('')
         this.setRcWhere('')
@@ -225,7 +227,6 @@
 
       this.$refs.upperTeethCanvas.saveCanvas().then(() => {
         this.$nextTick(() => {
-          this.$store.commit('common/setIsLoading', false)
           next()
         })
       })
