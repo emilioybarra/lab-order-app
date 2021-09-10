@@ -5,6 +5,10 @@
 .lof-archwire-sizes-table {
   &.table-bordered th, &.table-bordered td {
     border-color: $primary;
+
+    > span {
+      hyphens: auto;
+    }
   }
 
   & > input:focus-visible {

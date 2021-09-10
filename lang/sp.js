@@ -185,8 +185,8 @@ export default {
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= tubo largo con gancho</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= se extraerá</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= ausente</div>',
-        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= Banda</div>',
-        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= topes oclusales</div>'
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= Banda</div>'
+        // '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= topes oclusales</div>'
       ],
       keyInfoLegendLeft: [
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
@@ -197,8 +197,8 @@ export default {
       keyInfoLegendRight: [
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= se extraerá</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= ausente</div>',
-        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= Banda</div>',
-        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= topes oclusales</div>'
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= Banda</div>'
+        // '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= topes oclusales</div>'
       ]
     },
     m_2: {

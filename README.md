@@ -15,7 +15,8 @@ HASH_SECRET=secret
 ## use or create a new mongodb cluster
 MONGO_DB_URI=uri
 
-## this is for testing on other devices on the local network,
+## this is for the api requests to the backend and for
+## testing on other devices on the local network,
 ## use your ip address before starting the project.
 VUE_APP_LOCALHOST_URL=http://192.168.178.186:3000
 

@@ -312,13 +312,11 @@
         size.compression.size = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].compression.size : ''
         size.compression.check = this.getArchwireSizes[size.key] ? this.getArchwireSizes[size.key].compression.check : 0
       })
-      console.log(this.archwireSizes)
     },
 
     methods: {
       toggleArchwireXSize (column, index) {
         const cell = this.archwireSizes[index][column]
-        console.log(cell)
         if (cell.check < 2) {
           cell.check++
           if (cell.check === 1) {

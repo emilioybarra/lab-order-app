@@ -1,5 +1,6 @@
 <template>
-  <div id="lof" class="lof" :style="`height: ${ innerHeight }px`" @scroll.passive="handleScroll">
+  <div id="lof" class="lof" @scroll.passive="handleScroll">
+    <b-overlay :show="isLoading" fixed no-wrap z-index="10000" spinner-variant="primary" />
     <transition name="fade">
       <div v-if="$nuxt.isOffline" class="bg-danger py-1 text-light w-100 d-flex justify-content-center">
         Offline
@@ -33,9 +34,7 @@
         <Nuxt />
       </transition>
       <div class="lof-footer">
-        <div>
-          &copy; DW Lingual System GmbH {{ currentYear }}
-        </div>
+        <div>&copy; DW Lingual System GmbH {{ currentYear }}</div>
         <div>
           <a
             class="lof-footer__link mr-2"
@@ -62,9 +61,9 @@
     data () {
       return {
         scrollY: 0,
+        isLoading: false,
         pdfPreviewKey: 0,
         showLanguageMenu: false,
-        innerHeight: window.innerHeight,
         currentYear: new Date().getFullYear()
       }
     },
@@ -90,10 +89,17 @@
       this.pdfPreviewKey = this.$generateRandomKey()
     },
 
+    mounted () {
+      this.$setContainerHeight()
+    },
+
     methods: {
       async logout () {
+        this.isLoading = true
         await this.$store.dispatch('auth/logout').then((response) => {
-          this.$router.push('/admin')
+          this.$router.push({ path: '/admin' }, () => {
+            this.isLoading = false
+          })
         })
       },
       changeLanguage (lang) {

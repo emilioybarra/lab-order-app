@@ -66,7 +66,7 @@
           this.pdfOptions.html2canvas.scale = 4
         }
 
-        setTimeout(() => {
+        this.$nextTick(() => {
           this.pdfPage1 = document.getElementById('pdf-page-1').innerHTML
           this.pdfPage2 = document.getElementById('pdf-page-2').innerHTML
           html2pdf().set(this.pdfOptions).from(this.pdfPage1).toPdf().get('pdf')
@@ -85,12 +85,12 @@
                   self.loadingPreview = false
                 })
             })
-        }, 400)
+        })
       },
       downloadPdf () {
         this.loadingDownload = true
         this.pdfOptions.filename = `order-form_${ this.$moment().format('YYYY-MM-DD') }`
-        setTimeout(() => {
+        this.$nextTick(() => {
           this.pdfPage1 = document.getElementById('pdf-page-1').innerHTML
           this.pdfPage2 = document.getElementById('pdf-page-2').innerHTML
           html2pdf().set(this.pdfOptions).from(this.pdfPage1).toPdf().from(this.pdfPage2)
@@ -98,7 +98,7 @@
             .then(() => {
               this.loadingDownload = false
             })
-        }, 400)
+        })
       },
       saveOrderForm () {
         const payload = {

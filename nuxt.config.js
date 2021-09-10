@@ -11,7 +11,9 @@ import sp from './lang/sp'
 dotenv.config()
 
 const isDev = process.env.NODE_ENV === 'development'
-const devURL = process.env.NODE_ENV === 'development' ? process.env.VUE_APP_LOCALHOST_URL : 'https://dwls.dev.pr1.run/'
+const localhostEnv = process.env.VUE_APP_LOCALHOST_URL
+const localhostGateway = localhostEnv || 'http://localhost:3000'
+const devURL = isDev ? localhostGateway : 'https://dwls.dev.pr1.run/'
 
 export default {
   modern: isDev ? false : 'server',
@@ -85,12 +87,12 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { mode: 'client', src: '@/plugins/vue-cookies' },
-    { mode: 'client', src: '@/plugins/vue-paintable' },
     { mode: 'client', src: '@/plugins/click-outside' },
     { mode: 'client', src: '@/plugins/set-canvas-size' },
     { mode: 'client', src: '@/plugins/language-variant' },
     { mode: 'client', src: '@/plugins/prepare-archwires' },
     { mode: 'client', src: '@/plugins/generate-random-key' },
+    { mode: 'client', src: '@/plugins/set-container-height' },
     { mode: 'client', src: '@/plugins/block-back-native-navigation' }
   ],
 

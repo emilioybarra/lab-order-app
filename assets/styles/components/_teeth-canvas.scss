@@ -122,6 +122,40 @@ $lower-canvas-height: $lower-canvas-height-tablet;
     }
   }
 
+  &__button-info-legend {
+    display: flex;
+
+    @include phone-all() {
+      flex-direction: column;
+    }
+
+    &__divider {
+      margin-left: 8px;
+      margin-right: 8px;
+      font-size: 20px;
+      font-weight: bolder;
+    }
+
+    &__clicked {
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      font-weight: bold;
+      background-color: #EA37C4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__not-clicked {
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      border: 1px solid $grey;
+      background-color: $white;
+    }
+  }
+
   &__border {
     display: flex;
     flex-direction: column;

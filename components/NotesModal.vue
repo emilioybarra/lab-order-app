@@ -118,7 +118,7 @@
                     </template>
                   </b-table>
                 </div>
-                <div class="d-flex my-4">
+                <div class="d-flex mt-4">
                   <div class="d-flex align-items-center ml-3 mr-5">
                     <span>{{ $t('section.m_3.tray.title') }}</span>
                   </div>

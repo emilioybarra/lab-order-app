@@ -107,12 +107,6 @@
         return this.$store.getters[`${ this.teethImage }-teeth/getTeethCanvasUndoList`]
       },
       /**
-       * Get scaling factor of current device
-       */
-      scalingFactor () {
-        return window.devicePixelRatio || 1
-      },
-      /**
        * Check if it is a touch device
        * thanks to: https://ctrlq.org/code/19616-detect-touch-screen-javascript
        */
@@ -137,7 +131,6 @@
         this.ctx.strokeStyle = this.currentColor
       },
       undoList () {
-        console.log(this.undoList)
         this.setTeethCanvasUndoList([ ...this.undoList ])
       }
     },
@@ -224,8 +217,6 @@
           // set canvas width and height
           this.setCanvasSize()
 
-          // load image from storage
-          // this.loadImageFromStorage()
           this.$emit('toggle-paintable', this.isActive)
         } catch (err) {
           console.log(err)
@@ -233,13 +224,13 @@
       },
       // --------------------------------------------------
       /**
-       * Undo drawed line
+       * Undo drawn line
        */
       undoDrawingStep () {
         this.restoreCanvasState(this.undoList, this.redoList)
       },
       /**
-       * Redo drawed line
+       * Redo drawn line
        */
       redoDrawingStep () {
         this.restoreCanvasState(this.redoList, this.undoList)
@@ -265,19 +256,13 @@
         }
         (list || this.undoList).push(canvas.toDataURL('image/png'))
       },
-      // -------------------------------------------------------------------------
       /**
        * Get base64 from local storage and load it into canvas
        */
       async loadImageFromStorage (image) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-        // this.tempCtx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         const base64Image = image || (await this.getItem(this.name))
-        console.log(this.name)
-        // console.log(base64Image)
         if (base64Image) {
-          // const newTab = window.open()
-          // newTab.document.body.innerHTML = `<img src="${ base64Image }">`
           const image = new Image()
           image.onload = () => {
             this.ctx.drawImage(image, 0, 0)
@@ -292,8 +277,6 @@
        * Set current canvas size
        */
       setCanvasSize () {
-        // this.width = window.innerWidth;
-        // this.height = window.innerHeight;
         currentX = 0
         currentY = 0
       },
@@ -319,7 +302,6 @@
        * If its not empty save it to the storage.
        */
       saveCurrentCanvasToStorage () {
-        // reset to pencil
         if (this.isCanvasBlank()) {
           this.removeItem(this.name)
           this.removeItem(this.name + 'Settings')
@@ -333,11 +315,8 @@
             })
           )
         }
-        // this.undoList = []
-        // this.redoList = []
         this.canvasIsEmpty = this.isCanvasBlank()
       },
-      // -------------------------------------------------------------------------
       /**
        * Start drawing lines
        */

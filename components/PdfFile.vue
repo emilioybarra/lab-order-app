@@ -420,7 +420,7 @@
             </div>
             <div v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])" class="lof-pdf__teeth__upper-info-container">
               <div class="lof-pdf__teeth__upper-comments">
-                <span>{{ $t('section.u_2.notes.title', pdfLanguage) }}</span>
+                <span class="lof-pdf__teeth__upper-comments-title">{{ $t('section.u_2.notes.title', pdfLanguage) }}</span>
                 <div
                   class="lof-pdf__teeth__upper-comments-box lof-pdf__teeth__upper-comments-box--comments"
                   :class="{ 'lof-pdf__teeth__upper-comments-box--variant-3': validateLanguagesToSavedLanguage([ 'jp' ]) }"
@@ -869,7 +869,7 @@
             </div>
             <div v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])" class="lof-pdf__teeth__lower-info-container">
               <div class="lof-pdf__teeth__lower-comments">
-                <span>{{ $t('section.l_2.notes.title', pdfLanguage) }}</span>
+                <span class="lof-pdf__teeth__lower-comments-title">{{ $t('section.l_2.notes.title', pdfLanguage) }}</span>
                 <div
                   class="lof-pdf__teeth__lower-comments-box lof-pdf__teeth__lower-comments-box--comments"
                   :class="{ 'lof-pdf__teeth__lower-comments-box--variant-3': validateLanguagesToSavedLanguage([ 'jp' ]) }"
@@ -1198,7 +1198,7 @@
         this.invoiceAddress = { ...invoiceAddress }
         this.patient = {
           ...patient,
-          dateOfBonding: this.$moment(patient.dateOfBonding, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate)
+          dateOfBonding: patient.dateOfBonding ? this.$moment(patient.dateOfBonding, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate) : ''
         }
         this.upperTeeth = { ...upperTeeth }
         this.notes = { ...notes }
@@ -1234,7 +1234,7 @@
           lastName: this.getPatientLastName,
           firstName: this.getPatientFirstName,
           number: this.getPatientNumber,
-          dateOfBonding: this.$moment(this.getAppointmentDate, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate)
+          dateOfBonding: this.getAppointmentDate ? this.$moment(this.getAppointmentDate, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate) : ''
         }
 
         this.upperTeeth = {

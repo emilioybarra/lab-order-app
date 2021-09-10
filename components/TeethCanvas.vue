@@ -406,19 +406,6 @@
             <canvas id="teeth-canvas" hidden :width="canvasWidth" :height="canvasHeight" />
             <canvas id="paintable-canvas" hidden :width="canvasWidth" :height="canvasHeight" />
           </paintable>
-          <!--
-          <canvas
-            id="teeth-canvas"
-            :hidden="!drawActive"
-            class="lof-teeth-canvas__container-canvas"
-            :class="{
-              'lof-teeth-canvas__container-canvas--upper': teethImage === 'upper',
-              'lof-teeth-canvas__container-canvas--lower': teethImage === 'lower'
-            }"
-            :width="canvasWidth"
-            :height="canvasHeight"
-          />
-          -->
         </div>
         <div class="lof-teeth-canvas__toolbar">
           <b-form-group class="lof-teeth-canvas__toolbar-canvas-mode">
@@ -469,6 +456,18 @@
       </div>
       <div v-if="orientation" class="lof-teeth-canvas__info-legend__landscape-items">
         <div v-for="(item, index) in $t('section.m_1.keyInfoLegendRight')" :key="index" class="lof-teeth-canvas__info-legend__landscape__item" v-html="item" />
+      </div>
+    </div>
+    <div class="lof-teeth-canvas__button-info-legend pt-3">
+      <div class="d-flex align-items-center py-2 mr-4">
+        <div class="lof-teeth-canvas__button-info-legend__clicked">P</div>
+        <span class="lof-teeth-canvas__button-info-legend__divider">|</span>
+        <small>occlusal pad surface</small>
+      </div>
+      <div class="d-flex align-items-center py-2">
+        <div class="lof-teeth-canvas__button-info-legend__not-clicked" />
+        <span class="lof-teeth-canvas__button-info-legend__divider">|</span>
+        <small>without occlusal pad surface</small>
       </div>
     </div>
   </div>

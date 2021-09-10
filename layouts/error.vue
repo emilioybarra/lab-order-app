@@ -17,6 +17,10 @@
     name: 'error',
     layout: 'plain',
     // eslint-disable-next-line vue/require-prop-types
-    props: [ 'error' ]
+    props: [ 'error' ],
+
+    mounted () {
+      this.$setContainerHeight()
+    }
   }
 </script>

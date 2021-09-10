@@ -1,5 +1,5 @@
 <template>
-  <div id="lof" class="lof" :style="`height: ${ innerHeight }px`" @scroll.passive="handleScroll">
+  <div id="lof" class="lof" @scroll.passive="handleScroll">
     <b-overlay :show="getIsLoading()" fixed no-wrap z-index="10000" spinner-variant="primary" />
 
     <transition name="fade">
@@ -163,18 +163,12 @@
     },
 
     mounted () {
+      this.$setContainerHeight()
       history.pushState(null, null, document.URL)
       window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL)
       })
       this.showModalTab = /(step-2|step-3)/s.test(this.$route.path)
-      window.addEventListener('resize', this.getInnerHeight)
-      window.addEventListener('orientationchange', this.getInnerHeight)
-    },
-
-    destroyed () {
-      window.removeEventListener('resize', this.getInnerHeight)
-      window.removeEventListener('orientationchange', this.getInnerHeight)
     },
 
     methods: {
@@ -186,38 +180,12 @@
         this.$i18n.setLocale(lang)
         this.$i18n.setLocaleCookie(lang)
       },
-      getInnerHeight () {
-        this.innerHeight = window.innerHeight
-      },
       handleScroll (event) {
         this.scrollY = event.target.scrollTop
       },
       goBack () {
         this.slide = 'slide-right'
-
-        console.log(/(step-2|step-3)/s.test(this.$route.path))
-
         this.$router.push(navigationBackController(this.$route))
-
-        /*
-        if (/(step-2)/s.test(this.$route.path)) {
-          this.$store.commit('common/setIsLoading', true)
-          this.$root.$emit('saveUpperCanvas')
-          setTimeout(() => {
-            this.$store.commit('common/setIsLoading', false)
-            this.$router.push(navigationBackController(this.$route))
-          }, 3000)
-        } else if (/(step-3)/s.test(this.$route.path)) {
-          this.$store.commit('common/setIsLoading', true)
-          this.$root.$emit('saveLowerCanvas')
-          this.$nextTick(() => {
-            this.$store.commit('common/setIsLoading', false)
-            this.$router.push(navigationBackController(this.$route))
-          })
-        } else {
-          this.$router.push(navigationBackController(this.$route))
-        }
-         */
       },
       beforeEnter () {
         this.slide = 'slide-left'

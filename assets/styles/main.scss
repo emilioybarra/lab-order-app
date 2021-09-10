@@ -50,8 +50,8 @@ html {
 }
 
 body {
-  position: fixed;
-  overflow: hidden;
+  // position: fixed;
+  //overflow: hidden;
   width: 100%;
   min-height: 100vh;
   min-height: -webkit-fill-available;
@@ -73,14 +73,15 @@ body {
   // align-items: stretch;
   // flex: 1 0 auto;
   width: 100%;
-  height: 100%;
   // height: 100%;
-  overflow: scroll;
+  // height: 100%;
+  // overflow: scroll;
   -webkit-overflow-scrolling: touch;
-  height: 100vh;
-  min-height: 100vh;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+  // min-height: 100vh;
   /* mobile viewport bug fix */
-  min-height: -webkit-fill-available;
+  // min-height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
 
@@ -168,7 +169,7 @@ body {
   }
 
   &-body  {
-    height: 100%;
+    height: calc(100vh - 70px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -210,7 +211,7 @@ body {
   &-tab {
     position: fixed;
     z-index: 1035;
-    top: 250px;
+    top: 35%;
     right: 0;
     width: 60px;
     height: 150px;
@@ -226,6 +227,21 @@ body {
     cursor: pointer;
     white-space: nowrap;
 
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+
+    @include phone-all() {
+      top: 25%;
+      width: 45px;
+      height: 110px;
+      font-size: 18px;
+      padding: 20px 12px;
+    }
+
     &__text {
       transform: rotate(-90deg);
     }
@@ -234,10 +250,10 @@ body {
       width: 4.2rem;
       height: 1.8rem;
       filter: brightness(100);
-    }
 
-    &:hover {
-      // width: 60px;
+      @include phone-all() {
+        height: 1.2rem;
+      }
     }
   }
 }

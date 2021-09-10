@@ -42,7 +42,6 @@ export const prepareArchwires = (archwireSizes = {}) => {
     return sizesObject
   }
 
-  console.log(archwireSizes)
   Object.entries(archwireSizes).forEach(([ key, value ]) => {
     sizesObject[key] = {
       straight: {

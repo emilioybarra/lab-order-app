@@ -16,7 +16,7 @@
       />
       <b-skeleton-wrapper class="d-flex flex-column" :loading="loading">
         <template #loading>
-          <div v-for="item in perPage" :key="item" class="lof-list-item">
+          <div v-for="item in 2" :key="item" class="lof-list-item">
             <div class="col-8 col-md-9 col-lg-7 col-xl-8 offset-lg-1">
               <b-skeleton class="w-100" type="button" animation="fade" />
             </div>
@@ -47,7 +47,7 @@
         <div v-if="!orderForms.length && !loading" class="lof-list-item d-flex justify-content-center lof-headline lof-headline--3">
           {{ $t('common.headlines.emptyOrderFormsSearch') }}
         </div>
-        <div v-for="item in ((!orderForms.length ? perPage - 1 : perPage) - orderForms.length)" :key="item" class="lof-list-item" />
+        <!--<div v-for="item in ((!orderForms.length ? perPage - 1 : perPage) - orderForms.length)" :key="item" class="lof-list-item" /> -->
         <pdf-file
           v-if="selectedOrderForm !== undefined"
           id="pdf-page-1"

@@ -6,8 +6,6 @@
 </template>
 
 <script>
-  // import pdf from 'vue-pdf'
-  // import 'pdfjs-dist/build/pdf.worker.entry.js'
   import pdf from 'pdfvuer'
 
   export default {
