@@ -54,6 +54,7 @@
       right: 0;
       font-size: 26px;
       background-color: $white;
+      touch-action: manipulation;
     }
 
     &__input {
@@ -61,7 +62,6 @@
       width: 100%;
       border: none;
       text-align: center;
-      // min-height: 50px;
       outline: none;
       position: absolute;
       top: 0;
@@ -69,8 +69,6 @@
       right: 0;
 
       &--disable {
-        // background: url('~assets/images/line.png');
-        // background-size: 100% 100%;
         background-color: $light-grey;
       }
     }

@@ -333,8 +333,6 @@
       },
       toggleArchwireNumberSize (column, index) {
         const cell = this.archwireSizes[index][column]
-        console.log(cell)
-
         if (cell.check < (this.teeth === 'upper' ? 3 : 2)) {
           cell.check++
           cell.size = cell.check
