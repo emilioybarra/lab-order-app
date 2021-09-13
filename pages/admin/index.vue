@@ -61,7 +61,6 @@
         }
 
         await this.$store.dispatch('auth/login', loginData).then((response) => {
-          console.log(response)
           if (response.success) {
             this.$router.push({ path: '/admin/order-forms' }, () => {
               this.isLoading = false

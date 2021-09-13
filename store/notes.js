@@ -148,31 +148,6 @@ export const mutations = {
   setCanineMolar (state, { side, tooth, value, sideObject }) {
     state[side][tooth] = value
     localStorage.setItem(`lof__notes__${ side }CanineMolar`, JSON.stringify(sideObject))
-
-    /*
-    console.log('saved!')
-    const right2Object = JSON.parse(localStorage.getItem('lof__notes__right2CanineMolar'))
-    const right3Object = JSON.parse(localStorage.getItem('lof__notes__right3CanineMolar'))
-    const left2Object = JSON.parse(localStorage.getItem('lof__notes__left2CanineMolar'))
-    const left3Object = JSON.parse(localStorage.getItem('lof__notes__left3CanineMolar'))
-    console.table(
-      [
-        {
-          type: 'canine',
-          'right_||': right2Object.canine,
-          'right_|||': right3Object.canine,
-          'left_||': left2Object.canine,
-          'left_|||': left3Object.canine
-        },
-        {
-          type: 'molar',
-          'right_||': right2Object.molar,
-          'right_|||': right3Object.molar,
-          'left_||': left2Object.molar,
-          'left_|||': left3Object.molar
-        }
-      ], [ 'type', 'right_||', 'right_|||', 'left_||', 'left_|||' ])
-    */
   },
   resetNotesState (state) {
     state.threeDSetup = false

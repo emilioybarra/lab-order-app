@@ -4,6 +4,14 @@
       {{ $t('common.titles.invoiceAddress') }}
     </template>
     <template #body>
+      <b-overlay :show="isLoading" fixed no-wrap z-index="10000" spinner-variant="primary">
+        <template #overlay>
+          <div class="d-flex flex-column align-items-center">
+            <b-spinner class="mb-3" variant="primary" />
+            <strong>Saving...</strong>
+          </div>
+        </template>
+      </b-overlay>
       <link-button to="/templates?template=invoice-address" class="mb-2">
         {{ $t('common.buttons.selectFromTemplate') }}
       </link-button>
@@ -212,6 +220,7 @@
 
     data () {
       return {
+        isLoading: false,
         invoiceAddress: false,
         invoiceAddressDropdown: false,
         practice: '',
@@ -287,7 +296,8 @@
       this.$store.commit('common/setTemplate', 'invoice-address')
     },
 
-    beforeDestroy () {
+    beforeRouteLeave (to, from, next) {
+      this.isLoading = true
       if (!this.shippingAddress && !this.shippingPostalcodeTown) {
         this.setIsShippingAddress(false)
       }
@@ -296,6 +306,10 @@
         this.setShippingAddress('')
         this.setShippingPostalcodeTown('')
       }
+
+      this.$nextTick(() => {
+        next()
+      })
     },
 
     methods: {

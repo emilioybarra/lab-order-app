@@ -58,7 +58,6 @@
       onAcceptTermsAndConditions () {
         if (cookies.isKey('lof__termsAndConditions')) {
           const cookie = cookies.get('lof__termsAndConditions')
-          console.log(cookie)
           if (this.$moment(termsAndConditionsDate, 'YYYY-MM-DD') > this.$moment(cookie.date, 'YYYY-MM-DD')) {
             this.setTermsAndConditionsCookie()
           }

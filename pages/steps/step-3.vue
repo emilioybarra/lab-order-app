@@ -4,7 +4,14 @@
       {{ $t('common.titles.lowerTeeth') }}
     </template>
     <template #body>
-      <b-overlay :show="isLoading" fixed no-wrap z-index="10000" spinner-variant="primary" />
+      <b-overlay :show="isLoading" fixed no-wrap z-index="10000" spinner-variant="primary">
+        <template #overlay>
+          <div class="d-flex flex-column align-items-center">
+            <b-spinner class="mb-3" variant="primary" />
+            <strong>Saving...</strong>
+          </div>
+        </template>
+      </b-overlay>
       <teeth-canvas ref="lowerTeethCanvas" teeth-image="lower" />
       <div class="d-flex flex-column justify-content-center align-items-center mt-3">
         <checkbox v-model="onlySetup" :is-checked="onlySetup" @input="setOnlySetup">

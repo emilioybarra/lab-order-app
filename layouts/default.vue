@@ -46,7 +46,7 @@
           <li
             v-for="lang in $i18n.locales"
             :key="lang.code"
-            v-click-outside="{ handler: 'hideLanguageMenu', exclude: [ 'language' ] }"
+            v-click-outside="{ handler: 'hide LanguageMenu', exclude: [ 'language' ] }"
             class="lof-language-menu__item"
             @click="changeLanguage(lang.code)"
           >
@@ -58,25 +58,7 @@
       <transition :name="slide" mode="out-in" @before-enter="beforeEnter">
         <Nuxt />
       </transition>
-      <div class="lof-footer">
-        <div>&copy; DW Lingual System GmbH {{ currentYear }}</div>
-        <div>
-          <a
-            target="_blank"
-            class="lof-footer__link mr-2"
-            :href="`https://www.lingualsystems.${ $i18n.locale === 'de' ? 'de/impressum/' : 'co.uk/legal-disclosure/' }`"
-          >
-            {{ $i18n.locale === 'de' ? 'Impressum' : 'Legal Disclosure' }}
-          </a>
-          <a
-            target="_blank"
-            class="lof-footer__link"
-            :href="`https://www.lingualsystems.${ $i18n.locale === 'de' ? 'de/datenschutz-cookies/' : 'co.uk/data-privacy-policy-cookies/' }`"
-          >
-            {{ $i18n.locale === 'de' ? 'Datenschutz & Cookies' : 'Data Privacy Policy & Cookies' }}
-          </a>
-        </div>
-      </div>
+      <base-footer />
     </div>
   </div>
 </template>
@@ -94,10 +76,8 @@
         scrollY: 0,
         slide: 'slide-left',
         showLanguageMenu: false,
-        innerHeight: window.innerHeight,
         showModalTab: false,
         showNotification: false,
-        currentYear: new Date().getFullYear(),
         pdfPreviewKey: 0
       }
     },
@@ -183,7 +163,6 @@
       },
       goBack () {
         this.slide = 'slide-right'
-        console.log(this.localeRoute(navigationBackController(this.$route)).path)
         this.$router.push({ path: this.localeRoute(navigationBackController(this.$route)).path })
       },
       beforeEnter () {

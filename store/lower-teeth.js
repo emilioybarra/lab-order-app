@@ -208,8 +208,6 @@ export const mutations = {
         localStorage.removeItem(key)
       }
     })
-
-    console.log(state)
   }
 }
 

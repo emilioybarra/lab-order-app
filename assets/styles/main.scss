@@ -23,6 +23,7 @@
   'components/archwire-sizes-table',
   'components/card',
   'components/checkbox',
+  'components/footer',
   'components/headline',
   'components/input-field',
   'components/link-button',
@@ -178,19 +179,6 @@ body {
     background: linear-gradient(to bottom right, $white 0%, $white 50%, $tertiary 50%, $tertiary 100%);
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-  }
-
-  &-footer {
-    font-size: 12px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    flex: 0 0 auto;
-    flex-wrap: wrap;
-
-    &__link {
-      color: $font-color;
-    }
   }
 
   &-overlay {

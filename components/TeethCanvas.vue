@@ -721,7 +721,6 @@
 
     mounted () {
       this.$nextTick(() => {
-        console.log('nextTick')
         this.initiateCanvas()
       })
     },
@@ -751,7 +750,6 @@
       },
       setToothButton (tooth) {
         this.boxes[tooth] = !this.boxes[tooth]
-        console.log(this.boxes)
       },
       setCanvasSize () {
         const { width, height } = this.$setCanvasSize(this.teethImage)

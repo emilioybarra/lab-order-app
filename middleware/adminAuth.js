@@ -30,7 +30,7 @@ export default async function (app) {
     app.$axios.setHeader('Authorization', `Bearer ${ admin.token }`)
     return admin
   }).catch((error) => {
-    console.log(error)
+    console.error(error)
     cookies.remove('auth_role')
     cookies.remove('auth_token')
     app.store.commit('auth/setAuth', prepareUser)

@@ -50,10 +50,6 @@
       this.$root.$on('showTemplateTitleModal', () => this.$refs.templateTitle.show())
     },
 
-    mounted () {
-      console.log('mounted')
-    },
-
     methods: {
       closeTemplateTitleModal () {
         this.$refs.templateTitle.hide()
