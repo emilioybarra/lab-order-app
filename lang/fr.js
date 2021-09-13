@@ -165,8 +165,7 @@ export default {
         { label: 'TRH', color: '#54C2F8' },
         { label: 'Ex', color: '#75FA4F' },
         { label: 'X', color: '#A12CF6' },
-        { label: 'bague coulée', color: '#000000' },
-        { label: 'occlusale pad', color: '#EA37C4' }
+        { label: 'bague coulée', color: '#000000' }
       ],
       keyInfo: `
         <strong>Veuillez indiquer:</strong> Pour des cas d’extraction indiquez fermeture d’espace ou non.
@@ -193,7 +192,6 @@ export default {
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= à extraire</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= absente</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>bague coulée</strong>&nbsp;= entourez la dent concernée</div>'
-        // '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>occlusale pad</strong>&nbsp;= rayez surface concernée</div>'
       ],
       keyInfoLegendLeft: [
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
@@ -206,8 +204,11 @@ export default {
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= à extraire</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= absente</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>bague coulée</strong>&nbsp;= entourez la dent concernée</div>'
-        // '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>occlusale pad</strong>&nbsp;= rayez surface concernée</div>'
-      ]
+      ],
+      keyButtonInfoLegend: {
+        clicked: 'rayez surface concernée',
+        notClicked: 'Sans rayez surface concernée'
+      }
     },
     m_2: {
       noCorrectionOfBite: 'Pas de correction de l´occlusion',

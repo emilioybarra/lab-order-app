@@ -160,8 +160,7 @@ export default {
         { label: 'TLH', color: '#74FBB7' },
         { label: 'Ex', color: '#75FA4F' },
         { label: 'X', color: '#A12CF6' },
-        { label: 'BA', color: '#000000' },
-        { label: 'P', color: '#EA37C4' }
+        { label: 'BA', color: '#000000' }
       ],
       keyInfo: `
         <strong>Da compilare:</strong> mancanti indicare sempre se si desidera chiudere o meno lo spazio.
@@ -186,7 +185,6 @@ export default {
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= da estrarre</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= dente mancante</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= banda</div>'
-        // '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= estensione superficie occlusale</div>'
       ],
       keyInfoLegendLeft: [
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
@@ -198,8 +196,11 @@ export default {
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= da estrarre</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= dente mancante</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= banda</div>'
-        // '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= estensione superficie occlusale</div>'
-      ]
+      ],
+      keyButtonInfoLegend: {
+        clicked: 'estensione superficie occlusale',
+        notClicked: 'Senza estensione superficie occlusale'
+      }
     },
     m_2: {
       noCorrectionOfBite: '',

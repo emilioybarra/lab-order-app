@@ -166,8 +166,7 @@ export default {
         { label: 'TRH', color: '#54C2F8' },
         { label: 'Ex', color: '#75FA4F' },
         { label: 'X', color: '#A12CF6' },
-        { label: 'BA', color: '#000000' },
-        { label: 'P', color: '#EA37C4' }
+        { label: 'BA', color: '#000000' }
       ],
       keyInfo: `
         <strong>Bitte ausfüllen:</strong> Bei fehlenden Zähnen bitte immer angeben, ob Lückenschluss gewünscht wird.
@@ -196,7 +195,6 @@ export default {
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= zu extrahieren</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= fehlt</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= geg. Band</div>'
-        // '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= okklusale Klebebasis</div>'
       ],
       keyInfoLegendLeft: [
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= Bracket</div>',
@@ -210,8 +208,11 @@ export default {
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= zu extrahieren</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= fehlt</div>',
         '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= geg. Band</div>'
-        // '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--p"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>P</strong>&nbsp;= okklusale Klebebasis</div>'
-      ]
+      ],
+      keyButtonInfoLegend: {
+        clicked: 'okklusale Klebebasis',
+        notClicked: 'ohne okklusale Klebebasis'
+      }
     },
     m_2: {
       noCorrectionOfBite: 'Keine Bisslagekorrektur',

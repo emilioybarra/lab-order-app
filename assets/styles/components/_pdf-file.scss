@@ -461,13 +461,16 @@
           }
 
           &__box {
-            width: 39px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             position: absolute;
+            border-radius: 100%;
             border: 1px solid $light-grey;
-            text-align: center;
             line-height: 1.5;
-            font-size: 13px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
@@ -555,6 +558,15 @@
           &__size-label {
             text-align: left;
             white-space: nowrap;
+          }
+
+          &__size {
+            height: 15px;
+            max-height: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 0 !important;
+            text-align: center;
           }
 
           &__section {
@@ -663,8 +675,9 @@
 
     &__content {
       text-align: justify;
-      column-count: 2;
       font-size: 11px;
+      column-count: 2;
+      column-gap: 18px;
     }
   }
 

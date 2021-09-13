@@ -41,7 +41,6 @@
             <div v-if="teethImage === 'upper'" class="lof-teeth-canvas__upper-buttons">
               <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--left-1">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__upper-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_1 }"
                   @click="setToothButton('upper_1')"
@@ -51,7 +50,6 @@
               </div>
               <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--left-2">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__upper-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_2 }"
                   @click="setToothButton('upper_2')"
@@ -61,7 +59,6 @@
               </div>
               <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--left-3">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__upper-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_3 }"
                   @click="setToothButton('upper_3')"
@@ -71,7 +68,6 @@
               </div>
               <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--left-4">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__upper-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_4 }"
                   @click="setToothButton('upper_4')"
@@ -81,7 +77,6 @@
               </div>
               <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--left-5">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__upper-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_5 }"
                   @click="setToothButton('upper_5')"
@@ -91,7 +86,6 @@
               </div>
               <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--right-1">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__upper-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_6 }"
                   @click="setToothButton('upper_6')"
@@ -101,7 +95,6 @@
               </div>
               <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--right-2">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__upper-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_7 }"
                   @click="setToothButton('upper_7')"
@@ -111,7 +104,6 @@
               </div>
               <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--right-3">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__upper-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_8 }"
                   @click="setToothButton('upper_8')"
@@ -121,7 +113,6 @@
               </div>
               <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--right-4">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__upper-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_9 }"
                   @click="setToothButton('upper_9')"
@@ -131,7 +122,6 @@
               </div>
               <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--right-5">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__upper-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_10 }"
                   @click="setToothButton('upper_10')"
@@ -311,7 +301,6 @@
             <div v-if="teethImage === 'lower'" class="lof-teeth-canvas__lower-buttons">
               <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--left-1">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__lower-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_1 }"
                   @click="setToothButton('lower_1')"
@@ -321,7 +310,6 @@
               </div>
               <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--left-2">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__lower-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_2 }"
                   @click="setToothButton('lower_2')"
@@ -331,7 +319,6 @@
               </div>
               <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--left-3">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__lower-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_3 }"
                   @click="setToothButton('lower_3')"
@@ -341,7 +328,6 @@
               </div>
               <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--left-4">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__lower-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_4 }"
                   @click="setToothButton('lower_4')"
@@ -351,7 +337,6 @@
               </div>
               <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--left-5">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__lower-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_5 }"
                   @click="setToothButton('lower_5')"
@@ -361,7 +346,6 @@
               </div>
               <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--right-1">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__lower-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_6 }"
                   @click="setToothButton('lower_6')"
@@ -371,7 +355,6 @@
               </div>
               <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--right-2">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__lower-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_7 }"
                   @click="setToothButton('lower_7')"
@@ -381,7 +364,6 @@
               </div>
               <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--right-3">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__lower-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_8 }"
                   @click="setToothButton('lower_8')"
@@ -391,7 +373,6 @@
               </div>
               <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--right-4">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__lower-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_9 }"
                   @click="setToothButton('lower_9')"
@@ -401,7 +382,6 @@
               </div>
               <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--right-5">
                 <b-button
-                  pill
                   class="lof-teeth-canvas__lower-buttons__box-button"
                   :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_10 }"
                   @click="setToothButton('lower_10')"
@@ -639,15 +619,15 @@
       </div>
     </div>
     <div class="lof-teeth-canvas__button-info-legend pt-3">
-      <div class="d-flex align-items-center py-2 mr-4">
+      <div class="d-flex align-items-center py-2 mr-md-4">
         <div class="lof-teeth-canvas__button-info-legend__clicked">P</div>
         <span class="lof-teeth-canvas__button-info-legend__divider">|</span>
-        <small>occlusal pad surface</small>
+        <small>{{ $t('section.m_1.keyButtonInfoLegend.clicked') }}</small>
       </div>
       <div class="d-flex align-items-center py-2">
         <div class="lof-teeth-canvas__button-info-legend__not-clicked" />
         <span class="lof-teeth-canvas__button-info-legend__divider">|</span>
-        <small>without occlusal pad surface</small>
+        <small>{{ $t('section.m_1.keyButtonInfoLegend.notClicked') }}</small>
       </div>
     </div>
   </div>
@@ -774,13 +754,6 @@
         console.log(this.boxes)
       },
       setCanvasSize () {
-        /*
-        const element = document.getElementById('teeth-container')
-        const style = window.getComputedStyle(element, null)
-        this.canvasWidth = parseFloat(style.getPropertyValue('width'))
-        this.canvasHeight = parseFloat(style.getPropertyValue('height'))
-        */
-
         const { width, height } = this.$setCanvasSize(this.teethImage)
         this.canvasWidth = width
         this.canvasHeight = height
@@ -794,18 +767,6 @@
       },
       initiateCanvas () {
         this.setCanvasSize()
-
-        // const canvas = this.$refs.paintable.canvas
-        // const canvas2 = document.getElementById('teeth-canvas')
-        // const ctx = canvas.getContext('2d')
-        // const ctx2 = canvas2.getContext('2d')
-        // ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-        // ctx2.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-        // this.$refs.paintable.clearCanvas()
-        // const imageDrawing = this.$refs.paintable.getItem(`lof__${ this.teethImage }-teeth__canvasDrawing`)
-        // const newTab = window.open()
-        // newTab.document.body.innerHTML = `<img src="${ imageDrawing }">`
-        // ctx.drawImage(imageDrawing, 0, 0, this.canvasWidth, this.canvasHeight)
         this.$refs.paintable.loadImageFromStorage()
       },
       highlightedTeeth (toothIndex, color) {
@@ -840,40 +801,24 @@
         this.$refs.paintable.removeItem(`lof__${ this.teethImage }-teeth__teethCanvasUndoList`)
       },
       async saveCanvas () {
-        // if (this.$refs.paintable) {
-        this.saveCanvasData()
+        this.$refs.paintable.saveCurrentCanvasToStorage()
         const svg = document.getElementById('teeth-image').outerHTML
         const canvas1 = this.$refs.paintable.canvas
-        // const newTab = window.open()
-        // newTab.document.body.innerHTML = `<img src="${ canvas1.toDataURL('image/png') }">`
         const canvas2 = document.getElementById('teeth-canvas')
         const canvas3 = document.getElementById('paintable-canvas')
-        // const ctx = canvas1.getContext('2d')
         const ctx2 = canvas2.getContext('2d')
         const ctx3 = canvas3.getContext('2d')
 
         return await svgToImage(svg, (error, image) => {
           if (error) { throw error }
           ctx2.drawImage(canvas1, 0, 0, this.canvasWidth, this.canvasHeight)
-          // ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
           ctx3.drawImage(image, 0, 0, this.canvasWidth, this.canvasHeight)
           ctx3.drawImage(canvas2, 0, 0, this.canvasWidth, this.canvasHeight)
           const imageData = canvas3.toDataURL('image/png')
-          // console.log(imageData)
           // const newTab = window.open()
           // newTab.document.body.innerHTML = `<img src="${ imageData }">`
           this.setImageData(imageData)
-          // ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
         })
-        // }
-      },
-      saveCanvasData () {
-        // const canvas = this.$refs.paintable.canvas
-        // this.$refs.paintable.setItem(`lof__${ this.teethImage }-teeth__canvasDrawing`, canvas.toDataURL('image/png'))
-        this.$refs.paintable.saveCurrentCanvasToStorage()
-        // const image = this.$refs.paintable.getItem('lof__upper-teeth__canvas')
-        // const newTab = window.open()
-        // newTab.document.body.innerHTML = `<img src="${ image }">`
       },
       createHiDPICanvas (width, height, ratio) {
         if (!ratio) { ratio = 1 }
