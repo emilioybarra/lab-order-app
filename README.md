@@ -71,4 +71,34 @@ const passwordHasher = (password) => {
 console.log(passwordHasher('password'))
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+### Changing the Terms and Conditions date
+
+When changing the date in the file: `utils/termsAndConditionsDate.js`,
+this will remove the cookie named: `lof__termsAndConditions`.
+This will need to be changed for example when DWLS wants to update the terms and conditions.
+
+```javascript
+// termsAndConditionsDate.js
+
+// Format must be: YYYY-MM-DD
+export const termsAndConditionsDate = '2021-08-24'
+```
+
+
+### User Cookie
+
+You can also see in the file: `middleware/userAuth.js`,
+that the cookie is hardcoded for now until the app is ready
+for production, I assume the hashed user cookie will be sent
+from the backend.
+
+```javascript
+// line 5:
+// const wordpressUser = cookies.get('wordpress_user')
+
+// line 6:
+const wordpressUser = 'webdev_1'
+```
+
+
+For more detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
