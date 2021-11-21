@@ -6,7 +6,7 @@
       </h1>
     </div>
     <div class="lof-page__body position-relative">
-      <card>
+      <scrollable-card>
         <div class="text-justify" v-html="$t('agbs.content')" />
         <div class="my-4">
           <checkbox v-model="termsAndConditions" :is-checked="getTermsAndConditionsAcceptance">
@@ -18,7 +18,7 @@
             </link-button>
           </div>
         </div>
-      </card>
+      </scrollable-card>
     </div>
   </div>
 </template>

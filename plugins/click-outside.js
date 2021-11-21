@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { get } from 'lodash'
 
 let handleOutsideClick
 
@@ -11,7 +12,7 @@ Vue.directive('click-outside', {
       if (exclude) {
         exclude.forEach((ref) => {
           if (!clickedOnExcludedEl) {
-            const excludedEl = vnode.context.$refs[ref]
+            const excludedEl = get(vnode.context, ref)
             clickedOnExcludedEl = excludedEl.contains(e.target)
           }
         })

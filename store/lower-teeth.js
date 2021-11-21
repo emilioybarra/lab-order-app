@@ -194,8 +194,7 @@ export const mutations = {
     state.notesBoltonDiscrepancy = false
     state.notesBox = ''
     state.archwireSizes = {}
-
-    state.highlightedTeeth.map((tooth, index) => {
+    state.highlightedTeeth = state.highlightedTeeth.map((tooth, index) => {
       return { [`tooth_${ index }`]: { highlighted: false, color: '' } }
     })
 

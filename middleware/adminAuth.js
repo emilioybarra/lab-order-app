@@ -1,6 +1,6 @@
 import cookies from 'vue-cookies'
 
-export default async function (app) {
+export default async ({ $axios, redirect, route, store }) => {
   const adminToken = cookies.get('auth_token')
   const isAdmin = cookies.get('auth_role') === 'admin'
   let prepareUser = {
@@ -12,13 +12,13 @@ export default async function (app) {
   if (!adminToken || !isAdmin) {
     cookies.remove('auth_role')
     cookies.remove('auth_token')
-    app.store.commit('auth/setAuth', prepareUser)
-    return app.route.path !== '/admin' ? app.redirect('/admin') : null
+    store.commit('auth/setAuth', prepareUser)
+    return route.path !== '/admin' ? redirect('/admin') : null
   }
 
-  if (adminToken && app.route.path === '/admin') { app.redirect('/admin/order-forms') }
+  if (adminToken && route.path === '/admin') { redirect('/admin/order-forms') }
 
-  await app.$axios.get('/api/auth/admin').then((response) => {
+  await $axios.get('/api/auth/admin').then((response) => {
     const admin = response.data
     prepareUser = {
       loggedIn: true,
@@ -26,14 +26,14 @@ export default async function (app) {
       user: { ...admin }
     }
 
-    app.store.commit('auth/setAuth', prepareUser)
-    app.$axios.setHeader('Authorization', `Bearer ${ admin.token }`)
+    store.commit('auth/setAuth', prepareUser)
+    $axios.setHeader('Authorization', `Bearer ${ admin.token }`)
     return admin
   }).catch((error) => {
     console.error(error)
     cookies.remove('auth_role')
     cookies.remove('auth_token')
-    app.store.commit('auth/setAuth', prepareUser)
-    return app.route.path !== '/admin' ? app.redirect('/admin') : null
+    store.commit('auth/setAuth', prepareUser)
+    return route.path !== '/admin' ? redirect('/admin') : null
   })
 }

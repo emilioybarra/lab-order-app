@@ -42,18 +42,7 @@
 
     <div id="lof-body-container" class="lof-body" @scroll.passive="handleScroll">
       <transition name="fade">
-        <ul v-if="showLanguageMenu" class="lof-language-menu">
-          <li
-            v-for="lang in $i18n.locales"
-            :key="lang.code"
-            v-click-outside="{ handler: 'hide LanguageMenu', exclude: [ 'language' ] }"
-            class="lof-language-menu__item"
-            @click="changeLanguage(lang.code)"
-          >
-            <svg-icon :icon="lang.code" class="lof-language-menu__icon" />
-            {{ lang.name }}
-          </li>
-        </ul>
+        <language-menu :show-language-menu="showLanguageMenu" @language-change="onLanguageChange" />
       </transition>
       <transition :name="slide" mode="out-in" @before-enter="beforeEnter">
         <Nuxt />
@@ -64,7 +53,7 @@
 </template>
 
 <script>
-  import navigationBackController from '~/utils/navigationBackController'
+  import { navigationBackController } from '~/utils/navigationBackController'
 
   export default {
     name: 'layout',
@@ -89,9 +78,6 @@
       language () {
         return this.$i18n.locale
       },
-      getIsLoading () {
-        return this.$store.getters['common/getIsLoading']
-      },
       getNotifications () {
         return this.$store.getters['common/getNotifications'].map((notification) => {
           return { ...notification, message: this.$t(`common.notifications['${ notification.message }']`) }
@@ -100,15 +86,6 @@
     },
 
     watch: {
-      getModalVisibility () {
-        if (this.getModalVisibility) {
-          this.navbarZIndex = 0
-        } else {
-          setTimeout(() => {
-            this.navbarZIndex = 1020
-          }, 400)
-        }
-      },
       getNotifications () {
         for (let i = 0; i < this.getNotifications.length; ++i) {
           setTimeout(() => {
@@ -149,14 +126,8 @@
     },
 
     methods: {
-      hideLanguageMenu () {
-        this.showLanguageMenu = false
-      },
-      changeLanguage (lang) {
-        this.hideLanguageMenu()
-        this.$i18n.setLocale(lang)
-        // setting the cookie for mobile devices
-        this.$cookies.set('i18n_lang_cookie', lang)
+      onLanguageChange (showLanguageMenu) {
+        this.showLanguageMenu = showLanguageMenu
       },
       handleScroll (event) {
         this.scrollY = event.target.scrollTop

@@ -1,6 +1,6 @@
 <template>
   <div class="lof-notes-modal">
-    <div v-if="!showContent && showTab" class="lof-tab" @click.stop="show">
+    <div v-if="!showContent && showTab" class="lof-tab" @click.stop="show(false)">
       <div class="lof-tab__text">{{ $t('section.m_1.notes') }}</div>
     </div>
     <div v-if="showContent && showTab || showContent" class="lof-tab" @click="hide">
@@ -118,21 +118,27 @@
                     </template>
                   </b-table>
                 </div>
-                <div class="d-flex mt-4">
-                  <div class="d-flex align-items-center ml-3 mr-5">
-                    <span>{{ $t('section.m_3.tray.title') }}</span>
-                  </div>
-                  <div class="w-100">
-                    <checkbox v-model="nonTransparent" class="p-0" :is-checked="nonTransparent" @input="setNonTransparent">
-                      {{ $t('section.m_3.tray.nonTransparent') }}
-                    </checkbox>
-                    <checkbox v-model="trayTrimmed33" class="ml-3 p-0" :is-checked="trayTrimmed33" @input="setTrayTrimmed33">
-                      {{ $t('section.m_3.tray.trayTrimmed3_3') }}
-                    </checkbox>
-                    <hr>
-                    <checkbox v-model="transparent" class="p-0" :is-checked="transparent" @input="setTransparent">
-                      {{ $t('section.m_3.tray.transparent') }}
-                    </checkbox>
+                <div
+                  class="lof-notes-modal__required-field mt-4"
+                  :class="{ 'lof-notes-modal__required-field--active': requiredField }"
+                >
+                  <p v-if="requiredField" class="text-primary px-3"><small>* Required: Please choose at least one.</small></p>
+                  <div class="d-flex">
+                    <div class="d-flex align-items-center ml-3 mr-5">
+                      <span>{{ $t('section.m_3.tray.title') }}</span>
+                    </div>
+                    <div class="w-100">
+                      <checkbox v-model="nonTransparent" class="p-0" :is-checked="nonTransparent" @input="setNonTransparent">
+                        {{ $t('section.m_3.tray.nonTransparent') }}
+                      </checkbox>
+                      <checkbox v-model="trayTrimmed33" class="ml-3 p-0" :is-checked="trayTrimmed33" @input="setTrayTrimmed33">
+                        {{ $t('section.m_3.tray.trayTrimmed3_3') }}
+                      </checkbox>
+                      <hr>
+                      <checkbox v-model="transparent" class="p-0" :is-checked="transparent" @input="setTransparent">
+                        {{ $t('section.m_3.tray.transparent') }}
+                      </checkbox>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -156,6 +162,7 @@
 
     data () {
       return {
+        requiredField: false,
         showModal: false,
         showContent: false,
         invoiceAddress: false,
@@ -248,13 +255,15 @@
       this.notes1 = this.getNotes1
       this.notes1Lines = this.lineCounter(this.getNotes1)
       this.noCorrectionOfBite = this.getNoCorrectionOfBite
-      this.nonTransparent = this.getNonTransparent
-      this.trayTrimmed33 = this.getTrayTrimmed33
-      this.transparent = this.getTransparent
+      this.nonTransparent = this.getNonTransparent()
+      this.trayTrimmed33 = this.getTrayTrimmed33()
+      this.transparent = this.getTransparent()
       this.right2 = { ...this.getRight2CanineMolar }
       this.right3 = { ...this.getRight3CanineMolar }
       this.left2 = { ...this.getLeft2CanineMolar }
       this.left3 = { ...this.getLeft3CanineMolar }
+
+      this.$root.$on('showNotesModal', showRequiredField => this.show(showRequiredField))
     },
 
     methods: {
@@ -275,7 +284,9 @@
         'setTransparent',
         'setCanineMolar'
       ]),
-      show () {
+      show (showRequiredField) {
+        this.requiredField = showRequiredField
+        console.log(this.requiredField)
         this.showModal = true
       },
       hide () {

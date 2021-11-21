@@ -10,9 +10,14 @@
       <div v-if="showModal" class="lof-overlay">
         <transition name="fade" mode="out-in" @after-leave="showModal = false">
           <div v-if="showContent" class="lof-modal__container">
-            <card v-click-outside="{ handler: 'closeModal' }" class="lof-modal__container__card" :class="heightAuto ? 'h-auto' : ''" :full-width="fullWidth">
+            <scrollable-card
+              v-click-outside="{ handler: 'closeModal' }"
+              class="lof-modal__container__card"
+              :class="{ 'h-auto': heightAuto }"
+              :full-width="fullWidth"
+            >
               <slot />
-            </card>
+            </scrollable-card>
           </div>
         </transition>
       </div>

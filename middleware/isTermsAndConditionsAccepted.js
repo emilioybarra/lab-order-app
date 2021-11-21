@@ -1,6 +1,6 @@
 import cookies from 'vue-cookies'
 
-export default ({ app, route, redirect }) => {
+export default ({ route, redirect }) => {
   const hasCookie = cookies.isKey('lof__termsAndConditions')
 
   if (!hasCookie && route.path !== '/') {

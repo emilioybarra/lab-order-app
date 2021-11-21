@@ -1,5 +1,5 @@
 <template>
-  <card class="h-auto position-relative" full-width>
+  <base-card class="h-auto position-relative">
     <b-table-simple table-class="lof-archwire-sizes-table" bordered fixed>
       <colgroup><col><col><col><col></colgroup>
       <b-thead class="lof-archwire-sizes-table__header">
@@ -75,7 +75,7 @@
         </b-tr>
       </b-tbody>
     </b-table-simple>
-  </card>
+  </base-card>
 </template>
 
 <script>
@@ -142,8 +142,8 @@
             },
             straight: { size: '', disabled: false, check: 0 },
             individual: { size: '', disabled: false, check: 0 },
-            compression: { size: '', disabled: false, check: 0 },
-            expansion: { size: '', disabled: false, check: 0 }
+            compression: { size: '', disabled: true, check: 0 },
+            expansion: { size: '', disabled: true, check: 0 }
           },
           {
             rowVisible: this.$validateSelectedLanguage('en', 'de', 'fr', 'it', 'sp', 'ru', 'jp'),
@@ -155,8 +155,8 @@
             },
             straight: { size: '', disabled: false, check: 0 },
             individual: { size: '', disabled: false, check: 0 },
-            compression: { size: '', disabled: false, check: 0 },
-            expansion: { size: '', disabled: false, check: 0 }
+            compression: { size: '', disabled: true, check: 0 },
+            expansion: { size: '', disabled: true, check: 0 }
           },
           {
             rowVisible: this.$validateSelectedLanguage('en', 'de', 'fr') && this.teeth === 'lower',

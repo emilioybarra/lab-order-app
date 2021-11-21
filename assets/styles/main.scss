@@ -21,7 +21,7 @@
 // Components
 @import
   'components/archwire-sizes-table',
-  'components/card',
+  'components/base-card',
   'components/checkbox',
   'components/footer',
   'components/headline',
@@ -35,6 +35,7 @@
   'components/pagination-bar',
   'components/pdf-file',
   'components/pdf-preview',
+  'components/scrollable-card',
   'components/swatches',
   'components/teeth-canvas',
   'components/textarea-field',
@@ -124,9 +125,9 @@ body {
     }
 
     &--shadow {
-      box-shadow: 0 0 17px -8px rgba(0, 0, 0, 0.75);
-      -webkit-box-shadow: 0 0 17px -8px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: 0 0 17px -8px rgba(0, 0, 0, 0.75);
+      box-shadow: 0 0 14px -8px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 0 0 14px -8px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0 0 14px -8px rgba(0, 0, 0, 0.75);
     }
   }
 

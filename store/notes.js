@@ -65,13 +65,13 @@ export const getters = {
   getNoCorrectionOfBite (state) {
     return state.noCorrectionOfBite || JSON.parse(localStorage.getItem('lof__notes__noCorrectionOfBite')) || false
   },
-  getNonTransparent (state) {
+  getNonTransparent: state => () => {
     return state.nonTransparent || JSON.parse(localStorage.getItem('lof__notes__nonTransparent')) || false
   },
-  getTrayTrimmed33 (state) {
+  getTrayTrimmed33: state => () => {
     return state.trayTrimmed33 || JSON.parse(localStorage.getItem('lof__notes__trayTrimmed3_3')) || false
   },
-  getTransparent (state) {
+  getTransparent: state => () => {
     return state.transparent || JSON.parse(localStorage.getItem('lof__notes__transparent')) || false
   },
   getLeft2CanineMolar (state) {

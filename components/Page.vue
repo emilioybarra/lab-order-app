@@ -1,6 +1,6 @@
 <template>
   <div class="lof-page">
-    <div v-if="!noHeadline" class="lof-page__headline mt-5">
+    <div v-if="!noHeadline" class="lof-page__headline">
       <headline>
         <slot name="headline" />
       </headline>

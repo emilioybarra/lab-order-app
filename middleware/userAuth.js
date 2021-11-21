@@ -1,15 +1,15 @@
 // import cookies from 'vue-cookies'
 import CryptoJS from 'crypto-js'
 
-export default async function (app) {
+export default async ({ $axios, redirect, store }) => {
   // const wordpressUser = cookies.get('wordpress_user')
   const wordpressUser = 'webdev_1'
   const hashedWordpressUser = CryptoJS.SHA512(wordpressUser)
 
   if (!wordpressUser) {
-    return app.redirect('/unauthorized')
+    return redirect('/unauthorized')
   } else {
-    const user = await app.$axios.get(`/api/auth/user/${ hashedWordpressUser }`).then(result => result.data)
+    const user = await $axios.get(`/api/auth/user/${ hashedWordpressUser }`).then(result => result.data)
 
     const {
       _id,
@@ -36,7 +36,7 @@ export default async function (app) {
       }
     }
 
-    app.$axios.setHeader('Authorization', `Bearer ${ token }`)
-    app.store.commit('auth/setAuth', prepareUser)
+    $axios.setHeader('Authorization', `Bearer ${ token }`)
+    store.commit('auth/setAuth', prepareUser)
   }
 }

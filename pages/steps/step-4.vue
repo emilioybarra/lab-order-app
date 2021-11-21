@@ -30,7 +30,7 @@
 
   export default {
     name: 'step-4',
-    middleware: 'isTermsAndConditionsAccepted',
+    middleware: [ 'isTermsAndConditionsAccepted', 'validateRequiredFields' ],
 
     data () {
       return {

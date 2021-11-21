@@ -6,7 +6,7 @@
     <template #body>
       <b-overlay :show="isLoading" fixed no-wrap z-index="10000" spinner-variant="primary" />
       <div class="d-flex justify-content-center position-relative">
-        <card class="d-flex align-self-center col-12 col-md-8 col-lg-6 h-auto">
+        <scrollable-card class="d-flex align-self-center col-12 col-md-8 col-lg-6 h-auto">
           <form @submit.prevent="login">
             <input-field
               id="username"
@@ -30,7 +30,7 @@
               </b-button>
             </div>
           </form>
-        </card>
+        </scrollable-card>
       </div>
     </template>
   </page>

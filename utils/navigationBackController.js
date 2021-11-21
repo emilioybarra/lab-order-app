@@ -1,6 +1,6 @@
 import cookies from 'vue-cookies'
 
-const navigationBackController = (route) => {
+export const navigationBackController = (route) => {
   if (route.path === '/start') {
     cookies.remove('lof__termsAndConditions')
     return '/'
@@ -16,5 +16,3 @@ const navigationBackController = (route) => {
     if (route.query.template === 'lower-teeth') { return '/steps/step-3' }
   }
 }
-
-export default navigationBackController

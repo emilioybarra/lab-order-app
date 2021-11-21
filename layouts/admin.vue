@@ -23,12 +23,7 @@
 
     <div id="lof-body-container" class="lof-body container-fluid" @scroll.passive="handleScroll">
       <transition name="fade">
-        <ul v-if="showLanguageMenu" class="lof-language-menu">
-          <li v-for="lang in $i18n.locales" :key="lang.code" class="lof-language-menu__item" @click="changeLanguage(lang.code)">
-            <svg-icon :icon="lang.code" class="lof-language-menu__icon" />
-            {{ lang.name }}
-          </li>
-        </ul>
+        <language-menu :show-language-menu="showLanguageMenu" @language-change="onLanguageChange" />
       </transition>
       <transition name="fade">
         <Nuxt />
@@ -79,15 +74,14 @@
     methods: {
       async logout () {
         this.isLoading = true
-        await this.$store.dispatch('auth/logout').then((response) => {
+        await this.$store.dispatch('auth/logout').then(() => {
           this.$router.push({ path: '/admin' }, () => {
             this.isLoading = false
           })
         })
       },
-      changeLanguage (lang) {
-        this.showLanguageMenu = false
-        this.$i18n.setLocale(lang)
+      onLanguageChange (showLanguageMenu) {
+        this.showLanguageMenu = showLanguageMenu
       },
       handleScroll (event) {
         this.scrollY = event.target.scrollTop

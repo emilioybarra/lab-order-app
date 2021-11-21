@@ -1,4 +1,30 @@
+@keyframes flash {
+  0%, 40%, 80% {
+    border-color: transparent;
+    outline: transparent;
+  }
+  20%, 60%, 100% {
+    border-color: $primary;
+    outline: $tertiary solid 6px;
+  }
+}
+
 .lof-notes-modal {
+  &__required-field {
+    display: flex;
+    flex-direction: column;
+
+    &--active  {
+      margin: 6px;
+      border: 1px solid $primary;
+      outline: $tertiary solid 6px;
+      border-radius: 6px;
+      padding: $space-5;
+      padding-left: $space-1;
+      animation: flash 1s normal;
+    }
+  }
+
   &__container {
     width: 100%;
     height: inherit;

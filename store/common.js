@@ -10,9 +10,6 @@ export const state = () => ({
 })
 
 export const getters = {
-  getIsLoading: state => () => {
-    return state.isLoading
-  },
   getTemplate (state) {
     return state.template
   },

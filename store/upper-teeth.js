@@ -190,8 +190,7 @@ export const mutations = {
     state.roMm = ''
     state.roWhere = ''
     state.archwireSizes = {}
-
-    state.highlightedTeeth.map((tooth, index) => {
+    state.highlightedTeeth = state.highlightedTeeth.map((tooth, index) => {
       return { [`tooth_${ index }`]: { highlighted: false, color: '' } }
     })
 

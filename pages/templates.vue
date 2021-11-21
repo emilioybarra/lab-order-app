@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  import navigationBackController from '~/utils/navigationBackController'
+  import { navigationBackController } from '~/utils/navigationBackController'
 
   export default {
     name: 'templates',

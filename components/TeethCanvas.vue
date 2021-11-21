@@ -25,7 +25,7 @@
         >
           <paintable
             id="paintable"
-            ref="paintable"
+            :ref="`paintable_${ teethImage }`"
             :key="teethImage"
             :name="`lof__${ teethImage }-teeth__canvas`"
             :active="drawActive"
@@ -39,95 +39,33 @@
             }"
           >
             <div v-if="teethImage === 'upper'" class="lof-teeth-canvas__upper-buttons">
-              <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--left-1">
-                <b-button
+              <div
+                v-for="upper in 5"
+                :key="`upper_${ upper}`"
+                class="lof-teeth-canvas__upper-buttons__box"
+                :class="`lof-teeth-canvas__upper-buttons__box--left-${ upper }`"
+              >
+                <div
                   class="lof-teeth-canvas__upper-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_1 }"
-                  @click="setToothButton('upper_1')"
+                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes[`upper_${ upper }`] }"
+                  @click="setToothButton(`upper_${ upper }`)"
                 >
                   P
-                </b-button>
+                </div>
               </div>
-              <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--left-2">
-                <b-button
+              <div
+                v-for="upper in 5"
+                :key="`upper_${ upper + 5 }`"
+                class="lof-teeth-canvas__upper-buttons__box"
+                :class="`lof-teeth-canvas__upper-buttons__box--right-${ upper }`"
+              >
+                <div
                   class="lof-teeth-canvas__upper-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_2 }"
-                  @click="setToothButton('upper_2')"
+                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes[`upper_${ upper + 5 }`] }"
+                  @click="setToothButton(`upper_${ upper + 5 }`)"
                 >
                   P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--left-3">
-                <b-button
-                  class="lof-teeth-canvas__upper-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_3 }"
-                  @click="setToothButton('upper_3')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--left-4">
-                <b-button
-                  class="lof-teeth-canvas__upper-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_4 }"
-                  @click="setToothButton('upper_4')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--left-5">
-                <b-button
-                  class="lof-teeth-canvas__upper-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_5 }"
-                  @click="setToothButton('upper_5')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--right-1">
-                <b-button
-                  class="lof-teeth-canvas__upper-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_6 }"
-                  @click="setToothButton('upper_6')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--right-2">
-                <b-button
-                  class="lof-teeth-canvas__upper-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_7 }"
-                  @click="setToothButton('upper_7')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--right-3">
-                <b-button
-                  class="lof-teeth-canvas__upper-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_8 }"
-                  @click="setToothButton('upper_8')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--right-4">
-                <b-button
-                  class="lof-teeth-canvas__upper-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_9 }"
-                  @click="setToothButton('upper_9')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__upper-buttons__box lof-teeth-canvas__upper-buttons__box--right-5">
-                <b-button
-                  class="lof-teeth-canvas__upper-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__upper-buttons__box-button--active': boxes.upper_10 }"
-                  @click="setToothButton('upper_10')"
-                >
-                  P
-                </b-button>
+                </div>
               </div>
             </div>
             <div v-if="teethImage === 'upper' && $validateSelectedLanguage( 'jp' )" class="lof-teeth-canvas__container-image__numbers">
@@ -150,7 +88,7 @@
             </div>
             <svg
               v-if="teethImage === 'upper'"
-              id="teeth-image"
+              id="teeth-image-upper"
               class="lof-teeth-canvas__container-image"
               :class="{
                 'lof-teeth-canvas__container-image--upper': teethImage === 'upper',
@@ -299,95 +237,33 @@
               <path class="lof-teeth-canvas__tooth-texture" d="M205.27,176.06a2.69,2.69,0,0,0,1.89,1.79M226.33,166c.5,2.16-2.23,2.64-2.61,4.91m-15.38-14.28c-2.55,2-3.92,2.8-3.55,6.47a12,12,0,0,0,3.55,6.69m12.54-18.06c3.28,1.1,4.13,3.07,4.26,6.24M215,162.69c2.43.49,4.25,1.34,7.1,1.33,2,0,6-.72,7.1.9m-22.95,8.2c2-.09,4.36-.48,6,.57,1.25.79,1.15,1.69,2.22,2.72m-1.88-22c1.29,2.21.56,5,1.64,7.37s1.5,4,.19,6.61a15.25,15.25,0,0,0-1.53,5.79M122.08,15.89a4.83,4.83,0,0,0,2,1.12c.66.29.54-.09,1,.55.2.3.14,1,.22,1.34.41,1.77,1.57,3,2.14,4.68m39.75,7a10.15,10.15,0,0,0,0,1.56c.07.46.42.88.44,1.34,0,.8-1,2-1.48,2.57a9.78,9.78,0,0,0-2.51,4.78m-15-22.52a11.06,11.06,0,0,0,1.8,1.76c.74.75.39,1.28.21,2.37a35.31,35.31,0,0,0-.35,5.57m-6.86-15.38c-1.48-1.73-3.18-1.16-5.32-1.48-.9-.13-1.75-.65-2.61-.86a19.45,19.45,0,0,1-2.6-.67,21.42,21.42,0,0,0-5.59-1c-1.82-.17-4.41-1-5.73.48A9.69,9.69,0,0,0,120,11.21m46.84,11.7c.19-1.27-2.87-1.83-3.78-2.36-1.46-.87-2.27-2.31-4-2.66s-3.2-.32-4.74-1.41c-1-.73-3.33-2.43-4.49-1M184.42,41.2a4,4,0,0,0-.45-2.48c-.33-.53-.94-1.08-1.33-1.65a10.84,10.84,0,0,1-2.12-4.35c-.34-2-1.58-2.63-3.55-3s-3.23-1.46-5-1.79a8.92,8.92,0,0,0-1.65-.11m11.71,26.42c-1.56,0-3.31-2.09-5-1.11m14.2,11.71a11.62,11.62,0,0,0-4.29.52,7.16,7.16,0,0,0-1.89.9,10.28,10.28,0,0,1-1.51,1m.95-17.62c-.23,1.69-2.85,1.71-2.6,3.63s1.93,3.61,2.35,5.52c.27,1.18,0,2.51.27,3.65a13.42,13.42,0,0,1,.8,3.26m-1.18,9.14c-.29.56-1.08,1-1.4,1.55a5,5,0,0,0-.37,2c-.07,1.24-.18,2.78.59,3.79m15.73-11.49c2.3.47,3.09,1.8,3.19,4,.1,2,1.42,3.23,1.43,5.24M173.89,56.58C171,58.19,175,62.85,177,63.39m11.94-13.16c.21,2,3.32,2.18,4.23,3.71,1.07,1.77.28,4.1,1.21,5.88M190,72.08c.08.62.74,1.09,1,1.66a4.61,4.61,0,0,1,.3,1.8c0,1.21-.29,2.43.22,3.59s1.25,1.69.85,3.1c-.31,1.08-1.45,2-1.42,3.12m6.87-1c-1.71.37-3.13,1.18-4.85,1.33-2,.19-3-1-4.85.12m6-16.28a6.83,6.83,0,0,0-3.91,2.12c-1.43,1.31-1.93.16-3.66,0m3.9,42.92c-.65,1.86.48,2.62,2,3.46m1.19-21.3c-.66,1.79-2.83,2.47-4.06,3.79-2,2.12-.27,3.52.74,5.47m22.72,2.45c0,1.28.27,2.32-.83,3.12m-4.14-20a5.68,5.68,0,0,1,2.46.91c.2.67.68,1.3.85,2m-12.3,18a41.57,41.57,0,0,1-4.52-.58c-.78-.07-1.62,0-2.44-.09a22.45,22.45,0,0,1-2.39-.44m24.37-11c-1,.93-1.37,2-2.72,2.37a16.93,16.93,0,0,1-4.62.19,5.91,5.91,0,0,0-2.16.11c-.37.18-.71.87-1,1.21a3.44,3.44,0,0,1-2.6,1.25m.59-11.82a10,10,0,0,1-2.37,4.68c-.7.83-.85.87-.47,1.9a12.81,12.81,0,0,0,.92,1.9,11.07,11.07,0,0,1,.48,8.78,5.93,5.93,0,0,0-1.29,2c-.28,1,.34,1.06.75,1.9.82,1.67-.09,3.31-.74,4.69M206.54,152c-2-.11-2.85-1.14-3.67-2.79m19.4-11.93c1.21,1,.52,3,0,4.13m-13.48-16.84c.34-2.63,4.16-4.27,6.62-3.23m-14.79,9c-2,1.14-1.91,3.44-1.41,5.35a10.6,10.6,0,0,0,1,2.46c.42.75,1.2,1.25,1.45,2m18.69,7.14a6,6,0,0,1-3.2-.56,11,11,0,0,0-2.11-1.23c-1-.23-2,.48-3.09.23-.39-.08-.74-.44-1.06-.54a6.34,6.34,0,0,0-2.13,0,20.46,20.46,0,0,0-3,.25c-.75.15-1.55.65-2.3.76-2.15.3-4.23-.42-6.25-.56h-.11m13.36-1c0-1.82,0-3.64,0-5.46a2.83,2.83,0,0,1,.71-2.23c.62-.67,1.26-.68,1.07-1.78m10.05-2c-1.25,1-2.85,1-4.49,1.11-1.79.17-3.83.34-5.61.38-2.11.05-4.36-1.48-6.22-2.27M30,175.07a2.69,2.69,0,0,1-1.89,1.79M8.92,165.63c-.5,2.16,2.23,2.64,2.6,4.9M26.9,156.26c2.56,2,3.93,2.79,3.56,6.47-.27,2.62-1.87,4.87-3.56,6.69M12.49,152.53c1.91-.64-4.33,7.95-4.26,6.24m12.05,3.51c-2.44.49-4.25,1.35-7.1,1.34-1.95,0-5.95-.72-7.1.89m23,8.21c-2-.1-4.36-.48-6,.57-1.25.78-1.15,1.69-2.22,2.71m1.88-22c-1.29,2.22-.56,5-1.65,7.37s-1.49,4-.18,6.62a15.25,15.25,0,0,1,1.53,5.78M114.44,16.07a4.76,4.76,0,0,1-2,1.12c-.66.29-.54-.08-1,.55-.2.31-.14,1-.22,1.35-.4,1.76-1.57,3-2.14,4.68m-39.74,7a11.6,11.6,0,0,1,0,1.56c-.07.47-.43.88-.45,1.34,0,.8,1,2,1.48,2.57a9.77,9.77,0,0,1,2.51,4.79m15-22.52a11,11,0,0,1-1.8,1.75c-.73.75-.38,1.29-.21,2.37a35.37,35.37,0,0,1,.35,5.58m6.86-15.39c1.48-1.73,3.18-1.16,5.33-1.47.89-.14,1.74-.66,2.6-.87a19.45,19.45,0,0,0,2.6-.67,21,21,0,0,1,5.59-1c1.83-.17,4.41-1,5.74.47a11,11,0,0,1,1.57,2.09M69.72,23.1c-.19-1.28,2.87-1.84,3.78-2.37,1.47-.87,2.27-2.3,4-2.66s3.2-.32,4.75-1.41c1-.73,3.32-2.43,4.49-1M52.09,41.38a4,4,0,0,1,.45-2.48c.33-.53.94-1.07,1.33-1.64A10.92,10.92,0,0,0,56,32.91c.33-2,1.57-2.64,3.55-3,1.82-.35,3.22-1.45,5-1.78A9.86,9.86,0,0,1,66.17,28M54.46,54.43c1.56,0,3.32-2.1,5-1.12M45.23,65a11.59,11.59,0,0,1,4.29.53,7.53,7.53,0,0,1,1.9.89,9.67,9.67,0,0,0,1.5,1M52,49.86c.22,1.68,2.84,1.7,2.59,3.62S52.64,57.1,52.22,59c-.26,1.18,0,2.51-.27,3.65a13.65,13.65,0,0,0-.8,3.26m1.18,9.14c.3.56,1.09,1,1.4,1.56a5.06,5.06,0,0,1,.38,2c.06,1.24.18,2.78-.6,3.79M37.78,70.93c-2.29.46-3.09,1.79-3.19,4-.1,2-1.42,3.23-1.42,5.24M62.62,56.77c2.93,1.6-1.09,6.26-3.07,6.8M47.6,50.41c-.21,2-3.31,2.18-4.23,3.71-1.07,1.77-.27,4.1-1.21,5.88m4.37,12.27c-.08.61-.74,1.09-1,1.65a4.83,4.83,0,0,0-.3,1.8c0,1.21.3,2.44-.22,3.6s-1.25,1.69-.85,3.09c.31,1.08,1.45,2,1.42,3.12m-6.86-1c1.7.38,3.12,1.18,4.85,1.34,2,.18,3-1,4.85.11m-6-16.28a6.77,6.77,0,0,1,3.91,2.12c1.43,1.31,1.93.16,3.66,0m-3.9,42.92c.65,1.87-.48,2.62-2,3.46M42.87,96.9c.65,1.8,2.82,2.47,4.05,3.79,2,2.13.28,3.52-.74,5.47m-22.71,2.45c0,1.28-.28,2.33.82,3.12m4.14-20a5.55,5.55,0,0,0-2.46.91c-.2.67-.68,1.29-.85,2m12.31,18a41.34,41.34,0,0,0,4.51-.59c.79-.07,1.62-.05,2.44-.08s1.51-.33,2.39-.45m-24.37-11c1,.93,1.37,2,2.72,2.37a16.93,16.93,0,0,0,4.62.2,6.14,6.14,0,0,1,2.16.1c.37.18.71.87,1,1.21a3.44,3.44,0,0,0,2.6,1.25m-.59-11.82a10,10,0,0,0,2.37,4.69c.7.82.85.87.47,1.89a13.3,13.3,0,0,1-.91,1.9,11.1,11.1,0,0,0-.49,8.79,5.74,5.74,0,0,1,1.29,2c.29,1-.34,1.06-.75,1.9-.82,1.66.09,3.3.74,4.68M30,152.2c2-.1,2.85-1.14,3.67-2.78m-19.4-11.93c-1.2,1-.52,3,0,4.12m13.48-16.83c-.34-2.63-4.16-4.27-6.62-3.24m14.79,9c2,1.13,1.91,3.43,1.41,5.35a10.28,10.28,0,0,1-1,2.45c-.42.75-1.19,1.26-1.45,2m-18.69,7.13a6,6,0,0,0,3.2-.56,11.34,11.34,0,0,1,2.12-1.23c1-.22,2,.48,3.09.24.38-.09.73-.45,1.05-.55a6.34,6.34,0,0,1,2.13,0,19.21,19.21,0,0,1,3.05.24c.75.15,1.55.65,2.3.76,2.15.31,4.23-.42,6.25-.56h.12m-13.37-1c0-1.82,0-3.65,0-5.47a2.84,2.84,0,0,0-.71-2.23c-.62-.67-1.26-.67-1.07-1.78m-10-2c1.26,1,2.86,1,4.49,1.12,1.79.16,3.83.33,5.61.37,2.11.06,4.36-1.48,6.22-2.27" transform="translate(-3.24 -3.51)" />
             </svg>
             <div v-if="teethImage === 'lower'" class="lof-teeth-canvas__lower-buttons">
-              <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--left-1">
-                <b-button
+              <div
+                v-for="lower in 5"
+                :key="`lower_${ lower }`"
+                class="lof-teeth-canvas__lower-buttons__box"
+                :class="`lof-teeth-canvas__lower-buttons__box--left-${ lower }`"
+              >
+                <div
                   class="lof-teeth-canvas__lower-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_1 }"
-                  @click="setToothButton('lower_1')"
+                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes[`lower_${ lower }`] }"
+                  @click="setToothButton(`lower_${ lower }`)"
                 >
                   P
-                </b-button>
+                </div>
               </div>
-              <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--left-2">
-                <b-button
+              <div
+                v-for="lower in 5"
+                :key="`lower_${ lower + 5 }`"
+                class="lof-teeth-canvas__lower-buttons__box"
+                :class="`lof-teeth-canvas__lower-buttons__box--right-${ lower }`"
+              >
+                <div
                   class="lof-teeth-canvas__lower-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_2 }"
-                  @click="setToothButton('lower_2')"
+                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes[`lower_${ lower + 5 }`] }"
+                  @click="setToothButton(`lower_${ lower + 5 }`)"
                 >
                   P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--left-3">
-                <b-button
-                  class="lof-teeth-canvas__lower-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_3 }"
-                  @click="setToothButton('lower_3')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--left-4">
-                <b-button
-                  class="lof-teeth-canvas__lower-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_4 }"
-                  @click="setToothButton('lower_4')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--left-5">
-                <b-button
-                  class="lof-teeth-canvas__lower-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_5 }"
-                  @click="setToothButton('lower_5')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--right-1">
-                <b-button
-                  class="lof-teeth-canvas__lower-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_6 }"
-                  @click="setToothButton('lower_6')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--right-2">
-                <b-button
-                  class="lof-teeth-canvas__lower-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_7 }"
-                  @click="setToothButton('lower_7')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--right-3">
-                <b-button
-                  class="lof-teeth-canvas__lower-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_8 }"
-                  @click="setToothButton('lower_8')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--right-4">
-                <b-button
-                  class="lof-teeth-canvas__lower-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_9 }"
-                  @click="setToothButton('lower_9')"
-                >
-                  P
-                </b-button>
-              </div>
-              <div class="lof-teeth-canvas__lower-buttons__box lof-teeth-canvas__lower-buttons__box--right-5">
-                <b-button
-                  class="lof-teeth-canvas__lower-buttons__box-button"
-                  :class="{ 'lof-teeth-canvas__lower-buttons__box-button--active': boxes.lower_10 }"
-                  @click="setToothButton('lower_10')"
-                >
-                  P
-                </b-button>
+                </div>
               </div>
             </div>
             <div v-if="teethImage === 'lower' && $validateSelectedLanguage( 'jp' )" class="lof-teeth-canvas__container-image__numbers">
@@ -410,7 +286,7 @@
             </div>
             <svg
               v-if="teethImage === 'lower'"
-              id="teeth-image"
+              id="teeth-image-lower"
               class="lof-teeth-canvas__container-image"
               :class="{
                 'lof-teeth-canvas__container-image--upper': teethImage === 'upper',
@@ -563,8 +439,8 @@
               <path class="lof-teeth-canvas__tooth-texture" d="M208.25,47.55c-.73-.09-1.25-.58-2-.66" transform="translate(-2.58 -12.84)" />
               <path class="lof-teeth-canvas__tooth-texture" d="M220.51,19.05a5.78,5.78,0,0,1,1.46,2M222,35.35a2.79,2.79,0,0,1-2.14,3.14m-20.38-2c.08,1.14.12,2.6,1.69,2.84m-2.3-17.78c.88-.62,1.08-1.55,2-2.17m.59,9.4c2.92.1,7-2.21,9.34-.55,1.26.87,1.52,2,3.31,2.23,2.09.26,4.26-.6,6.28-.15s3.31,1.18,5.64.59M212.18,17.06a9.45,9.45,0,0,0,.91,3.25c.48,1.17.18,2.11-.11,3.37-1,4.43-2.64,8.72-3.56,13.19m-6,2.2c1.06.14,1.82-.77,2.74-1.09a5.56,5.56,0,0,1,2.86-.26c1.72.32,3.61,1.11,5.29,1.57M206.49,17c3-.55,5.28-1.43,8.16-.05a33.13,33.13,0,0,1,3.17,1.8c1.17.75,1.23,1.88,2,2.8M123.7,158.74c-.29.56-.8,1-1,1.62a5.9,5.9,0,0,0-.39,2.12c-.08,1.33-.06,2.85-.88,4m19.74-11.95c-.37.59-.85.9-1.07,1.56a15.55,15.55,0,0,0-.57,2.13,26.54,26.54,0,0,0-.12,4.47m24.75-15.06c-.41,0-.93-.57-1.31-.74a8.8,8.8,0,0,0-1.57-.61,17.05,17.05,0,0,0-3.95-.26m-22,25.6c0,.55-1.28,1.24-1.8,1.47a11,11,0,0,1-2.84.67c-1,.12-2.18.07-3.19.24s-2,.38-2.95.53c-1.85.28-4.84.43-6.08-1m53.33-23.26c0,1.75-.1,2.92-1.68,4.06s-1.86,2.5-2.4,4c-.42,1.18-.87,2.68-2.45,3.16-.78.24-1.61.2-2.42.39s-1.49.71-2.33.82m-5.14,3.84c-.21,1.56-2.53,2.15-4.07,2.44a16.4,16.4,0,0,0-5.56,1.68,7.35,7.35,0,0,1-3.28,1.23c-1,.05-2.63.37-3.26-.26m28.26-33a3,3,0,0,0-.37,1.67m5.51-11.12a5.05,5.05,0,0,0-2.82,2m11.53,10.33a5.5,5.5,0,0,0,2.87-2.76,9.58,9.58,0,0,0,.89-4.09m-14.41,3.16a7.52,7.52,0,0,1,3.26,1.15m2.94-8.68c1.24.24,2.49.71,2.7,1.82m4.57-1.4a6.09,6.09,0,0,1-2.5,1.26,5.28,5.28,0,0,1-1.38.19c-.83,0-.78.07-1.11.68a16.65,16.65,0,0,1-3,3.84c-.88.86-2,1.78-1.93,3a5.22,5.22,0,0,0,.56,1.77c.22.52.25,1.28.63,1.71M185,108.27a5,5,0,0,0-3.76,1.56m-3.07,8.72c0,.47-.52.86-.8,1.26a2.35,2.35,0,0,0-.45,1.49m17-1.5c0-.94.92-1.6,1.32-2.45a4.74,4.74,0,0,0,.18-3.11m-6.58,9a3.47,3.47,0,0,0-1.92-.89,6.3,6.3,0,0,0-1.21-.3c-.48,0-.51.18-.94.37a16.72,16.72,0,0,1-2.69.62,14.14,14.14,0,0,1-2.7.1m2.13-9.55c.59,0,1.13.22,1.76.25a7.41,7.41,0,0,0,1.69-.31m7.21,1.51a3.05,3.05,0,0,1-2.51.16c-.82-.35-1.54-.8-2.31-1.21-.56-.3-1.57-1-2.26-.56s-.55,1.62-.65,2.22a14.38,14.38,0,0,0-.23,2.19,7.29,7.29,0,0,0,1.06,3.9m6.29-46.64c-2.09,0-3.49.51-3.51,2.38m-5.85,24.16a2.86,2.86,0,0,1-2-.56,5.77,5.77,0,0,1-1.42-1.41m25.44-.88c.12,2.49-.92,4.92-3.95,5.71M210.11,84c.45.29.47.9.7,1.29a3.28,3.28,0,0,1,.67,1.56,5.27,5.27,0,0,1-.25,3m-4,5.92c-2-.92-4.62,0-6.51-1.09-.89-.48-1.72-1-2.62-1.46s-1.66-1.33-2.57-1.5-1.44.24-2.2.16a18.16,18.16,0,0,1-2.26-.78,18.06,18.06,0,0,0-2.76-.1c-1.05-.08-2.14-.43-3.13-.58M195.44,104a3.35,3.35,0,0,0-1.14-2,11.22,11.22,0,0,0-1.53-1.62c-1.52-1.15-3.54.08-4.78,1-.56.41-1.34,1-1.26,1.66m10.91-23.93c.16.59.55,1,.44,1.71s-.45,1.09-.56,1.66A2.18,2.18,0,0,0,198.89,85M204,83.5a6,6,0,0,0-3,1.1c-.46.24-1,.29-1.47.51a9,9,0,0,0-1.49,1,31.38,31.38,0,0,1-3.25,2.27c-.76.42-1.78.83-1.26,1.63a3.21,3.21,0,0,1,.76,2.33,27.4,27.4,0,0,1-.68,4.1,5.7,5.7,0,0,1-.93,1.56,2.79,2.79,0,0,0-.33,1.66m-4.24-32c-.74-.13-.9-1-1-1.49-.09-.31-.28-1.58.13-1.73M199.93,46a4.79,4.79,0,0,0-2.5-.17c-.65.14-2.42.57-2.42,1.31m17.21,21a11.17,11.17,0,0,1-1.55,1.77c-.34.26-2.14.75-2.26.07m4.72-20.12c.5.72.29,1.54.46,2.36a4.52,4.52,0,0,1,0,2.28m-1.34,8.1a4.74,4.74,0,0,1-3.38-1.89,10.68,10.68,0,0,0-3-2.25,16.71,16.71,0,0,0-4.58-1.36,18.14,18.14,0,0,0-2.22-.11,17.31,17.31,0,0,1-2.34-.38,15.45,15.45,0,0,1-3.34-.76M204.7,71c-.78-.46-1.69-1.77-2.83-1.43a13.67,13.67,0,0,1-4.27.84" transform="translate(-2.58 -12.84)" />
             </svg>
-            <canvas id="teeth-canvas" hidden :width="canvasWidth" :height="canvasHeight" />
-            <canvas id="paintable-canvas" hidden :width="canvasWidth" :height="canvasHeight" />
+            <canvas :id="`teeth-canvas-${ teethImage }`" hidden :width="canvasWidth" :height="canvasHeight" />
+            <canvas :id="`paintable-canvas-${ teethImage }`" hidden :width="canvasWidth" :height="canvasHeight" />
           </paintable>
         </div>
         <div class="lof-teeth-canvas__toolbar">
@@ -579,10 +455,10 @@
             </b-form-radio-group>
           </b-form-group>
           <b-button-group v-if="drawActive">
-            <b-button id="undo" class="lof-teeth-canvas__button" variant="outline-secondary" @click="$refs.paintable.undoDrawingStep()">
+            <b-button id="undo" class="lof-teeth-canvas__button" variant="outline-secondary" @click="$refs[`paintable_${ teethImage }`].undoDrawingStep()">
               <svg-icon icon="undo" class="lof-teeth-canvas__button-icon" />
             </b-button>
-            <b-button id="redo" class="lof-teeth-canvas__button mr-3" variant="outline-secondary" @click="$refs.paintable.redoDrawingStep()">
+            <b-button id="redo" class="lof-teeth-canvas__button mr-3" variant="outline-secondary" @click="$refs[`paintable_${ teethImage }`].redoDrawingStep()">
               <svg-icon icon="undo" class="lof-teeth-canvas__button-icon lof-teeth-canvas__button-icon--redo" />
             </b-button>
           </b-button-group>
@@ -596,7 +472,7 @@
             <transition name="fade">
               <swatches
                 v-if="showSwatches"
-                v-click-outside="{ handler: 'hideSwatches', exclude: [ 'color' ] }"
+                v-click-outside="{ handler: 'hideSwatches', exclude: [ '$refs.color' ] }"
                 :swatches="swatches"
                 :selected-swatch="highlightColor"
                 @selectedSwatch="selectedSwatch"
@@ -693,7 +569,7 @@
       },
       drawActive () {
         if (this.drawActive) {
-          this.$refs.paintable.loadImageFromStorage()
+          this.$refs[`paintable_${ this.teethImage }`].loadImageFromStorage()
         } else {
           this.saveCanvas()
         }
@@ -765,7 +641,7 @@
       },
       initiateCanvas () {
         this.setCanvasSize()
-        this.$refs.paintable.loadImageFromStorage()
+        this.$refs[`paintable_${ this.teethImage }`].loadImageFromStorage()
       },
       highlightedTeeth (toothIndex, color) {
         this.teeth[toothIndex][`tooth_${ toothIndex }`].highlighted = !this.teeth[toothIndex][`tooth_${ toothIndex }`].highlighted
@@ -777,8 +653,8 @@
         this.setHighlightedTeeth([ ...clone(this.teeth) ])
       },
       clearCanvas () {
-        this.$refs.paintable.clearCanvas()
-        const canvas2 = document.getElementById('teeth-canvas')
+        this.$refs[`paintable_${ this.teethImage }`].clearCanvas()
+        const canvas2 = document.getElementById(`teeth-canvas-${ this.teethImage }`)
         const ctx2 = canvas2.getContext('2d')
         ctx2.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
 
@@ -794,16 +670,16 @@
         this.setImageData('')
         this.setTeethBoxes(clone(this.boxes))
         this.setHighlightedTeeth(clone(this.teeth))
-        this.$refs.paintable.removeItem(`lof__${ this.teethImage }-teeth__canvas`)
-        this.$refs.paintable.removeItem(`lof__${ this.teethImage }-teeth__canvasDrawing`)
-        this.$refs.paintable.removeItem(`lof__${ this.teethImage }-teeth__teethCanvasUndoList`)
+        this.$refs[`paintable_${ this.teethImage }`].removeItem(`lof__${ this.teethImage }-teeth__canvas`)
+        this.$refs[`paintable_${ this.teethImage }`].removeItem(`lof__${ this.teethImage }-teeth__canvasDrawing`)
+        this.$refs[`paintable_${ this.teethImage }`].removeItem(`lof__${ this.teethImage }-teeth__teethCanvasUndoList`)
       },
       async saveCanvas () {
-        this.$refs.paintable.saveCurrentCanvasToStorage()
-        const svg = document.getElementById('teeth-image').outerHTML
-        const canvas1 = this.$refs.paintable.canvas
-        const canvas2 = document.getElementById('teeth-canvas')
-        const canvas3 = document.getElementById('paintable-canvas')
+        this.$refs[`paintable_${ this.teethImage }`].saveCurrentCanvasToStorage()
+        const svg = document.getElementById(`teeth-image-${ this.teethImage }`).outerHTML
+        const canvas1 = this.$refs[`paintable_${ this.teethImage }`].canvas
+        const canvas2 = document.getElementById(`teeth-canvas-${ this.teethImage }`)
+        const canvas3 = document.getElementById(`paintable-canvas-${ this.teethImage }`)
         const ctx2 = canvas2.getContext('2d')
         const ctx3 = canvas3.getContext('2d')
 
@@ -820,7 +696,7 @@
       },
       createHiDPICanvas (width, height, ratio) {
         if (!ratio) { ratio = 1 }
-        const canvas = document.getElementById('teeth-canvas')
+        const canvas = document.getElementById(`teeth-canvas-${ this.teethImage }`)
         canvas.width = width * ratio
         canvas.height = height * ratio
         canvas.style.width = width + 'px'
