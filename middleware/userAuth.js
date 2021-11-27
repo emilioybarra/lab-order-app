@@ -36,7 +36,7 @@ export default async ({ $axios, redirect, store }) => {
       }
     }
 
-    $axios.setHeader('Authorization', `Bearer ${ token }`)
+    $axios.setToken(token, 'Bearer')
     store.commit('auth/setAuth', prepareUser)
   }
 }

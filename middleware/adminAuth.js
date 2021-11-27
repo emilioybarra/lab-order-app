@@ -1,8 +1,10 @@
 import cookies from 'vue-cookies'
 
 export default async ({ $axios, redirect, route, store }) => {
-  const adminToken = cookies.get('auth_token')
-  const isAdmin = cookies.get('auth_role') === 'admin'
+  const adminToken = cookies.get('dwls_auth_token')
+  const isAdmin = cookies.get('dwls_auth_role') === 'admin'
+  console.log(adminToken)
+  console.log(isAdmin)
   let prepareUser = {
     loggedIn: false,
     isAdmin: false,
@@ -10,8 +12,8 @@ export default async ({ $axios, redirect, route, store }) => {
   }
 
   if (!adminToken || !isAdmin) {
-    cookies.remove('auth_role')
-    cookies.remove('auth_token')
+    cookies.remove('dwls_auth_role')
+    cookies.remove('dwls_auth_token')
     store.commit('auth/setAuth', prepareUser)
     return route.path !== '/admin' ? redirect('/admin') : null
   }
@@ -27,12 +29,13 @@ export default async ({ $axios, redirect, route, store }) => {
     }
 
     store.commit('auth/setAuth', prepareUser)
-    $axios.setHeader('Authorization', `Bearer ${ admin.token }`)
+
+    $axios.setToken(admin.token, 'Bearer')
     return admin
   }).catch((error) => {
     console.error(error)
-    cookies.remove('auth_role')
-    cookies.remove('auth_token')
+    cookies.remove('dwls_auth_role')
+    cookies.remove('dwls_auth_token')
     store.commit('auth/setAuth', prepareUser)
     return route.path !== '/admin' ? redirect('/admin') : null
   })

@@ -42,7 +42,9 @@ $ npm run generate
 ### Creating a new admin user
 
 When creating a new admin user, go to the mongodb cluster, and if not already there, create an admin collection.
-Then enter in the following fields into the collection
+Then enter the following fields into the collection
+
+*Also remember to set the 'HASH_SECRET' variable in your .env file.
 
 ```text
 // Role has to be admin
@@ -59,7 +61,8 @@ hash: (return value of 'passwordHasher')
 ```javascript
 // Password Hasher for creating a new admin
 
-// install crypto if not already installed
+// install crypto and dotenv if not already installed
+require('dotenv').config()
 const crypto = require('crypto') 
 
 const passwordHasher = (password) => {

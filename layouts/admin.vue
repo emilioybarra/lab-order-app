@@ -75,6 +75,8 @@
       async logout () {
         this.isLoading = true
         await this.$store.dispatch('auth/logout').then(() => {
+          this.$cookies.remove('dwls_auth_role')
+          this.$cookies.remove('dwls_auth_token')
           this.$router.push({ path: '/admin' }, () => {
             this.isLoading = false
           })

@@ -15,8 +15,8 @@ exports.getAuthenticatedUser = (req, res, next) => {
 
           user.generateToken((err, user) => {
             if (err) { return res.status(400).send(err) }
-            res.cookie('auth_role', user.role)
-            res.cookie('auth_token', user.token)
+            res.cookie('dwls_auth_role', user.role)
+            res.cookie('dwls_auth_token', user.token)
             res.status(200).json(user)
           })
         })
@@ -30,8 +30,8 @@ exports.getAuthenticatedUser = (req, res, next) => {
           .then((user) => {
             user.generateToken((err, user) => {
               if (err) { return res.status(400).send(err) }
-              res.cookie('auth_role', user.role)
-              res.cookie('auth_token', user.token)
+              res.cookie('dwls_auth_role', user.role)
+              res.cookie('dwls_auth_token', user.token)
               res.status(200).json(user)
             })
           })
@@ -50,22 +50,23 @@ exports.getAuthenticatedUser = (req, res, next) => {
 }
 
 exports.getAuthenticatedAdmin = (req, res, next) => {
-  const decodedAdminToken = jwt.decode(sanitize(req.cookies.auth_token))
+  const token = req.headers.authorization.replace('Bearer ', '')
+  const decodedAdminToken = jwt.decode(sanitize(token))
 
   if (decodedAdminToken && decodedAdminToken.id) {
-    Admin.findOne({ _id: decodedAdminToken.id }, (err, admin) => {
+    Admin.findById({ _id: decodedAdminToken.id }, (err, admin) => {
       if (err) { return res.status(400).send(err) }
       if (!admin) { return res.status(401).json({ status: 401, message: 'Username or password are not valid.' }) }
 
       admin.generateToken((err, admin) => {
         if (err) { return res.status(400).send(err) }
-        res.cookie('auth_role', admin.role)
-        res.cookie('auth_token', admin.token)
         const prepareAdmin = {
           role: admin.role,
           username: admin.username,
           token: admin.token
         }
+        res.cookie('dwls_auth_role', admin.role)
+        res.cookie('dwls_auth_token', admin.token)
         res.status(200).json(prepareAdmin)
       })
     }).catch((err) => {
@@ -81,10 +82,10 @@ exports.getAuthenticatedAdmin = (req, res, next) => {
   }
 }
 
-exports.postLoginAdmin = (req, res, next) => {
+exports.postLoginAdmin = async (req, res, next) => {
   const { username, password } = sanitize(req.body.loginData)
 
-  Admin.findOne({ username }, (err, admin) => {
+  await Admin.findOne({ username }, (err, admin) => {
     if (err) { return res.status(400).send(err) }
     if (!admin) { return res.status(401).json({ status: 401, message: 'Username or password are not valid.' }) }
     admin.comparePassword(password, (err, isMatch) => {
@@ -92,8 +93,8 @@ exports.postLoginAdmin = (req, res, next) => {
       if (!isMatch) { return res.status(401).json({ status: 401, message: 'Username or password are not valid.' }) }
       admin.generateToken((err, admin) => {
         if (err) { return res.status(400).send(err) }
-        res.cookie('auth_role', admin.role)
-        res.cookie('auth_token', admin.token)
+        res.cookie('dwls_auth_role', admin.role)
+        res.cookie('dwls_auth_token', admin.token)
         res.status(200).json(admin)
       })
     })
@@ -105,15 +106,16 @@ exports.postLoginAdmin = (req, res, next) => {
 }
 
 exports.postLogoutAdmin = (req, res, next) => {
-  const { username } = sanitize(req.body.admin)
+  const token = req.headers.authorization.replace('Bearer ', '')
+  const decodedAdminToken = jwt.decode(sanitize(token))
 
-  Admin.findOne({ username }, (err, admin) => {
+  Admin.findById({ _id: decodedAdminToken.id }, (err, admin) => {
     if (err) { return res.status(400).send(err) }
     if (!admin) { return res.status(401).json({ status: 401, message: 'Username or password are not valid.' }) }
     admin.token = ''
     admin.save()
-    res.clearCookie('auth_role')
-    res.clearCookie('auth_token')
+    res.clearCookie('dwls_auth_role')
+    res.clearCookie('dwls_auth_token')
     res.status(200).json({ status: 200, message: 'Logout successful' })
   }).catch((err) => {
     const error = new Error(err)

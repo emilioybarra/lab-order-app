@@ -61,7 +61,9 @@
         }
 
         await this.$store.dispatch('auth/login', loginData).then((response) => {
-          if (response.success) {
+          this.$cookies.set('dwls_auth_role', response.admin.role)
+          this.$cookies.set('dwls_auth_token', response.admin.token)
+          if (response.status) {
             this.$router.push({ path: '/admin/order-forms' }, () => {
               this.isLoading = false
             })

@@ -24,8 +24,8 @@ export const actions = {
   async login (context, loginData) {
     return await this.$axios.post('/api/auth/admin/login', { loginData }).then((response) => {
       const admin = response.data
-      this.$axios.setHeader('Authorization', `Bearer ${ admin.token }`)
-      return { success: true }
+      this.$axios.setToken(admin.token, 'Bearer')
+      return { status: true, admin }
     }).catch((error) => {
       return {
         success: false,
