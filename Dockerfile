@@ -11,7 +11,8 @@ COPY package*.json ./
 # copy the app, note .dockerignore
 COPY . /usr/src/app/
 
-RUN npm install
+RUN npm ci --no-optional
+RUN npm run generate
 RUN npm run build
 
 CMD [ "npm", "start" ]
