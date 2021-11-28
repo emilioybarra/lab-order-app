@@ -17,7 +17,7 @@
     &--active  {
       margin: 6px;
       border: 1px solid $primary;
-      outline: $tertiary solid 6px;
+      box-shadow: 0 0 0 6px $tertiary;
       border-radius: 6px;
       padding: $space-5;
       padding-left: $space-1;
