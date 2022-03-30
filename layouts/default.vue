@@ -35,8 +35,8 @@
       </b-navbar-nav>
     </b-navbar>
 
+    <template-title-modal ref="template-title-modal" />
     <pdf-preview-modal v-if="!unauthorizedPage" :key="pdfPreviewKey" />
-    <template-title-modal key="template-title-modal" />
     <confirmation-modal v-if="!unauthorizedPage" key="confirmation-modal" :click-outside="false" />
     <notes-modal v-if="showModalTab && !unauthorizedPage" key="notes-modal" show-tab />
 
@@ -123,6 +123,7 @@
         history.pushState(null, null, document.URL)
       })
       this.showModalTab = /(step-2|step-3)/s.test(this.$route.path)
+      this.$root.$on('showTemplateTitleModal', this.$refs['template-title-modal'].show)
     },
 
     methods: {

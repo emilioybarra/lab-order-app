@@ -1,9 +1,9 @@
 <template>
-  <modal ref="templateTitle" :show-tab="false" full-width height-auto @closeModal="closeTemplateTitleModal">
+  <modal ref="templateTitle" :show-tab="false" full-width height-auto @closeModal="close">
     <h3 class="lof-headline lof-headline--2 my-4 text-center">
       {{ $t('common.labels.templateTitle') }}
     </h3>
-    <form @submit.prevent="saveAsTemplate">
+    <form @submit.prevent="save">
       <input-field
         id="templateTitle"
         v-model="templateTitle"
@@ -15,10 +15,10 @@
         You must enter in a title for you template.
       </b-form-invalid-feedback>
       <b-button-toolbar class="d-flex mb-3 mt-5 justify-content-center">
-        <b-button class="lof-button mr-4 w-25" variant="primary" :disabled="!templateTitle" @click="saveAsTemplate">
+        <b-button class="lof-button mr-4 w-25" variant="primary" :disabled="!templateTitle" @click="save">
           {{ $t('common.buttons.save') }}
         </b-button>
-        <b-button class="lof-button w-25" variant="secondary" @click="closeTemplateTitleModal">
+        <b-button class="lof-button w-25" variant="secondary" @click="close">
           {{ $t('common.buttons.cancel') }}
         </b-button>
       </b-button-toolbar>
@@ -33,43 +33,46 @@
     data () {
       return {
         error: false,
+        namespace: '',
+        template: '',
         templateTitle: ''
       }
     },
 
     computed: {
-      getTemplate () {
-        return this.$store.getters['common/getTemplate']
-      },
       getUserId () {
         return this.$store.getters['auth/getUser']._id
       }
     },
 
-    created () {
-      this.$root.$on('showTemplateTitleModal', () => this.$refs.templateTitle.show())
-    },
-
     methods: {
-      closeTemplateTitleModal () {
-        this.$refs.templateTitle.hide()
-        this.templateTitle = ''
-        this.error = false
+      show (namespace, template) {
+        this.template = template
+        this.namespace = namespace
+        this.$refs.templateTitle.show()
       },
-      saveAsTemplate () {
+      close () {
+        this.error = false
+        this.template = ''
+        this.namespace = ''
+        this.templateTitle = ''
+        this.$refs.templateTitle.hide()
+      },
+      save () {
         this.error = false
         const payload = {
           templateTitle: this.templateTitle,
           userId: this.getUserId
         }
 
-        this.$store.dispatch(`${ this.getTemplate }/saveTemplateData`, payload).then((response) => {
+        this.$store.dispatch(`${ this.namespace }/save${ this.template }Data`, payload).then((response) => {
           if (!response) {
             this.error = true
           }
           if (response) {
-            this.$refs.templateTitle.hide()
+            this.namespace = ''
             this.templateTitle = ''
+            this.$refs.templateTitle.hide()
           }
         })
       }

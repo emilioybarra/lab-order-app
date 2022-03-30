@@ -29,8 +29,14 @@
 </template>
 
 <script>
+  import { BIconBoxArrowUpRight } from 'bootstrap-vue'
+
   export default {
     name: 'list-item',
+
+    components: {
+      BIconBoxArrowUpRight
+    },
 
     props: {
       name: {

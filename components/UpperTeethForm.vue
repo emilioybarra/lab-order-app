@@ -7,9 +7,16 @@
       </checkbox>
       <p v-if="$validateSelectedLanguage('jp')" class="text-danger">{{ $t('section.u_1.euroTypeInfo') }}</p>
     </div>
-    <link-button to="/templates?template=upper-teeth" class="mx-auto mb-2">
-      {{ $t('common.buttons.selectFromTemplate') }}
-    </link-button>
+
+    <b-button-toolbar class="d-flex justify-content-center">
+      <b-button class="lof-button mx-2 mb-2" variant="primary" @click="openTemplateTitleModal">
+        {{ $t('common.buttons.saveAsTemplate') }}
+      </b-button>
+      <link-button to="/templates?template=upper-teeth" class="mx-2 mb-2">
+        {{ $t('common.buttons.selectFromTemplate') }}
+      </link-button>
+    </b-button-toolbar>
+
     <div class="row">
       <div class="col-12">
         <h3 v-if="$validateSelectedLanguage('en', 'de', 'fr')" class="lof-headline lof-headline--2 my-4">
@@ -209,6 +216,9 @@
       showReduceOverjetFields () {
         this.setReduceOverjet(this.reduceOverjet)
         this.reduceOverjetFieldsDropdown ? this.reduceOverjetFields = false : this.reduceOverjetFieldsDropdown = true
+      },
+      openTemplateTitleModal () {
+        this.$root.$emit('showTemplateTitleModal', 'upper-teeth', 'Teeth')
       }
     }
   }

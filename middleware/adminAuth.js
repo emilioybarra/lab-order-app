@@ -3,8 +3,6 @@ import cookies from 'vue-cookies'
 export default async ({ $axios, redirect, route, store }) => {
   const adminToken = cookies.get('dwls_auth_token')
   const isAdmin = cookies.get('dwls_auth_role') === 'admin'
-  console.log(adminToken)
-  console.log(isAdmin)
   let prepareUser = {
     loggedIn: false,
     isAdmin: false,

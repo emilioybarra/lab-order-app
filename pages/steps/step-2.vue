@@ -34,17 +34,10 @@
           <lower-teeth-form ref="lowerTeethForm" />
         </div>
       </base-card>
-      <div class="row">
-        <div class="col">
-          <div class="d-flex flex-column align-items-center my-5">
-            <b-button class="lof-button mb-4" variant="primary" @click="openTemplateTitleModal">
-              {{ $t('common.buttons.saveAsTemplate') }}
-            </b-button>
-            <link-button to="step-3" arrow-icon>
-              {{ $t('common.buttons.next') }}
-            </link-button>
-          </div>
-        </div>
+      <div class="d-flex flex-column align-items-center my-5">
+        <link-button to="step-3" arrow-icon>
+          {{ $t('common.buttons.next') }}
+        </link-button>
       </div>
     </template>
   </page>
@@ -61,10 +54,6 @@
       }
     },
 
-    created () {
-      this.$store.commit('common/setTemplate', 'upper-teeth')
-    },
-
     async beforeRouteLeave (to, from, next) {
       this.isLoading = true
 
@@ -75,12 +64,6 @@
       this.$nextTick(() => {
         next()
       })
-    },
-
-    methods: {
-      openTemplateTitleModal () {
-        this.$root.$emit('showTemplateTitleModal')
-      }
     }
   }
 </script>

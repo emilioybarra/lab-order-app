@@ -52,6 +52,24 @@ const userSchema = new Schema(
           required: false
         }
       }
+    ],
+    upperArchwiresTemplates: [
+      {
+        upperArchwiresTemplate: {
+          type: Schema.Types.ObjectId,
+          ref: 'Upper Archwires Template',
+          required: false
+        }
+      }
+    ],
+    lowerArchwiresTemplates: [
+      {
+        lowerArchwiresTemplate: {
+          type: Schema.Types.ObjectId,
+          ref: 'Lower Archwires Template',
+          required: false
+        }
+      }
     ]
   },
   {
@@ -93,6 +111,20 @@ userSchema.methods.addToLowerTeethTemplates = function (lowerTeethTemplateId) {
   const lowerTeethTemplates = [ ...this.lowerTeethTemplates ]
   lowerTeethTemplates.push({ lowerTeethTemplate: lowerTeethTemplateId })
   this.lowerTeethTemplates = lowerTeethTemplates
+  return this.save()
+}
+
+userSchema.methods.addToUpperArchwiresTemplates = function (upperArchwiresTemplateId) {
+  const upperArchwiresTemplates = [ ...this.upperArchwiresTemplates ]
+  upperArchwiresTemplates.push({ upperArchwiresTemplate: upperArchwiresTemplateId })
+  this.upperArchwiresTemplates = upperArchwiresTemplates
+  return this.save()
+}
+
+userSchema.methods.addToLowerArchwiresTemplates = function (lowerArchwiresTemplateId) {
+  const lowerArchwiresTemplates = [ ...this.lowerArchwiresTemplates ]
+  lowerArchwiresTemplates.push({ lowerArchwiresTemplate: lowerArchwiresTemplateId })
+  this.lowerArchwiresTemplates = lowerArchwiresTemplates
   return this.save()
 }
 

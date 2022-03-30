@@ -26,17 +26,16 @@ app.use('/order-forms', errorController.verifyJWT, orderFormsRoutes)
 app.use(errorController.get404)
 app.use(errorController.get500)
 
-mongoose.connect(MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
+mongoose.connect(MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, (error) => {
+  if (error) { console.error(error) }
+  if (!error) {
     console.log('Database is connected')
 
     app.listen(PORT, () => {
       console.log(`App is running on ${ PORT }`)
     })
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+  }
+})
 
 module.exports = {
   path: '/api',

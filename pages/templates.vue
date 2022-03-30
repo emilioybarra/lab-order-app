@@ -54,7 +54,8 @@
         loading: true,
         currentPage: 1,
         templates: [],
-        template: this.$route.query.template,
+        template: '',
+        templatePage: '',
         totalTemplates: 0
       }
     },
@@ -62,6 +63,9 @@
     computed: {
       getUserId () {
         return this.$store.getters['auth/getUser']._id
+      },
+      capitalizeTemplatePage () {
+        return this.templatePage[0].toUpperCase() + this.templatePage.slice(1)
       }
     },
 
@@ -70,6 +74,11 @@
         this.loading = true
         this.getAllTemplates(this.currentPage)
       }
+    },
+
+    created () {
+      this.template = this.$route.query.template.replace('archwires', 'teeth')
+      this.templatePage = this.$route.query.template.replace(/(upper-|lower-)/, '')
     },
 
     mounted () {
@@ -83,10 +92,11 @@
       getAllTemplates (currentPage) {
         const payload = {
           currentPage,
+          templatePath: this.$route.query.template,
           userId: this.getUserId
         }
 
-        this.$store.dispatch(`${ this.$route.query.template }/fetchTemplates`, payload).then((response) => {
+        this.$store.dispatch(`${ this.template }/fetchTemplates`, payload).then((response) => {
           if (!response) { this.$router.push('/unauthorized') }
           if (response) {
             this.templates = response.templates
@@ -102,7 +112,7 @@
           userId: this.getUserId
         }
 
-        this.$store.dispatch(`${ this.$route.query.template }/fetchTemplateById`, payload).then((response) => {
+        this.$store.dispatch(`${ this.template }/fetch${ this.capitalizeTemplatePage }ById`, payload).then((response) => {
           if (!response) { this.$router.push('/unauthorized') }
           if (response) {
             this.$router.push(navigationBackController(this.$route))
@@ -113,10 +123,11 @@
         this.loading = true
         const payload = {
           templateId,
+          templatePath: this.$route.query.template,
           userId: this.getUserId
         }
 
-        this.$store.dispatch(`${ this.$route.query.template }/deleteTemplateById`, payload).then((response) => {
+        this.$store.dispatch(`${ this.template }/deleteTemplateById`, payload).then((response) => {
           if (!response) { this.$router.push('/unauthorized') }
           if (response) {
             this.getAllTemplates(this.currentPage)

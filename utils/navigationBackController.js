@@ -13,6 +13,8 @@ export const navigationBackController = (route) => {
   if (route.path === '/templates') {
     if (route.query.template === 'invoice-address') { return '/steps/step-1' }
     if (route.query.template === 'upper-teeth') { return '/steps/step-2' }
-    if (route.query.template === 'lower-teeth') { return '/steps/step-3' }
+    if (route.query.template === 'lower-teeth') { return '/steps/step-2' }
+    if (route.query.template === 'upper-archwires') { return '/steps/step-3' }
+    if (route.query.template === 'lower-archwires') { return '/steps/step-3' }
   }
 }

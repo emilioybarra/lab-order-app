@@ -75,6 +75,14 @@
         </b-tr>
       </b-tbody>
     </b-table-simple>
+    <b-button-toolbar class="d-flex justify-content-center mt-4">
+      <b-button class="lof-button mx-2 mb-2" variant="primary" @click="openTemplateTitleModal(`${teeth}`)">
+        {{ $t('common.buttons.saveAsTemplate') }}
+      </b-button>
+      <link-button :to="`/templates?template=${ teeth }-archwires`" class="mx-2 mb-2">
+        {{ $t('common.buttons.selectFromTemplate') }}
+      </link-button>
+    </b-button-toolbar>
   </base-card>
 </template>
 
@@ -315,15 +323,14 @@
     },
 
     methods: {
+      openTemplateTitleModal (template) {
+        this.$root.$emit('showTemplateTitleModal', `${ template }-teeth`, 'Archwires')
+      },
       toggleArchwireXSize (column, index) {
         const cell = this.archwireSizes[index][column]
         if (cell.check < 2) {
           cell.check++
-          if (cell.check === 1) {
-            cell.size = 'X'
-          } else {
-            cell.size = 'X X'
-          }
+          cell.check === 1 ? cell.size = 'X' : cell.size = 'X X'
         } else {
           cell.check = 0
           cell.size = ''
@@ -345,7 +352,7 @@
       },
       setArchwireSizes () {
         const archwireSizes = {}
-        this.archwireSizes.map((size) => {
+        this.archwireSizes.forEach((size) => {
           archwireSizes[size.key] = {
             key: size.key,
             straight: {

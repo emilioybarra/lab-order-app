@@ -38,9 +38,6 @@
       </base-card>
 
       <div class="d-flex flex-column align-items-center my-5">
-        <b-button class="lof-button mb-4" variant="primary" @click="openTemplateTitleModal">
-          {{ $t('common.buttons.saveAsTemplate') }}
-        </b-button>
         <link-button arrow-icon @click="validateRequiredFields">
           {{ $t('common.buttons.next') }}
         </link-button>
@@ -55,14 +52,7 @@
     name: 'step-3',
     middleware: 'isTermsAndConditionsAccepted',
 
-    created () {
-      this.$store.commit('common/setTemplate', 'lower-teeth')
-    },
-
     methods: {
-      openTemplateTitleModal () {
-        this.$root.$emit('showTemplateTitleModal')
-      },
       validateRequiredFields () {
         if (
           this.$store.getters['notes/getNonTransparent']() ||

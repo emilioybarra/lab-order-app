@@ -19,7 +19,7 @@ export const prepareArchwires = (archwireSizes = {}) => {
   ]
 
   if (!Object.keys(archwireSizes).length) {
-    sizesArray.map((size) => {
+    sizesArray.forEach((size) => {
       sizesObject[size] = {
         straight: {
           size: '',

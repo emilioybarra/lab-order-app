@@ -15,6 +15,26 @@ const localhostEnv = process.env.VUE_APP_LOCALHOST_URL
 const localhostGateway = localhostEnv || 'http://localhost:3000'
 const devURL = isDev ? localhostGateway : 'https://dwls.dev.pr1.run/'
 
+const modules = [
+  // https://go.nuxtjs.dev/bootstrap
+  // 'bootstrap-vue/nuxt',
+  // https://go.nuxtjs.dev/axios
+  '@nuxtjs/axios',
+  // https://go.nuxtjs.dev/pwa
+  '@nuxtjs/pwa',
+  // https://github.com/nuxt-community/svg-module
+  '@nuxtjs/svg',
+  // https://i18n.nuxtjs.org
+  'nuxt-i18n',
+  '@nuxtjs/proxy',
+  '@nuxtjs/style-resources',
+  '~/modules/api'
+]
+
+if (isDev) {
+  modules.push('bootstrap-vue/nuxt')
+}
+
 export default {
   modern: isDev ? false : 'server',
 
@@ -110,21 +130,7 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    // https://go.nuxtjs.dev/bootstrap
-    // 'bootstrap-vue/nuxt',
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
-    // https://github.com/nuxt-community/svg-module
-    '@nuxtjs/svg',
-    // https://i18n.nuxtjs.org
-    'nuxt-i18n',
-    '@nuxtjs/proxy',
-    '@nuxtjs/style-resources',
-    '~/modules/api'
-  ],
+  modules,
 
   axios: {
     baseURL: devURL, // Used as fallback if no runtime config is provided
@@ -146,9 +152,9 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    plugins: [ new BootstrapVueLoader() ],
+    plugins: !isDev ? [ new BootstrapVueLoader() ] : [],
     babel: {
-      minified: true
+      minified: !isDev
     },
     devMiddleware: {
       headers: {

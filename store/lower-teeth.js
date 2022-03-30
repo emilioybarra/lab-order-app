@@ -212,8 +212,8 @@ export const mutations = {
 
 export const actions = {
   async fetchTemplates ({ commit }, payload) {
-    const { currentPage, userId } = payload
-    return await this.$axios.$get('/api/templates/lower-teeth', {
+    const { currentPage, templatePath, userId } = payload
+    return await this.$axios.$get(`/api/templates/${ templatePath }`, {
       params: {
         page: currentPage,
         userId
@@ -231,7 +231,7 @@ export const actions = {
       commit('common/setNotifications', notification, { root: true })
     })
   },
-  async fetchTemplateById ({ commit }, payload) {
+  async fetchTeethById ({ commit }, payload) {
     const { templateId, userId } = payload
     const { lowerTeethTemplate } = await this.$axios.$get(`/api/templates/lower-teeth/${ templateId }`, {
       params: { userId }
@@ -262,7 +262,9 @@ export const actions = {
         notesStrippingMm,
         notesStrippingWhere,
         notesBoltonDiscrepancy,
-        notesBox
+        notesBox,
+        teethBoxes,
+        highlightedTeeth
       }
     } = lowerTeethTemplate
 
@@ -279,9 +281,33 @@ export const actions = {
     commit('setNotesStrippingWhere', notesStrippingWhere)
     commit('setNotesBoltonDiscrepancy', notesBoltonDiscrepancy)
     commit('setNotesBox', notesBox)
+    commit('setTeethBoxes', teethBoxes)
+    commit('setHighlightedTeeth', highlightedTeeth)
     return true
   },
-  saveTemplateData ({ getters, commit }, payload) {
+  async fetchArchwiresById ({ commit }, payload) {
+    const { templateId, userId } = payload
+    const data = await this.$axios.$get(`/api/templates/lower-archwires/${ templateId }`, {
+      params: { userId }
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
+
+      const notification = {
+        message: 'error',
+        variant: 'danger'
+      }
+      commit('common/setNotifications', notification, { root: true })
+    })
+
+    const { lowerArchwiresTemplate: { archwireSizes } } = data
+
+    commit('setArchwireSizes', archwireSizes)
+    return true
+  },
+  saveTeethData ({ getters, commit }, payload) {
     const { templateTitle, userId } = payload
     const {
       getImageData: imageData,
@@ -296,7 +322,9 @@ export const actions = {
       getNotesStrippingMm: notesStrippingMm,
       getNotesStrippingWhere: notesStrippingWhere,
       getNotesBoltonDiscrepancy: notesBoltonDiscrepancy,
-      getNotesBox: notesBox
+      getNotesBox: notesBox,
+      getTeethBoxes,
+      getHighlightedTeeth
     } = getters
 
     const templateData = {
@@ -314,13 +342,51 @@ export const actions = {
         notesStrippingMm,
         notesStrippingWhere,
         notesBoltonDiscrepancy,
-        notesBox
+        notesBox,
+        teethBoxes: getTeethBoxes(),
+        highlightedTeeth: getHighlightedTeeth()
       }
     }
 
-    const prepareBody = { userId, templateData }
+    const body = { userId, templateData }
 
-    return this.$axios.$post('/api/templates/lower-teeth', prepareBody)
+    return this.$axios.$post('/api/templates/lower-teeth', body)
+      .then((response) => {
+        if (response.status === 201) {
+          const notification = {
+            message: 'savedTemplate',
+            variant: 'success'
+          }
+          commit('common/setNotifications', notification, { root: true })
+          return true
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+          return false
+        }
+
+        const notification = {
+          message: 'error',
+          variant: 'danger'
+        }
+        commit('common/setNotifications', notification, { root: true })
+      })
+  },
+  saveArchwiresData ({ getters, commit }, payload) {
+    const { templateTitle, userId } = payload
+    const { getArchwireSizes } = getters
+
+    const body = {
+      userId,
+      title: templateTitle,
+      lowerArchwiresTemplate: {
+        archwireSizes: getArchwireSizes()
+      }
+    }
+
+    return this.$axios.$post('/api/templates/lower-archwires', body)
       .then((response) => {
         if (response.status === 201) {
           const notification = {
@@ -345,8 +411,8 @@ export const actions = {
       })
   },
   async deleteTemplateById ({ commit }, payload) {
-    const { templateId, userId } = payload
-    return await this.$axios.$delete(`/api/templates/lower-teeth/${ templateId }`, {
+    const { templateId, templatePath, userId } = payload
+    return await this.$axios.$delete(`/api/templates/${ templatePath }/${ templateId }`, {
       params: { userId }
     })
       .then((response) => {

@@ -4,7 +4,7 @@
       <div class="lof-teeth-canvas__info-legend__title" v-html="$t('section.m_1.keyInfo')" />
       <div v-if="!orientation" class="lof-teeth-canvas__info-legend__items">
         <div v-for="(item, index) in $t('section.m_1.keyInfoLegend')" :key="index" class="lof-teeth-canvas__info-legend__item" v-html="item" />
-        <div v-for="(item, index) in 4" :key="`placeholder-${ index }`" class="lof-teeth-canvas__info-legend__item" />
+        <div v-for="num in 4" :key="`placeholder-${ num }`" class="lof-teeth-canvas__info-legend__item" />
       </div>
     </div>
     <div class="d-flex w-100 justify-content-center" :class="{ 'justify-content-between': orientation }">
@@ -481,9 +481,6 @@
             <div class="lof-teeth-canvas__button-color" :style="`background-color: ${ highlightColor };`" />
           </b-button>
           <b-button-group>
-            <b-button id="save" class="lof-teeth-canvas__button" variant="outline-primary" @click="saveCanvas">
-              <svg-icon icon="save" class="lof-teeth-canvas__button-icon" />
-            </b-button>
             <b-button id="clear" class="lof-teeth-canvas__button" variant="outline-secondary" @click="clearCanvas">
               <svg-icon icon="trash" class="lof-teeth-canvas__button-icon" />
             </b-button>
@@ -540,9 +537,6 @@
     },
 
     computed: {
-      getImageData () {
-        return this.$store.getters[`${ this.teethImage }-teeth/getImageData`]
-      },
       getCanvasMode () {
         return this.$store.getters[`${ this.teethImage }-teeth/getCanvasMode`]
       },
@@ -662,10 +656,10 @@
           this.boxes[`${ this.teethImage }_${ i }`] = false
         }
 
-        this.teeth.map((tooth, index) => {
-          tooth[`tooth_${ index }`].color = ''
-          tooth[`tooth_${ index }`].highlighted = false
-        })
+        for (let i = 0; i < this.teeth.length; ++i) {
+          this.teeth[i][`tooth_${ i }`].color = ''
+          this.teeth[i][`tooth_${ i }`].highlighted = false
+        }
 
         this.setImageData('')
         this.setTeethBoxes(clone(this.boxes))

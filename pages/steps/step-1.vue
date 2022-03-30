@@ -165,40 +165,42 @@
             {{ $t('section.h_3.stateOrthodontistNameOnInvoice') }}
           </checkbox>
           <p v-if="$validateSelectedLanguage('jp')" class="lof-content lof-content--2 mb-0">{{ $t('section.h_3.patientConsent') }}</p>
-          <checkbox
-            v-if="$validateSelectedLanguage('en', 'de', 'fr', 'it', 'sp')"
-            v-model="isShippingAddress"
-            :is-checked="isShippingAddress"
-            @input="differentInvoiceAddress"
-          >
-            {{ $t('section.h_3.shippingAddress') }}
-          </checkbox>
+          <!--                <checkbox-->
+          <!--                  v-if="$validateSelectedLanguage('en', 'de', 'fr', 'it', 'sp')"-->
+          <!--                  v-model="isShippingAddress"-->
+          <!--                  :is-checked="isShippingAddress"-->
+          <!--                  @input="differentInvoiceAddress"-->
+          <!--                >-->
+          <!--                  {{ $t('section.h_3.shippingAddress') }}-->
+          <!--                </checkbox>-->
         </div>
       </div>
-      <transition v-if="$validateSelectedLanguage('en', 'de', 'fr', 'it', 'sp')" name="expand" @after-enter="invoiceAddress = true">
-        <div v-if="invoiceAddressDropdown" class="input-field-expand-box">
-          <transition name="fade" @after-leave="invoiceAddressDropdown = false">
-            <div v-if="invoiceAddress" class="row my-4">
-              <input-field
-                id="shippingAddress"
-                v-model="shippingAddress"
-                class="col-12 col-sm-6"
-                :label="$t('section.h_2.address')"
-                name="shippingAddress"
-                @input="setShippingAddress"
-              />
-              <input-field
-                id="shippingPostalcodeTown"
-                v-model="shippingPostalcodeTown"
-                class="col-12 col-sm-6"
-                :label="$t('section.h_2.postalcodeTownShort')"
-                name="shippingPostalcodeTown"
-                @input="setShippingPostalcodeTown"
-              />
-            </div>
-          </transition>
-        </div>
-      </transition>
+
+      <!--      <transition v-if="$validateSelectedLanguage('en', 'de', 'fr', 'it', 'sp')" name="expand" @after-enter="invoiceAddress = true">-->
+      <!--        <div v-if="invoiceAddressDropdown" class="input-field-expand-box">-->
+      <!--          <transition name="fade" @after-leave="invoiceAddressDropdown = false">-->
+      <!--            <div v-if="invoiceAddress" class="row my-4">-->
+      <!--              <input-field-->
+      <!--                id="shippingAddress"-->
+      <!--                v-model="shippingAddress"-->
+      <!--                class="col-12 col-sm-6"-->
+      <!--                :label="$t('section.h_2.address')"-->
+      <!--                name="shippingAddress"-->
+      <!--                @input="setShippingAddress"-->
+      <!--              />-->
+      <!--              <input-field-->
+      <!--                id="shippingPostalcodeTown"-->
+      <!--                v-model="shippingPostalcodeTown"-->
+      <!--                class="col-12 col-sm-6"-->
+      <!--                :label="$t('section.h_2.postalcodeTownShort')"-->
+      <!--                name="shippingPostalcodeTown"-->
+      <!--                @input="setShippingPostalcodeTown"-->
+      <!--              />-->
+      <!--            </div>-->
+      <!--          </transition>-->
+      <!--        </div>-->
+      <!--      </transition>-->
+
       <div class="d-flex flex-column align-items-center my-5">
         <b-button class="lof-button mb-4" variant="primary" @click="openTemplateTitleModal">
           {{ $t('common.buttons.saveAsTemplate') }}
@@ -292,8 +294,6 @@
 
       this.invoiceAddress = this.getIsShippingAddress
       this.invoiceAddressDropdown = this.getIsShippingAddress
-
-      this.$store.commit('common/setTemplate', 'invoice-address')
     },
 
     beforeRouteLeave (to, from, next) {
@@ -335,7 +335,7 @@
         'setShippingPostalcodeTown'
       ]),
       openTemplateTitleModal () {
-        this.$root.$emit('showTemplateTitleModal')
+        this.$root.$emit('showTemplateTitleModal', 'invoice-address', 'Template')
       },
       differentInvoiceAddress () {
         this.setIsShippingAddress(this.isShippingAddress)

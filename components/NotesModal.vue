@@ -286,7 +286,6 @@
       ]),
       show (showRequiredField) {
         this.requiredField = showRequiredField
-        console.log(this.requiredField)
         this.showModal = true
       },
       hide () {

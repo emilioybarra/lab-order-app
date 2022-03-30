@@ -1,16 +1,20 @@
 <template>
-  <ul v-if="showLanguageMenu" class="lof-language-menu">
-    <li
-      v-for="lang in $i18n.locales"
-      :key="lang.code"
+  <div v-if="showLanguageMenu" class="lof-language-menu">
+    <ul
       v-click-outside="{ handler: 'clickOutside', exclude: [ '$parent.$refs.language' ] }"
-      class="lof-language-menu__item"
-      @click="onLanguageChange(lang.code)"
+      class="lof-language-menu__items"
     >
-      <svg-icon :icon="lang.code" class="lof-language-menu__icon" />
-      {{ lang.name }}
-    </li>
-  </ul>
+      <li
+        v-for="lang in $i18n.locales"
+        :key="lang.code"
+        class="lof-language-menu__item"
+        @click="onLanguageChange(lang.code)"
+      >
+        <svg-icon :icon="lang.code" class="lof-language-menu__icon" />
+        {{ lang.name }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
