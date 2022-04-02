@@ -1,5 +1,5 @@
 <template>
-  <img :src="require(`~/assets/${ directory }/${ icon }.svg`)" :alt="icon">
+  <img :src="require(`~/assets/images/icons/${ icon }.svg`)" :alt="icon">
 </template>
 
 <script>
@@ -10,10 +10,6 @@
       icon: {
         type: String,
         required: true
-      },
-      directory: {
-        type: String,
-        default: 'images/icons'
       }
     }
   }

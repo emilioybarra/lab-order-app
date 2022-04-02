@@ -37,14 +37,12 @@ export const actions = {
 
       if (prepareOrderForm.upperTeeth.imageData.edited) {
         const base64Data = Buffer.from(response.upperTeeth.imageData.data, 'binary').toString('base64')
-        const dataURL = `data:${ response.upperTeeth.imageData.contentType };base64,${ base64Data }`
-        prepareOrderForm.upperTeeth.imageData.dataURL = dataURL
+        prepareOrderForm.upperTeeth.imageData.dataURL = `data:${ response.upperTeeth.imageData.contentType };base64,${ base64Data }`
       }
 
       if (prepareOrderForm.lowerTeeth.imageData.edited) {
         const base64Data = Buffer.from(response.lowerTeeth.imageData.data, 'binary').toString('base64')
-        const dataURL = `data:${ response.lowerTeeth.imageData.contentType };base64,${ base64Data }`
-        prepareOrderForm.lowerTeeth.imageData.dataURL = dataURL
+        prepareOrderForm.lowerTeeth.imageData.dataURL = `data:${ response.lowerTeeth.imageData.contentType };base64,${ base64Data }`
       }
 
       return prepareOrderForm
@@ -251,11 +249,12 @@ export const actions = {
           message: 'error',
           variant: 'danger'
         }
-        commit('common/setNotifications', notification, { root: true })
+        commit('common/resetState', '', { root: true })
         commit('invoice-address/resetInvoiceAddressState', null, { root: true })
         commit('upper-teeth/resetUpperTeethState', null, { root: true })
         commit('notes/resetNotesState', null, { root: true })
         commit('lower-teeth/resetLowerTeethState', null, { root: true })
+        commit('common/setNotifications', notification, { root: true })
         return false
       })
   }

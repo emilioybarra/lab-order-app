@@ -28,7 +28,7 @@
           <svg-icon class="lof-navbar__icon" :icon="language" />
           {{ $t('common.buttons.language') }}
         </b-nav-text>
-        <b-nav-text v-if="!unauthorizedPage" class="lof-navbar__exit" @click="showNotification = !showNotification">
+        <b-nav-text v-if="!unauthorizedPage" class="lof-navbar__exit" @click="resetForm">
           <svg-icon class="lof-navbar__icon" icon="logout" />
           {{ $t('common.buttons.exit') }}
         </b-nav-text>
@@ -127,6 +127,16 @@
     },
 
     methods: {
+      resetForm () {
+        this.slide = 'slide-right'
+        this.$store.commit('common/resetState')
+        this.$store.commit('invoice-address/resetInvoiceAddressState')
+        this.$store.commit('upper-teeth/resetUpperTeethState')
+        this.$store.commit('lower-teeth/resetLowerTeethState')
+        this.$store.commit('notes/resetNotesState')
+        this.$cookies.remove('lof__termsAndConditions')
+        this.$router.push({ path: '/' })
+      },
       onLanguageChange (showLanguageMenu) {
         this.showLanguageMenu = showLanguageMenu
       },

@@ -187,20 +187,6 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchTemplates ({ commit }, payload) {
-    const { currentPage, userId } = payload
-    return await this.$axios.$get('/api/templates/invoice-address', {
-      params: {
-        page: currentPage,
-        userId
-      }
-    }).catch((error) => {
-      if (error.response.status === 401) {
-        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
-        return false
-      }
-    })
-  },
   async fetchTemplateById ({ commit }, payload) {
     const { templateId, userId } = payload
     const { invoiceAddressTemplate } = await this.$axios.$get(`/api/templates/invoice-address/${ templateId }`, {
@@ -294,44 +280,12 @@ export const actions = {
         shippingPostalcodeTown
       }
     }
-    const prepareBody = {
-      userId,
-      templateData
-    }
 
-    return this.$axios.$post('/api/templates/invoice-address', prepareBody)
+    return this.$axios.$post('/api/templates/invoice-address', { userId, templateData })
       .then((response) => {
         if (response.status === 201) {
           const notification = {
             message: 'savedTemplate',
-            variant: 'success'
-          }
-          commit('common/setNotifications', notification, { root: true })
-          return true
-        }
-      })
-      .catch((error) => {
-        if (error.response.status === 401) {
-          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
-          return false
-        }
-
-        const notification = {
-          message: 'error',
-          variant: 'danger'
-        }
-        commit('common/setNotifications', notification, { root: true })
-      })
-  },
-  async deleteTemplateById ({ commit }, payload) {
-    const { templateId, userId } = payload
-    return await this.$axios.$delete(`/api/templates/invoice-address/${ templateId }`, {
-      params: { userId }
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          const notification = {
-            message: 'deletedTemplate',
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })

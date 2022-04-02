@@ -207,26 +207,6 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchTemplates ({ commit }, payload) {
-    const { currentPage, templatePath, userId } = payload
-    return await this.$axios.$get(`/api/templates/${ templatePath }`, {
-      params: {
-        page: currentPage,
-        userId
-      }
-    }).catch((error) => {
-      if (error.response.status === 401) {
-        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
-        return false
-      }
-
-      const notification = {
-        message: 'error',
-        variant: 'danger'
-      }
-      commit('common/setNotifications', notification, { root: true })
-    })
-  },
   async fetchTeethById ({ commit }, payload) {
     const { templateId, userId } = payload
     const { upperTeethTemplate } = await this.$axios.$get(`/api/templates/upper-teeth/${ templateId }`, {
@@ -298,9 +278,7 @@ export const actions = {
       commit('common/setNotifications', notification, { root: true })
     })
 
-    const { upperArchwiresTemplate: { archwireSizes } } = data
-
-    commit('setArchwireSizes', archwireSizes)
+    commit('setArchwireSizes', data.upperArchwiresTemplate.archwireSizes)
     return true
   },
   saveTeethData ({ getters, commit }, payload) {
@@ -344,9 +322,7 @@ export const actions = {
       }
     }
 
-    const prepareBody = { userId, templateData }
-
-    return this.$axios.$post('/api/templates/upper-teeth', prepareBody)
+    return this.$axios.$post('/api/templates/upper-teeth', { userId, templateData })
       .then((response) => {
         if (response.status === 201) {
           const notification = {
@@ -387,34 +363,6 @@ export const actions = {
         if (response.status === 201) {
           const notification = {
             message: 'savedTemplate',
-            variant: 'success'
-          }
-          commit('common/setNotifications', notification, { root: true })
-          return true
-        }
-      })
-      .catch((error) => {
-        if (error.response.status === 401) {
-          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
-          return false
-        }
-
-        const notification = {
-          message: 'error',
-          variant: 'danger'
-        }
-        commit('common/setNotifications', notification, { root: true })
-      })
-  },
-  async deleteTemplateById ({ commit }, payload) {
-    const { templateId, templatePath, userId } = payload
-    return await this.$axios.$delete(`/api/templates/${ templatePath }/${ templateId }`, {
-      params: { userId }
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          const notification = {
-            message: 'deletedTemplate',
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })

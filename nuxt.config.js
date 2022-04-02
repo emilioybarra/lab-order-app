@@ -22,8 +22,6 @@ const modules = [
   '@nuxtjs/axios',
   // https://go.nuxtjs.dev/pwa
   '@nuxtjs/pwa',
-  // https://github.com/nuxt-community/svg-module
-  '@nuxtjs/svg',
   // https://i18n.nuxtjs.org
   'nuxt-i18n',
   '@nuxtjs/proxy',
@@ -126,7 +124,9 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://github.com/nuxt-community/moment-module
-    '@nuxtjs/moment'
+    '@nuxtjs/moment',
+    // https://github.com/nuxt-community/svg-module
+    '@nuxtjs/svg'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)

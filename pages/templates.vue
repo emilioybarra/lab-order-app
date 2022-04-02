@@ -65,7 +65,7 @@
         return this.$store.getters['auth/getUser']._id
       },
       capitalizeTemplatePage () {
-        return this.templatePage[0].toUpperCase() + this.templatePage.slice(1)
+        return this.templatePage ? this.templatePage[0].toUpperCase() + this.templatePage.slice(1) : ''
       }
     },
 
@@ -77,8 +77,10 @@
     },
 
     created () {
+      if (this.$route.query.template !== 'invoice-address') {
+        this.templatePage = this.$route.query.template.replace(/(upper-|lower-)/, '')
+      }
       this.template = this.$route.query.template.replace('archwires', 'teeth')
-      this.templatePage = this.$route.query.template.replace(/(upper-|lower-)/, '')
     },
 
     mounted () {
@@ -96,7 +98,7 @@
           userId: this.getUserId
         }
 
-        this.$store.dispatch(`${ this.template }/fetchTemplates`, payload).then((response) => {
+        this.$store.dispatch('common/fetchTemplates', payload).then((response) => {
           if (!response) { this.$router.push('/unauthorized') }
           if (response) {
             this.templates = response.templates
@@ -112,7 +114,11 @@
           userId: this.getUserId
         }
 
-        this.$store.dispatch(`${ this.template }/fetch${ this.capitalizeTemplatePage }ById`, payload).then((response) => {
+        const storeDispatchPath = this.templatePage
+          ? `${ this.template }/fetch${ this.capitalizeTemplatePage }ById`
+          : `${ this.template }/fetchTemplateById`
+
+        this.$store.dispatch(storeDispatchPath, payload).then((response) => {
           if (!response) { this.$router.push('/unauthorized') }
           if (response) {
             this.$router.push(navigationBackController(this.$route))
@@ -127,7 +133,7 @@
           userId: this.getUserId
         }
 
-        this.$store.dispatch(`${ this.template }/deleteTemplateById`, payload).then((response) => {
+        this.$store.dispatch('common/deleteTemplateById', payload).then((response) => {
           if (!response) { this.$router.push('/unauthorized') }
           if (response) {
             this.getAllTemplates(this.currentPage)

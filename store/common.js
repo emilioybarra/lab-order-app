@@ -1,8 +1,6 @@
 import cookies from 'vue-cookies'
 
 export const state = () => ({
-  isLoading: false,
-  template: '',
   acceptTermsAndConditions: false,
   pdfSrcPage1: '',
   pdfSrcPage2: '',
@@ -10,9 +8,6 @@ export const state = () => ({
 })
 
 export const getters = {
-  getTemplate (state) {
-    return state.template
-  },
   getTermsAndConditionsAcceptance: () => () => {
     return cookies.isKey('lof__termsAndConditions') ? cookies.get('lof__termsAndConditions').acceptTermsAndConditions : false
   },
@@ -28,12 +23,6 @@ export const getters = {
 }
 
 export const mutations = {
-  setIsLoading (state, isLoading) {
-    state.isLoading = isLoading
-  },
-  setTemplate (state, template) {
-    state.template = template
-  },
   setTermsAndConditionsAcceptance (state, accept) {
     state.acceptTermsAndConditions = accept
   },
@@ -50,11 +39,59 @@ export const mutations = {
     state.notifications.shift()
   },
   resetState (state) {
-    state.template = ''
-    state.acceptTermsAndConditions = false
     state.pdfSrcPage1 = ''
     state.pdfSrcPage2 = ''
     state.notifications = []
-    localStorage.removeItem('lof__acceptTermsAndConditions')
+  }
+}
+
+export const actions = {
+  async fetchTemplates ({ commit }, payload) {
+    const { currentPage, templatePath, userId } = payload
+    return await this.$axios.$get(`/api/templates/${ templatePath }`, {
+      params: {
+        page: currentPage,
+        userId
+      }
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
+
+      const notification = {
+        message: 'error',
+        variant: 'danger'
+      }
+      commit('common/setNotifications', notification)
+    })
+  },
+  async deleteTemplateById ({ commit }, payload) {
+    const { templateId, templatePath, userId } = payload
+    return await this.$axios.$delete(`/api/templates/${ templatePath }/${ templateId }`, {
+      params: { userId }
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          const notification = {
+            message: 'deletedTemplate',
+            variant: 'success'
+          }
+          commit('common/setNotifications', notification)
+          return true
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+          return false
+        }
+
+        const notification = {
+          message: 'error',
+          variant: 'danger'
+        }
+        commit('common/setNotifications', notification)
+      })
   }
 }

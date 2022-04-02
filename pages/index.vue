@@ -24,7 +24,6 @@
 </template>
 
 <script>
-  import cookies from 'vue-cookies'
   import { termsAndConditionsDate } from '@/utils/termsAndConditionsDate'
 
   export default {
@@ -53,17 +52,17 @@
           date: this.$moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
           acceptTermsAndConditions: true
         }
-        cookies.set('lof__termsAndConditions', termsAndConditions)
+        this.$cookies.set('lof__termsAndConditions', termsAndConditions)
       },
       onAcceptTermsAndConditions () {
-        if (cookies.isKey('lof__termsAndConditions')) {
-          const cookie = cookies.get('lof__termsAndConditions')
+        if (this.$cookies.isKey('lof__termsAndConditions')) {
+          const cookie = this.$cookies.get('lof__termsAndConditions')
           if (this.$moment(termsAndConditionsDate, 'YYYY-MM-DD') > this.$moment(cookie.date, 'YYYY-MM-DD')) {
             this.setTermsAndConditionsCookie()
           }
         }
 
-        if (!cookies.isKey('lof__termsAndConditions')) {
+        if (!this.$cookies.isKey('lof__termsAndConditions')) {
           this.setTermsAndConditionsCookie()
         }
       }
