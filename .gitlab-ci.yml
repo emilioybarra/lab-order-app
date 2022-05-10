@@ -5,7 +5,7 @@ stages:
   - Build and push image
 
 docker build & push:
-  image: docker:latest
+  image: docker:19.03.12
   stage: Build and push image
   services:
     - docker:dind
