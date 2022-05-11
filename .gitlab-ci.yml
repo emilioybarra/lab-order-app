@@ -5,10 +5,18 @@ stages:
   - Build and push image
 
 docker build & push:
-  image: docker:19.03.12
+  image: docker:stable
   stage: Build and push image
   services:
-    - docker:19.03.12-dind
+  - name: docker:dind
+    alias: thedockerhost
+  variables:
+    # Tell docker CLI how to talk to Docker daemon; see
+    # https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-executor
+    DOCKER_HOST: tcp://thedockerhost:2375/
+    # Use the overlayfs driver for improved performance:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
   script:
     - CURRENT_IMAGE_TAG=${CI_COMMIT_TAG:-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA}
     - CURRENT_IMAGE_TAG=$(echo $CURRENT_IMAGE_TAG | sed 's/[^a-zA-Z0-9.-]//g')
