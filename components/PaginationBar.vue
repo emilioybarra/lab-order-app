@@ -1,6 +1,6 @@
 <template>
   <div class="lof-pagination-bar">
-    <div class="lof-pagination-bar__container col-8 col-md-9 col-lg-7 col-xl-6 offset-lg-1">
+    <div class="lof-pagination-bar__container col-8 col-md-9 col-lg-7 col-xl-8 offset-lg-1">
       <div v-if="currentPage !== 1" class="lof-pagination-bar__arrows lof-pagination-bar__arrows--left-arrow" @click="previousPage">
         <svg-icon class="lof-pagination-bar__arrows-icon" icon="right-arrow" />
       </div>
@@ -11,7 +11,7 @@
           :class="{ 'lof-pagination-bar__page--current-page': currentPage === 1 }"
           @click="selectCurrentPage(1)"
         >
-          1
+          <span>1</span>
         </div>
         <div v-if="currentPage > 3">
           ...
@@ -24,7 +24,7 @@
           :class="{ 'lof-pagination-bar__page--current-page': currentPage === page }"
           @click="selectCurrentPage(page)"
         >
-          {{ page }}
+          <span>{{ page }}</span>
         </div>
         <div
           v-for="page in [ currentPage, currentPage + 1, currentPage + 2 ]"
@@ -34,7 +34,7 @@
           :class="{ 'lof-pagination-bar__page--current-page': currentPage === page }"
           @click="selectCurrentPage(page)"
         >
-          {{ page }}
+          <span>{{ page }}</span>
         </div>
         <div
           v-for="page in [ currentPage - 1, currentPage, currentPage + 1 ]"
@@ -44,7 +44,7 @@
           :class="{ 'lof-pagination-bar__page--current-page': currentPage === page }"
           @click="selectCurrentPage(page)"
         >
-          {{ page }}
+          <span>{{ page }}</span>
         </div>
         <div
           v-for="page in [ currentPage - 2, currentPage - 1, currentPage ]"
@@ -54,7 +54,7 @@
           :class="{ 'lof-pagination-bar__page--current-page': currentPage === page }"
           @click="selectCurrentPage(page)"
         >
-          {{ page }}
+          <span>{{ page }}</span>
         </div>
         <div v-if="currentPage < pages - 2">
           ...
@@ -67,7 +67,7 @@
           :class="{ 'lof-pagination-bar__page--current-page': currentPage === page }"
           @click="selectCurrentPage(page)"
         >
-          {{ page }}
+          <span>{{ page }}</span>
         </div>
         <div
           v-if="currentPage !== pages"
@@ -75,7 +75,7 @@
           :class="{ 'lof-pagination-bar__page--current-page': currentPage === pages }"
           @click="selectCurrentPage(pages)"
         >
-          {{ pages }}
+          <span>{{ pages }}</span>
         </div>
       </div>
       <div v-if="pages < 6" class="lof-pagination-bar__pages">
@@ -119,6 +119,9 @@
     },
 
     watch: {
+      page () {
+        this.currentPage = this.page
+      },
       currentPage () {
         this.$emit('selectPage', this.currentPage)
       }

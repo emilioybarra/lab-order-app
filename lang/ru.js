@@ -1,6 +1,11 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Вернуться назад',
+      close: 'Закрыть',
       exit: 'Выход',
       language: 'Язык',
       selectFromTemplate: 'Выбрать по шаблону',
@@ -12,7 +17,18 @@ export default {
       cancel: 'Отменить',
       send: 'Отправить',
       preview: 'Просмотр PDF',
-      download: 'Скачать PDF'
+      download: 'Скачать PDF',
+      generatingPdf: 'Генерирование PDF...',
+      search: 'Поиск',
+      apply: 'Применить',
+      date: 'Дата',
+      dateRange: 'Диапазон дат',
+      fromDate: 'Дата от',
+      toDate: 'Дата до',
+      select: 'Выберите',
+      login: 'Вход',
+      logout: 'Выход',
+      allForms: 'Все формы'
     },
     titles: {
       invoiceAddress: 'Адрес счёта-фактуры',
@@ -20,13 +36,17 @@ export default {
       lowerTeeth: 'Нижние зубы',
       sentForms: 'Отправленные формы',
       templates: 'Шаблоны',
-      sendForm: 'Отправить форму'
+      sendForm: 'Отправить форму',
+      orderForms: 'Формы заказов',
+      login: 'Вход'
     },
     headlines: {
       newForm: 'Создать новую форму',
       sentForms: 'Получите обзор всех отправленных на данный момент форм',
       emptyOrderForms: 'У Вас нет отправленных бланков.',
-      emptyTemplates: 'У Вас нет сохраненных шаблонов.'
+      emptyOrderFormsSearch: 'Соответствующие формы не найдены.',
+      emptyTemplates: 'У Вас нет сохраненных шаблонов.',
+      orderSent: 'Форма успешно сохранена и отправлена!'
     },
     labels: {
       expansion: '',
@@ -34,13 +54,18 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'сталь',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Название шаблона'
+      templateTitle: 'Название шаблона',
+      searchPlaceholder: 'Поиск...',
+      username: 'Имя пользователя',
+      password: 'Пароль'
     },
     notifications: {
       savedOrderForm: 'Форма была сохранена.',
       savedTemplate: 'Шаблон был сохранен.',
       deletedTemplate: 'Шаблон был удален.',
-      error: 'Ошибка, пожалуйста, попробуйте еще раз.'
+      error: 'Ошибка, пожалуйста, попробуйте еще раз.',
+      errorLogin: '<strong>Ошибка:</strong> Имя пользователя или пароль недействительны.',
+      invalidLines: 'Вы ввели слишком много строк для PDF.'
     }
   },
   section: {
@@ -53,12 +78,9 @@ export default {
         email: 'info@lingualsystems.ru'
       },
       address: {
-        title: '',
         name: 'Бизнес-Центр „Шухова-Плаза“',
         address: 'ул.Шухова, д.14 (метро „Шаболовская“)',
-        streetHouse: '',
         zipCity: '115162, г.Москва',
-        country: '',
         telephone: 'Тел. / Факс: 8 (495) 64 03 487'
       }
     },
@@ -133,10 +155,20 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' }
+      ],
       keyInfo: `
         <strong>Пожалуйста укажите:</strong> В случаях с удалением, будет ли закрыто пространство.v
       `,
-      keyInfoLegend: `
+      // Key Info for the PDF
+      keyInfoLegendPDF: `
         <div><strong>B</strong> = брекет</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = замок</div>&nbsp;|&nbsp;
         <div><strong>TL</strong> = удлиненный замок</div>&nbsp;|&nbsp;
@@ -145,7 +177,32 @@ export default {
         <div><strong>X</strong> = отсутствующий зуб</div>&nbsp;|&nbsp;
         <div><strong>BA</strong> = Кольцо</div>&nbsp;|&nbsp;
         <div><strong>P</strong> = Основание, заходящее на окклюзионную поверхность</div>
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegend: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= брекет</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= замок</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= удлиненный замок</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= удлиненный замок с крючком</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= подлежащий удалению</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= отсутствующий зуб</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= Кольцо</div>'
+      ],
+      keyInfoLegendLeft: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= брекет</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= замок</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= удлиненный замок</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= удлиненный замок с крючком</div>'
+      ],
+      keyInfoLegendRight: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= подлежащий удалению</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= отсутствующий зуб</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= Кольцо</div>'
+      ],
+      keyButtonInfoLegend: {
+        clicked: 'Основание, заходящее на окклюзионную поверхность',
+        notClicked: 'Без расширения окклюзионной поверхности'
+      }
     },
     m_2: {
       noCorrectionOfBite: '',
@@ -201,6 +258,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'Общие условия приобретения товара',
     content: `
       В случае фактической возможности поставить товар Поставщиком (ООО «ДиВиЛингвал Системс Ру», ОГРН 1137746040123), Покупатель (наименование которого указано в настоящем бланке заказа) подтверждает, что он согласен с настоящими Общими условиями приобретения товара в случае начала фактического исполнения Поставщиком настоящего бланка заказа в течение 14 календарных дней с момента получения им его оригинала, подписанного уполномоченным лицом Покупателя, и оттиска челюстей, на которые будут поставлены брекеты.

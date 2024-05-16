@@ -10,7 +10,6 @@ export const state = () => ({
   lowerJaw: false,
   notes1: '',
   noCorrectionOfBite: false,
-  notes2: '',
   nonTransparent: false,
   trayTrimmed33: false,
   transparent: false,
@@ -66,16 +65,13 @@ export const getters = {
   getNoCorrectionOfBite (state) {
     return state.noCorrectionOfBite || JSON.parse(localStorage.getItem('lof__notes__noCorrectionOfBite')) || false
   },
-  getNotes2 (state) {
-    return state.notes2 || localStorage.getItem('lof__notes__notes2') || ''
-  },
-  getNonTransparent (state) {
+  getNonTransparent: state => () => {
     return state.nonTransparent || JSON.parse(localStorage.getItem('lof__notes__nonTransparent')) || false
   },
-  getTrayTrimmed33 (state) {
+  getTrayTrimmed33: state => () => {
     return state.trayTrimmed33 || JSON.parse(localStorage.getItem('lof__notes__trayTrimmed3_3')) || false
   },
-  getTransparent (state) {
+  getTransparent: state => () => {
     return state.transparent || JSON.parse(localStorage.getItem('lof__notes__transparent')) || false
   },
   getLeft2CanineMolar (state) {
@@ -137,10 +133,6 @@ export const mutations = {
     state.noCorrectionOfBite = noCorrectionOfBite
     localStorage.setItem('lof__notes__noCorrectionOfBite', noCorrectionOfBite)
   },
-  setNotes2 (state, notes2) {
-    state.notes2 = notes2
-    localStorage.setItem('lof__notes__notes2', notes2)
-  },
   setNonTransparent (state, nonTransparent) {
     state.nonTransparent = nonTransparent
     localStorage.setItem('lof__notes__nonTransparent', nonTransparent)
@@ -156,31 +148,6 @@ export const mutations = {
   setCanineMolar (state, { side, tooth, value, sideObject }) {
     state[side][tooth] = value
     localStorage.setItem(`lof__notes__${ side }CanineMolar`, JSON.stringify(sideObject))
-
-    /*
-    console.log('saved!')
-    const right2Object = JSON.parse(localStorage.getItem('lof__notes__right2CanineMolar'))
-    const right3Object = JSON.parse(localStorage.getItem('lof__notes__right3CanineMolar'))
-    const left2Object = JSON.parse(localStorage.getItem('lof__notes__left2CanineMolar'))
-    const left3Object = JSON.parse(localStorage.getItem('lof__notes__left3CanineMolar'))
-    console.table(
-      [
-        {
-          type: 'canine',
-          'right_||': right2Object.canine,
-          'right_|||': right3Object.canine,
-          'left_||': left2Object.canine,
-          'left_|||': left3Object.canine
-        },
-        {
-          type: 'molar',
-          'right_||': right2Object.molar,
-          'right_|||': right3Object.molar,
-          'left_||': left2Object.molar,
-          'left_|||': left3Object.molar
-        }
-      ], [ 'type', 'right_||', 'right_|||', 'left_||', 'left_|||' ])
-    */
   },
   resetNotesState (state) {
     state.threeDSetup = false
@@ -194,7 +161,6 @@ export const mutations = {
     state.lowerJaw = false
     state.notes1 = ''
     state.noCorrectionOfBite = false
-    state.notes2 = ''
     state.nonTransparent = false
     state.trayTrimmed33 = false
     state.transparent = false

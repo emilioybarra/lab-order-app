@@ -1,6 +1,11 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Back',
+      close: 'Close',
       exit: 'Exit',
       language: 'Language',
       selectFromTemplate: 'Select from template',
@@ -12,7 +17,18 @@ export default {
       cancel: 'Cancel',
       send: 'Send',
       preview: 'Preview PDF',
-      download: 'Download PDF'
+      download: 'Download PDF',
+      generatingPdf: 'Generating PDF...',
+      search: 'Search',
+      apply: 'Apply',
+      date: 'Date',
+      dateRange: 'Date Range',
+      fromDate: 'Date from',
+      toDate: 'Date to',
+      select: 'Select',
+      login: 'Login',
+      logout: 'Logout',
+      allForms: 'All Forms'
     },
     titles: {
       invoiceAddress: 'Invoice Address',
@@ -20,13 +36,17 @@ export default {
       lowerTeeth: 'Lower Teeth',
       sentForms: 'Sent Forms',
       templates: 'Templates',
-      sendForm: 'Send Form'
+      sendForm: 'Send Form',
+      orderForms: 'Order Forms',
+      login: 'Login'
     },
     headlines: {
       newForm: 'Create a new form',
       sentForms: 'Get an overview of all forms sent so far',
       emptyOrderForms: 'You have no sent forms.',
-      emptyTemplates: 'You have no saved templates.'
+      emptyOrderFormsSearch: 'No matching order forms found.',
+      emptyTemplates: 'You have no saved templates.',
+      orderSent: 'Form was successfully saved and sent!'
     },
     labels: {
       expansion: 'Expansion',
@@ -34,13 +54,18 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Steel',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Template Title'
+      templateTitle: 'Template Title',
+      searchPlaceholder: 'Search...',
+      username: 'Username',
+      password: 'Password'
     },
     notifications: {
       savedOrderForm: 'Form was saved.',
       savedTemplate: 'Template was saved.',
       deletedTemplate: 'Template was deleted.',
-      error: 'Error, please try again.'
+      error: 'Error, please try again.',
+      errorLogin: '<strong>Error:</strong> Username or password are not valid.',
+      invalidLines: 'You have entered too many rows for the PDF.'
     }
   },
   section: {
@@ -58,8 +83,7 @@ export default {
         name: 'DW Lingual Systems GmbH',
         streetHouse: 'Lindenstraße 44',
         zipCity: '49152 Bad Essen',
-        country: 'Germany',
-        telephone: ''
+        country: 'Germany'
       }
     },
     h_2: {
@@ -133,10 +157,22 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'TR', color: '#FDEB4E' },
+        { label: 'TRH', color: '#54C2F8' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' }
+      ],
       keyInfo: `
         <strong>Please fill in:</strong> For missing teeth please always indicate space closure or not.
       `,
-      keyInfoLegend: `
+      // Key Info for the PDF
+      keyInfoLegendPDF: `
         <div><strong>B</strong> = bracket</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = tube</div>&nbsp;|&nbsp;
         <div><strong>TL</strong> = tube long</div>&nbsp;|&nbsp;
@@ -147,7 +183,37 @@ export default {
         <div><strong>X</strong> = missing</div>&nbsp;|&nbsp;
         <div><strong>BA</strong> = cast band</div>&nbsp;|&nbsp;
         <div><strong>P</strong> = occlusal pad surface</div>
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegend: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= tube long</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= tube long with hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= round tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--trh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TRH</strong>&nbsp;= round tube with hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= to be extracted</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= missing</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= cast band</div>'
+      ],
+      keyInfoLegendLeft: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= tube long</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= tube long with hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= round tube</div>'
+
+      ],
+      keyInfoLegendRight: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--trh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TRH</strong>&nbsp;= round tube with hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= to be extracted</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= missing</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= cast band</div>'
+      ],
+      keyButtonInfoLegend: {
+        clicked: 'occlusal pad surface',
+        notClicked: 'without occlusal pad surface'
+      }
     },
     m_2: {
       noCorrectionOfBite: 'No correction of bite',
@@ -198,6 +264,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'GENERAL BUSINESS TERMS OF DW LINGUAL SYSTEMS GMBH (“DW Lingual”)',
     content: `
       <strong>§ 1 Scope</strong>

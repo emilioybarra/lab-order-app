@@ -1,10 +1,12 @@
+require('dotenv').config()
+const sanitize = require('mongo-sanitize')
 const User = require('../models/user')
 const OrderForm = require('../models/order-form')
 
 exports.getAllOrderForms = (req, res, next) => {
   const perPage = 5
-  const userId = req.query.userId
-  let currentPage = req.query.page || 1
+  const userId = sanitize(req.query.userId)
+  let currentPage = sanitize(req.query.page) || 1
   let totalOrderForms
   User.findById(userId)
     .then(() => {
@@ -13,10 +15,12 @@ exports.getAllOrderForms = (req, res, next) => {
         totalOrderForms: 0
       }
       OrderForm.find({ userId })
+        .sort({ createdAt: 'desc' })
         .countDocuments()
         .then((count) => {
           totalOrderForms = count
           return OrderForm.find({ userId })
+            .sort({ createdAt: 'desc' })
             .skip((currentPage - 1) * perPage)
             .limit(perPage)
         })
@@ -24,6 +28,7 @@ exports.getAllOrderForms = (req, res, next) => {
           if (!orderForms.length) {
             currentPage = 1
             return OrderForm.find({ userId })
+              .sort({ createdAt: 'desc' })
               .skip((currentPage - 1) * perPage)
               .limit(perPage)
           }
@@ -52,43 +57,31 @@ exports.getAllOrderForms = (req, res, next) => {
 }
 
 exports.getOrderFormById = (req, res, next) => {
-  const userId = req.query.userId
-  const orderFormId = req.params.id
+  const userId = sanitize(req.query.userId)
+  const orderFormId = sanitize(req.params.id)
 
-  if (userId) {
-    User.findById(userId)
-      .then((user) => {
-        OrderForm.findById(orderFormId)
-          .then((orderForm) => {
-            res.json(orderForm)
-          })
-          .catch((err) => {
-            const error = new Error(err)
-            error.httpStatusCode = 500
-            return next(error)
-          })
-      })
-      .catch((err) => {
-        const error = new Error(err)
-        error.httpStatusCode = 500
-        return next(error)
-      })
-  } else {
-    OrderForm.findById(orderFormId)
-      .then((orderForm) => {
-        res.json(orderForm)
-      })
-      .catch((err) => {
-        const error = new Error(err)
-        error.httpStatusCode = 500
-        return next(error)
-      })
-  }
+  User.findById(userId)
+    .then((user) => {
+      OrderForm.findById(orderFormId)
+        .then((orderForm) => {
+          res.json(orderForm)
+        })
+        .catch((err) => {
+          const error = new Error(err)
+          error.httpStatusCode = 500
+          return next(error)
+        })
+    })
+    .catch((err) => {
+      const error = new Error(err)
+      error.httpStatusCode = 500
+      return next(error)
+    })
 }
 
 exports.postCreateOrderForm = (req, res, next) => {
   const files = req.files
-  const orderFormData = { ...JSON.parse(JSON.stringify(req.body)) }
+  const orderFormData = { ...JSON.parse(JSON.stringify(sanitize(req.body))) }
   const { userId } = orderFormData
   const upperTeethImage = files.find(file => file.fieldname === 'upperTeethImage')
   const lowerTeethImage = files.find(file => file.fieldname === 'lowerTeethImage')
@@ -120,7 +113,8 @@ exports.postCreateOrderForm = (req, res, next) => {
 
   OrderForm.create(prepareOrderFormData)
     .then((orderForm) => {
-      User.findById(userId, (error, user) => {
+      User.findById(userId, (err, user) => {
+        if (err) { return res.status(400).send(err) }
         user.addToOrderFormHistory(orderForm._id)
       })
         .then(() => {

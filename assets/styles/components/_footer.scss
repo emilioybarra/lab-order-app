@@ -1,0 +1,12 @@
+.lof-footer {
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+
+  &__link {
+    color: $font-color;
+  }
+}

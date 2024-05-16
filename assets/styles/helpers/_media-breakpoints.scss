@@ -1,40 +1,62 @@
-/*
-$grid-breakpoints: (
-  xs: 0,
+$lof-grid-breakpoints: (
+  xs: 360px,
   sm: 576px,
   md: 768px,
   lg: 992px,
   xl: 1200px
 ) !default;
-*/
 
+
+@mixin phone-xs {
+  @media (max-width: #{map-get($lof-grid-breakpoints, "xs") - 1px}) {
+    @content;
+  }
+}
+
+@mixin phone-sm-xs {
+  @media (max-width: #{map-get($lof-grid-breakpoints, "sm") - 1px}) {
+    @content;
+  }
+}
 
 @mixin phone-sm {
-  @media (max-width: #{map-get($grid-breakpoints, "sm") - 1px}) {
+  @media (min-width: #{map-get($lof-grid-breakpoints, "xs")}) and (max-width: #{map-get($lof-grid-breakpoints, "sm") - 1px}) {
     @content;
   }
 }
 
 @mixin phone-lg {
-  @media (min-width: #{map-get($grid-breakpoints, "sm")}) and (max-width: #{map-get($grid-breakpoints, "md") - 1px}) {
+  @media (min-width: #{map-get($lof-grid-breakpoints, "sm")}) and (max-width: #{map-get($lof-grid-breakpoints, "md") - 1px}) {
+    @content;
+  }
+}
+
+@mixin phone-all {
+  @media (max-width: #{map-get($lof-grid-breakpoints, "md") - 1px}) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media (min-width: #{map-get($grid-breakpoints, "md")}) and (max-width: #{map-get($grid-breakpoints, "lg") - 1px}) {
+  @media (min-width: #{map-get($lof-grid-breakpoints, "md")}) and (max-width: #{map-get($lof-grid-breakpoints, "lg") - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-desktop {
+  @media (min-width: #{map-get($lof-grid-breakpoints, "md")}) and (max-width: #{map-get($lof-grid-breakpoints, "xl") - 1px}) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media (min-width: #{map-get($grid-breakpoints, "lg")}) and (max-width: #{map-get($grid-breakpoints, "xl") - 1px}) {
+  @media (min-width: #{map-get($lof-grid-breakpoints, "lg")}) and (max-width: #{map-get($lof-grid-breakpoints, "xl") - 1px}) {
     @content;
   }
 }
 
 @mixin desktop-lg {
-  @media (min-width: #{map-get($grid-breakpoints, "xl")}) {
+  @media (min-width: #{map-get($lof-grid-breakpoints, "xl")}) {
     @content;
   }
 }

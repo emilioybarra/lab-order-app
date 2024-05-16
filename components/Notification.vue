@@ -1,7 +1,7 @@
 <template>
   <div v-if="showNotification" class="lof-notification">
-    <b-alert show :variant="variant" class="lof-notification__box">
-      {{ message }}
+    <b-alert show :variant="notification.variant" class="lof-notification__box">
+      {{ notification.message }}
     </b-alert>
   </div>
 </template>
@@ -15,12 +15,8 @@
         type: Boolean,
         required: false
       },
-      message: {
-        type: String,
-        required: false
-      },
-      variant: {
-        type: String,
+      notification: {
+        type: Object,
         required: false
       }
     }

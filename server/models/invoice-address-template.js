@@ -12,7 +12,7 @@ const invoiceAddressTemplateSchema = new Schema(
       type: String,
       required: true
     },
-    invoiceAddressTemplateData: {
+    invoiceAddressTemplate: {
       practice: String,
       orthodontist: String,
       address: String,

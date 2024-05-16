@@ -1,5 +1,10 @@
 <template>
-  <div class="lof" :style="`height: ${ innerHeight }px`" @scroll.passive="handleScroll">
+  <div id="lof" class="lof" @scroll.passive="handleScroll">
+    <transition name="fade">
+      <div v-if="$nuxt.isOffline" class="bg-danger py-1 text-light w-100 d-flex justify-content-center">
+        Offline
+      </div>
+    </transition>
     <b-navbar class="lof-navbar" :class="scrollY > 0 || showLanguageMenu ? 'lof-navbar--shadow' : ''" sticky toggleable="false">
       <b-navbar-nav class="flex-row ml-auto">
         <b-nav-text class="lof-navbar__language" @click="showLanguageMenu = !showLanguageMenu">
@@ -19,41 +24,19 @@
       <transition name="fade">
         <Nuxt />
       </transition>
-      <div class="lof-footer">
-        <div>
-          &copy; DW Lingual System GmbH {{ currentYear }}
-        </div>
-        <div>
-          <a
-            class="lof-footer__link"
-            :href="`https://www.lingualsystems.${ $i18n.locale === 'de' ? 'de/impressum/' : 'co.uk/legal-disclosure/' }`"
-          >
-            {{ $i18n.locale === 'de' ? 'Impressum' : 'Legal Disclosure' }}
-          </a>
-          <a
-            class="lof-footer__link"
-            :href="`https://www.lingualsystems.${ $i18n.locale === 'de' ? 'de/datenschutz-cookies/' : 'co.uk/data-privacy-policy-cookies/' }`"
-          >
-            {{ $i18n.locale === 'de' ? 'Datenschutz & Cookies' : 'Data Privacy Policy & Cookies' }}
-          </a>
-        </div>
-      </div>
+      <base-footer />
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    auth: false,
-
     name: 'plain',
 
     data () {
       return {
         scrollY: 0,
-        showLanguageMenu: false,
-        innerHeight: window.innerHeight,
-        currentYear: new Date().getFullYear()
+        showLanguageMenu: false
       }
     },
 
@@ -61,6 +44,10 @@
       language () {
         return this.$i18n.locale
       }
+    },
+
+    mounted () {
+      this.$setContainerHeight()
     },
 
     methods: {

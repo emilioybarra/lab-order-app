@@ -1,5 +1,9 @@
+import { prepareArchwires } from '@/plugins/prepare-archwires'
+
 export const state = () => ({
   imageData: '',
+  canvasMode: 'highlight',
+  teethCanvasUndoList: [],
   onlySetup: false,
   boltonDiscrepancy: false,
   resolveCrowding: false,
@@ -12,12 +16,51 @@ export const state = () => ({
   notesStrippingWhere: '',
   notesBoltonDiscrepancy: false,
   notesBox: '',
-  archwireSizes: {}
+  archwireSizes: {},
+  highlightedTeeth: [
+    { tooth_0: { highlighted: false, color: '' } },
+    { tooth_1: { highlighted: false, color: '' } },
+    { tooth_2: { highlighted: false, color: '' } },
+    { tooth_3: { highlighted: false, color: '' } },
+    { tooth_4: { highlighted: false, color: '' } },
+    { tooth_5: { highlighted: false, color: '' } },
+    { tooth_6: { highlighted: false, color: '' } },
+    { tooth_7: { highlighted: false, color: '' } },
+    { tooth_8: { highlighted: false, color: '' } },
+    { tooth_9: { highlighted: false, color: '' } },
+    { tooth_10: { highlighted: false, color: '' } },
+    { tooth_11: { highlighted: false, color: '' } },
+    { tooth_12: { highlighted: false, color: '' } },
+    { tooth_13: { highlighted: false, color: '' } },
+    { tooth_14: { highlighted: false, color: '' } },
+    { tooth_15: { highlighted: false, color: '' } }
+  ],
+  teethBoxes: {
+    upper_1: false,
+    upper_2: false,
+    upper_3: false,
+    upper_4: false,
+    upper_5: false,
+    upper_6: false,
+    upper_7: false,
+    upper_8: false,
+    upper_9: false,
+    upper_10: false
+  }
 })
 
 export const getters = {
   getImageData (state) {
     return state.imageData || localStorage.getItem('lof__upper-teeth__imageData') || ''
+  },
+  getCanvasMode: state => () => {
+    return state.canvasMode
+  },
+  getTeethCanvasUndoList: state => () => {
+    return JSON.parse(localStorage.getItem('lof__upper-teeth__teethCanvasUndoList')) || state.teethCanvasUndoList || []
+  },
+  getHighlightedTeeth: state => () => {
+    return JSON.parse(localStorage.getItem('lof__upper-teeth__highlightedTeeth')) || state.highlightedTeeth
   },
   getOnlySetup (state) {
     return state.onlySetup || JSON.parse(localStorage.getItem('lof__upper-teeth__onlySetup')) || false
@@ -55,8 +98,11 @@ export const getters = {
   getNotesBox (state) {
     return state.notesBox || localStorage.getItem('lof__upper-teeth__notesBox') || ''
   },
-  getArchwireSizes (state) {
-    return JSON.parse(localStorage.getItem('lof__upper-teeth__archwireSizes')) || state.archwireSizes || {}
+  getArchwireSizes: state => () => {
+    return prepareArchwires(JSON.parse(localStorage.getItem('lof__upper-teeth__archwireSizes')) || state.archwireSizes)
+  },
+  getTeethBoxes: state => () => {
+    return JSON.parse(localStorage.getItem('lof__upper-teeth__teethBoxes')) || state.teethBoxes
   }
 }
 
@@ -64,6 +110,17 @@ export const mutations = {
   setImageData (state, imageData) {
     state.imageData = imageData
     localStorage.setItem('lof__upper-teeth__imageData', imageData)
+  },
+  setCanvasMode (state, canvasMode) {
+    state.canvasMode = canvasMode
+  },
+  setTeethCanvasUndoList (state, teethCanvasUndoList) {
+    state.teethCanvasUndoList = teethCanvasUndoList
+    localStorage.setItem('lof__upper-teeth__teethCanvasUndoList', JSON.stringify(teethCanvasUndoList))
+  },
+  setHighlightedTeeth (state, highlightedTeeth) {
+    state.highlightedTeeth = highlightedTeeth
+    localStorage.setItem('lof__upper-teeth__highlightedTeeth', JSON.stringify(highlightedTeeth))
   },
   setOnlySetup (state, onlySetup) {
     state.onlySetup = onlySetup
@@ -117,8 +174,13 @@ export const mutations = {
     state.archwireSizes = archwireSizes
     localStorage.setItem('lof__upper-teeth__archwireSizes', JSON.stringify(archwireSizes))
   },
+  setTeethBoxes (state, teethBoxes) {
+    state.teethBoxes = teethBoxes
+    localStorage.setItem('lof__upper-teeth__teethBoxes', JSON.stringify(teethBoxes))
+  },
   resetUpperTeethState (state) {
     state.imageData = null
+    state.canvasMode = 'highlight'
     state.onlySetup = false
     state.boltonDiscrepancy = false
     state.resolveCrowding = false
@@ -128,6 +190,13 @@ export const mutations = {
     state.roMm = ''
     state.roWhere = ''
     state.archwireSizes = {}
+    state.highlightedTeeth = state.highlightedTeeth.map((tooth, index) => {
+      return { [`tooth_${ index }`]: { highlighted: false, color: '' } }
+    })
+
+    for (let i = 0; i < 12; ++i) {
+      state.teethBoxes[`upper_${ i }`] = false
+    }
 
     Object.keys(localStorage).map((key) => {
       if (/(lof__upper-teeth__)(.*)/.test(key)) {
@@ -138,22 +207,25 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchTemplates (context, payload) {
-    const { currentPage, userId } = payload
-    return await this.$axios.$get('/api/templates/upper-teeth', {
-      params: {
-        page: currentPage,
-        userId
-      }
-    })
-  },
-  async fetchTemplateById ({ commit }, payload) {
+  async fetchTeethById ({ commit }, payload) {
     const { templateId, userId } = payload
     const { upperTeethTemplate } = await this.$axios.$get(`/api/templates/upper-teeth/${ templateId }`, {
       params: { userId }
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
+
+      const notification = {
+        message: 'error',
+        variant: 'danger'
+      }
+      commit('common/setNotifications', notification, { root: true })
     })
+
     const {
-      upperTeethTemplateData: {
+      upperTeethTemplate: {
         imageData,
         onlySetup,
         boltonDiscrepancy,
@@ -166,7 +238,9 @@ export const actions = {
         notesStrippingMm,
         notesStrippingWhere,
         notesBoltonDiscrepancy,
-        notesBox
+        notesBox,
+        teethBoxes,
+        highlightedTeeth
       }
     } = upperTeethTemplate
 
@@ -183,9 +257,31 @@ export const actions = {
     commit('setNotesStrippingWhere', notesStrippingWhere)
     commit('setNotesBoltonDiscrepancy', notesBoltonDiscrepancy)
     commit('setNotesBox', notesBox)
+    commit('setTeethBoxes', teethBoxes)
+    commit('setHighlightedTeeth', highlightedTeeth)
     return true
   },
-  saveTemplateData ({ getters, commit }, payload) {
+  async fetchArchwiresById ({ commit }, payload) {
+    const { templateId, userId } = payload
+    const data = await this.$axios.$get(`/api/templates/upper-archwires/${ templateId }`, {
+      params: { userId }
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
+
+      const notification = {
+        message: 'error',
+        variant: 'danger'
+      }
+      commit('common/setNotifications', notification, { root: true })
+    })
+
+    commit('setArchwireSizes', data.upperArchwiresTemplate.archwireSizes)
+    return true
+  },
+  saveTeethData ({ getters, commit }, payload) {
     const { templateTitle, userId } = payload
     const {
       getImageData: imageData,
@@ -200,8 +296,11 @@ export const actions = {
       getNotesStrippingMm: notesStrippingMm,
       getNotesStrippingWhere: notesStrippingWhere,
       getNotesBoltonDiscrepancy: notesBoltonDiscrepancy,
-      getNotesBox: notesBox
+      getNotesBox: notesBox,
+      getTeethBoxes,
+      getHighlightedTeeth
     } = getters
+
     const templateData = {
       title: templateTitle,
       upperTeethTemplate: {
@@ -217,15 +316,13 @@ export const actions = {
         notesStrippingMm,
         notesStrippingWhere,
         notesBoltonDiscrepancy,
-        notesBox
+        notesBox,
+        teethBoxes: getTeethBoxes(),
+        highlightedTeeth: getHighlightedTeeth()
       }
     }
-    const prepareBody = {
-      userId,
-      templateData
-    }
 
-    this.$axios.$post('/api/templates/upper-teeth', prepareBody)
+    return this.$axios.$post('/api/templates/upper-teeth', { userId, templateData })
       .then((response) => {
         if (response.status === 201) {
           const notification = {
@@ -233,9 +330,15 @@ export const actions = {
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })
+          return true
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+          return false
+        }
+
         const notification = {
           message: 'error',
           variant: 'danger'
@@ -243,21 +346,35 @@ export const actions = {
         commit('common/setNotifications', notification, { root: true })
       })
   },
-  async deleteTemplateById ({ commit }, payload) {
-    const { templateId, userId } = payload
-    return await this.$axios.$delete(`/api/templates/upper-teeth/${ templateId }`, {
-      params: { userId }
-    })
+  saveArchwiresData ({ getters, commit }, payload) {
+    const { templateTitle, userId } = payload
+    const { getArchwireSizes } = getters
+
+    const body = {
+      userId,
+      title: templateTitle,
+      upperArchwiresTemplate: {
+        archwireSizes: getArchwireSizes()
+      }
+    }
+
+    return this.$axios.$post('/api/templates/upper-archwires', body)
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === 201) {
           const notification = {
-            message: 'deletedTemplate',
+            message: 'savedTemplate',
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })
+          return true
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+          return false
+        }
+
         const notification = {
           message: 'error',
           variant: 'danger'

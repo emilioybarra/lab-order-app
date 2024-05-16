@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    auth: 'guest',
+    auth: false,
     name: 'invalid',
     layout: 'plain'
   }

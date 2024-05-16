@@ -1,6 +1,11 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Indietro',
+      close: 'Chiudere',
       exit: 'Uscita',
       language: 'Lingua',
       selectFromTemplate: 'Scegliere dal modello',
@@ -12,7 +17,18 @@ export default {
       cancel: 'Annulla',
       send: 'Inviare',
       preview: 'Anteprima PDF',
-      download: 'Scaricare PDF'
+      download: 'Scaricare PDF',
+      generatingPdf: 'Generazione di PDF...',
+      search: 'Ricerca',
+      apply: 'Applica',
+      date: 'Data',
+      dateRange: 'Intervallo di date',
+      fromDate: 'Data da',
+      toDate: 'Data a',
+      select: 'Selezioni',
+      login: 'Accesso',
+      logout: 'Logout',
+      allForms: 'Tutte le forme'
     },
     titles: {
       invoiceAddress: 'Indirizzo di fatturazione',
@@ -20,13 +36,17 @@ export default {
       lowerTeeth: 'Denti inferiori',
       sentForms: 'Moduli inviati',
       templates: 'Modelli',
-      sendForm: 'Invii il modulo'
+      sendForm: 'Invii il modulo',
+      orderForms: 'Moduli d\'ordine',
+      login: 'Accesso'
     },
     headlines: {
       newForm: 'Creare un nuovo modulo',
       sentForms: 'Ottenere una panoramica di tutti i moduli inviati finora',
       emptyOrderForms: 'Non ha moduli inviati.',
-      emptyTemplates: 'Non ha modelli salvati.'
+      emptyOrderFormsSearch: 'Non sono stati trovati moduli corrispondenti.',
+      emptyTemplates: 'Non ha modelli salvati.',
+      orderSent: 'Il modulo è stato salvato e inviato con successo!'
     },
     labels: {
       expansion: '',
@@ -34,13 +54,18 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Acciaio',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Titolo del modello'
+      templateTitle: 'Titolo del modello',
+      searchPlaceholder: 'Cerca...',
+      username: 'Nome utente',
+      password: 'Password'
     },
     notifications: {
       savedOrderForm: 'Il modulo è stato salvato.',
       savedTemplate: 'Il modello è stato salvato.',
       deletedTemplate: 'Il modello è stato cancellato.',
-      error: 'Errore, provi di nuovo, per favore.'
+      error: 'Errore, provi di nuovo, per favore.',
+      errorLogin: '<strong>Errore:</strong> Username o password non sono validi.',
+      invalidLines: 'Ha inserito troppe righe per il PDF.'
     }
   },
   section: {
@@ -55,11 +80,9 @@ export default {
       },
       address: {
         title: 'Inviare le impronte a:',
-        name: '',
         streetHouse: 'Lindenstraße 44',
         zipCity: '49152 Bad Essen',
-        country: 'Germany',
-        telephone: ''
+        country: 'Germany'
       }
     },
     h_2: {
@@ -119,7 +142,7 @@ export default {
       individual: 'lat. indiv.'
     },
     m_1: {
-      notes: 'Note:',
+      notes: 'Note',
       remarksTitle: 'Note:',
       threeDSetup: '3D Foto dello set-up',
       tpa: 'TPA',
@@ -130,10 +153,20 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' }
+      ],
       keyInfo: `
         <strong>Da compilare:</strong> mancanti indicare sempre se si desidera chiudere o meno lo spazio.
       `,
-      keyInfoLegend: `
+      // Key Info for the PDF
+      keyInfoLegendPDF: `
         <div><strong>B</strong> = bracket</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = Tube</div>&nbsp;|&nbsp;
         <div><strong>TL</strong> = tubo lungo</div>&nbsp;|&nbsp;
@@ -142,7 +175,32 @@ export default {
         <div><strong>X</strong> = dente mancante</div>&nbsp;|&nbsp;
         <div><strong>BA</strong> = banda</div>&nbsp;|&nbsp;
         <div><strong>P</strong> = estensione superficie occlusale</div>
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegend: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= Tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= tubo lungo</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= tubo lungo con gancio</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= da estrarre</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= dente mancante</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= banda</div>'
+      ],
+      keyInfoLegendLeft: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= Tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= tubo lungo</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= tubo lungo con gancio</div>'
+      ],
+      keyInfoLegendRight: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= da estrarre</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= dente mancante</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= banda</div>'
+      ],
+      keyButtonInfoLegend: {
+        clicked: 'estensione superficie occlusale',
+        notClicked: 'Senza estensione superficie occlusale'
+      }
     },
     m_2: {
       noCorrectionOfBite: '',
@@ -198,6 +256,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'Condizioni generali di vendita di DW LINGUAL SYSTEMS GMBH (“DW Lingual”)',
     content: `
       <strong>§ 1 Scopo</strong>

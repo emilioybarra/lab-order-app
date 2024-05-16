@@ -187,22 +187,25 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchTemplates (context, payload) {
-    const { currentPage, userId } = payload
-    return await this.$axios.$get('/api/templates/invoice-address', {
-      params: {
-        page: currentPage,
-        userId
-      }
-    })
-  },
   async fetchTemplateById ({ commit }, payload) {
     const { templateId, userId } = payload
     const { invoiceAddressTemplate } = await this.$axios.$get(`/api/templates/invoice-address/${ templateId }`, {
       params: { userId }
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
+
+      const notification = {
+        message: 'error',
+        variant: 'danger'
+      }
+      commit('common/setNotifications', notification, { root: true })
     })
+
     const {
-      invoiceAddressTemplateData: {
+      invoiceAddressTemplate: {
         practice,
         orthodontist,
         address,
@@ -259,7 +262,7 @@ export const actions = {
     } = getters
     const templateData = {
       title: templateTitle,
-      invoiceAddressTemplateData: {
+      invoiceAddressTemplate: {
         practice,
         orthodontist,
         address,
@@ -277,45 +280,26 @@ export const actions = {
         shippingPostalcodeTown
       }
     }
-    const prepareBody = {
-      userId,
-      templateData
-    }
 
-    this.$axios.$post('/api/templates/invoice-address', prepareBody)
+    return this.$axios.$post('/api/templates/invoice-address', { userId, templateData })
       .then((response) => {
         if (response.status === 201) {
           const notification = {
-            message: 'savedTemplate'
-          }
-          commit('common/setNotifications', notification, { root: true })
-        }
-      })
-      .catch(() => {
-        const notification = {
-          message: 'savedTemplate',
-          variant: 'danger'
-        }
-        commit('common/setNotifications', notification, { root: true })
-      })
-  },
-  async deleteTemplateById ({ commit }, payload) {
-    const { templateId, userId } = payload
-    return await this.$axios.$delete(`/api/templates/invoice-address/${ templateId }`, {
-      params: { userId }
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          const notification = {
-            message: 'deletedTemplate',
+            message: 'savedTemplate',
             variant: 'success'
           }
           commit('common/setNotifications', notification, { root: true })
+          return true
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+          return false
+        }
+
         const notification = {
-          message: 'deletedTemplate',
+          message: 'error',
           variant: 'danger'
         }
         commit('common/setNotifications', notification, { root: true })

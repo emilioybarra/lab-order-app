@@ -1,6 +1,11 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Volver',
+      close: 'Cerrar',
       exit: 'Salir',
       language: 'Idioma',
       selectFromTemplate: 'Seleccione de la plantilla',
@@ -12,7 +17,18 @@ export default {
       cancel: 'Cancelar',
       send: 'Envía',
       preview: 'Vista previa del PDF',
-      download: 'Descargue el PDF'
+      download: 'Descargue el PDF',
+      generatingPdf: 'Generación de PDF...',
+      search: 'Busque en',
+      apply: 'Aplique',
+      date: 'Fecha',
+      dateRange: 'Rango de fechas',
+      fromDate: 'Fecha de',
+      toDate: 'Fecha a',
+      select: 'Seleccione',
+      login: 'Inicie sesión en',
+      logout: 'Cierre de sesión',
+      allForms: 'Todos los formularios'
     },
     titles: {
       invoiceAddress: 'Dirección de facturación',
@@ -20,13 +36,17 @@ export default {
       lowerTeeth: 'Dientes inferiores',
       sentForms: 'Formularios enviados',
       templates: 'Plantillas',
-      sendForm: 'Enviar formulario'
+      sendForm: 'Enviar formulario',
+      orderForms: 'Formularios de pedido',
+      login: 'Inicie sesión en'
     },
     headlines: {
       newForm: 'Crear un nuevo formulario',
       sentForms: 'Obtener una visión general de todos los formularios enviados hasta ahora',
       emptyOrderForms: 'No tiene formularios enviados.',
-      emptyTemplates: 'No tiene plantillas guardadas.'
+      emptyOrderFormsSearch: 'No se han encontrado formularios coincidentes.',
+      emptyTemplates: 'No tiene plantillas guardadas.',
+      orderSent: '¡El formulario se ha guardado y enviado con éxito!'
     },
     labels: {
       expansion: '',
@@ -34,13 +54,18 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Acero',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Título de la plantilla'
+      templateTitle: 'Título de la plantilla',
+      searchPlaceholder: 'Buscar...',
+      username: 'Nombre de usuario',
+      password: 'Contraseña'
     },
     notifications: {
       savedOrderForm: 'El formulario se ha guardado.',
       savedTemplate: 'La plantilla se ha guardado.',
       deletedTemplate: 'La plantilla fue eliminada.',
-      error: 'Error, por favor, inténtelo de nuevo.'
+      error: 'Error, por favor, inténtelo de nuevo.',
+      errorLogin: '<strong>Error:</strong> El nombre de usuario o la contraseña no son válidos.',
+      invalidLines: 'Ha introducido demasiadas filas para el PDF.'
     }
   },
   section: {
@@ -54,12 +79,10 @@ export default {
         email: 'win@lingualsystems.es'
       },
       address: {
-        name: '',
         title: 'Por favor envíe las impresiones a:',
         streetHouse: 'Lindenstraße 44',
         zipCity: '49152 Bad Essen',
-        country: 'Germany',
-        telephone: ''
+        country: 'Germany'
       }
     },
     h_2: {
@@ -119,7 +142,7 @@ export default {
       individual: 'Sectores laterales individualizados'
     },
     m_1: {
-      notes: 'Notas:',
+      notes: 'Notas',
       remarksTitle: 'Comentarios:',
       threeDSetup: 'Fotos Set-up 3D',
       tpa: 'BTP',
@@ -130,10 +153,20 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' }
+      ],
       keyInfo: `
         <strong>Por favor rellene:</strong> en caso de ausencia de dientes indique si los espacios deben ser cerrados o no.
       `,
-      keyInfoLegend: `
+      // Key Info for the PDF
+      keyInfoLegendPDF: `
         <div><strong>B</strong> = bracket</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = tubo</div>&nbsp;|&nbsp;
         <div><strong>TL</strong> = tubo largo</div>&nbsp;|&nbsp;
@@ -142,7 +175,32 @@ export default {
         <div><strong>X</strong> = ausente</div>&nbsp;|&nbsp;
         <div><strong>BA</strong> = Banda</div>&nbsp;|&nbsp;
         <div><strong>P</strong> = topes oclusales</div>
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegend: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= tubo</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= tubo largo</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= tubo largo con gancho</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= se extraerá</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= ausente</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= Banda</div>'
+      ],
+      keyInfoLegendLeft: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= tubo</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= tubo largo</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= tubo largo con gancho</div>'
+      ],
+      keyInfoLegendRight: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= se extraerá</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= ausente</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= Banda</div>'
+      ],
+      keyButtonInfoLegend: {
+        clicked: 'topes oclusales',
+        notClicked: 'Sin topes oclusales'
+      }
     },
     m_2: {
       noCorrectionOfBite: '',
@@ -198,6 +256,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'CONDICIONES COMERCIALES GENERALES DE DW LINGUAL SYSTEMS GMBH („DW Lingual„)',
     content: `
       <strong>§ 1 Ámbito de aplicación</strong>

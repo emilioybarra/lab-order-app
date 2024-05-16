@@ -2,18 +2,17 @@ $upper-canvas-width-phone-sm: 286px;
 $upper-canvas-height-phone-sm: 220px;
 $upper-canvas-width-phone-lg: 456px;
 $upper-canvas-height-phone-lg: 350px;
-$upper-canvas-width-tablet: 652px;
-$upper-canvas-height-tablet: 500px;
+$upper-canvas-width-tablet: 520px;
+$upper-canvas-height-tablet: 400px;
 $upper-canvas-width-desktop: 716px;
 $upper-canvas-height-desktop: 550px;
-
 
 $lower-canvas-width-phone-sm: 286px;
 $lower-canvas-height-phone-sm: 206px;
 $lower-canvas-width-phone-lg: 456px;
 $lower-canvas-height-phone-lg: 328px;
-$lower-canvas-width-tablet: 652px;
-$lower-canvas-height-tablet: 470px;
+$lower-canvas-width-tablet: 520px;
+$lower-canvas-height-tablet: 375px;
 $lower-canvas-width-desktop: 716px;
 $lower-canvas-height-desktop: 516px;
 
@@ -22,47 +21,143 @@ $upper-canvas-height: $upper-canvas-height-tablet;
 $lower-canvas-width: $lower-canvas-width-tablet;
 $lower-canvas-height: $lower-canvas-height-tablet;
 
-// Vue Swatches Overrides
-.vue-swatches, .vue-swatches__fallback__wrapper {
-  display: flex !important;
-}
-
-.vue-swatches__fallback__input {
-  padding-top: 2px !important;
-  padding-bottom: 2px !important;
-}
-
-.vue-swatches__trigger {
- //  width: 20px !important;
-  // height: 20px !important;
-}
-
-.vue-swatches__container {
-  // position: absolute;
-  // z-index: 1;
-}
-
-.vue-swatches__wrapper {
-  // column-count: 4;
-  // column-gap: 0;
-}
-
-.vue-swatches__check__wrapper {
-  // height: 100%;
-}
-
-.vue-swatches__check__circle {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 
 .lof-teeth-canvas {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &__info-legend {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $space-8;
+
+    &__title {
+      color: $primary;
+      margin-bottom: $space-8;
+      align-self: center;
+    }
+
+    &__items {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 13px;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    &__landscape {
+      &-items {
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+
+        @include tablet {
+          width: 18%;
+        }
+
+        @include desktop {
+          width: 20%;
+        }
+
+        @include desktop-lg {
+          width: 16%;
+        }
+      }
+
+      &__item {
+        display: flex;
+        align-items: flex-start;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        word-break: break-word;
+        margin-bottom: $space-8;
+      }
+    }
+
+    &__item {
+      display: flex;
+      align-items: flex-start;
+      width: 22%;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      word-break: break-word;
+
+      @include tablet {
+        width: 30%;
+      }
+
+      @include phone-lg {
+        width: 30%;
+      }
+
+      @include phone-sm-xs {
+        width: 50%;
+      }
+    }
+
+    &__color {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      min-height: 18px;
+      border-radius: 100%;
+
+      &--b { background-color: #72FBFD }
+      &--t { background-color: #909090 }
+      &--tl { background-color: #EB3423 }
+      &--tlh { background-color: #74FBB7 }
+      &--tr { background-color: #FDEB4E }
+      &--trh { background-color: #54C2F8 }
+      &--ex { background-color: #75FA4F }
+      &--x { background-color: #A12CF6 }
+      &--ba { background-color: #000000 }
+      &--p { background-color: #EA37C4 }
+    }
+
+    &__divider {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+
+  &__button-info-legend {
+    display: flex;
+
+    @include phone-all() {
+      flex-direction: column;
+    }
+
+    &__divider {
+      margin-left: 8px;
+      margin-right: 8px;
+      font-size: 20px;
+      font-weight: bolder;
+    }
+
+    &__clicked {
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      border-radius: 100%;
+      font-weight: bold;
+      color: $white;
+      background-color: #EA37C4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__not-clicked {
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      border-radius: 100%;
+      border: 1px solid $grey;
+      background-color: $white;
+    }
+  }
 
   &__border {
     display: flex;
@@ -72,9 +167,11 @@ $lower-canvas-height: $lower-canvas-height-tablet;
     position: relative;
     background-color: $white;
     border-radius: 1.2rem;
-    box-shadow: 0 0 17px -8px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 0 0 17px -8px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0 0 17px -8px rgba(0, 0, 0, 0.75);
+    margin-left: 12px;
+    margin-right: 12px;
+    box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
   }
 
   &__overlay {
@@ -108,19 +205,59 @@ $lower-canvas-height: $lower-canvas-height-tablet;
     &--upper,
     &-image--upper,
     &-canvas--upper {
-      width: $upper-canvas-width;
-      height: $upper-canvas-height;
+      // width: $upper-canvas-width !important;
+      // height: $upper-canvas-height !important;
+
+      @include phone-sm-xs() {
+        width: $upper-canvas-width-phone-sm;
+        height: $upper-canvas-height-phone-sm;
+      }
+
+      @include phone-lg() {
+        width: $upper-canvas-width-phone-lg;
+        height: $upper-canvas-height-phone-lg;
+      }
+
+      @include tablet-desktop() {
+        width: $upper-canvas-width-tablet;
+        height: $upper-canvas-height-tablet;
+      }
+
+      @include desktop-lg() {
+        width: $upper-canvas-width-desktop;
+        height: $upper-canvas-height-desktop;
+      }
     }
 
     &--lower,
     &-image--lower,
     &-canvas--lower {
-      width: $lower-canvas-width;
-      height: $lower-canvas-height;
+      // width: $lower-canvas-width !important;
+      // height: $lower-canvas-height !important;
+
+      @include phone-sm-xs() {
+        width: $lower-canvas-width-phone-sm;
+        height: $lower-canvas-height-phone-sm;
+      }
+
+      @include phone-lg() {
+        width: $lower-canvas-width-phone-lg;
+        height: $lower-canvas-height-phone-lg;
+      }
+
+      @include tablet-desktop() {
+        width: $lower-canvas-width-tablet;
+        height: $lower-canvas-height-tablet;
+      }
+
+      @include desktop-lg() {
+        width: $lower-canvas-width-desktop;
+        height: $lower-canvas-height-desktop;
+      }
     }
 
     &-canvas {
-      position: absolute;
+      position: absolute !important;
     }
 
     &-image {
@@ -130,41 +267,45 @@ $lower-canvas-height: $lower-canvas-height-tablet;
           font-size: 16px;
           line-height: 0;
 
-          &--18 {bottom: 52px; left: 16px;}
-          &--17 {bottom: 136px; left: 34px;}
-          &--16 {bottom: 228px; left: 56px;}
-          &--15 {top: 208px; left: 90px;}
-          &--14 {top: 148px; left: 116px;}
-          &--13 {top: 84px; left: 154px;}
-          &--12 {top: 48px; left: 208px;}
-          &--11 {top: 20px; left: 280px;}
-          &--21 {top: 20px; right: 280px;}
-          &--22 {top: 48px; right: 208px;}
-          &--23 {top: 84px; right: 154px;}
-          &--24 {top: 148px; right: 116px;}
-          &--25 {top: 208px; right: 90px;}
-          &--26 {bottom: 228px; right: 56px;}
-          &--27 {bottom: 136px; right: 34px;}
-          &--28 {bottom: 52px; right: 16px;}
+          @include phone-sm-xs() {
+            font-size: 10px;
 
-          &--48 {top: 38px; left: 16px;}
-          &--47 {top: 130px; left: 34px;}
-          &--46 {top: 226px; left: 56px;}
-          &--45 {bottom: 166px; left: 100px;}
-          &--44 {bottom: 110px; left: 128px;}
-          &--43 {bottom: 54px; left: 184px;}
-          &--42 {bottom: 30px; left: 230px;}
-          &--41 {bottom: 18px; left: 292px;}
-          &--31 {bottom: 18px; right: 292px;}
-          &--32 {bottom: 30px; right: 230px;}
-          &--33 {bottom: 54px; right: 184px;}
-          &--34 {bottom: 110px; right: 128px;}
-          &--35 {bottom: 166px; right: 100px;}
-          &--36 {top: 226px; right: 56px;}
-          &--37 {top: 130px; right: 34px;}
-          &--38 {top: 38px; right: 16px;}
+            &--18 {bottom: 24px; left: 8px;}
+            &--17 {bottom: 62px; left: 16px;}
+            &--16 {bottom: 98px; left: 26px;}
+            &--15 {top: 90px; left: 38px;}
+            &--14 {top: 64px; left: 50px;}
+            &--13 {top: 36px; left: 66px;}
+            &--12 {top: 20px; left: 88px;}
+            &--11 {top: 8px; left: 122px;}
+            &--21 {top: 8px; right: 122px;}
+            &--22 {top: 20px; right: 88px;}
+            &--23 {top: 36px; right: 66px;}
+            &--24 {top: 64px; right: 50px;}
+            &--25 {top: 90px; right: 38px;}
+            &--26 {bottom: 98px; right: 26px;}
+            &--27 {bottom: 62px; right: 16px;}
+            &--28 {bottom: 24px; right: 8px;}
 
-          @media (max-width: 767px) {
+            &--48 {top: 16px; left: 10px;}
+            &--47 {top: 58px; left: 16px;}
+            &--46 {top: 98px; left: 26px;}
+            &--45 {bottom: 74px; left: 40px;}
+            &--44 {bottom: 48px; left: 56px;}
+            &--43 {bottom: 24px; left: 76px;}
+            &--42 {bottom: 12px; left: 102px;}
+            &--41 {bottom: 6px; left: 126px;}
+            &--31 {bottom: 6px; right: 126px;}
+            &--32 {bottom: 12px; right: 102px;}
+            &--33 {bottom: 24px; right: 76px;}
+            &--34 {bottom: 48px; right: 56px;}
+            &--35 {bottom: 74px; right: 40px;}
+            &--36 {top: 98px; right: 26px;}
+            &--37 {top: 58px; right: 16px;}
+            &--38 {top: 16px; right: 6px;}
+          }
+
+          @include phone-lg() {
             font-size: 12px;
 
             &--18 {bottom: 36px; left: 12px;}
@@ -202,42 +343,76 @@ $lower-canvas-height: $lower-canvas-height-tablet;
             &--38 {top: 28px; right: 10px;}
           }
 
-          @media (max-width: 575px) {
-            font-size: 10px;
+          @include tablet-desktop() {
+            &--18 {bottom: 44px; left: 16px;}
+            &--17 {bottom: 112px; left: 30px;}
+            &--16 {bottom: 184px; left: 50px;}
+            &--15 {top: 166px; left: 72px;}
+            &--14 {top: 120px; left: 92px;}
+            &--13 {top: 70px; left: 122px;}
+            &--12 {top: 38px; left: 164px;}
+            &--11 {top: 20px; left: 286px;}
+            &--21 {top: 20px; right: 286px;}
+            &--22 {top: 38px; right: 164px;}
+            &--23 {top: 70px; right: 122px;}
+            &--24 {top: 120px; right: 92px;}
+            &--25 {top: 166px; right: 72px;}
+            &--26 {bottom: 184px; right: 50px;}
+            &--27 {bottom: 112px; right: 30px;}
+            &--28 {bottom: 44px; right: 16px;}
 
-            &--18 {bottom: 24px; left: 8px;}
-            &--17 {bottom: 62px; left: 16px;}
-            &--16 {bottom: 98px; left: 26px;}
-            &--15 {top: 90px; left: 38px;}
-            &--14 {top: 64px; left: 50px;}
-            &--13 {top: 36px; left: 66px;}
-            &--12 {top: 20px; left: 88px;}
-            &--11 {top: 8px; left: 122px;}
-            &--21 {top: 8px; right: 122px;}
-            &--22 {top: 20px; right: 88px;}
-            &--23 {top: 36px; right: 66px;}
-            &--24 {top: 64px; right: 50px;}
-            &--25 {top: 90px; right: 38px;}
-            &--26 {bottom: 98px; right: 26px;}
-            &--27 {bottom: 62px; right: 16px;}
-            &--28 {bottom: 24px; right: 8px;}
+            &--48 {top: 30px; left: 10px;}
+            &--47 {top: 102px; left: 22px;}
+            &--46 {top: 180px; left: 44px;}
+            &--45 {bottom: 136px; left: 66px;}
+            &--44 {bottom: 86px; left: 94px;}
+            &--43 {bottom: 46px; left: 142px;}
+            &--42 {bottom: 24px; left: 184px;}
+            &--41 {bottom: 16px; left: 230px;}
+            &--31 {bottom: 16px; right: 230px;}
+            &--32 {bottom: 24px; right: 184px;}
+            &--33 {bottom: 46px; right: 142px;}
+            &--34 {bottom: 86px; right: 94px;}
+            &--35 {bottom: 136px; right: 66px;}
+            &--36 {top: 180px; right: 44px;}
+            &--37 {top: 102px; right: 22px;}
+            &--38 {top: 30px; right: 10px;}
+          }
 
-            &--48 {top: 16px; left: 10px;}
-            &--47 {top: 58px; left: 16px;}
-            &--46 {top: 98px; left: 26px;}
-            &--45 {bottom: 74px; left: 40px;}
-            &--44 {bottom: 48px; left: 56px;}
-            &--43 {bottom: 24px; left: 76px;}
-            &--42 {bottom: 12px; left: 102px;}
-            &--41 {bottom: 6px; left: 126px;}
-            &--31 {bottom: 6px; right: 126px;}
-            &--32 {bottom: 12px; right: 102px;}
-            &--33 {bottom: 24px; right: 76px;}
-            &--34 {bottom: 48px; right: 56px;}
-            &--35 {bottom: 74px; right: 40px;}
-            &--36 {top: 98px; right: 26px;}
-            &--37 {top: 58px; right: 16px;}
-            &--38 {top: 16px; right: 6px;}
+          @include desktop-lg() {
+            &--18 {bottom: 56px; left: 20px;}
+            &--17 {bottom: 148px; left: 40px;}
+            &--16 {bottom: 248px; left: 66px;}
+            &--15 {top: 226px; left: 98px;}
+            &--14 {top: 164px; left: 124px;}
+            &--13 {top: 92px; left: 166px;}
+            &--12 {top: 48px; left: 226px;}
+            &--11 {top: 20px; left: 308px;}
+            &--21 {top: 20px; right: 308px;}
+            &--22 {top: 48px; right: 226px;}
+            &--23 {top: 92px; right: 166px;}
+            &--24 {top: 164px; right: 124px;}
+            &--25 {top: 226px; right: 98px;}
+            &--26 {bottom: 248px; right: 66px;}
+            &--27 {bottom: 148px; right: 40px;}
+            &--28 {bottom: 56px; right: 20px;}
+
+            &--48 {top: 44px; left: 16px;}
+            &--47 {top: 134px; left: 32px;}
+            &--46 {top: 248px; left: 56px;}
+            &--45 {bottom: 184px; left: 92px;}
+            &--44 {bottom: 120px; left: 128px;}
+            &--43 {bottom: 66px; left: 190px;}
+            &--42 {bottom: 30px; left: 254px;}
+            &--41 {bottom: 18px; left: 318px;}
+            &--31 {bottom: 18px; right: 318px;}
+            &--32 {bottom: 30px; right: 254px;}
+            &--33 {bottom: 66px; right: 190px;}
+            &--34 {bottom: 120px; right: 128px;}
+            &--35 {bottom: 184px; right: 92px;}
+            &--36 {top: 248px; right: 56px;}
+            &--37 {top: 134px; right: 32px;}
+            &--38 {top: 44px; right: 16px;}
           }
         }
       }
@@ -276,14 +451,24 @@ $lower-canvas-height: $lower-canvas-height-tablet;
 
   &__button {
     height: 100%;
+    position: relative;
 
     &-icon {
       width: 1.4rem;
       height: 1.4rem;
 
-      &--play {
-        width: 4rem;
-        height: 4rem;
+      &--redo {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: 'FlipH';
+      }
+
+      &--pen {
+        width: 5rem;
+        height: 5rem;
         filter: brightness(100);
         margin: $space-1 $space-4;
       }
@@ -293,7 +478,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       }
     }
 
-    &--play {
+    &--pen {
       height: auto;
     }
 
@@ -302,14 +487,6 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       height: 1.4rem;
       border-radius: 100%;
       box-shadow: inset 0 0 2px rgb(0 0 0 / 75%);
-
-      &-ok {
-        height: 24px;
-        padding: 2px 10px !important;
-        display: flex !important;
-        align-items: center;
-        background-color: $primary !important;
-      }
     }
 
     &:hover &-icon {
@@ -320,7 +497,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
   &__container--upper,
   &__container-image--upper,
   &__container-canvas--upper {
-    @include phone-sm() {
+    @include phone-sm-xs() {
       width: $upper-canvas-width-phone-sm;
       height: $upper-canvas-height-phone-sm;
     }
@@ -330,12 +507,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       height: $upper-canvas-height-phone-lg;
     }
 
-    @include tablet() {
-      width: $upper-canvas-width-tablet;
-      height: $upper-canvas-height-tablet;
-    }
-
-    @include desktop() {
+    @include tablet-desktop() {
       width: $upper-canvas-width-tablet;
       height: $upper-canvas-height-tablet;
     }
@@ -349,7 +521,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
   &__container--lower,
   &__container-image--lower,
   &__container-canvas--lower {
-    @include phone-sm() {
+    @include phone-sm-xs() {
       width: $lower-canvas-width-phone-sm;
       height: $lower-canvas-height-phone-sm;
     }
@@ -359,12 +531,7 @@ $lower-canvas-height: $lower-canvas-height-tablet;
       height: $lower-canvas-height-phone-lg;
     }
 
-    @include tablet() {
-      width: $lower-canvas-width-tablet;
-      height: $lower-canvas-height-tablet;
-    }
-
-    @include desktop() {
+    @include tablet-desktop() {
       width: $lower-canvas-width-tablet;
       height: $lower-canvas-height-tablet;
     }
@@ -372,6 +539,175 @@ $lower-canvas-height: $lower-canvas-height-tablet;
     @include desktop-lg() {
       width: $lower-canvas-width-desktop;
       height: $lower-canvas-height-desktop;
+    }
+  }
+
+  &__upper-buttons, &__lower-buttons {
+    &__box {
+      position: absolute;
+      width: min-content;
+      font-size: 16px;
+      text-align: center;
+
+      &-button {
+        width: 35px;
+        height: 35px;
+        padding: 0;
+        border-radius: 100%;
+        color: $white;
+        background-color: $white;
+        border: 1px solid $secondary;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        @include phone-all() {
+          width: 25px;
+          height: 25px;
+        }
+
+        &--active {
+          border-color: #EA37C4 !important;
+          background-color: #EA37C4 !important;
+        }
+
+        &:hover, &:focus, &:active {
+          border-color: #EA37C4 !important;
+          background-color: #EA37C4 !important;
+          box-shadow: 0 0 0 0.2rem rgb(234 55 196 / 50%) !important;
+        }
+      }
+
+      @include phone-sm-xs() {
+        width: 44px;
+        height: 22px;
+        font-size: 12px;
+      }
+
+      @include phone-lg() {
+        height: 28px;
+      }
+
+      @include tablet-desktop() {
+        height: 36px;
+      }
+
+      @include desktop-lg() {
+        height: 42px;
+      }
+    }
+  }
+
+  &__upper-buttons {
+    &__box {
+      @include phone-sm-xs() {
+        &--left-1 {bottom: 5px;left: 54px;}
+        &--left-2 {bottom: 36px;left: 64px;}
+        &--left-3 {bottom: 74px;left: 78px;}
+        &--left-4 {bottom: 108px;left: 82px;}
+        &--left-5 {bottom: 134px;left: 90px;}
+        &--right-1 {bottom: 134px;right: 90px;}
+        &--right-2 {bottom: 108px;right: 82px;}
+        &--right-3 {bottom: 74px;right: 78px;}
+        &--right-4 {bottom: 36px;right: 64px;}
+        &--right-5 {bottom: 5px;right: 54px;}
+      }
+
+      @include phone-lg() {
+        &--left-1 {bottom: 10px;left: 84px;}
+        &--left-2 {bottom: 60px;left: 98px;}
+        &--left-3 {bottom: 122px;left: 120px;}
+        &--left-4 {bottom: 180px;left: 128px;}
+        &--left-5 {bottom: 220px;left: 142px;}
+        &--right-1 {bottom: 220px;right: 142px;}
+        &--right-2 {bottom: 180px;right: 128px;}
+        &--right-3 {bottom: 122px;right: 120px;}
+        &--right-4 {bottom: 60px;right: 98px;}
+        &--right-5 {bottom: 10px;right: 84px;}
+      }
+
+      @include tablet-desktop() {
+        &--left-1 {bottom: 4px;left: 100px;}
+        &--left-2 {bottom: 62px;left: 114px;}
+        &--left-3 {bottom: 130px;left: 138px;}
+        &--left-4 {bottom: 194px;left: 144px;}
+        &--left-5 {bottom: 240px;left: 160px;}
+        &--right-1 {bottom: 240px;right: 160px;}
+        &--right-2 {bottom: 194px;right: 144px;}
+        &--right-3 {bottom: 130px;right: 138px;}
+        &--right-4 {bottom: 62px;right: 114px;}
+        &--right-5 {bottom: 4px;right: 100px;}
+      }
+
+      @include desktop-lg() {
+        &--left-1 {bottom: 18px;left: 130px;}
+        &--left-2 {bottom: 102px;left: 150px;}
+        &--left-3 {bottom: 200px;left: 185px;}
+        &--left-4 {bottom: 278px;left: 198px;}
+        &--left-5 {bottom: 340px;left: 210px;}
+        &--right-1 {bottom: 340px;right: 210px;}
+        &--right-2 {bottom: 278px;right: 198px;}
+        &--right-3 {bottom: 200px;right: 185px;}
+        &--right-4 {bottom: 102px;right: 150px;}
+        &--right-5 {bottom: 18px;right: 130px;}
+      }
+    }
+  }
+
+  &__lower-buttons {
+    &__box {
+      @include phone-sm-xs() {
+        &--left-1 {top: 4px;left: 54px;}
+        &--left-2 {top: 40px;left: 66px;}
+        &--left-3 {top: 78px;left: 74px;}
+        &--left-4 {top: 106px;left: 78px;}
+        &--left-5 {top: 127px;left: 86px;}
+        &--right-1 {top: 127px;right: 86px;}
+        &--right-2 {top: 106px;right: 78px;}
+        &--right-3 {top: 78px;right: 74px;}
+        &--right-4 {top: 40px;right: 66px;}
+        &--right-5 {top: 4px;right: 54px;}
+      }
+
+      @include phone-lg() {
+        &--left-1 {top: 12px;left: 90px;}
+        &--left-2 {top: 70px;left: 108px;}
+        &--left-3 {top: 130px;left: 120px;}
+        &--left-4 {top: 182px;left: 128px;}
+        &--left-5 {top: 214px;left: 140px;}
+        &--right-1 {top: 214px;right: 140px;}
+        &--right-2 {top: 182px;right: 128px;}
+        &--right-3 {top: 130px;right: 120px;}
+        &--right-4 {top: 70px;right: 108px;}
+        &--right-5 {top: 12px;right: 90px;}
+      }
+
+      @include tablet-desktop() {
+        &--left-1 {top: 10px;left: 100px;}
+        &--left-2 {top: 70px;left: 114px;}
+        &--left-3 {top: 138px;left: 134px;}
+        &--left-4 {top: 194px;left: 144px;}
+        &--left-5 {top: 234px;left: 160px;}
+        &--right-1 {top: 234px;right: 160px;}
+        &--right-2 {top: 194px;right: 144px;}
+        &--right-3 {top: 138px;right: 134px;}
+        &--right-4 {top: 70px;right: 114px;}
+        &--right-5 {top: 10px;right: 100px;}
+      }
+
+      @include desktop-lg() {
+        &--left-1 {top: 18px;left: 130px;}
+        &--left-2 {top: 102px;left: 150px;}
+        &--left-3 {top: 200px;left: 185px;}
+        &--left-4 {top: 286px;left: 198px;}
+        &--left-5 {top: 336px;left: 218px;}
+        &--right-1 {top: 336px;right: 218px;}
+        &--right-2 {top: 286px;right: 198px;}
+        &--right-3 {top: 200px;right: 185px;}
+        &--right-4 {top: 102px;right: 150px;}
+        &--right-5 {top: 18px;right: 130px;}
+      }
     }
   }
 }

@@ -1,3 +1,21 @@
 .table th, .table td {
   vertical-align: middle;
 }
+
+.lof-archwire-sizes-table {
+  &.table-bordered th, &.table-bordered td {
+    border-color: $primary;
+
+    > span {
+      hyphens: auto;
+    }
+  }
+
+  & > input:focus-visible {
+    outline: none;
+  }
+}
+
+.b-skeleton-avatar {
+  height: 100% !important;
+}

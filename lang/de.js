@@ -1,6 +1,11 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Zurück',
+      close: 'Schließen',
       exit: 'Beenden',
       language: 'Sprache',
       selectFromTemplate: 'Aus Vorlage Wählen',
@@ -12,7 +17,18 @@ export default {
       cancel: 'Abbrechen',
       send: 'Abschicken',
       preview: 'Preview PDF',
-      download: 'Download PDF'
+      download: 'Download PDF',
+      generatingPdf: 'PDF generieren...',
+      search: 'Suche',
+      apply: 'Anwenden',
+      date: 'Datum',
+      dateRange: 'Zeitraum',
+      fromDate: 'Datum von',
+      toDate: 'Datum bis',
+      select: 'Auswählen',
+      login: 'Anmelden',
+      logout: 'Abmelden',
+      allForms: 'Alle Formulare'
     },
     titles: {
       invoiceAddress: 'Rechnungsadresse',
@@ -20,13 +36,17 @@ export default {
       lowerTeeth: 'Unterkiefer',
       sentForms: 'Verschickte Formulare',
       templates: 'Vorlagen',
-      sendForm: 'Formular absenden'
+      sendForm: 'Formular absenden',
+      orderForms: 'Auftragsformulare',
+      login: 'Anmelden'
     },
     headlines: {
       newForm: 'Erstellen Sie ein Neues Formular',
       sentForms: 'Bekommen Sie einen Überblick von allen bislang verschickten Formularen',
       emptyOrderForms: 'Sie haben keine Formulare gesendet.',
-      emptyTemplates: 'Sie haben keine gespeicherten Vorlagen.'
+      emptyOrderFormsSearch: 'Keine passenden Formulare gefunden.',
+      emptyTemplates: 'Sie haben keine gespeicherten Vorlagen.',
+      orderSent: 'Formular wurde erfolgreich gespeichert und gesendet!'
     },
     labels: {
       expansion: 'Expansion',
@@ -34,13 +54,18 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Stahl',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Vorlage Titel'
+      templateTitle: 'Vorlage Titel',
+      searchPlaceholder: 'Suchen...',
+      username: 'Benutzername',
+      password: 'Passwort'
     },
     notifications: {
-      savedOrderForm: 'Form was saved.',
-      savedTemplate: 'Template was saved.',
-      deletedTemplate: 'Template was deleted.',
-      error: 'Error, please try again.'
+      savedOrderForm: 'Das Formular wurde gespeichert.',
+      savedTemplate: 'Die Vorlage wurde gespeichert.',
+      deletedTemplate: 'Vorlage wurde gelöscht.',
+      error: 'Fehler, bitte versuchen Sie es erneut.',
+      errorLogin: '<strong>Fehler:</strong> Benutzername oder Passwort sind nicht gültig.',
+      invalidLines: 'Sie haben zu viele Zeilen für die PDF eingegeben.'
     }
   },
   section: {
@@ -58,8 +83,7 @@ export default {
         name: 'DW Lingual Systems GmbH',
         streetHouse: 'Lindenstraße 44',
         zipCity: '49152 Bad Essen',
-        country: 'Deutschland',
-        telephone: ''
+        country: 'Deutschland'
       }
     },
     h_2: {
@@ -133,10 +157,22 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'TR', color: '#FDEB4E' },
+        { label: 'TRH', color: '#54C2F8' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' }
+      ],
       keyInfo: `
         <strong>Bitte ausfüllen:</strong> Bei fehlenden Zähnen bitte immer angeben, ob Lückenschluss gewünscht wird.
       `,
-      keyInfoLegend: `
+      // Key Info for the PDF
+      keyInfoLegendPDF: `
         <div><strong>B</strong> = Bracket</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = Tube</div>&nbsp;|&nbsp;
         <div><strong>TL</strong> = langes Tube</div>&nbsp;|&nbsp;
@@ -147,7 +183,36 @@ export default {
         <div><strong>X</strong> = fehlt</div>&nbsp;|&nbsp;
         <div><strong>BA</strong> = geg. Band</div>&nbsp;|&nbsp;
         <div><strong>P</strong> = okklusale Klebebasis</div>
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegend: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= Bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= Tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= langes Tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= langes Tube mit Hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= Tube rund</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--trh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TRH</strong>&nbsp;= Tube rund mit Hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= zu extrahieren</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= fehlt</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= geg. Band</div>'
+      ],
+      keyInfoLegendLeft: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= Bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= Tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= langes Tube</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= langes Tube mit Hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= Tube rund</div>'
+      ],
+      keyInfoLegendRight: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--trh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TRH</strong>&nbsp;= Tube rund mit Hook</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= zu extrahieren</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= fehlt</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= geg. Band</div>'
+      ],
+      keyButtonInfoLegend: {
+        clicked: 'okklusale Klebebasis',
+        notClicked: 'ohne okklusale Klebebasis'
+      }
     },
     m_2: {
       noCorrectionOfBite: 'Keine Bisslagekorrektur',
@@ -205,6 +270,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'ALLGEMEINE GESCHÄFTSBEDINGUNGEN DER DW LINGUAL SYSTEMS GMBH („DW Lingual“)',
     content: `
       <strong>§ 1 Geltung</strong>

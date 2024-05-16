@@ -1,37 +1,33 @@
 <template>
-  <modal ref="pdfPreview" show-only-close-tab>
-    <card v-click-outside.stop="closePdfPreviewModal">
-      <pdf-generator :src="pdfSrcPage1" class="lof-pdf-preview" />
-      <pdf-generator :src="pdfSrcPage2" class="lof-pdf-preview" />
-    </card>
+  <modal ref="pdfPreview" show-only-close-tab @closeModal="closePdfPreviewModal">
+    <pdf :src="pdfSrcPage1" class="lof-pdf-preview" :page="1" />
+    <pdf :src="pdfSrcPage2" class="lof-pdf-preview" :page="1" />
   </modal>
 </template>
 
 <script>
-  import pdfGenerator from 'vue-pdf'
+  import pdf from 'pdfvuer'
 
   export default {
     name: 'pdf-preview-modal',
 
     components: {
-      pdfGenerator
+      pdf
     },
 
     data () {
       return {
         pdfSrcPage1: '',
-        pdfSrcPage2: '',
-        pdfSrcPage3: '',
-        isJpVariant: false
+        pdfSrcPage2: ''
       }
     },
 
     computed: {
       getPdfSrcPage1 () {
-        return this.$store.getters['common/getPdfSrcPage1']
+        return this.$store.getters['common/getPdfSrcPage1']()
       },
       getPdfSrcPage2 () {
-        return this.$store.getters['common/getPdfSrcPage2']
+        return this.$store.getters['common/getPdfSrcPage2']()
       }
     },
 

@@ -1,3 +1,27 @@
-.invoice-address-expand-box {
-  height: 120px;
+.input-field-expand-box {
+  height: 140px;
+
+  @include phone-sm {
+    height: 230px;
+  }
+
+  @include phone-xs {
+    height: 230px;
+  }
+}
+
+.filters-expand-box {
+  height: 135px;
+
+  @include phone-lg {
+    height: 160px;
+  }
+
+  @include phone-sm {
+    height: 235px;
+  }
+
+  @include phone-xs {
+    height: 275px;
+  }
 }

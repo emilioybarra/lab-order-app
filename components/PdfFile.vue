@@ -34,7 +34,7 @@
               {{ $t('section.h_1.contact.title', pdfLanguage) }}
             </strong>
             <div v-if="validateLanguagesToSavedLanguage([ 'ru', 'jp' ])" class="lof-pdf__header-booking-info-logo">
-              <img :src="require('~/assets/images/logo.png')">
+              <img class="w-100" :src="require('~/assets/images/logo.png')">
             </div>
             <div class="lof-pdf__header-booking-info__item">{{ $t('section.h_1.contact.streetHouse', pdfLanguage) }}</div>
             <div class="lof-pdf__header-booking-info__item">{{ $t('section.h_1.contact.zipCityCountry', pdfLanguage) }}</div>
@@ -42,13 +42,13 @@
             <span class="lof-pdf__header-booking-info__item">{{ $t('section.h_1.contact.email', pdfLanguage) }}</span>
           </div>
           <div v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr', 'it', 'sp', 'ru' ])" class="lof-pdf__header-address">
-            <strong v-if="$t('section.h_1.address.title', pdfLanguage)" class="lof-pdf__header-address__title">{{ $t('section.h_1.address.title', pdfLanguage) }}</strong>
-            <span v-if="$t('section.h_1.address.name', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.name', pdfLanguage) }}</span>
-            <span v-if="$t('section.h_1.address.address', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.address', pdfLanguage) }}</span>
-            <span v-if="$t('section.h_1.address.streetHouse', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.streetHouse', pdfLanguage) }}</span>
+            <strong v-if="$te('section.h_1.address.title', pdfLanguage)" class="lof-pdf__header-address__title">{{ $t('section.h_1.address.title', pdfLanguage) }}</strong>
+            <span v-if="$te('section.h_1.address.name', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.name', pdfLanguage) }}</span>
+            <span v-if="$te('section.h_1.address.address', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.address', pdfLanguage) }}</span>
+            <span v-if="$te('section.h_1.address.streetHouse', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.streetHouse', pdfLanguage) }}</span>
             <span class="lof-pdf__header-address__item">{{ $t('section.h_1.address.zipCity', pdfLanguage) }}</span>
-            <span v-if="$t('section.h_1.address.country', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.country', pdfLanguage) }}</span>
-            <span v-if="$t('section.h_1.address.telephone', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.telephone', pdfLanguage) }}</span>
+            <span v-if="$te('section.h_1.address.country', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.country', pdfLanguage) }}</span>
+            <span v-if="$te('section.h_1.address.telephone', pdfLanguage)" class="lof-pdf__header-address__item">{{ $t('section.h_1.address.telephone', pdfLanguage) }}</span>
           </div>
           <div v-if="validateLanguagesToSavedLanguage([ 'jp' ])" class="lof-pdf__header-address">
             <strong class="lof-pdf__header-address__title">{{ $t('section.h_1.address.title', pdfLanguage) }}</strong>
@@ -155,7 +155,7 @@
         </div>
         <div v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr', 'it', 'sp', 'ru' ])" class="lof-pdf__invoice-fields">
           <div class="lof-pdf__invoice-field" :class="{ 'lof-pdf__invoice-field--variant-2': validateLanguagesToSavedLanguage([ 'ru' ]) }">
-            <span class="lof-pdf__invoice-field__value">{{ invoiceAddress.postalcodeTown }}</span>
+            <span class="lof-pdf__invoice-field__value">{{ invoiceAddress.postalCodeTown }}</span>
             <div class="lof-pdf__invoice-field__label">{{ $t('section.h_2.postalcodeTownShort', pdfLanguage) }}</div>
           </div>
           <div v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr', 'it', 'sp' ])" class="lof-pdf__invoice-field">
@@ -336,6 +336,18 @@
           <div class="lof-pdf__teeth__upper">
             <!-- U1 Section -->
             <div class="lof-pdf__teeth__upper-image-container">
+              <div class="lof-pdf__teeth__upper-image-container__boxes">
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 30px;left: 90px;">{{ upperTeeth.teethBoxes.upper_1 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 62px;left: 98px;">{{ upperTeeth.teethBoxes.upper_2 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 98px;left: 114px;">{{ upperTeeth.teethBoxes.upper_3 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 130px;left: 116px;">{{ upperTeeth.teethBoxes.upper_4 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 154px;left: 125px;">{{ upperTeeth.teethBoxes.upper_5 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 154px;right: 125px;">{{ upperTeeth.teethBoxes.upper_6 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 130px;right: 116px;">{{ upperTeeth.teethBoxes.upper_7 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 98px;right: 114px;">{{ upperTeeth.teethBoxes.upper_8 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 62px;right: 98px;">{{ upperTeeth.teethBoxes.upper_9 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__upper-image-container__box" style="bottom: 30px;right: 90px;">{{ upperTeeth.teethBoxes.upper_10 ? 'P' : '' }}</div>
+              </div>
               <div v-if="validateLanguagesToSavedLanguage([ 'jp' ])" class="lof-pdf__teeth__upper-image-container__numbers">
                 <div class="lof-pdf__teeth__upper-image-container__numbers-number" style="bottom: -82px;margin-left: -134px;">18</div>
                 <div class="lof-pdf__teeth__upper-image-container__numbers-number" style="bottom: -46px;margin-left: -126px;">17</div>
@@ -354,7 +366,7 @@
                 <div class="lof-pdf__teeth__upper-image-container__numbers-number" style="bottom: -46px;margin-left: 118px;">27</div>
                 <div class="lof-pdf__teeth__upper-image-container__numbers-number" style="bottom: -82px;margin-left: 126px;">28</div>
               </div>
-              <p v-if="$validateSelectedLanguage('jp')" class="lof-pdf__teeth__upper__euroTypeInfo">{{ $t('section.u_1.euroTypeInfo') }}</p>
+              <p v-if="$validateSelectedLanguage('jp')" class="lof-pdf__teeth__upper__euroTypeInfo">{{ $t('section.u_1.euroTypeInfo', pdfLanguage) }}</p>
               <img v-if="upperTeeth.imageData.edited" class="lof-pdf__teeth__upper-image lof-pdf__teeth__upper-image--edited" :src="upperTeeth.imageData.dataURL">
               <img v-if="!upperTeeth.imageData.edited" class="lof-pdf__teeth__upper-image" :src="require('~/assets/images/Oberkiefer.png')">
               <div class="lof-pdf__checkbox lof-pdf__checkbox--upper">
@@ -408,7 +420,7 @@
             </div>
             <div v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])" class="lof-pdf__teeth__upper-info-container">
               <div class="lof-pdf__teeth__upper-comments">
-                <span>{{ $t('section.u_2.notes.title', pdfLanguage) }}</span>
+                <span class="lof-pdf__teeth__upper-comments-title">{{ $t('section.u_2.notes.title', pdfLanguage) }}</span>
                 <div
                   class="lof-pdf__teeth__upper-comments-box lof-pdf__teeth__upper-comments-box--comments"
                   :class="{ 'lof-pdf__teeth__upper-comments-box--variant-3': validateLanguagesToSavedLanguage([ 'jp' ]) }"
@@ -445,15 +457,15 @@
                 <thead>
                   <tr>
                     <th class="lof-pdf__teeth__upper-arcs__table__title" :colspan="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ]) ? 10 : 8">
-                      <strong>{{ $t('section.u_3.title') }}</strong>
+                      <strong>{{ $t('section.u_3.title', pdfLanguage) }}</strong>
                     </th>
                   </tr>
                   <tr>
-                    <th class="lof-pdf__teeth__upper-arcs__table__column-label" colspan="4">{{ $t('section.u_3.pleaseTick') }}</th>
-                    <th class="lof-pdf__teeth__upper-arcs__table__column-label" colspan="2">{{ $t('section.u_3.straight') }}</th>
-                    <th class="lof-pdf__teeth__upper-arcs__table__column-label" colspan="2">{{ $t('section.u_3.individual') }}</th>
+                    <th class="lof-pdf__teeth__upper-arcs__table__column-label" colspan="4">{{ $t('section.u_3.pleaseTick', pdfLanguage) }}</th>
+                    <th class="lof-pdf__teeth__upper-arcs__table__column-label" colspan="2">{{ $t('section.u_3.straight', pdfLanguage) }}</th>
+                    <th class="lof-pdf__teeth__upper-arcs__table__column-label" colspan="2">{{ $t('section.u_3.individual', pdfLanguage) }}</th>
                     <th v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__column-label" colspan="2">
-                      {{ $t('common.labels.expansion') }}
+                      {{ $t('common.labels.expansion', pdfLanguage) }}
                     </th>
                   </tr>
                 </thead>
@@ -461,116 +473,116 @@
                   <tr>
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">12 Ø</td>
                     <td class="lof-pdf__teeth__upper-arcs__table__section" rowspan="5" colspan="1">
-                      <div class="lof-pdf__teeth__upper-arcs__table__section-type">{{ $t('common.labels.sectionType1') }}</div>
+                      <div class="lof-pdf__teeth__upper-arcs__table__section-type">{{ $t('common.labels.sectionType1', pdfLanguage) }}</div>
                     </td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size12.straight }}</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size12.individual }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size12.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size12.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__cell--disable" colspan="2" />
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">14 Ø</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size14.straight }}</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size14.individual }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size14.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size14.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__cell--disable" colspan="2" />
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">16 Ø</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size16.straight }}</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size16.individual }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size16.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size16.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__cell--disable" colspan="2" />
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">16 x 22</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size16x22.straight }}</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size16x22.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size16x22.expansion }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size16x22.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size16x22.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ upperTeeth.archwireSizes.size16x22.expansion.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">18 x 25</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size18x25_1.straight }}</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size18x25_1.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size18x25_1.expansion }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size18x25_1.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size18x25_1.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ upperTeeth.archwireSizes.size18x25_1.expansion.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">16 x 24</td>
                     <td class="lof-pdf__teeth__upper-arcs__table__section" :rowspan="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ]) ? 4 : 3" colspan="1">
-                      <div class="lof-pdf__teeth__upper-arcs__table__section-type">{{ $t('common.labels.sectionType2') }}</div>
+                      <div class="lof-pdf__teeth__upper-arcs__table__section-type">{{ $t('common.labels.sectionType2', pdfLanguage) }}</div>
                     </td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size16x24.straight }}</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size16x24.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size16x24.expansion }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size16x24.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size16x24.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ upperTeeth.archwireSizes.size16x24.expansion.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">16 x 24 ET</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size16x24ET.straight }}</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size16x24ET.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size16x24ET.expansion }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size16x24ET.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size16x24ET.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ upperTeeth.archwireSizes.size16x24ET.expansion.size }}
                     </td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])">
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">16 x 24 EET</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size16x24EET.straight }}</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size16x24EET.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size16x24EET.expansion }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size16x24EET.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size16x24EET.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ upperTeeth.archwireSizes.size16x24EET.expansion.size }}
                     </td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])">
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">18 x 25</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size18x25_2.straight }}</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size18x25_2.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size18x25_2.expansion }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size18x25_2.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size18x25_2.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ upperTeeth.archwireSizes.size18x25_2.expansion.size }}
                     </td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])">
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">18 x 25 (red)</td>
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size18x25red.straight }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size18x25red.straight.size }}</td>
                     <td class="lof-pdf__teeth__upper-arcs__table__cell--disable" colspan="2" />
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size18x25red.expansion }}
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ upperTeeth.archwireSizes.size18x25red.expansion.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">17,5 x 17,5</td>
                     <td class="lof-pdf__teeth__upper-arcs__table__section lof-pdf__teeth__upper-arcs__table__section--no-border-bottom" rowspan="4" colspan="1">
-                      <div class="lof-pdf__teeth__upper-arcs__table__section-type">{{ $t('common.labels.sectionType3') }}</div>
+                      <div class="lof-pdf__teeth__upper-arcs__table__section-type">{{ $t('common.labels.sectionType3', pdfLanguage) }}</div>
                     </td>
                     <td class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size175x175.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size175x175.expansion }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size175x175.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ upperTeeth.archwireSizes.size175x175.expansion.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">17 x 25</td>
                     <td class="lof-pdf__teeth__upper-arcs__table__cell--disable" colspan="2" />
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size17x25.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size17x25.expansion }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size17x25.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ upperTeeth.archwireSizes.size17x25.expansion.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">18 x 18</td>
                     <td class="lof-pdf__teeth__upper-arcs__table__cell--disable" colspan="2" />
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size18x18.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size18x18.expansion }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size18x18.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ upperTeeth.archwireSizes.size18x18.expansion.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__upper-arcs__table__size-label" colspan="3">18 x 25</td>
                     <td class="lof-pdf__teeth__upper-arcs__table__cell--disable" colspan="2" />
-                    <td colspan="2">{{ upperTeeth.archwireSizes.size18x25_3.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ upperTeeth.archwireSizes.size18x25_3.expansion }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ upperTeeth.archwireSizes.size18x25_3.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ upperTeeth.archwireSizes.size18x25_3.expansion.size }}
                     </td>
                   </tr>
                 </tbody>
@@ -639,7 +651,7 @@
               <div class="lof-pdf__teeth__notes-extra">{{ notes.notes1 }}</div>
               <div class="lof-pdf__teeth__notes-info-legend">
                 <div class="lof-pdf__teeth__notes-info-legend__title" v-html="$t('section.m_1.keyInfo', pdfLanguage)" />
-                <div class="lof-pdf__teeth__notes-info-legend__legend d-flex flex-wrap justify-content-center" v-html="$t('section.m_1.keyInfoLegend', pdfLanguage)" />
+                <div class="lof-pdf__teeth__notes-info-legend__legend d-flex flex-wrap justify-content-center" v-html="$t('section.m_1.keyInfoLegendPDF', pdfLanguage)" />
               </div>
             </div>
             <!-- End M1 Section -->
@@ -740,24 +752,23 @@
                     <span v-if="notes.noCorrectionOfBite" class="lof-pdf__checkbox-check">&#9745;</span>
                     <div class="lof-pdf__checkbox-label">{{ $t('section.m_2.noCorrectionOfBite', pdfLanguage) }}</div>
                   </div>
-                  <div class="lof-pdf__teeth__notes-extra">{{ notes.notes2 }}</div>
                 </div>
                 <div class="lof-pdf__teeth__notes-right-containers__bottom">
                   <div class="lof-pdf__teeth__notes-right-containers__bottom-title">
                     <strong>{{ $t('section.m_3.tray.title', pdfLanguage) }}</strong>
                   </div>
                   <div class="lof-pdf__teeth__notes-right-containers__bottom-checkboxes">
-                    <div class="lof-pdf__checkbox ">
+                    <div class="lof-pdf__checkbox lof-pdf__checkbox--extra-padding">
                       <span v-if="!notes.nonTransparent" class="lof-pdf__checkbox-check">&#9744;</span>
                       <span v-if="notes.nonTransparent" class="lof-pdf__checkbox-check">&#9745;</span>
                       <div class="lof-pdf__checkbox-label">{{ $t('section.m_3.tray.nonTransparent', pdfLanguage) }}</div>
                     </div>
-                    <div class="lof-pdf__checkbox lof-pdf__checkbox--notes-tray-middle">
+                    <div class="lof-pdf__checkbox lof-pdf__checkbox--notes-tray-middle lof-pdf__checkbox--extra-padding">
                       <span v-if="!notes.trayTrimmed33" class="lof-pdf__checkbox-check">&#9744;</span>
                       <span v-if="notes.trayTrimmed33" class="lof-pdf__checkbox-check">&#9745;</span>
                       <div class="lof-pdf__checkbox-label">{{ $t('section.m_3.tray.trayTrimmed3_3', pdfLanguage) }}</div>
                     </div>
-                    <div class="lof-pdf__checkbox lof-pdf__checkbox--notes-tray-bottom">
+                    <div class="lof-pdf__checkbox lof-pdf__checkbox--notes-tray-bottom lof-pdf__checkbox--extra-padding">
                       <span v-if="!notes.transparent" class="lof-pdf__checkbox-check">&#9744;</span>
                       <span v-if="notes.transparent" class="lof-pdf__checkbox-check">&#9745;</span>
                       <div class="lof-pdf__checkbox-label">{{ $t('section.m_3.tray.transparent', pdfLanguage) }}</div>
@@ -772,6 +783,18 @@
           <div class="lof-pdf__teeth__lower">
             <!-- L1 Section -->
             <div class="lof-pdf__teeth__lower-image-container">
+              <div class="lof-pdf__teeth__lower-image-container__boxes">
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 46px;left: 90px;">{{ lowerTeeth.teethBoxes.lower_1 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 75px;left: 102px;">{{ lowerTeeth.teethBoxes.lower_2 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 110px;left: 112px;">{{ lowerTeeth.teethBoxes.lower_3 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 140px;left: 116px;">{{ lowerTeeth.teethBoxes.lower_4 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 164px;left: 122px;">{{ lowerTeeth.teethBoxes.lower_5 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 164px;right: 122px;">{{ lowerTeeth.teethBoxes.lower_6 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 140px;right: 116px;">{{ lowerTeeth.teethBoxes.lower_7 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 110px;right: 112px;">{{ lowerTeeth.teethBoxes.lower_8 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 75px;right: 102px;">{{ lowerTeeth.teethBoxes.lower_9 ? 'P' : '' }}</div>
+                <div class="lof-pdf__teeth__lower-image-container__box" style="top: 46px;right: 90px;">{{ lowerTeeth.teethBoxes.lower_10 ? 'P' : '' }}</div>
+              </div>
               <div v-if="validateLanguagesToSavedLanguage([ 'jp' ])" class="lof-pdf__teeth__lower-image-container__numbers">
                 <div class="lof-pdf__teeth__lower-image-container__numbers-number" style="bottom: 82px;margin-left: -132px;">48</div>
                 <div class="lof-pdf__teeth__lower-image-container__numbers-number" style="bottom: 42px;margin-left: -124px;">47</div>
@@ -790,7 +813,7 @@
                 <div class="lof-pdf__teeth__lower-image-container__numbers-number" style="bottom: 42px;margin-left: 116px;">37</div>
                 <div class="lof-pdf__teeth__lower-image-container__numbers-number" style="bottom: 82px;margin-left: 124px;">38</div>
               </div>
-              <p v-if="$validateSelectedLanguage('jp')" class="lof-pdf__teeth__lower__euroTypeInfo">{{ $t('section.l_1.euroTypeInfo') }}</p>
+              <p v-if="$validateSelectedLanguage('jp')" class="lof-pdf__teeth__lower__euroTypeInfo">{{ $t('section.l_1.euroTypeInfo', pdfLanguage) }}</p>
               <img v-if="lowerTeeth.imageData.edited" class="lof-pdf__teeth__lower-image lof-pdf__teeth__lower-image--edited" :src="lowerTeeth.imageData.dataURL">
               <img v-if="!lowerTeeth.imageData.edited" class="lof-pdf__teeth__lower-image" :src="require('~/assets/images/Unterkiefer.png')">
               <div class="lof-pdf__checkbox lof-pdf__checkbox--lower">
@@ -846,7 +869,7 @@
             </div>
             <div v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])" class="lof-pdf__teeth__lower-info-container">
               <div class="lof-pdf__teeth__lower-comments">
-                <span>{{ $t('section.l_2.notes.title', pdfLanguage) }}</span>
+                <span class="lof-pdf__teeth__lower-comments-title">{{ $t('section.l_2.notes.title', pdfLanguage) }}</span>
                 <div
                   class="lof-pdf__teeth__lower-comments-box lof-pdf__teeth__lower-comments-box--comments"
                   :class="{ 'lof-pdf__teeth__lower-comments-box--variant-3': validateLanguagesToSavedLanguage([ 'jp' ]) }"
@@ -881,15 +904,15 @@
                 <thead>
                   <tr>
                     <th class="lof-pdf__teeth__lower-arcs__table__title" :colspan="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ]) ? 10 : 8">
-                      <strong>{{ $t('section.l_3.title') }}</strong>
+                      <strong>{{ $t('section.l_3.title', pdfLanguage) }}</strong>
                     </th>
                   </tr>
                   <tr>
-                    <th class="lof-pdf__teeth__lower-arcs__table__column-label" colspan="4">{{ $t('section.l_3.pleaseTick') }}</th>
-                    <th class="lof-pdf__teeth__lower-arcs__table__column-label" colspan="2">{{ $t('section.l_3.straight') }}</th>
-                    <th class="lof-pdf__teeth__lower-arcs__table__column-label" colspan="2">{{ $t('section.l_3.individual') }}</th>
+                    <th class="lof-pdf__teeth__lower-arcs__table__column-label" colspan="4">{{ $t('section.l_3.pleaseTick', pdfLanguage) }}</th>
+                    <th class="lof-pdf__teeth__lower-arcs__table__column-label" colspan="2">{{ $t('section.l_3.straight', pdfLanguage) }}</th>
+                    <th class="lof-pdf__teeth__lower-arcs__table__column-label" colspan="2">{{ $t('section.l_3.individual', pdfLanguage) }}</th>
                     <th v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__lower-arcs__table__column-label" colspan="2">
-                      {{ $t('common.labels.compression') }}
+                      {{ $t('common.labels.compression', pdfLanguage) }}
                     </th>
                   </tr>
                 </thead>
@@ -897,111 +920,111 @@
                   <tr>
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">12 Ø</td>
                     <td class="lof-pdf__teeth__lower-arcs__table__section" rowspan="5" colspan="1">
-                      <div class="lof-pdf__teeth__lower-arcs__table__section-type">{{ $t('common.labels.sectionType1') }}</div>
+                      <div class="lof-pdf__teeth__lower-arcs__table__section-type">{{ $t('common.labels.sectionType1', pdfLanguage) }}</div>
                     </td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size12.straight }}</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size12.individual }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size12.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size12.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">14 Ø</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size14.straight }}</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size14.individual }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size14.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size14.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">16 Ø</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size16.straight }}</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size16.individual }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size16.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size16.individual.size }}</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">16 x 22</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size16x22.straight }}</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size16x22.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size16x22.compression }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size16x22.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size16x22.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ lowerTeeth.archwireSizes.size16x22.compression.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">18 x 25</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size18x25_1.straight }}</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size18x25_1.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size18x25_1.compression }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size18x25_1.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size18x25_1.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ lowerTeeth.archwireSizes.size18x25_1.compression.size }}
                     </td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])">
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">18 Ø</td>
                     <td class="lof-pdf__teeth__lower-arcs__table__section" rowspan="3" colspan="1">
-                      <div class="lof-pdf__teeth__lower-arcs__table__section-type">{{ $t('common.labels.sectionType2') }}</div>
+                      <div class="lof-pdf__teeth__lower-arcs__table__section-type">{{ $t('common.labels.sectionType2', pdfLanguage) }}</div>
                     </td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size18.straight }}</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size18.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size18.compression }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size18.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size18.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ lowerTeeth.archwireSizes.size18.compression.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">16 x 24</td>
                     <td v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])" class="lof-pdf__teeth__lower-arcs__table__section" rowspan="3" colspan="1">
-                      <div class="lof-pdf__teeth__lower-arcs__table__section-type">{{ $t('common.labels.sectionType2') }}</div>
+                      <div class="lof-pdf__teeth__lower-arcs__table__section-type">{{ $t('common.labels.sectionType2', pdfLanguage) }}</div>
                     </td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size16x24.straight }}</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size16x24.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size16x24.compression }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size16x24.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size16x24.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ lowerTeeth.archwireSizes.size16x24.compression.size }}
                     </td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])">
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">16 x 24 ET</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size16x24ET.straight }}</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size16x24ET.individual }}</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size16x24ET.compression }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size16x24ET.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size16x24ET.individual.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size16x24ET.compression.size }}</td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])">
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">18 x 25</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size18x25_2.straight }}</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size18x25_2.individual }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size18x25_2.straight.size }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size18x25_2.individual.size }}</td>
                   </tr>
                   <tr v-if="validateLanguagesToSavedLanguage([ 'it', 'sp', 'ru', 'jp' ])">
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">18 x 25 (red)</td>
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size18x25red.straight }}</td>
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size18x25red.straight.size }}</td>
                     <td class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">17,5 x 17,5</td>
                     <td class="lof-pdf__teeth__lower-arcs__table__section lof-pdf__teeth__lower-arcs__table__section--no-border-bottom" rowspan="4" colspan="1">
-                      <div class="lof-pdf__teeth__lower-arcs__table__section-type">{{ $t('common.labels.sectionType3') }}</div>
+                      <div class="lof-pdf__teeth__lower-arcs__table__section-type">{{ $t('common.labels.sectionType3', pdfLanguage) }}</div>
                     </td>
                     <td class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size175x175.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size175x175.compression }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size175x175.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ lowerTeeth.archwireSizes.size175x175.compression.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">17 x 25</td>
                     <td class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size17x25.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size17x25.compression }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size17x25.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ lowerTeeth.archwireSizes.size17x25.compression.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">18 x 18</td>
                     <td class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size18x18.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size18x18.compression }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size18x18.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ lowerTeeth.archwireSizes.size18x18.compression.size }}
                     </td>
                   </tr>
                   <tr>
                     <td class="lof-pdf__teeth__lower-arcs__table__size-label" colspan="3">18 x 25</td>
                     <td class="lof-pdf__teeth__lower-arcs__table__cell--disable" colspan="2" />
-                    <td colspan="2">{{ lowerTeeth.archwireSizes.size18x25_3.individual }}</td>
-                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" colspan="2">
-                      {{ lowerTeeth.archwireSizes.size18x25_3.compression }}
+                    <td class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">{{ lowerTeeth.archwireSizes.size18x25_3.individual.size }}</td>
+                    <td v-if="validateLanguagesToSavedLanguage([ 'en', 'de', 'fr' ])" class="lof-pdf__teeth__upper-arcs__table__size" colspan="2">
+                      {{ lowerTeeth.archwireSizes.size18x25_3.compression.size }}
                     </td>
                   </tr>
                 </tbody>
@@ -1032,7 +1055,6 @@
 </template>
 
 <script>
-  import moment from 'moment'
   import { mapGetters } from 'vuex'
 
   export default {
@@ -1120,7 +1142,8 @@
         getUpperNotesStrippingWhere: 'getNotesStrippingWhere',
         getUpperNotesBoltonDiscrepancy: 'getNotesBoltonDiscrepancy',
         getUpperNotesBox: 'getNotesBox',
-        getUpperArchwireSizes: 'getArchwireSizes'
+        getUpperArchwireSizes: 'getArchwireSizes',
+        getUpperTeethBoxes: 'getTeethBoxes'
       }),
       ...mapGetters('notes', [
         'getThreeDSetup',
@@ -1134,7 +1157,6 @@
         'getLowerJaw',
         'getNotes1',
         'getNoCorrectionOfBite',
-        'getNotes2',
         'getNonTransparent',
         'getTrayTrimmed33',
         'getTransparent',
@@ -1157,7 +1179,8 @@
         getLowerNotesStrippingWhere: 'getNotesStrippingWhere',
         getLowerNotesBoltonDiscrepancy: 'getNotesBoltonDiscrepancy',
         getLowerNotesBox: 'getNotesBox',
-        getLowerArchwireSizes: 'getArchwireSizes'
+        getLowerArchwireSizes: 'getArchwireSizes',
+        getLowerTeethBoxes: 'getTeethBoxes'
       })
     },
 
@@ -1175,7 +1198,7 @@
         this.invoiceAddress = { ...invoiceAddress }
         this.patient = {
           ...patient,
-          dateOfBonding: moment(patient.dateOfBonding, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate)
+          dateOfBonding: patient.dateOfBonding ? this.$moment(patient.dateOfBonding, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate) : ''
         }
         this.upperTeeth = { ...upperTeeth }
         this.notes = { ...notes }
@@ -1187,48 +1210,6 @@
       validateLanguagesToSavedLanguage (langs) {
         const language = this.pdfLanguage
         return langs.includes(language)
-      },
-      prepareArchwires (archwireSizes) {
-        const sizesObject = {}
-        const sizesArray = [
-          'size12',
-          'size14',
-          'size16',
-          'size16x22',
-          'size18x25_1',
-          'size18',
-          'size16x24',
-          'size16x24ET',
-          'size16x24EET',
-          'size18x25_2',
-          'size18x25red',
-          'size175x175',
-          'size17x25',
-          'size18x18',
-          'size18x25_3'
-        ]
-
-        if (!Object.keys(archwireSizes).length) {
-          sizesArray.map((size) => {
-            sizesObject[size] = {
-              straight: '',
-              individual: '',
-              compression: '',
-              expansion: ''
-            }
-          })
-          return sizesObject
-        }
-
-        Object.entries(archwireSizes).forEach(([ key, value ]) => {
-          sizesObject[key] = {
-            straight: value.straight || '',
-            individual: value.individual || '',
-            compression: value.compression || '',
-            expansion: value.expansion || ''
-          }
-        })
-        return sizesObject
       },
       getStoredData () {
         this.invoiceAddress = {
@@ -1253,7 +1234,7 @@
           lastName: this.getPatientLastName,
           firstName: this.getPatientFirstName,
           number: this.getPatientNumber,
-          dateOfBonding: moment(this.getAppointmentDate, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate)
+          dateOfBonding: this.getAppointmentDate ? this.$moment(this.getAppointmentDate, 'YYYY-MM-DD').format(this.pdfLanguageDateFormate) : ''
         }
 
         this.upperTeeth = {
@@ -1273,7 +1254,8 @@
           notesStrippingWhere: this.getUpperNotesStrippingWhere,
           notesBoltonDiscrepancy: this.getUpperNotesBoltonDiscrepancy,
           notesBox: this.getUpperNotesBox,
-          archwireSizes: this.prepareArchwires(this.getUpperArchwireSizes)
+          archwireSizes: this.$prepareArchwires(this.getUpperArchwireSizes()),
+          teethBoxes: this.getUpperTeethBoxes()
         }
 
         this.notes = {
@@ -1288,10 +1270,9 @@
           lowerJaw: this.getLowerJaw,
           notes1: this.getNotes1,
           noCorrectionOfBite: this.getNoCorrectionOfBite,
-          notes2: this.getNotes2,
-          nonTransparent: this.getNonTransparent,
-          trayTrimmed33: this.getTrayTrimmed33,
-          transparent: this.getTransparent,
+          nonTransparent: this.getNonTransparent(),
+          trayTrimmed33: this.getTrayTrimmed33(),
+          transparent: this.getTransparent(),
           right2: { ...this.getRight2CanineMolar },
           right3: { ...this.getRight3CanineMolar },
           left2: { ...this.getLeft2CanineMolar },
@@ -1315,7 +1296,8 @@
           notesStrippingWhere: this.getLowerNotesStrippingWhere,
           notesBoltonDiscrepancy: this.getLowerNotesBoltonDiscrepancy,
           notesBox: this.getLowerNotesBox,
-          archwireSizes: this.prepareArchwires(this.getLowerArchwireSizes)
+          archwireSizes: this.$prepareArchwires(this.getLowerArchwireSizes()),
+          teethBoxes: this.getLowerTeethBoxes()
         }
       }
     }

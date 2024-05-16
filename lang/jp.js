@@ -1,6 +1,11 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: '戻る',
+      close: 'クローズ',
       exit: '出口',
       language: '言語',
       selectFromTemplate: 'テンプレートから選択',
@@ -12,7 +17,18 @@ export default {
       cancel: 'キャンセル',
       send: '送信',
       preview: 'PDFのプレビュー',
-      download: 'PDFダウンロード'
+      download: 'PDFダウンロード',
+      generatingPdf: 'PDFの生成...',
+      search: '検索',
+      apply: '適用する',
+      date: '日付',
+      dateRange: '日付範囲',
+      fromDate: '日付',
+      toDate: '日付',
+      select: '選択',
+      login: 'ログイン',
+      logout: 'ログアウト',
+      allForms: 'すべてのフォーム'
     },
     titles: {
       invoiceAddress: '請求書の住所',
@@ -20,13 +36,17 @@ export default {
       lowerTeeth: '下の歯',
       sentForms: '送信フォーム',
       templates: 'テンプレート',
-      sendForm: 'フォームを送信'
+      sendForm: 'フォームを送信',
+      orderForms: 'オーダーフォーム',
+      login: 'ログイン'
     },
     headlines: {
       newForm: '新しいフォームを作成する',
       sentForms: 'これまでに送信されたすべてのフォームの概要を確認する',
       emptyOrderForms: '送信されたフォームがありません。',
-      emptyTemplates: '保存されているテンプレートがありません。'
+      emptyOrderFormsSearch: '一致するフォームは見つかりませんでした。',
+      emptyTemplates: '保存されているテンプレートがありません。',
+      orderSent: 'フォームが保存され、送信されました'
     },
     labels: {
       expansion: '',
@@ -34,13 +54,18 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Steel',
       sectionType3: 'ß-Ti',
-      templateTitle: 'テンプレートタイトル'
+      templateTitle: 'テンプレートタイトル',
+      searchPlaceholder: '検索...',
+      username: 'ユーザー名',
+      password: 'パスワード'
     },
     notifications: {
       savedOrderForm: 'フォームが保存されました。',
       savedTemplate: 'テンプレートを保存しました。',
       deletedTemplate: 'テンプレートを削除しました。',
-      error: 'エラーが発生しました。'
+      error: 'エラーが発生しました。',
+      errorLogin: '<strong>エラーです。</strong> ユーザー名またはパスワードが有効ではありません。',
+      invalidLines: 'PDFに入力した行数が多すぎます。'
     }
   },
   section: {
@@ -136,8 +161,18 @@ export default {
       dlcSteelWire: 'DLCスチールワイヤー:',
       upperJaw: '上顎',
       lowerJaw: '下顎',
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'T', color: '#909090' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'BA', color: '#000000' }
+      ],
       keyInfo: '<strong>抜歯症例の場合、空隙閉鎖 の有無をご記入ください。</strong>',
-      keyInfoLegend: `
+      // Key Info for the PDF
+      keyInfoLegendPDF: `
         <div><strong>B</strong> = ブラケット</div>&nbsp;|&nbsp;
         <div><strong>T</strong> = チューブ</div>&nbsp;|&nbsp;
         <div><strong>TL</strong> = ロングチューブ</div>&nbsp;|&nbsp;
@@ -146,7 +181,32 @@ export default {
         <div><strong>X</strong> = 欠損歯</div>&nbsp;|&nbsp;
         <div><strong>BA</strong> = 鋳造バンド</div>&nbsp;|&nbsp;
         <div><strong>P</strong> = オクルーザルパッド</div>
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegend: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= ブラケット</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= チューブ</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= ロングチューブ</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= フック付ロングチューブ</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= 抜歯部位</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= 欠損歯</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= 鋳造バンド</div>'
+      ],
+      keyInfoLegendLeft: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= ブラケット</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--t"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>T</strong>&nbsp;= チューブ</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= ロングチューブ</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= フック付ロングチューブ</div>'
+      ],
+      keyInfoLegendRight: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= 抜歯部位</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= 欠損歯</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>BA</strong>&nbsp;= 鋳造バンド</div>'
+      ],
+      keyButtonInfoLegend: {
+        clicked: 'オクルーザルパッド',
+        notClicked: 'オクルーザルサーフェスエクステンションなし'
+      }
     },
     m_2: {
       noCorrectionOfBite: '',
@@ -202,6 +262,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'GENERAL BUSINESS TERMS OF DW LINGUAL SYSTEMS GMBH (“DW Lingual”)',
     content: `
       <strong>§ 1 Scope</strong>

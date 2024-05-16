@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div id="lof">
     <Nuxt />
   </div>
 </template>
 
 <script>
   export default {
-    name: 'plain'
+    name: 'blank'
   }
 </script>

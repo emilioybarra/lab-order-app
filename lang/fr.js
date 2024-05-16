@@ -1,6 +1,11 @@
+import moment from 'moment'
+import { termsAndConditionsDate } from '../utils/termsAndConditionsDate'
+
 export default {
   common: {
     buttons: {
+      back: 'Arrière',
+      close: 'Fermer',
       exit: 'Sortie',
       language: 'Langue',
       selectFromTemplate: 'Choisir un modèle',
@@ -12,20 +17,36 @@ export default {
       cancel: 'Annuler',
       send: 'Envoyer',
       preview: 'Prévisualisation PDF',
-      download: 'Télécharger le PDF'
+      download: 'Télécharger le PDF',
+      generatingPdf: 'Générer des PDF...',
+      search: 'Recherchez',
+      apply: 'Appliquer',
+      date: 'Date',
+      dateRange: 'Fourchette de dates',
+      fromDate: 'Date du',
+      toDate: 'Date à',
+      select: 'Sélectionnez',
+      login: 'Connexion',
+      logout: 'Déconnexion',
+      allForms: 'Tous les formulaires'
     },
     titles: {
       invoiceAddress: 'Adresse de facturation',
       upperTeeth: 'Mâchoire supérieure',
       lowerTeeth: 'Mâchoire inférieure',
       sentForms: 'Formulaires envoyés',
-      templates: 'Modèles'
+      templates: 'Modèles',
+      sendForm: 'Envoyer le formulaire',
+      orderForms: 'Formulaires de commande',
+      login: 'Connexion'
     },
     headlines: {
       newForm: 'Créer un nouveau formulaire',
       sentForms: 'Obtenez un aperçu de tous les formulaires envoyés jusqu\'à présent',
       emptyOrderForms: 'Vous n\'avez pas envoyé de formulaires.',
-      emptyTemplates: 'Vous n\'avez pas de modèles sauvegardés.'
+      emptyOrderFormsSearch: 'Aucun formulaire correspondant n\'a été trouvé.',
+      emptyTemplates: 'Vous n\'avez pas de modèles sauvegardés.',
+      orderSent: 'Le formulaire a été sauvegardé et envoyé avec succès!'
     },
     labels: {
       expansion: 'Expansion',
@@ -33,13 +54,18 @@ export default {
       sectionType1: 'SE-NiTi',
       sectionType2: 'Acier',
       sectionType3: 'ß-Ti',
-      templateTitle: 'Titre du modèle'
+      templateTitle: 'Titre du modèle',
+      searchPlaceholder: 'Recherche...',
+      username: 'Nom d\'utilisateur',
+      password: 'Mot de passe'
     },
     notifications: {
       savedOrderForm: 'Le formulaire a été enregistré.',
       savedTemplate: 'Le modèle a été enregistré.',
       deletedTemplate: 'Le modèle a été supprimé.',
-      error: 'Erreur, veuillez réessayer.'
+      error: 'Erreur, veuillez réessayer.',
+      errorLogin: '<strong>Erreur:</strong> Le nom d\'utilisateur ou le mot de passe ne sont pas valides.',
+      invalidLines: 'Vous avez saisi trop de lignes pour le PDF.'
     }
   },
   section: {
@@ -57,8 +83,7 @@ export default {
         name: 'DW Lingual Systems GmbH',
         streetHouse: 'Lindenstraße 44',
         zipCity: '49152 Bad Essen',
-        country: 'Germany',
-        telephone: ''
+        country: 'Germany'
       }
     },
     h_2: {
@@ -132,10 +157,21 @@ export default {
       dlcSteelWire: '',
       upperJaw: '',
       lowerJaw: '',
+      keyInfoColors: [
+        { label: 'B', color: '#72FBFD' },
+        { label: 'TL', color: '#EB3423' },
+        { label: 'TLH', color: '#74FBB7' },
+        { label: 'TR', color: '#FDEB4E' },
+        { label: 'TRH', color: '#54C2F8' },
+        { label: 'Ex', color: '#75FA4F' },
+        { label: 'X', color: '#A12CF6' },
+        { label: 'bague coulée', color: '#000000' }
+      ],
       keyInfo: `
         <strong>Veuillez indiquer:</strong> Pour des cas d’extraction indiquez fermeture d’espace ou non.
       `,
-      keyInfoLegend: `
+      // Key Info for the PDF
+      keyInfoLegendPDF: `
         <div><strong>B</strong> = bracket</div>&nbsp;|&nbsp;
         <div><strong>TL</strong> = Tube allongé</div>&nbsp;|&nbsp;
         <div><strong>TLH</strong> = Tube allongé avec crochet</div>&nbsp;|&nbsp;
@@ -143,9 +179,36 @@ export default {
         <div><strong>TRH</strong> = tube rond avec crochet</div>&nbsp;|&nbsp;
         <div><strong>Ex</strong> = à extraire</div>&nbsp;|&nbsp;
         <div><strong>X</strong> = absente</div>&nbsp;|&nbsp;
-        <div><strong>bague coulée</strong> = entourez la dent concernée </div>&nbsp;|&nbsp;
+        <div><strong>bague coulée</strong> = entourez la dent concernée</div>&nbsp;|&nbsp;
         <div><strong>occlusale pad</strong> = rayez surface concernée</div>&nbsp;|&nbsp;
-      `
+      `,
+      // Key Info for the TeethCanvas Component
+      keyInfoLegend: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= Tube allongé</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= Tube allongé avec crochet</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= tube rond</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--trh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TRH</strong>&nbsp;= tube rond avec crochet</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= à extraire</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= absente</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>bague coulée</strong>&nbsp;= entourez la dent concernée</div>'
+      ],
+      keyInfoLegendLeft: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--b"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>B</strong>&nbsp;= bracket</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tl"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TL</strong>&nbsp;= Tube allongé</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tlh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TLH</strong>&nbsp;= Tube allongé avec crochet</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--tr"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TR</strong>&nbsp;= tube rond</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--trh"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>TRH</strong>&nbsp;= tube rond avec crochet</div>'
+      ],
+      keyInfoLegendRight: [
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ex"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>Ex</strong>&nbsp;= à extraire</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--x"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>X</strong>&nbsp;= absente</div>',
+        '<div class="lof-teeth-canvas__info-legend__color lof-teeth-canvas__info-legend__color--ba"></div><div class="lof-teeth-canvas__info-legend__divider">|</div><div><strong>bague coulée</strong>&nbsp;= entourez la dent concernée</div>'
+      ],
+      keyButtonInfoLegend: {
+        clicked: 'rayez surface concernée',
+        notClicked: 'Sans rayez surface concernée'
+      }
     },
     m_2: {
       noCorrectionOfBite: 'Pas de correction de l´occlusion',
@@ -203,6 +266,7 @@ export default {
     }
   },
   agbs: {
+    date: moment(termsAndConditionsDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     title: 'CONDITIONS GÉNÉRALES DE VENTE ET DE LIVRAISON DE LA SOCIÉTÉ DW LINGUAL SYSTEMS GMBH (« DW Lingual »)',
     content: `
       <strong>§ 1 Champ d‘application</strong>

@@ -14,16 +14,21 @@ const dataURLToBlob = (dataURL) => {
 }
 
 export const actions = {
-  async fetchOrderForms (context, payload) {
+  async fetchOrderForms ({ commit, redirect }, payload) {
     const { currentPage, userId } = payload
     return await this.$axios.$get('/api/order-forms', {
       params: {
         page: currentPage,
         userId
       }
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
     })
   },
-  async fetchOrderFormById (context, payload) {
+  async fetchOrderFormById ({ commit }, payload) {
     const { orderFormId, userId } = payload
     const config = userId ? { params: { userId } } : {}
     return await this.$axios.$get(`/api/order-forms/${ orderFormId }`, config).then((response) => {
@@ -32,21 +37,21 @@ export const actions = {
 
       if (prepareOrderForm.upperTeeth.imageData.edited) {
         const base64Data = Buffer.from(response.upperTeeth.imageData.data, 'binary').toString('base64')
-        const dataURL = `data:${ response.upperTeeth.imageData.contentType };base64,${ base64Data }`
-        prepareOrderForm.upperTeeth.imageData.dataURL = dataURL
+        prepareOrderForm.upperTeeth.imageData.dataURL = `data:${ response.upperTeeth.imageData.contentType };base64,${ base64Data }`
       }
 
       if (prepareOrderForm.lowerTeeth.imageData.edited) {
         const base64Data = Buffer.from(response.lowerTeeth.imageData.data, 'binary').toString('base64')
-        const dataURL = `data:${ response.lowerTeeth.imageData.contentType };base64,${ base64Data }`
-        prepareOrderForm.lowerTeeth.imageData.dataURL = dataURL
+        prepareOrderForm.lowerTeeth.imageData.dataURL = `data:${ response.lowerTeeth.imageData.contentType };base64,${ base64Data }`
       }
 
       return prepareOrderForm
+    }).catch((error) => {
+      if (error.response.status === 401) {
+        commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+        return false
+      }
     })
-      .catch(() => {
-        return null
-      })
   },
   saveOrderForm (ctx, payload) {
     const { rootGetters, commit } = ctx
@@ -89,6 +94,7 @@ export const actions = {
       'upper-teeth/getNotesBoltonDiscrepancy': getUpperNotesBoltonDiscrepancy,
       'upper-teeth/getNotesBox': getUpperNotesBox,
       'upper-teeth/getArchwireSizes': getUpperArchwireSizes,
+      'upper-teeth/getTeethBoxes': getUpperTeethBoxes,
 
       'notes/getThreeDSetup': getThreeDSetup,
       'notes/getTpa': getTpa,
@@ -101,7 +107,6 @@ export const actions = {
       'notes/getLowerJaw': getLowerJaw,
       'notes/getNotes1': getNotes1,
       'notes/getNoCorrectionOfBite': getNoCorrectionOfBite,
-      'notes/getNotes2': getNotes2,
       'notes/getNonTransparent': getNonTransparent,
       'notes/getTrayTrimmed33': getTrayTrimmed33,
       'notes/getTransparent': getTransparent,
@@ -123,7 +128,8 @@ export const actions = {
       'lower-teeth/getNotesStrippingWhere': getLowerNotesStrippingWhere,
       'lower-teeth/getNotesBoltonDiscrepancy': getLowerNotesBoltonDiscrepancy,
       'lower-teeth/getNotesBox': getLowerNotesBox,
-      'lower-teeth/getArchwireSizes': getLowerArchwireSizes
+      'lower-teeth/getArchwireSizes': getLowerArchwireSizes,
+      'lower-teeth/getTeethBoxes': getLowerTeethBoxes
     } = rootGetters
 
     const prepareOrderFormObject = {
@@ -165,7 +171,8 @@ export const actions = {
         notesStrippingWhere: getUpperNotesStrippingWhere,
         notesBoltonDiscrepancy: getUpperNotesBoltonDiscrepancy,
         notesBox: getUpperNotesBox,
-        archwireSizes: getUpperArchwireSizes
+        archwireSizes: getUpperArchwireSizes(),
+        teethBoxes: getUpperTeethBoxes()
       },
       notes: {
         threeDSetup: getThreeDSetup,
@@ -179,10 +186,9 @@ export const actions = {
         lowerJaw: getLowerJaw,
         notes1: getNotes1,
         noCorrectionOfBite: getNoCorrectionOfBite,
-        notes2: getNotes2,
-        nonTransparent: getNonTransparent,
-        trayTrimmed33: getTrayTrimmed33,
-        transparent: getTransparent,
+        nonTransparent: getNonTransparent(),
+        trayTrimmed33: getTrayTrimmed33(),
+        transparent: getTransparent(),
         right2: { ...getRight2CanineMolar },
         right3: { ...getRight3CanineMolar },
         left2: { ...getLeft2CanineMolar },
@@ -201,7 +207,8 @@ export const actions = {
         notesStrippingWhere: getLowerNotesStrippingWhere,
         notesBoltonDiscrepancy: getLowerNotesBoltonDiscrepancy,
         notesBox: getLowerNotesBox,
-        archwireSizes: getLowerArchwireSizes
+        archwireSizes: getLowerArchwireSizes(),
+        teethBoxes: getLowerTeethBoxes()
       }
     }
 
@@ -222,30 +229,33 @@ export const actions = {
       header: { 'Content-Type': 'multipart/form-data' }
     }
 
-    this.$axios.$post('/api/order-forms/order-form', prepareOrderFormData, config)
+    return this.$axios.$post('/api/order-forms/order-form', prepareOrderFormData, config)
       .then((response) => {
         if (response.status === 201) {
-          const notification = {
-            message: 'savedOrderForm',
-            variant: 'success'
-          }
-          commit('common/setNotifications', notification, { root: true })
-          commit('invoiceAddress/resetInvoiceAddressState')
-          commit('upper-teeth/resetUpperTeethState')
-          commit('notes/resetNotesState')
-          commit('lower-teeth/resetLowerTeethState')
+          commit('invoice-address/resetInvoiceAddressState', null, { root: true })
+          commit('upper-teeth/resetUpperTeethState', null, { root: true })
+          commit('notes/resetNotesState', null, { root: true })
+          commit('lower-teeth/resetLowerTeethState', null, { root: true })
+          return true
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/setAuth', { user: {}, loggedIn: false }, { root: true })
+          return false
+        }
+
         const notification = {
           message: 'error',
           variant: 'danger'
         }
+        commit('common/resetState', '', { root: true })
+        commit('invoice-address/resetInvoiceAddressState', null, { root: true })
+        commit('upper-teeth/resetUpperTeethState', null, { root: true })
+        commit('notes/resetNotesState', null, { root: true })
+        commit('lower-teeth/resetLowerTeethState', null, { root: true })
         commit('common/setNotifications', notification, { root: true })
-        commit('invoiceAddress/resetInvoiceAddressState')
-        commit('upper-teeth/resetUpperTeethState')
-        commit('notes/resetNotesState')
-        commit('lower-teeth/resetLowerTeethState')
+        return false
       })
   }
 }

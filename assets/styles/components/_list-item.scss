@@ -1,9 +1,9 @@
 .lof-list-item {
   @extend .row;
-  width: 100%;
-  align-self: center;
+  // width: 100%;
+  // align-self: center;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
   margin-bottom: $space-8;
   min-height: 38px;
 
@@ -13,8 +13,8 @@
   }
 
   &__button {
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 2rem;
+    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,6 +38,11 @@
       &--download {
         width: 1.5rem;
         height: 1.5rem;
+      }
+
+      &--external {
+        width: 1.3rem;
+        height: 1.3rem;
       }
     }
   }

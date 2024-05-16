@@ -15,7 +15,6 @@ const noteSchema = new Schema(
       lowerJaw: Boolean,
       notes1: String,
       noCorrectionOfBite: Boolean,
-      notes2: String,
       nonTransparent: Boolean,
       trayTrimmed33: Boolean,
       transparent: Boolean,

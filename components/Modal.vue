@@ -1,18 +1,23 @@
 <template>
   <div class="lof-modal">
-    <div v-if="!showContent && showTab && !showOnlyCloseTab" class="lof-modal__tab" @click.stop="show">
-      <svg-icon icon="notes" class="lof-modal__tab-icon" />
+    <div v-if="!showContent && showTab && !showOnlyCloseTab" class="lof-tab" @click.stop="show">
+      <svg-icon icon="notes" class="lof-tab__icon" />
     </div>
-    <div v-if="showContent && showTab || showContent && showOnlyCloseTab" class="lof-modal__tab" @click="hide">
-      <svg-icon icon="times" class="lof-modal__tab-icon" />
+    <div v-if="showContent && showTab || showContent && showOnlyCloseTab" class="lof-tab" @click="hide">
+      <svg-icon icon="times" class="lof-tab__icon" />
     </div>
     <transition name="fade" mode="out-in" @after-enter="showContent = true">
-      <div v-if="showModal" class="lof-modal__overlay">
+      <div v-if="showModal" class="lof-overlay">
         <transition name="fade" mode="out-in" @after-leave="showModal = false">
-          <div v-if="showContent" class="lof-modal__container row">
-            <div class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-6 d-flex align-items-center p-0">
+          <div v-if="showContent" class="lof-modal__container">
+            <scrollable-card
+              v-click-outside="{ handler: 'closeModal' }"
+              class="lof-modal__container__card"
+              :class="{ 'h-auto': heightAuto }"
+              :full-width="fullWidth"
+            >
               <slot />
-            </div>
+            </scrollable-card>
           </div>
         </transition>
       </div>
@@ -25,14 +30,16 @@
     name: 'modal',
 
     props: {
-      showTab: {
-        type: Boolean,
-        required: false
-      },
+      showTab: Boolean,
       showOnlyCloseTab: {
         type: Boolean,
-        required: false,
         default: false
+      },
+      fullWidth: Boolean,
+      heightAuto: Boolean,
+      clickOutside: {
+        type: Boolean,
+        default: true
       }
     },
 
@@ -55,6 +62,11 @@
       },
       hide () {
         this.showContent = false
+      },
+      closeModal () {
+        if (this.clickOutside) {
+          this.$emit('closeModal')
+        }
       }
     }
   }

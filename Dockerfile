@@ -1,5 +1,5 @@
 # Dockerfile
-FROM node:lts
+FROM node:14
 
 # create destination directory
 RUN mkdir -p /usr/src/app

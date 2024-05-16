@@ -4,6 +4,12 @@
   background-color: $white;
 
   &__header {
+    & th {
+      color: $white;
+      background-color: $primary !important;
+      border-color: $primary !important;
+    }
+
     &-label {
       hyphens: auto;
     }
@@ -15,27 +21,54 @@
 
   &__row {
     height: 100%;
+
+    &__size {
+      text-align: left;
+      white-space: normal;
+    }
   }
 
   &__section-type {
     transform: rotate(-90deg);
+
+    &-column {
+      background-color: $tertiary;
+    }
   }
 
   &__cell {
     display: table-cell;
     padding: 0 !important;
     height: 100%;
+    position: relative;
+
+    &__button {
+      height: 100%;
+      width: 100%;
+      border: none;
+      outline: none;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      font-size: 26px;
+      background-color: $white;
+      touch-action: manipulation;
+    }
 
     &__input {
       height: 100%;
       width: 100%;
       border: none;
       text-align: center;
-      min-height: 50px;
+      outline: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
 
       &--disable {
-        background: url('~assets/images/line.png');
-        background-size: 100% 100%;
         background-color: $light-grey;
       }
     }
