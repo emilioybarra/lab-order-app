@@ -13,7 +13,7 @@ dotenv.config();
 const isDev = process.env.NODE_ENV === 'development';
 const localhostEnv = process.env.VUE_APP_LOCALHOST_URL;
 const localhostGateway = localhostEnv || 'http://localhost:3000';
-const devURL = isDev ? localhostGateway : 'https://dwls.dev.pr1.run/';
+const devURL = isDev ? localhostGateway : 'https://moonlit-panda-b44c76.netlify.app/';
 
 const modules = [
   // https://go.nuxtjs.dev/bootstrap
