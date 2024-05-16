@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "@nuxt/babel-preset-app",
+      {
+        "corejs": { "version": 3 },
+        "useBuiltIns": "entry"
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    ["@babel/plugin-proposal-private-methods", { "loose": true }],
+    ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
+    ["@babel/plugin-proposal-optional-chaining", { "loose": true }]
+  ]
+}
