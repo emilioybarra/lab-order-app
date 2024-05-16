@@ -20,7 +20,7 @@
     props: [ 'error' ],
 
     mounted () {
-      this.$setContainerHeight()
+      // this.$setContainerHeight()
     }
   }
 </script>

@@ -68,7 +68,7 @@
     },
 
     mounted () {
-      this.$setContainerHeight()
+      // this.$setContainerHeight()
     },
 
     methods: {
