@@ -113,7 +113,7 @@ export default {
     { mode: 'client', src: '@/plugins/language-variant' },
     { mode: 'client', src: '@/plugins/prepare-archwires' },
     { mode: 'client', src: '@/plugins/generate-random-key' },
-    { mode: 'client', src: '@/plugins/set-container-height' },
+    // { mode: 'client', src: '@/plugins/set-container-height' },
     { mode: 'client', src: '@/plugins/block-back-native-navigation' },
   ],
 
