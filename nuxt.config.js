@@ -10,10 +10,16 @@ import sp from './lang/sp';
 
 dotenv.config();
 
+// const isDev = process.env.NODE_ENV === 'development';
+// const localhostEnv = process.env.VUE_APP_LOCALHOST_URL;
+// const localhostGateway = localhostEnv || 'http://localhost:3000';
+// const devURL = isDev ? localhostGateway : 'https://moonlit-panda-b44c76.netlify.app/';
+
 const isDev = process.env.NODE_ENV === 'development';
-const localhostEnv = process.env.VUE_APP_LOCALHOST_URL;
-const localhostGateway = localhostEnv || 'http://localhost:3000';
-const devURL = isDev ? localhostGateway : 'https://moonlit-panda-b44c76.netlify.app/';
+const port = isDev ? '3000' : process.env.PORT;
+const apiPort = isDev ? process.env.PORT : '5000';
+const baseURL = isDev ? `http://localhost:${port}` : 'https://mcj-staging.herokuapp.com/';
+const apiGateway = isDev ? `http://localhost:${apiPort}` : 'https://lab-order-api-87544a7ba0cf.herokuapp.com/';
 
 const modules = [
   // https://go.nuxtjs.dev/bootstrap
@@ -37,7 +43,7 @@ export default {
   modern: isDev ? false : 'server',
 
   server: {
-    port: isDev ? 3000 : 80,
+    port, //: isDev ? 3000 : 80,
     host: '0.0.0.0', // default: localhost
   },
 
@@ -133,21 +139,50 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules,
 
+  // axios: {
+  //   baseURL: devURL, // Used as fallback if no runtime config is provided
+  //   retry: { retries: 3 },
+  // },
+
+  // publicRuntimeConfig: {
+  //   axios: {
+  //     browserBaseURL: devURL,
+  //     retry: { retries: 3 },
+  //   },
+  // },
+
+  // privateRuntimeConfig: {
+  //   axios: {
+  //     baseURL: devURL,
+  //   },
+  // },
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: devURL, // Used as fallback if no runtime config is provided
+    proxy: true,
     retry: { retries: 3 },
+    baseURL: apiGateway, // Used as fallback if no runtime config is provided
+  },
+
+  proxy: {
+    '/api/': {
+      target: apiGateway,
+      // changeOrigin: true,
+      // secure: true
+    },
   },
 
   publicRuntimeConfig: {
     axios: {
-      browserBaseURL: devURL,
       retry: { retries: 3 },
+      browserBaseURL: baseURL,
     },
   },
 
   privateRuntimeConfig: {
     axios: {
-      baseURL: devURL,
+      retry: { retries: 3 },
+      baseURL,
     },
   },
 
