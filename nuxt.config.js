@@ -32,7 +32,6 @@ const modules = [
   'nuxt-i18n',
   '@nuxtjs/proxy',
   '@nuxtjs/style-resources',
-  '~/modules/api',
 ];
 
 if (isDev) {
