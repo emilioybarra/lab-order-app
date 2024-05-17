@@ -1,5 +1,5 @@
 // import BootstrapVueLoader from 'bootstrap-vue-loader';
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import de from './lang/de';
 import en from './lang/en';
 import fr from './lang/fr';
@@ -8,7 +8,7 @@ import jp from './lang/jp';
 import ru from './lang/ru';
 import sp from './lang/sp';
 
-// dotenv.config();
+dotenv.config();
 
 const isDev = process.env.NODE_ENV === 'development';
 const localhostEnv = process.env.VUE_APP_LOCALHOST_URL;
