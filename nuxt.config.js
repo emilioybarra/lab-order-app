@@ -19,7 +19,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const port = isDev ? '3000' : process.env.PORT;
 const apiPort = isDev ? process.env.PORT : '5000';
 const baseURL = isDev ? `http://localhost:${port}` : 'https://lab-order-form-92dbcb7544ef.herokuapp.com/';
-const apiGateway = isDev ? `http://localhost:${apiPort}` : 'https://lab-order-api-87544a7ba0cf.herokuapp.com/';
+const apiGateway = isDev ? `http://localhost:${apiPort}` : 'https://lab-order-api-8e77f3f46d1b.herokuapp.com/';
 
 const modules = [
   // https://go.nuxtjs.dev/bootstrap
